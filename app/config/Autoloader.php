@@ -4,6 +4,7 @@ namespace App\Config;
 
 class CustomAutoloader 
 {
+
     public static function register() 
     {
         spl_autoload_register(function ($class) {
@@ -19,8 +20,7 @@ class CustomAutoloader
                 require_once $file;
                 error_log("Clase cargada: " . $class);
                 return true;
-            }
-            
+            }            
             error_log("No se encontró la clase: " . $class);
             return false;
         });
