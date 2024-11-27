@@ -1,0 +1,479 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Casos de Uso - SICATEAM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 21cm;
+            margin: 2cm auto;
+            padding: 2cm;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #2c3e50;
+        }
+
+        .caso-uso {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 3px solid #3498db;
+            background-color: #f9f9f9;
+        }
+
+        .actor,
+        .precondiciones {
+            font-weight: bold;
+            color: #2980b9;
+        }
+
+        .flujo {
+            margin-left: 20px;
+        }
+
+        .flujo-alternativo {
+            margin-left: 30px;
+            color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Casos de Uso - SICATEAM</h1>
+
+    <h2>1. Gestión de Usuarios y Accesos</h2>
+
+    <div class="caso-uso">
+        <h3>CU-01: Iniciar Sesión</h3>
+        <div class="actor">Actor Principal: Usuario del Sistema</div>
+        <div class="precondiciones">Precondiciones: Usuario registrado en el sistema</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Usuario accede a la página de inicio</li>
+                <li>Sistema muestra formulario de login</li>
+                <li>Usuario ingresa credenciales</li>
+                <li>Sistema valida credenciales</li>
+                <li>Sistema permite acceso y muestra menú principal</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Credenciales inválidas: Sistema muestra mensaje de error</li>
+                    <li>Cuenta bloqueada: Sistema notifica al usuario</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="caso-uso">
+        <h3>CU-02: Gestionar Perfiles</h3>
+        <div class="actor">Actor Principal: Administrador</div>
+        <div class="precondiciones">Precondiciones: Usuario autenticado con permisos de administrador</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Administrador accede a "Profile" en menú Administración</li>
+                <li>Sistema muestra lista de perfiles</li>
+                <li>Administrador puede crear/modificar/eliminar perfiles</li>
+                <li>Sistema actualiza cambios en tiempo real</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Perfil en uso: Sistema impide eliminación</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h2>2. Gestión de Plantas</h2>
+
+    <div class="caso-uso">
+        <h3>CU-03: Registrar Nueva Planta</h3>
+        <div class="actor">Actor Principal: Supervisor de Plantas</div>
+        <div class="precondiciones">Precondiciones: Usuario autenticado con permisos de supervisor</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Supervisor selecciona "Planta" en menú Administración</li>
+                <li>Sistema muestra formulario de registro</li>
+                <li>Supervisor ingresa datos de la planta:
+                    <ul>
+                        <li>Nombre y ubicación</li>
+                        <li>Capacidad instalada</li>
+                        <li>Equipos asociados</li>
+                    </ul>
+                </li>
+                <li>Sistema valida y guarda información</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Datos incompletos: Sistema solicita información faltante</li>
+                    <li>Planta duplicada: Sistema notifica error</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="caso-uso">
+        <h3>CU-04: Monitorear Capacidad de Planta</h3>
+        <div class="actor">Actor Principal: Supervisor de Planta</div>
+        <div class="precondiciones">Precondiciones: Planta registrada en el sistema</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Supervisor accede a "Dashboard de Capacidad"</li>
+                <li>Sistema muestra métricas en tiempo real:
+                    <ul>
+                        <li>Capacidad utilizada</li>
+                        <li>Eficiencia por línea</li>
+                        <li>Tiempos muertos</li>
+                    </ul>
+                </li>
+                <li>Supervisor puede filtrar por períodos</li>
+                <li>Sistema actualiza visualizaciones</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Sin datos: Sistema muestra mensaje informativo</li>
+                    <li>Error de conexión: Sistema intenta reconectar</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="caso-uso">
+        <h3>CU-05: Registrar Pérdidas</h3>
+        <div class="actor">Actor Principal: Operador</div>
+        <div class="precondiciones">Precondiciones: Usuario autenticado con acceso a registro</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Operador selecciona "Registro de Pérdidas"</li>
+                <li>Sistema muestra formulario de registro</li>
+                <li>Operador ingresa detalles:
+                    <ul>
+                        <li>Tipo de pérdida</li>
+                        <li>Duración</li>
+                        <li>Causa raíz</li>
+                    </ul>
+                </li>
+                <li>Sistema almacena información</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Datos inválidos: Sistema solicita corrección</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="caso-uso">
+        <h3>CU-06: Análisis de Producción</h3>
+        <div class="actor">Actor Principal: Supervisor de Producción</div>
+        <div class="precondiciones">Precondiciones: Datos de producción disponibles</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Supervisor accede a "Análisis de Producción"</li>
+                <li>Sistema muestra panel con:
+                    <ul>
+                        <li>Producción por turno</li>
+                        <li>Cumplimiento de objetivos</li>
+                        <li>Tendencias de producción</li>
+                    </ul>
+                </li>
+                <li>Supervisor selecciona período de análisis</li>
+                <li>Sistema genera reportes comparativos</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Sin datos en período: Sistema muestra mensaje</li>
+                    <li>Error en cálculos: Sistema notifica inconsistencias</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="caso-uso">
+        <h3>CU-07: Monitoreo de Tiempos Perdidos</h3>
+        <div class="actor">Actor Principal: Supervisor de Planta</div>
+        <div class="precondiciones">Precondiciones: Sistema en funcionamiento</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Supervisor accede a "Monitor de Tiempos"</li>
+                <li>Sistema presenta:
+                    <ul>
+                        <li>Tiempo inactivo por equipo</li>
+                        <li>Estadísticas por turno</li>
+                        <li>Patrones identificados</li>
+                    </ul>
+                </li>
+                <li>Sistema genera recomendaciones automáticas</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Fallo de sensor: Sistema marca datos como estimados</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="caso-uso">
+        <h3>CU-08: Gestión de Alertas</h3>
+        <div class="actor">Actor Principal: Operador de Sistema</div>
+        <div class="precondiciones">Precondiciones: Sistema de alertas configurado</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Sistema detecta condición de alerta</li>
+                <li>Sistema notifica:
+                    <ul>
+                        <li>Tipo de alerta</li>
+                        <li>Ubicación/Equipo</li>
+                        <li>Nivel de criticidad</li>
+                    </ul>
+                </li>
+                <li>Operador confirma recepción</li>
+                <li>Sistema registra respuesta</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Alerta falsa: Operador marca como falso positivo</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="caso-uso">
+        <h3>CU-09: Generación de Reportes</h3>
+        <div class="actor">Actor Principal: Usuario Autorizado</div>
+        <div class="precondiciones">Precondiciones: Acceso a módulo de reportes</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Usuario selecciona tipo de reporte</li>
+                <li>Sistema muestra opciones:
+                    <ul>
+                        <li>Período de tiempo</li>
+                        <li>Formato de salida</li>
+                        <li>Nivel de detalle</li>
+                    </ul>
+                </li>
+                <li>Sistema genera documento</li>
+                <li>Usuario descarga reporte</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Error de generación: Sistema ofrece retry</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="caso-uso">
+        <h3>CU-10: Mantenimiento de Catálogos</h3>
+        <div class="actor">Actor Principal: Administrador</div>
+        <div class="precondiciones">Precondiciones: Acceso administrativo</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Administrador accede a catálogos</li>
+                <li>Sistema muestra opciones:
+                    <ul>
+                        <li>Equipos</li>
+                        <li>Tipos de fallas</li>
+                        <li>Categorías</li>
+                    </ul>
+                </li>
+                <li>Administrador realiza mantenimiento</li>
+                <li>Sistema actualiza registros</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Registro duplicado: Sistema notifica conflicto</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="caso-uso">
+        <h3>CU-11: Gestión de Usuarios</h3>
+        <div class="actor">Actor Principal: Administrador del Sistema</div>
+        <div class="precondiciones">Precondiciones: Acceso total al sistema</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Administrador accede a gestión de usuarios</li>
+                <li>Sistema muestra opciones:
+                    <ul>
+                        <li>Alta/Baja usuarios</li>
+                        <li>Asignación de roles</li>
+                        <li>Permisos especiales</li>
+                    </ul>
+                </li>
+                <li>Administrador modifica configuración</li>
+                <li>Sistema aplica cambios</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Usuario existente: Sistema solicita confirmación</li>
+                    <li>Error en permisos: Sistema mantiene configuración previa</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="caso-uso">
+        <h3>CU-12: Configurar Parámetros del Sistema</h3>
+        <div class="actor">Actor Principal: Administrador del Sistema</div>
+        <div class="precondiciones">Precondiciones: Acceso administrativo</div>
+        <div class="flujo">
+            <strong>Flujo Principal:</strong>
+            <ol>
+                <li>Administrador accede a configuraciones</li>
+                <li>Sistema muestra parámetros:
+                    <ul>
+                        <li>Intervalos de backup</li>
+                        <li>Umbrales de alertas</li>
+                        <li>Configuración de correos</li>
+                    </ul>
+                </li>
+                <li>Sistema aplica cambios en tiempo real</li>
+            </ol>
+            <div class="flujo-alternativo">
+                <strong>Flujos Alternativos:</strong>
+                <ul>
+                    <li>Error de configuración: Sistema mantiene valores anteriores</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h3>6. Diagrama de Clases</h3>
+
+    <div class="class-diagram">
+        <style>
+            .class-diagram {
+                margin: 20px 0;
+                padding: 15px;
+                border: 1px solid #ccc;
+                background-color: #fff;
+            }
+
+            .class-box {
+                border: 2px solid #2980b9;
+                margin: 10px;
+                padding: 10px;
+                display: inline-block;
+                min-width: 200px;
+                background-color: #f9f9f9;
+            }
+
+            .class-name {
+                font-weight: bold;
+                color: #2c3e50;
+                border-bottom: 1px solid #bdc3c7;
+                padding-bottom: 5px;
+                margin-bottom: 5px;
+            }
+
+            .class-attributes,
+            .class-methods {
+                font-size: 0.9em;
+                padding: 5px 0;
+            }
+        </style>
+
+        <div class="class-box">
+            <div class="class-name">Usuario</div>
+            <div class="class-attributes">
+                - id: int<br>
+                - nombre: string<br>
+                - rol: string<br>
+                - credenciales: Credenciales
+            </div>
+            <div class="class-methods">
+                + autenticar()<br>
+                + gestionarPermisos()
+            </div>
+        </div>
+
+        <div class="class-box">
+            <div class="class-name">Planta</div>
+            <div class="class-attributes">
+                - id: int<br>
+                - nombre: string<br>
+                - capacidadInstalada: float<br>
+                - lineasProduccion: Lista&lt;LineaProduccion&gt;
+            </div>
+            <div class="class-methods">
+                + calcularCapacidadUtilizada()<br>
+                + obtenerMetricas()
+            </div>
+        </div>
+
+        <div class="class-box">
+            <div class="class-name">RegistroPerdidas</div>
+            <div class="class-attributes">
+                - id: int<br>
+                - fecha: DateTime<br>
+                - tipo: string<br>
+                - causa: string<br>
+                - tiempoInactivo: float
+            </div>
+            <div class="class-methods">
+                + registrarEvento()<br>
+                + analizarCausas()<br>
+                + generarReporte()
+            </div>
+        </div>
+
+        <div class="class-box">
+            <div class="class-name">Produccion</div>
+            <div class="class-attributes">
+                - id: int<br>
+                - fecha: DateTime<br>
+                - turno: string<br>
+                - cantidadProducida: int<br>
+                - objetivoPlanificado: int
+            </div>
+            <div class="class-methods">
+                + registrarProduccion()<br>
+                + compararObjetivos()<br>
+                + generarReporteDiario()
+            </div>
+        </div>
+
+        <div class="class-box">
+            <div class="class-name">Sistema</div>
+            <div class="class-attributes">
+                - configuracion: Configuracion<br>
+                - baseDatos: ConexionBD<br>
+                - usuarios: Lista&lt;Usuario&gt;
+            </div>
+            <div class="class-methods">
+                + iniciarSesion()<br>
+                + respaldarDatos()<br>
+                + validarIntegridad()
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

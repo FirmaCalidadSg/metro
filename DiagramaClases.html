@@ -1,0 +1,337 @@
+<h3>6. Diagrama de Clases</h3>
+
+<div class="class-diagram">
+    <style>
+        .class-diagram {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+        .class-box {
+            border: 2px solid #2980b9;
+            margin: 10px;
+            padding: 10px;
+            display: inline-block;
+            min-width: 200px;
+            background-color: #f9f9f9;
+        }
+        .class-name {
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+        .class-attributes, .class-methods {
+            font-size: 0.9em;
+            padding: 5px 0;
+        }
+    </style>
+
+    <div class="class-box">
+        <div class="class-name">Usuario</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - rol: string<br>
+            - credenciales: Credenciales<br>
+            - permisos: Lista&lt;Permiso&gt;
+        </div>
+        <div class="class-methods">
+            + autenticar()<br>
+            + gestionarPermisos()<br>
+            + asignarRol()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Profile</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - permisos: Lista&lt;Permiso&gt;<br>
+            - configuraciones: Lista&lt;Configuracion&gt;
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Definicion</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - valor: string<br>
+            - descripcion: string
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Pais</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - codigo: string<br>
+            - ciudades: Lista&lt;Ciudad&gt;
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Ciudad</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - pais: Pais<br>
+            - codigoPostal: string
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Equipo</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - modelo: string<br>
+            - estado: string<br>
+            - danos: Lista&lt;DanoEquipo&gt;
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">DanoEquipo</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - equipo: Equipo<br>
+            - descripcion: string<br>
+            - fecha: DateTime<br>
+            - estado: string
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Proceso</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - descripcion: string<br>
+            - lineas: Lista&lt;Linea&gt;
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Linea</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - proceso: Proceso<br>
+            - productos: Lista&lt;LineaProducto&gt;
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Producto</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - codigo: string<br>
+            - descripcion: string
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">LineaProducto</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - linea: Linea<br>
+            - producto: Producto<br>
+            - capacidadProduccion: float
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Paro</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - descripcion: string<br>
+            - fechaInicio: DateTime<br>
+            - fechaFin: DateTime<br>
+            - subParos: Lista&lt;SubParo&gt;
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">SubParo</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - paro: Paro<br>
+            - descripcion: string<br>
+            - duracion: float
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Turno</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - horaInicio: Time<br>
+            - horaFin: Time
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Documento</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - tipo: string<br>
+            - ruta: string<br>
+            - fechaCreacion: DateTime
+        </div>
+        <div class="class-methods">
+            + crear()<br>
+            + leer()<br>
+            + actualizar()<br>
+            + eliminar()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Planta</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - nombre: string<br>
+            - capacidadInstalada: float<br>
+            - lineasProduccion: Lista&lt;LineaProduccion&gt;
+        </div>
+        <div class="class-methods">
+            + calcularCapacidadUtilizada()<br>
+            + obtenerMetricas()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">RegistroPerdidas</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - fecha: DateTime<br>
+            - tipo: string<br>
+            - causa: string<br>
+            - tiempoInactivo: float
+        </div>
+        <div class="class-methods">
+            + registrarEvento()<br>
+            + analizarCausas()<br>
+            + generarReporte()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Produccion</div>
+        <div class="class-attributes">
+            - id: int<br>
+            - fecha: DateTime<br>
+            - turno: string<br>
+            - cantidadProducida: int<br>
+            - objetivoPlanificado: int
+        </div>
+        <div class="class-methods">
+            + registrarProduccion()<br>
+            + compararObjetivos()<br>
+            + generarReporteDiario()
+        </div>
+    </div>
+
+    <div class="class-box">
+        <div class="class-name">Sistema</div>
+        <div class="class-attributes">
+            - configuracion: Configuracion<br>
+            - baseDatos: ConexionBD<br>
+            - usuarios: Lista&lt;Usuario&gt;<br>
+            - menuAdmin: MenuAdministrativo
+        </div>
+        <div class="class-methods">
+            + iniciarSesion()<br>
+            + respaldarDatos()<br>
+            + validarIntegridad()<br>
+            + gestionarMenuAdmin()
+        </div>
+    </div>
+</div>

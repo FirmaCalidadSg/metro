@@ -1,0 +1,431 @@
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Especificación de Requerimientos de Software - SICATEAM</title>
+
+    <style>
+        body {
+
+            font-family: Arial, sans-serif;
+
+            line-height: 1.6;
+
+            max-width: 21cm;
+
+            margin: 2cm auto;
+
+            padding: 2cm;
+
+        }
+
+        h1 {
+
+            text-align: center;
+
+            color: #2c3e50;
+
+        }
+
+        h2 {
+
+            color: #2980b9;
+
+            border-bottom: 2px solid #2980b9;
+
+            padding-bottom: 5px;
+
+        }
+
+        h3 {
+
+            color: #3498db;
+
+        }
+
+        h4 {
+
+            color: #2c3e50;
+
+        }
+
+        ul,
+        ol {
+
+            margin-left: 20px;
+
+        }
+
+        .requirement {
+
+            margin-left: 20px;
+
+            margin-bottom: 10px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Especificación de Requerimientos de Software</h1>
+
+    <h2>Sistema de Capacidades Team (SICATEAM)</h2>
+
+    <p><strong>Propósito del Software:</strong> Desarrollar un sistema que permita la consulta en línea sobre la gestión
+        del uso de capacidades instaladas de las plantas, identificando causas de pérdidas en los equipos, porcentaje de
+        efectividad perdido, disminución de capacidad de producción y registro de piezas no conformes, mediante el
+        registro de información de producción y tiempos perdidos por turno.</p>
+
+    <h3>1. Requerimientos Funcionales</h3>
+
+
+
+    <h4>1.0 Gestión de Usuarios:</h4>
+
+    <div class="requirement">
+        <p><strong>RF1.0.1:</strong> El sistema debe proporcionar una Autenticación segura para el acceso</p>
+        <p><strong>RF1.0.2:</strong> El sistema debe proporcionar roles para el acceso</p>
+        <ul>
+
+            <li>operador</li>
+
+            <li>supervisor</li>
+
+            <li>administrador</li>
+
+        </ul>
+    </div>
+    <h4>1.1 Gestión de Menú Principal</h4>
+
+    <div class="requirement">
+
+
+        <p><strong>RF1.1:</strong> El sistema debe proporcionar una barra de navegación principal con las siguientes
+            opciones:</p>
+
+        <ul>
+
+            <li>Nuevo</li>
+
+            <li>Consultas</li>
+
+            <li>Reportes</li>
+
+            <li>Administración</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h4>1.2 Módulo de Administración</h4>
+
+    <div class="requirement">
+
+        <p><strong>RF2.1:</strong> El sistema debe incluir un menú administrativo con las siguientes opciones:</p>
+
+        <ul>
+
+            <li>Profile (Gestión de perfiles de usuario)</li>
+
+            <li>Definiciones (Configuraciones generales)</li>
+
+            <li>Países (Catálogo de países)</li>
+
+            <li>Ciudades (Catálogo de ciudades)</li>
+
+            <li>Equipos (Gestión de equipamiento)</li>
+
+            <li>Daños de Equipos (Registro y seguimiento de fallas)</li>
+
+            <li>Planta (Gestión de plantas productivas)</li>
+
+            <li>Proceso (Configuración de procesos)</li>
+
+            <li>Línea (Gestión de líneas de producción)</li>
+
+            <li>Producto (Catálogo de productos)</li>
+
+            <li>Línea y Producto (Relación entre líneas y productos)</li>
+
+            <li>Paro (Registro de paros)</li>
+
+            <li>SubParo (Categorización de paros)</li>
+
+            <li>Turno (Gestión de turnos)</li>
+
+            <li>Todos los documentos (Gestión documental)</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h4>1.3 Gestión de Plantas y Capacidades</h4>
+
+    <div class="requirement">
+
+        <ul>
+
+            <li><strong>RF3.1:</strong> El sistema debe permitir registrar y mantener un catálogo de plantas productivas
+            </li>
+
+            <li><strong>RF3.2:</strong> El sistema debe permitir registrar la capacidad instalada por planta</li>
+
+            <li><strong>RF3.3:</strong> El sistema debe permitir consultar en tiempo real las capacidades disponibles
+            </li>
+
+            <li><strong>RF3.4:</strong> El sistema debe mantener un histórico de capacidades utilizadas</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h4>1.4 Monitoreo de Equipos</h4>
+
+    <div class="requirement">
+
+        <ul>
+
+            <li><strong>RF4.1:</strong> El sistema debe registrar y monitorear el estado de los equipos en tiempo real
+            </li>
+
+            <li><strong>RF4.2:</strong> El sistema debe identificar y registrar fallas en los equipos</li>
+
+            <li><strong>RF4.3:</strong> El sistema debe calcular el porcentaje de efectividad perdida por fallas</li>
+
+            <li><strong>RF4.4:</strong> El sistema debe generar alertas automáticas cuando se detecten fallas</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h4>1.5 Gestión de Producción</h4>
+
+    <div class="requirement">
+
+        <ul>
+
+            <li><strong>RF5.1:</strong> El sistema debe registrar la producción por turno</li>
+
+            <li><strong>RF5.2:</strong> El sistema debe contabilizar las piezas conformes producidas</li>
+
+            <li><strong>RF5.3:</strong> El sistema debe registrar las piezas no conformes y sus causas</li>
+
+            <li><strong>RF5.4:</strong> El sistema debe calcular indicadores clave:
+
+                <ul>
+
+                    <li>Eficiencia de producción por turno</li>
+
+                    <li>TEEP (Total Effective Equipment Performance)</li>
+
+                    <li>MTTR (Mean Time To Repair)</li>
+
+                </ul>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h3>2. Requerimientos No Funcionales</h3>
+
+
+
+    <h4>2.1 Usabilidad</h4>
+
+    <div class="requirement">
+
+        <ul>
+
+            <li><strong>RNF1.1:</strong> Interface web responsive e intuitiva</li>
+
+            <li><strong>RNF1.2:</strong> Menú de navegación claro y organizado jerárquicamente</li>
+
+            <li><strong>RNF1.3:</strong> Tiempo de aprendizaje del sistema por usuario nuevo menor a 4 horas</li>
+
+            <li><strong>RNF1.4:</strong> Documentación en línea y ayuda contextual</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h4>2.2 Rendimiento</h4>
+
+    <div class="requirement">
+
+        <ul>
+
+            <li><strong>RNF2.1:</strong> Tiempo de respuesta máximo de 3 segundos para consultas</li>
+
+            <li><strong>RNF2.2:</strong> Capacidad de procesamiento de al menos 1000 transacciones por minuto</li>
+
+            <li><strong>RNF2.3:</strong> Disponibilidad del sistema 24/7 con uptime de 99.9%</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h4>2.3 Seguridad</h4>
+
+    <div class="requirement">
+
+        <ul>
+
+            <li><strong>RNF3.1:</strong> Autenticación de usuarios mediante credenciales únicas</li>
+
+            <li><strong>RNF3.2:</strong> Registro de todas las operaciones (audit trail)</li>
+
+            <li><strong>RNF3.3:</strong> Cifrado de datos sensibles</li>
+
+            <li><strong>RNF3.4:</strong> Backup automático cada 24 horas</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h4>2.4 Escalabilidad</h4>
+
+    <div class="requirement">
+
+        <ul>
+
+            <li><strong>RNF4.1:</strong> Arquitectura modular que permita crecimiento</li>
+
+            <li><strong>RNF4.2:</strong> Capacidad de integración con otros sistemas empresariales</li>
+
+            <li><strong>RNF4.3:</strong> Soporte para múltiples plantas y ubicaciones</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h3>3. Requerimientos de Interfaz</h3>
+
+
+
+    <h4>3.1 Interfaces de Usuario</h4>
+
+    <div class="requirement">
+
+        <ul>
+
+            <li><strong>RI1.1:</strong> Dashboard principal con KPIs en tiempo real</li>
+
+            <li><strong>RI1.2:</strong> Formularios de registro de información</li>
+
+            <li><strong>RI1.3:</strong> Pantallas de monitoreo de equipos</li>
+
+            <li><strong>RI1.4:</strong> Interfaz de generación de reportes</li>
+
+            <li><strong>RI1.5:</strong> Menú de navegación principal con iconos intuitivos</li>
+
+            <li><strong>RI1.6:</strong> Submenús desplegables para opciones administrativas</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h4>3.2 Interfaces de Sistema</h4>
+
+    <div class="requirement">
+
+        <ul>
+
+            <!-- <li><strong>RI2.1:</strong> API REST para integración con otros sistemas</li> -->
+
+            <li><strong>RI2.2:</strong> Conexión con sistemas de control de planta</li>
+
+            <li><strong>RI2.3:</strong> Integración con bases de datos existentes</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h3>4. Requerimientos de Datos</h3>
+
+
+
+    <h4>4.1 Almacenamiento</h4>
+
+    <div class="requirement">
+
+        <ul>
+
+            <li><strong>RD1.1:</strong> Base de datos relacional para datos transaccionales</li>
+
+            <li><strong>RD1.2:</strong> Sistema de almacenamiento para históricos</li>
+
+            <li><strong>RD1.3:</strong> Respaldo periódico de información</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h4>4.2 Integridad</h4>
+
+    <div class="requirement">
+
+        <ul>
+
+            <li><strong>RD2.1:</strong> Validación de datos en tiempo real</li>
+
+            <li><strong>RD2.2:</strong> Consistencia en la información entre módulos</li>
+
+            <li><strong>RD2.3:</strong> Trazabilidad de cambios en los datos</li>
+
+        </ul>
+
+    </div>
+
+
+
+    <h3>5. Restricciones Técnicas</h3>
+
+    <div class="requirement">
+
+        <ul>
+
+            <li><strong>RT1:</strong> Desarrollo en PHP y JavaScript</li>
+
+            <li><strong>RT2:</strong> Base de datos SQLSERVER22/MySQL/MariaDB</li>
+
+            <li><strong>RT3:</strong> Arquitectura web responsive</li>
+
+            <li><strong>RT4:</strong> Compatibilidad con navegadores modernos</li>
+
+        </ul>
+
+    </div>
+
+</body>
+
+</html>

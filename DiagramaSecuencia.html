@@ -1,0 +1,109 @@
+<h3>7. Diagrama de Secuencia</h3>
+    <div class="sequence-diagram">
+        <style>
+            .sequence-diagram {
+                margin: 20px 0;
+                padding: 15px;
+                border: 1px solid #ccc;
+                background-color: #fff;
+            }
+            .sequence-description {
+                margin: 15px 0;
+                padding: 10px;
+                background-color: #f9f9f9;
+                border-left: 3px solid #2980b9;
+            }
+            .sequence-flow {
+                margin-left: 20px;
+                padding: 5px 0;
+            }
+            .time-indicator {
+                color: #666;
+                font-style: italic;
+                margin-left: 10px;
+            }
+            .optimization-note {
+                color: #27ae60;
+                font-size: 0.9em;
+                margin-top: 5px;
+                padding-left: 20px;
+            }
+        </style>
+
+        <div class="sequence-description">
+            <div class="flow-title">Flujo de Autenticación y Acceso (Optimizado)</div>
+            <div class="sequence-flow">
+                1. Usuario -> Sistema: iniciarSesionUnificada() <span class="time-indicator">[t=0s]</span><br>
+                2. Sistema -> Cache: verificarSesionPrevia() <span class="time-indicator">[t=0.5s]</span><br>
+                3. Sistema -> Profile: cargarPermisosYPreferencias() <span class="time-indicator">[t=1s]</span><br>
+                4. Sistema -> Usuario: mostrarPanelPersonalizado() <span class="time-indicator">[t=2s]</span>
+                <div class="optimization-note">* Implementación de caché de sesión y carga asíncrona de KPIs</div>
+            </div>
+        </div>
+
+        <div class="sequence-description">
+            <div class="flow-title">Flujo de Administrador (Optimizado)</div>
+            <div class="sequence-flow">
+                1. Administrador -> Sistema: iniciarGestionCentralizada() <span class="time-indicator">[t=0min]</span><br>
+                2. Sistema -> Administrador: mostrarPanelControl() <span class="time-indicator">[t=1min]</span><br>
+                3. Administrador -> Sistema: gestionarConfiguracionGlobal() <span class="time-indicator">[t=5min]</span><br>
+                4. Sistema -> BaseDatos: sincronizarCambios() <span class="time-indicator">[t=6min]</span>
+                <div class="optimization-note">* Panel unificado de gestión y sincronización en tiempo real</div>
+            </div>
+        </div>
+
+        <div class="sequence-description">
+            <div class="flow-title">Flujo de Operador (Optimizado)</div>
+            <div class="sequence-flow">
+                1. Operador -> Sistema: iniciarTurnoAutomatizado() <span class="time-indicator">[t=0h]</span><br>
+                2. Sistema -> Equipos: verificacionAutomatica() <span class="time-indicator">[t=0.1h]</span><br>
+                3. Sistema -> Produccion: iniciarMonitoreoInteligente() <span class="time-indicator">[continuo]</span><br>
+                4. Sistema -> RegistroPerdidas: deteccionAutomaticaEventos() <span class="time-indicator">[tiempo real]</span>
+                <div class="optimization-note">* Automatización de verificaciones y detección predictiva de fallos</div>
+            </div>
+        </div>
+
+        <div class="sequence-description">
+            <div class="flow-title">Flujo de Supervisor (Optimizado)</div>
+            <div class="sequence-flow">
+                1. Sistema -> Supervisor: alertasInteligentes() <span class="time-indicator">[tiempo real]</span><br>
+                2. Supervisor -> Sistema: gestionarExcepciones() <span class="time-indicator">[según prioridad]</span><br>
+                3. Sistema -> Produccion: ajusteAutomaticoParametros() <span class="time-indicator">[según AI]</span><br>
+                4. Sistema -> Supervisor: recomendacionesOptimizacion() <span class="time-indicator">[cada 4h]</span>
+                <div class="optimization-note">* Implementación de IA para optimización continua</div>
+            </div>
+        </div>
+
+        <div class="sequence-description">
+            <div class="flow-title">Flujo de Mantenimiento Predictivo</div>
+            <div class="sequence-flow">
+                1. Sistema -> IA: analizarPatrones() <span class="time-indicator">[continuo]</span><br>
+                2. IA -> Mantenimiento: predecirFallos() <span class="time-indicator">[anticipado]</span><br>
+                3. Sistema -> Tecnico: programarMantenimiento() <span class="time-indicator">[optimizado]</span><br>
+                4. Sistema -> Produccion: ajustarProgramacion() <span class="time-indicator">[automático]</span>
+                <div class="optimization-note">* Mantenimiento predictivo basado en análisis de datos</div>
+            </div>
+        </div>
+
+        <div class="sequence-description">
+            <div class="flow-title">Flujo de Análisis y Reportes (Optimizado)</div>
+            <div class="sequence-flow">
+                1. Sistema -> BI: procesarDatosEnTiempoReal() <span class="time-indicator">[continuo]</span><br>
+                2. BI -> Dashboard: actualizarMetricas() <span class="time-indicator">[tiempo real]</span><br>
+                3. Sistema -> Usuarios: notificacionesPersonalizadas() <span class="time-indicator">[según rol]</span><br>
+                4. Sistema -> Cloud: respaldoAutomatico() <span class="time-indicator">[cada 6h]</span>
+                <div class="optimization-note">* Análisis en tiempo real y reportes automatizados</div>
+            </div>
+        </div>
+
+        <div class="sequence-description">
+            <div class="flow-title">Integración y Coordinación</div>
+            <div class="sequence-flow">
+                1. Sistema -> Modulos: sincronizacionGlobal() <span class="time-indicator">[continuo]</span><br>
+                2. Sistema -> API: integrarSistemasExternos() <span class="time-indicator">[tiempo real]</span><br>
+                3. Sistema -> Usuarios: coordinarActividades() <span class="time-indicator">[según eventos]</span><br>
+                4. Sistema -> Administracion: optimizarRecursos() <span class="time-indicator">[adaptativo]</span>
+                <div class="optimization-note">* Integración total y optimización continua del sistema</div>
+            </div>
+        </div>
+    </div>
