@@ -45,6 +45,12 @@ $router->group('roles', 'RolesController', function($group) {
     $group->add('eliminar/{id}', 'eliminar', 'POST');
     $group->add('editar/{id}', 'editar');
 });
+$router->group('api', 'DefinicionesController', function($group) {
+    $group->add('usuarios', 'usuarios');
+    $group->add('roles', 'roles');
+
+    
+});
 
 try {
     $uri = trim(str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']), '/');
