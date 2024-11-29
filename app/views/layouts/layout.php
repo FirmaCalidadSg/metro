@@ -39,7 +39,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/equipos">Equipos</a></li>
+                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/equipo">Equipos</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/daños">Daños</a></li>
                             <li>
                                 <hr class="dropdown-divider">
