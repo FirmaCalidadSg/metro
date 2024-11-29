@@ -31,8 +31,8 @@ $router->group('', 'SecurityController', function($group) {
 // Rutas de usuarios
 $router->group('usuarios', 'UsuariosController', function($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro');
-    $group->add('crear', 'crear');
+    $group->add('registro', 'registro','POST');
+    $group->add('crear', 'crear', 'POST');
     $group->add('credenciales/{id}', 'credenciales', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
@@ -40,7 +40,7 @@ $router->group('usuarios', 'UsuariosController', function($group) {
 // Rutas de roles
 $router->group('roles', 'RolesController', function($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro');
+    $group->add('registro', 'registro','POST');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
     $group->add('editar/{id}', 'editar');

@@ -10,9 +10,10 @@
 <body>
     <div class="container">
         <h2>Lista de Usuarios</h2>
-        <a href="/metro/app/usuarios/registro" class="btn btn-primary">Nuevo Usuario</a>
+        <button onclick="agregarUsuario()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nuevo Usuario</button>
+        <!-- <a href="/metro/app/usuarios/registro" class="btn btn-primary">Nuevo Usuario</a> -->
 
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -34,7 +35,7 @@
                         <td><?php echo $usuario->usuario; ?></td>
                         <td><?php echo $usuario->rol_id; ?></td>
                         <td>
-                            <button onclick="editarUsuario(<?php echo $usuario->id; ?>)" class="btn btn-warning">Editar</button>
+                            <button onclick="editarUsuario(<?php echo $usuario->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
                             <button onclick="eliminarUsuario(<?php echo $usuario->id; ?>)" class="btn btn-danger">Eliminar</button>
                             <button onclick="cambiarCredenciales(<?php echo $usuario->id; ?>)" class="btn btn-info">Cambiar Credenciales</button>
                         </td>
@@ -44,23 +45,67 @@
         </table>
     </div>
 
+    <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modal-title">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-body-content">
+                    ...
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <script>
         function cambiarCredenciales(id) {
             window.location.href = '/metro/app/usuarios/credenciales/' + id;
         }
+
         function editarUsuario(id) {
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '/metro/app/usuarios/registro';
 
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'id';
-            input.value = id;
+            const formData = new FormData();
+            formData.append('id', id);
+            fetch('/metro/app/usuarios/registro', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+                return response.text();
+            }).then(data => {
+                document.getElementById('modal-title').innerHTML = 'ACTUALIZAR USUARIO';
+                document.getElementById('modal-body-content').innerHTML = data;
+                addSubmitForm();
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Error al procesar la solicitud');
+            });
 
-            form.appendChild(input);
-            document.body.appendChild(form);
-            form.submit();
+        }
+
+        function agregarUsuario() {
+
+            fetch('/metro/app/usuarios/registro', {
+                method: 'POST'
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+                return response.text();
+            }).then(data => {
+                document.getElementById('modal-title').innerHTML = 'REGISTRAR USUARIO';
+                document.getElementById('modal-body-content').innerHTML = data;
+                addSubmitForm();
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Error al procesar la solicitud');
+            });
+
         }
 
         function eliminarUsuario(id) {
@@ -93,6 +138,33 @@
                         alert('Error al procesar la solicitud');
                     });
             }
+        }
+
+        function addSubmitForm() {
+            const formulario = document.getElementById('registroForm');
+            formulario.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(event.currentTarget);
+
+                fetch('/metro/app/usuarios/crear', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(data.message);
+                            window.location.href = '/metro/app/usuarios';
+                        } else {
+                            alert('Error al registrar usuario: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error al procesar la solicitud');
+                    });
+            });
         }
     </script>
 </body>

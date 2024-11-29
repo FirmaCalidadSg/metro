@@ -34,13 +34,14 @@ class UsuariosController
         if (isset($_POST['id'])) {
             $usuario = $this->usuarios->getUsuarioById($_POST['id']);
         }
-        require_once __DIR__ . '/../views/layouts/layout.php';
+        // require_once __DIR__ . '/../views/layouts/layout.php';
         require_once __DIR__ . '/../views/usuarios/registro.php';
-        require_once __DIR__ . '/../views/layouts/footer.php';
+        // require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function crear()
     {
+        $message = 'Usuario registrado exitosamente';
         $usuario = new Usuarios();
         $usuario->id = $_POST['id'];
         $usuario->rol_id = $_POST['rol_id'];
@@ -51,12 +52,13 @@ class UsuariosController
         $usuario->usuario = $_POST['usuario'];
         if ($usuario->id > 0) {
             $this->usuarios->updateUsuario($usuario);
+            $message = 'Usuario actualizado exitosamente';
         } else {
             $this->usuarios->createUsuario($usuario);
         }
         $response = [
             'success' => true,
-            'message' => 'Usuario registrado exitosamente'
+            'message' => $message
         ];
         echo json_encode($response);
     }
