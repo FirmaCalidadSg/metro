@@ -4,32 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Paises</title>
+    <title>Lista de Ciudades</title>
 </head>
 
 <body>
     <div class="container">
-        <h2>Lista de Paises</h2>
-        <button onclick="agregarPais()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Pais</button>
-        <!-- <a href="/metro/app/pais/registro" class="btn btn-primary">Nuevo Pais</a> -->
+        <h2>Lista de Ciudades</h2>
+        <button onclick="agregarCiudad()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Ciudad</button>
+        <!-- <a href="/metro/app/ciudad/registro" class="btn btn-primary">Nuevo Ciudad</a> -->
 
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Codigo</th>
+                    <th>Pais</th>
+                    <th>Codigo Postal</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($paises as $pais): ?>
+                <?php foreach ($ciudades as $ciudad): ?>
                     <tr>
-                        <td><?php echo $pais->id; ?></td>
-                        <td><?php echo $pais->nombre; ?></td>
-                        <td><?php echo $pais->codigo; ?></td>
+                        <td><?php echo $ciudad->id; ?></td>
+                        <td><?php echo $ciudad->nombre; ?></td>
+                        <td><?php echo $ciudad->nombre_pais; ?></td>
+                        <td><?php echo $ciudad->codigo_postal; ?></td>
                         <td>
-                            <button onclick="editarPais(<?php echo $pais->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarPais(<?php echo $pais->id; ?>)" class="btn btn-danger">Eliminar</button>
+                            <button onclick="editarCiudad(<?php echo $ciudad->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
+                            <button onclick="eliminarCiudad(<?php echo $ciudad->id; ?>)" class="btn btn-danger">Eliminar</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -53,11 +55,11 @@
     </div>
 
     <script>
-        function editarPais(id) {
+        function editarCiudad(id) {
 
             const formData = new FormData();
             formData.append('id', id);
-            fetch('/metro/app/pais/registro', {
+            fetch('/metro/app/ciudad/registro', {
                 method: 'POST',
                 body: formData
             }).then(response => {
@@ -66,7 +68,7 @@
                 }
                 return response.text();
             }).then(data => {
-                document.getElementById('modal-title').innerHTML = 'ACTUALIZAR PAIS';
+                document.getElementById('modal-title').innerHTML = 'ACTUALIZAR CIUDAD';
                 document.getElementById('modal-body-content').innerHTML = data;
                 addSubmitForm();
             }).catch(error => {
@@ -76,9 +78,9 @@
 
         }
 
-        function agregarPais() {
+        function agregarCiudad() {
 
-            fetch('/metro/app/pais/registro', {
+            fetch('/metro/app/ciudad/registro', {
                 method: 'POST'
             }).then(response => {
                 if (!response.ok) {
@@ -86,7 +88,7 @@
                 }
                 return response.text();
             }).then(data => {
-                document.getElementById('modal-title').innerHTML = 'REGISTRAR PAIS';
+                document.getElementById('modal-title').innerHTML = 'REGISTRAR CIUDAD';
                 document.getElementById('modal-body-content').innerHTML = data;
                 addSubmitForm();
             }).catch(error => {
@@ -96,9 +98,9 @@
 
         }
 
-        function eliminarPais(id) {
-            if (confirm('¿Está seguro de eliminar este pais?')) {
-                fetch(`/metro/app/pais/eliminar/${id}`, {
+        function eliminarCiudad(id) {
+            if (confirm('¿Está seguro de eliminar este ciudad?')) {
+                fetch(`/metro/app/ciudad/eliminar/${id}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -115,10 +117,10 @@
                     })
                     .then(data => {
                         if (data.success) {
-                            alert('Pais eliminado exitosamente');
+                            alert('Ciudad eliminado exitosamente');
                             location.reload();
                         } else {
-                            alert('Error al eliminar pais');
+                            alert('Error al eliminar ciudad');
                         }
                     })
                     .catch(error => {
@@ -135,7 +137,7 @@
 
                 const formData = new FormData(event.currentTarget);
 
-                fetch('/metro/app/pais/crear', {
+                fetch('/metro/app/ciudad/crear', {
                         method: 'POST',
                         body: formData
                     })
@@ -143,10 +145,10 @@
                     .then(data => {
                         if (data.success) {
                             alert(data.message);
-                            window.location.href = '/metro/app/pais';
+                            window.location.href = '/metro/app/ciudad';
                         } else {
                             console.error(data);
-                            alert('Error al registrar pais: ' + data.message);
+                            alert('Error al registrar ciudad: ' + data.message);
                         }
                     })
                     .catch(error => {
