@@ -48,8 +48,14 @@ $router->group('roles', 'RolesController', function($group) {
 $router->group('api', 'DefinicionesController', function($group) {
     $group->add('usuarios', 'usuarios');
     $group->add('roles', 'roles');
+});
 
-    
+// Rutas de definicion
+$router->group('definicion', 'DefinicionController', function($group) {
+    $group->add('', 'index');
+    $group->add('registro', 'registro','POST');
+    $group->add('crear', 'crear', 'POST');
+    $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
 
 try {
