@@ -58,6 +58,14 @@ $router->group('definicion', 'DefinicionController', function($group) {
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
 
+// Rutas de paises
+$router->group('pais', 'PaisController', function($group) {
+    $group->add('', 'index');
+    $group->add('registro', 'registro','POST');
+    $group->add('crear', 'crear', 'POST');
+    $group->add('eliminar/{id}', 'eliminar', 'POST');
+});
+
 try {
     $uri = trim(str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']), '/');
     $method = $_SERVER['REQUEST_METHOD'];

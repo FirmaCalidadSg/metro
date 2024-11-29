@@ -33,7 +33,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/definicion">Definicion</a></li>
-                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/paises">Paises</a></li>
+                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/pais">Paises</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/ciudades">Ciudad</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/departamentos">Departamentos</a></li>
                             <li>

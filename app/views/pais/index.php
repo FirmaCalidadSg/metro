@@ -4,34 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Definicion</title>
+    <title>Lista de Paises</title>
 </head>
 
 <body>
     <div class="container">
-        <h2>Lista de Definicion</h2>
-        <button onclick="agregarDefinicion()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Definicion</button>
-        <!-- <a href="/metro/app/definicion/registro" class="btn btn-primary">Nuevo Definicion</a> -->
+        <h2>Lista de Paises</h2>
+        <button onclick="agregarPais()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Pais</button>
+        <!-- <a href="/metro/app/pais/registro" class="btn btn-primary">Nuevo Pais</a> -->
 
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Valor</th>
-                    <th>Descripcion</th>
+                    <th>Codigo</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($definicion as $value): ?>
+                <?php foreach ($paises as $pais): ?>
                     <tr>
-                        <td><?php echo $value->id; ?></td>
-                        <td><?php echo $value->nombre; ?></td>
-                        <td><?php echo $value->valor; ?></td>
-                        <td><?php echo $value->descripcion; ?></td>
+                        <td><?php echo $pais->id; ?></td>
+                        <td><?php echo $pais->nombre; ?></td>
+                        <td><?php echo $pais->codigo; ?></td>
                         <td>
-                            <button onclick="editarDefinicion(<?php echo $value->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarDefinicion(<?php echo $value->id; ?>)" class="btn btn-danger">Eliminar</button>
+                            <button onclick="editarPais(<?php echo $pais->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
+                            <button onclick="eliminarPais(<?php echo $pais->id; ?>)" class="btn btn-danger">Eliminar</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -55,11 +53,11 @@
     </div>
 
     <script>
-        function editarDefinicion(id) {
+        function editarPais(id) {
 
             const formData = new FormData();
             formData.append('id', id);
-            fetch('/metro/app/definicion/registro', {
+            fetch('/metro/app/pais/registro', {
                 method: 'POST',
                 body: formData
             }).then(response => {
@@ -78,9 +76,9 @@
 
         }
 
-        function agregarDefinicion() {
+        function agregarPais() {
 
-            fetch('/metro/app/definicion/registro', {
+            fetch('/metro/app/pais/registro', {
                 method: 'POST'
             }).then(response => {
                 if (!response.ok) {
@@ -98,9 +96,9 @@
 
         }
 
-        function eliminarDefinicion(id) {
-            if (confirm('¿Está seguro de eliminar este definicion?')) {
-                fetch(`/metro/app/definicion/eliminar/${id}`, {
+        function eliminarPais(id) {
+            if (confirm('¿Está seguro de eliminar este pais?')) {
+                fetch(`/metro/app/pais/eliminar/${id}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -117,10 +115,10 @@
                     })
                     .then(data => {
                         if (data.success) {
-                            alert('Definicion eliminado exitosamente');
+                            alert('Pais eliminado exitosamente');
                             location.reload();
                         } else {
-                            alert('Error al eliminar definicion');
+                            alert('Error al eliminar pais');
                         }
                     })
                     .catch(error => {
@@ -137,7 +135,7 @@
 
                 const formData = new FormData(event.currentTarget);
 
-                fetch('/metro/app/definicion/crear', {
+                fetch('/metro/app/pais/crear', {
                         method: 'POST',
                         body: formData
                     })
@@ -145,10 +143,10 @@
                     .then(data => {
                         if (data.success) {
                             alert(data.message);
-                            window.location.href = '/metro/app/definicion';
+                            window.location.href = '/metro/app/pais';
                         } else {
                             console.error(data);
-                            alert('Error al registrar definicion: ' + data.message);
+                            alert('Error al registrar pais: ' + data.message);
                         }
                     })
                     .catch(error => {
