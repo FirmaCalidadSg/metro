@@ -41,4 +41,32 @@ class Roles
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
+
+    public function createRol(Roles $roles)
+    {
+        $query = "INSERT INTO roles (rol) VALUES (:rol)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':rol', $roles->rol, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+
+    public function updateRol(Roles $roles)
+    {
+        $query = "UPDATE roles SET 
+            rol = :rol
+            WHERE id = :id";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $roles->id, PDO::PARAM_INT);
+        $stmt->bindParam(':rol', $roles->rol, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+
+    public function deleteRol($id)
+    {
+        $query = "DELETE FROM roles WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 }
