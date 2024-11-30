@@ -10,7 +10,7 @@ class Ciudad
     private $db;
     public $id;
     public $nombre;
-    public $pais;
+    public $departamento;
     public $codigo_postal;
     public function __construct()
     {
@@ -29,8 +29,8 @@ class Ciudad
 
     public function getAllCiudad()
     {
-        $query = "SELECT c.*, p.nombre as nombre_pais FROM ciudad c
-                INNER JOIN pais p ON p.id = c.pais";
+        $query = "SELECT c.*, d.nombre as nombre_departamento FROM ciudad c
+                INNER JOIN departamento d ON d.id = c.departamento";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -39,8 +39,8 @@ class Ciudad
 
     public function getCiudadById($id)
     {
-        $query = "SELECT c.*, p.nombre as nombre_pais FROM ciudad c
-                INNER JOIN pais p ON p.id = c.pais
+        $query = "SELECT c.*, d.nombre as nombre_departamento FROM ciudad c
+                INNER JOIN departamento d ON d.id = c.departamento
                 WHERE c.id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -50,10 +50,10 @@ class Ciudad
 
     public function createCiudad(Ciudad $ciudad)
     {
-        $query = "INSERT INTO ciudad (nombre, pais, codigo_postal) VALUES (:nombre, :pais, :codigo_postal)";
+        $query = "INSERT INTO ciudad (nombre, departamento, codigo_postal) VALUES (:nombre, :departamento, :codigo_postal)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':nombre', $ciudad->nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':pais', $ciudad->pais, PDO::PARAM_STR);
+        $stmt->bindParam(':departamento', $ciudad->departamento, PDO::PARAM_STR);
         $stmt->bindParam(':codigo_postal', $ciudad->codigo_postal, PDO::PARAM_STR);
         return $stmt->execute();
     }
@@ -62,14 +62,14 @@ class Ciudad
     {
         $query = "UPDATE ciudad SET 
             nombre = :nombre, 
-            pais = :pais,
+            departamento = :departamento,
             codigo_postal = :codigo_postal
             WHERE id = :id";
 
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $ciudad->id, PDO::PARAM_INT);
         $stmt->bindParam(':nombre', $ciudad->nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':pais', $ciudad->pais, PDO::PARAM_STR);
+        $stmt->bindParam(':departamento', $ciudad->departamento, PDO::PARAM_STR);
         $stmt->bindParam(':codigo_postal', $ciudad->codigo_postal, PDO::PARAM_STR);
         return $stmt->execute();
     }

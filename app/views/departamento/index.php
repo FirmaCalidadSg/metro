@@ -4,34 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Ciudades</title>
+    <title>Lista de Departamentos</title>
 </head>
 
 <body>
     <div class="container">
-        <h2>Lista de Ciudades</h2>
-        <button onclick="agregarCiudad()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Ciudad</button>
-        <!-- <a href="/metro/app/ciudad/registro" class="btn btn-primary">Nuevo Ciudad</a> -->
+        <h2>Lista de Departamentos</h2>
+        <button onclick="agregarDepartamento()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nuevo Departamento</button>
+        <!-- <a href="/metro/app/departamento/registro" class="btn btn-primary">Nuevo Departamento</a> -->
 
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Departamento</th>
-                    <th>Codigo Postal</th>
+                    <th>Pais</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($ciudades as $ciudad): ?>
+                <?php foreach ($departamentos as $departamento): ?>
                     <tr>
-                        <td><?php echo $ciudad->id; ?></td>
-                        <td><?php echo $ciudad->nombre; ?></td>
-                        <td><?php echo $ciudad->nombre_departamento; ?></td>
-                        <td><?php echo $ciudad->codigo_postal; ?></td>
+                        <td><?php echo $departamento->id; ?></td>
+                        <td><?php echo $departamento->nombre; ?></td>
+                        <td><?php echo $departamento->nombre_pais; ?></td>
                         <td>
-                            <button onclick="editarCiudad(<?php echo $ciudad->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarCiudad(<?php echo $ciudad->id; ?>)" class="btn btn-danger">Eliminar</button>
+                            <button onclick="editarDepartamento(<?php echo $departamento->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
+                            <button onclick="eliminarDepartamento(<?php echo $departamento->id; ?>)" class="btn btn-danger">Eliminar</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -55,11 +53,11 @@
     </div>
 
     <script>
-        function editarCiudad(id) {
+        function editarDepartamento(id) {
 
             const formData = new FormData();
             formData.append('id', id);
-            fetch('/metro/app/ciudad/registro', {
+            fetch('/metro/app/departamento/registro', {
                 method: 'POST',
                 body: formData
             }).then(response => {
@@ -68,7 +66,7 @@
                 }
                 return response.text();
             }).then(data => {
-                document.getElementById('modal-title').innerHTML = 'ACTUALIZAR CIUDAD';
+                document.getElementById('modal-title').innerHTML = 'ACTUALIZAR DEPARTAMENTO';
                 document.getElementById('modal-body-content').innerHTML = data;
                 addSubmitForm();
             }).catch(error => {
@@ -78,9 +76,9 @@
 
         }
 
-        function agregarCiudad() {
+        function agregarDepartamento() {
 
-            fetch('/metro/app/ciudad/registro', {
+            fetch('/metro/app/departamento/registro', {
                 method: 'POST'
             }).then(response => {
                 if (!response.ok) {
@@ -88,7 +86,7 @@
                 }
                 return response.text();
             }).then(data => {
-                document.getElementById('modal-title').innerHTML = 'REGISTRAR CIUDAD';
+                document.getElementById('modal-title').innerHTML = 'REGISTRAR DEPARTAMENTO';
                 document.getElementById('modal-body-content').innerHTML = data;
                 addSubmitForm();
             }).catch(error => {
@@ -98,9 +96,9 @@
 
         }
 
-        function eliminarCiudad(id) {
-            if (confirm('¿Está seguro de eliminar este ciudad?')) {
-                fetch(`/metro/app/ciudad/eliminar/${id}`, {
+        function eliminarDepartamento(id) {
+            if (confirm('¿Está seguro de eliminar este departamento?')) {
+                fetch(`/metro/app/departamento/eliminar/${id}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -117,10 +115,10 @@
                     })
                     .then(data => {
                         if (data.success) {
-                            alert('Ciudad eliminado exitosamente');
+                            alert('Departamento eliminado exitosamente');
                             location.reload();
                         } else {
-                            alert('Error al eliminar ciudad');
+                            alert('Error al eliminar departamento');
                         }
                     })
                     .catch(error => {
@@ -137,7 +135,7 @@
 
                 const formData = new FormData(event.currentTarget);
 
-                fetch('/metro/app/ciudad/crear', {
+                fetch('/metro/app/departamento/crear', {
                         method: 'POST',
                         body: formData
                     })
@@ -145,10 +143,10 @@
                     .then(data => {
                         if (data.success) {
                             alert(data.message);
-                            window.location.href = '/metro/app/ciudad';
+                            window.location.href = '/metro/app/departamento';
                         } else {
                             console.error(data);
-                            alert('Error al registrar ciudad: ' + data.message);
+                            alert('Error al registrar departamento: ' + data.message);
                         }
                     })
                     .catch(error => {

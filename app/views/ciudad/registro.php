@@ -8,10 +8,10 @@
         </div>
 
         <div class="mb-3">
-            <label for="pais" class="form-label">Pais:</label>
-            <select id="pais" name="pais" class="form-control" required>
-                <?php foreach ($paises as $pais): ?>
-                    <option value="<?php echo $pais->id ?>" <?php echo $ciudad->pais == $pais->id ? 'selected' : '' ?>><?php echo $pais->nombre ?></option>
+            <label for="departamento" class="form-label">Departamento:</label>
+            <select id="departamento" name="departamento" class="form-control" required>
+                <?php foreach ($departamentos as $departamento): ?>
+                    <option value="<?php echo $departamento->id ?>" <?php echo $ciudad->departamento == $departamento->id ? 'selected' : '' ?>><?php echo $departamento->nombre ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

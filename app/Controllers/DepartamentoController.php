@@ -3,53 +3,52 @@
 namespace App\Controllers;
 
 
-use App\Models\Ciudad;
 use App\Models\Departamento;
+use App\Models\Pais;
 
-class CiudadController
+class DepartamentoController
 {
-    public $ciudad;
     public $departamento;
+    public $pais;
 
     public function __construct()
     {
-        $this->ciudad = new Ciudad();
         $this->departamento = new Departamento();
+        $this->pais = new Pais();
     }
 
     public function index()
     {        
-        $ciudades = $this->ciudad->getAllCiudad();
+        $departamentos = $this->departamento->getAllDepartamento();
 
         require_once __DIR__ . '/../views/layouts/layout.php';
-        require_once __DIR__ . '/../views/ciudad/index.php';
+        require_once __DIR__ . '/../views/departamento/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function registro()
     {
-        $departamentos = $this->departamento->getAllDepartamento();
-        $ciudad = new Ciudad();
+        $paises = $this->pais->getAllPais();
+        $departamento = new Departamento();
         if (isset($_POST['id'])) {
-            $ciudad = $this->ciudad->getCiudadById($_POST['id']);
+            $departamento = $this->departamento->getDepartamentoById($_POST['id']);
         }
-        require_once __DIR__ . '/../views/ciudad/registro.php';
+        require_once __DIR__ . '/../views/departamento/registro.php';
     }
 
     public function crear()
     {
-        $message = 'Ciudad registrada exitosamente';
-        $ciudad = new Ciudad();
-        $ciudad->id = $_POST['id'];
-        $ciudad->nombre = $_POST['nombre'];
-        $ciudad->departamento = $_POST['departamento'];
-        $ciudad->codigo_postal = $_POST['codigo_postal'];
+        $message = 'Departamento registrada exitosamente';
+        $departamento = new Departamento();
+        $departamento->id = $_POST['id'];
+        $departamento->nombre = $_POST['nombre'];
+        $departamento->pais = $_POST['pais'];
 
-        if ($ciudad->id > 0) {
-            $this->ciudad->updateCiudad($ciudad);
-            $message = 'Ciudad actualizada exitosamente';
+        if ($departamento->id > 0) {
+            $this->departamento->updateDepartamento($departamento);
+            $message = 'Departamento actualizada exitosamente';
         } else {
-            $this->ciudad->createCiudad($ciudad);
+            $this->departamento->createDepartamento($departamento);
         }
         $response = [
             'success' => true,
@@ -71,8 +70,8 @@ class CiudadController
                 throw new \Exception('ID no proporcionado');
             }
 
-            // Eliminar el ciudad
-            $this->ciudad->deleteCiudad($id);
+            // Eliminar el departamento
+            $this->departamento->deleteDepartamento($id);
 
             echo json_encode(['success' => true]);
         } catch (\PDOException $e) {

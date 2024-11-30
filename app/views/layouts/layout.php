@@ -35,7 +35,7 @@
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/definicion">Definicion</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/pais">Paises</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/ciudad">Ciudad</a></li>
-                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/departamentos">Departamentos</a></li>
+                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/departamento">Departamentos</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

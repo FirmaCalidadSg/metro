@@ -66,6 +66,14 @@ $router->group('pais', 'PaisController', function($group) {
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
 
+// Rutas de departamentos
+$router->group('departamento', 'DepartamentoController', function($group) {
+    $group->add('', 'index');
+    $group->add('registro', 'registro','POST');
+    $group->add('crear', 'crear', 'POST');
+    $group->add('eliminar/{id}', 'eliminar', 'POST');
+});
+
 // Rutas de ciudades
 $router->group('ciudad', 'CiudadController', function($group) {
     $group->add('', 'index');
