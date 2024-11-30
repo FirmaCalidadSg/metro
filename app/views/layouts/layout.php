@@ -46,7 +46,7 @@
                             </li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/proceso">Procesos</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/linea">Lineas</a></li>
-                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/productos">Productos</a></li>
+                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/producto">Productos</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/lineaproductos">Linea y Productos</a></li>
                             <li>
                                 <hr class="dropdown-divider">
