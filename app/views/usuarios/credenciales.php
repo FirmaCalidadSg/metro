@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambiar Credenciales</title>
 </head>
+
 <body>
     <div class="container">
         <h2>Cambiar Credenciales de Usuario</h2>
-        
+
         <form id="formCredenciales" class="mt-4">
             <input type="hidden" id="userId" name="id" value="<?php echo $usuario->id; ?>">
-            
+
             <div class="form-group">
                 <label for="usuario">Nombre de Usuario:</label>
                 <input type="text" class="form-control" id="usuario" name="usuario" value="<?php echo $usuario->usuario; ?>" required>
@@ -31,46 +33,44 @@
             <a href="/metro/app/usuarios" class="btn btn-secondary mt-3">Cancelar</a>
         </form>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <script>
-        document.getElementById('formCredenciales').addEventListener('submit', function(e) {
+        $('#formCredenciales').on('submit', function(e) {
             e.preventDefault();
-            
-            const credencial = document.getElementById('credencial').value;
-            const confirmarCredencial = document.getElementById('confirmarCredencial').value;
-            
+
+            const credencial = $('#credencial').val();
+            const confirmarCredencial = $('#confirmarCredencial').val();
+
             if (credencial !== confirmarCredencial) {
                 alert('Las contraseñas no coinciden');
                 return;
             }
 
-            const formData = {
-                id: document.getElementById('userId').value,
-                usuario: document.getElementById('usuario').value,
-                credencial: credencial
-            };
+            // Serializar los datos del formulario
+            const formData = $(this).serialize();
 
-            fetch('/metro/app/usuarios/credenciales', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+            // Enviar datos con AJAX
+            $.ajax({
+                url: '/metro/app/usuarios/actcredenciales',
+                type: 'POST',
+                data: formData,
+                dataType:'json',
+                success: function(response) {
+                    if (response.success) {
+                        alert('Credenciales actualizadas exitosamente');
+                        window.location.href = '/metro/app/usuarios';
+                    } else {
+                        alert('Error al actualizar credenciales: ' + response.message);
+                    }
                 },
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Credenciales actualizadas exitosamente');
-                    window.location.href = '/metro/app/usuarios';
-                } else {
-                    alert('Error al actualizar credenciales: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error al procesar la solicitud');
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                    alert('Error al procesar la solicitud');
+                },
             });
         });
+
 
         // Obtener el ID del usuario de la URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -80,4 +80,5 @@
         }
     </script>
 </body>
+
 </html>

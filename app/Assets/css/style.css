@@ -1,0 +1,616 @@
+.content {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 40px 100px;
+    position: relative;
+    background-color: #ffffff;
+  }
+  
+  .content .text-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+  }
+  
+  .content .text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 80px 0px;
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+  }
+  
+  .content .div {
+    position: relative;
+    align-self: stretch;
+    margin-top: -1.00px;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #000000;
+    font-size: 52px;
+    letter-spacing: 0;
+    line-height: Truepx;
+  }
+  
+  .content .sliderbar {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 121px;
+    position: relative;
+    flex: 0 0 auto;
+    background-color: #ffffff;
+  }
+  
+  .content .sidebar-option {
+    position: relative;
+    width: 250px;
+    height: 364px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px dashed;
+    border-color: #9747ff;
+  }
+  
+  .content .property-default {
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    top: 20px;
+    display: flex;
+    width: 210px;
+    position: absolute;
+    left: 20px;
+  }
+  
+  .content .img {
+    position: relative;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .content .typography {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+  }
+  
+  .content .typography-2 {
+    position: relative;
+    flex: 1;
+    margin-top: -1.00px;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #064d26;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: Truepx;
+  }
+  
+  .content .arrow {
+    position: relative;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .content .property-hover {
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    top: 115px;
+    background-color: #d2e4d9;
+    border-radius: 4px;
+    display: flex;
+    width: 210px;
+    position: absolute;
+    left: 20px;
+  }
+  
+  .content .typography-3 {
+    position: relative;
+    flex: 1;
+    margin-top: -1.00px;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #065f2a;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: Truepx;
+  }
+  
+  .content .property-open {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    top: 210px;
+    border-radius: 4px;
+    display: flex;
+    width: 210px;
+    position: absolute;
+    left: 20px;
+  }
+  
+  .content .sidebar-option-2 {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    align-self: stretch;
+    width: 100%;
+    background-color: #d1e3d9;
+    border-radius: 4px;
+    align-items: center;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .content .list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 16px 8px 0px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    background-color: #d1e3d9;
+    border-radius: 4px;
+  }
+  
+  .content .opt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 8px 8px 40px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    border-radius: 4px;
+  }
+  
+  .content .typography-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+    border-radius: 4px;
+  }
+  
+  .content .typography-4 {
+    position: relative;
+    flex: 1;
+    margin-top: -1.00px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #065f2a;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: Truepx;
+  }
+  
+  .content .sidebar-option-3 {
+    position: relative;
+    width: 80px;
+    height: 147px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px dashed;
+    border-color: #9747ff;
+  }
+  
+  .content .property-default-2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .content .property-hover-2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    position: absolute;
+    top: 87px;
+    left: 20px;
+    background-color: #d2e4d9;
+    border-radius: 4px;
+  }
+  
+  .content .sidebar {
+    display: inline-flex;
+    gap: 24px;
+    padding: 11px 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px dashed;
+    border-color: #9747ff;
+    align-items: center;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .content .property-slider {
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    height: 960px;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    position: relative;
+    background-color: #e4ebdb;
+  }
+  
+  .content .image {
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .content .divider {
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    height: 1px;
+    background-color: #dcdee4;
+  }
+  
+  .content .div-wrapper {
+    display: flex;
+    height: 16px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+  }
+  
+  .content .typography-5 {
+    position: relative;
+    width: fit-content;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #727c94;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: Truepx;
+    white-space: nowrap;
+  }
+  
+  .content .frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+    flex: 1;
+    align-self: stretch;
+    width: 100%;
+    flex-grow: 1;
+    overflow-y: scroll;
+  }
+  
+  .content .frame::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
+  
+  .content .sidebar-option-4 {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .content .frame-2 {
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 1;
+    align-self: stretch;
+    width: 100%;
+    flex-grow: 1;
+  }
+  
+  .content .property-slider-2 {
+    display: flex;
+    width: 250px;
+    flex-direction: column;
+    height: 960px;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    position: relative;
+    background-color: #e4ebdb;
+  }
+  
+  .content .image-2 {
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    height: 60px;
+  }
+  
+  .content .typography-6 {
+    display: flex;
+    height: 15.68px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+  }
+  
+  .content .typography-7 {
+    position: relative;
+    flex: 1;
+    margin-top: -0.16px;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #727c94;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: Truepx;
+  }
+  
+  .content .frame-3 {
+    align-items: flex-start;
+    gap: 5px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 1;
+    align-self: stretch;
+    width: 100%;
+    flex-grow: 1;
+  }
+  
+  .content .frame-3::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
+  
+  .content .sidebar-option-5 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+  }
+  
+  .content .sidebar-option-6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+  }
+  
+  .content .typography-8 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .content .typography-9 {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #064d26;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: Truepx;
+    white-space: nowrap;
+  }
+  
+  .content .typography-10 {
+    display: flex;
+    height: 14px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+  }
+  
+  .content .typography-11 {
+    position: relative;
+    flex: 1;
+    margin-top: -1.00px;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #727c94;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: Truepx;
+  }
+  
+  .content .sidebar-option-7 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    border-radius: 4px;
+  }
+  
+  .content .sidebar-option-8 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    background-color: #d2e4d9;
+  }
+  
+  .content .typography-12 {
+    position: relative;
+    flex: 1;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #064d26;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: Truepx;
+  }
+  
+  .box {
+    position: relative;
+    width: 230px;
+    height: 272px;
+  }
+  
+  .box .secondary-buttom {
+    position: fixed;
+    width: 230px;
+    height: 272px;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px dashed;
+    border-color: #9747ff;
+  }
+  
+  .box .property-default {
+    top: 20px;
+    border-color: #0a843c;
+    box-shadow: var(--nivel-2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px;
+    position: absolute;
+    left: 20px;
+    border-radius: 8px;
+    border: 1px solid;
+  }
+  
+  .box .add-circle {
+    position: relative;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .box .text-wrapper {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #0a843c;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: Truepx;
+  }
+  
+  .box .property-hover {
+    top: 84px;
+    background-color: #ffffff;
+    border-color: #0a843c;
+    box-shadow: var(--nivel-2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px;
+    position: absolute;
+    left: 20px;
+    border-radius: 8px;
+    border: 1px solid;
+  }
+  
+  .box .property-focus {
+    top: 148px;
+    background-color: #b8f7c8;
+    border-color: #0a843c;
+    box-shadow: var(--nivel-2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px;
+    position: absolute;
+    left: 20px;
+    border-radius: 8px;
+    border: 1px solid;
+  }
+  
+  .box .property-disabled {
+    top: 212px;
+    border-color: #bababa;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px;
+    position: absolute;
+    left: 20px;
+    border-radius: 8px;
+    border: 1px solid;
+  }
+  
+  .box .div {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #bababa;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: Truepx;
+  }
+  

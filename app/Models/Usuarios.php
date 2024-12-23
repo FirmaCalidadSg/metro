@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Config\Database;
 use PDO;
+use PDOException;
 
 class Usuarios
 {
@@ -83,17 +84,36 @@ class Usuarios
 
     public function updateCredenciales(Usuarios $usuario)
     {
-        $query = "UPDATE usuarios SET 
-            usuario = :usuario, 
-            credencial = :credencial 
-            WHERE id = :id";
+        try {
+            $query = "UPDATE usuarios SET 
+                usuario = :usuario, 
+                credencial = :credencial 
+                WHERE id = :id";
 
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':id', $usuario->id, PDO::PARAM_INT);
-        $stmt->bindParam(':usuario', $usuario->usuario, PDO::PARAM_STR);
-        $stmt->bindParam(':credencial', $usuario->credencial, PDO::PARAM_STR);
-        return $stmt->execute();
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':id', $usuario->id, PDO::PARAM_INT);
+            $stmt->bindParam(':usuario', $usuario->usuario, PDO::PARAM_STR);
+            $stmt->bindParam(':credencial', $usuario->credencial, PDO::PARAM_STR);
+
+            if ($stmt->execute()) {
+                return [
+                    "success" => true,
+                    "message" => "Credenciales actualizadas exitosamente"
+                ];
+            } else {
+                return [
+                    "success" => false,
+                    "message" => "Error al actualizar las credenciales"
+                ];
+            }
+        } catch (PDOException $e) {
+            return [
+                "success" => false,
+                "message" => "Error en la base de datos: " . $e->getMessage()
+            ];
+        }
     }
+
 
     public function deleteUsuario($id)
     {

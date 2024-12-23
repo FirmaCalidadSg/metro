@@ -96,4 +96,19 @@ class UsuariosController
         require_once __DIR__ . '/../views/usuarios/credenciales.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
+
+    public function actcredenciales()
+    {
+        // Extraer el ID de la URL
+        $urlParts = explode('/', $_SERVER['REQUEST_URI']);
+        $id = end($urlParts); // Obtiene el último segmento de la URL
+        $usuario = new Usuarios();
+        $usuario->credencial = $_REQUEST['credencial'];
+        $usuario->id = $_REQUEST['id'];
+        $usuario->usuario = $_REQUEST['usuario'];
+        // var_dump($usuario);
+        $result = $this->usuarios->updateCredenciales($usuario);
+         echo json_encode($result);
+       
+    }
 }
