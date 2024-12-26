@@ -3,9 +3,17 @@
 <head>
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-light">
     <div class="container mt-5">
+        <div class="prototipo-alianza">
+            <div class="animation-logo">
+                <img class="image" src="img/image-3.png" />
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">

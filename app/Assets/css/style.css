@@ -613,4 +613,32 @@
     letter-spacing: 0;
     line-height: Truepx;
   }
+  .prototipo-alianza {
+    display: flex;
+    width: 1280px;
+    height: 832px;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 200px;
+    position: relative;
+    background-color: #0a843c;
+  }
   
+  .prototipo-alianza .animation-logo {
+    display: flex;
+    flex-direction: column;
+    width: 204px;
+    height: 104.85px;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 10px;
+    position: relative;
+  }
+  
+  .prototipo-alianza .image {
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+   
