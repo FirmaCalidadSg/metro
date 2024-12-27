@@ -58,6 +58,7 @@
                             </li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/turnos">Turnos</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/documentos">Todos Los Documentos</a></li>
+                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/configuracion/index">Configuración</a></li>
                     </li>
                 </ul>
                 </li>

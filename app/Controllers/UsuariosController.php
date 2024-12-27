@@ -111,4 +111,9 @@ class UsuariosController
          echo json_encode($result);
        
     }
+    public function configuracion()
+    {
+        require_once __DIR__ . '/../views/layouts/configuracion.php';
+        require_once __DIR__ . '/../views/configuracion/index.php';
+    }
 }
