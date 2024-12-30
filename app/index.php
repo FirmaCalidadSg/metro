@@ -114,7 +114,6 @@ $router->group('linea', 'LineaController', function ($group) {
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
-
 // Rutas de productos
 $router->group('producto', 'ProductoController', function ($group) {
     $group->add('', 'index');
@@ -122,7 +121,6 @@ $router->group('producto', 'ProductoController', function ($group) {
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
-
 // Rutas de productos
 $router->group('lineaproducto', 'LineaproductoController', function ($group) {
     $group->add('', 'index');
@@ -130,7 +128,6 @@ $router->group('lineaproducto', 'LineaproductoController', function ($group) {
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
-
 
 $router->group('consultas', 'ConsultasController', function ($group) {
     $group->add('', 'index');    
@@ -142,7 +139,6 @@ $router->group('capacidades', 'CapacidadesController', function ($group) {
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
-
 $router->group('configuracion', 'ConfiguracionController', function ($group) {
     $group->add('', 'index');
 });
@@ -155,9 +151,6 @@ $router->group('reportes', 'ReportesController', function ($group) {
     $group->add('resultados', 'resultados');
     
 });
-
-
-
 
 try {
     $uri = trim(str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']), '/');
