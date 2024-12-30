@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class ControlCapacidadController
+class ReportesController
 {
 
     public function __construct() {}
@@ -12,14 +12,13 @@ class ControlCapacidadController
     public function index()
     {
         require_once __DIR__ . '/../views/layouts/layout.php';
-        require_once __DIR__ . '/../views/controlCapacidad/index.php';
+        require_once __DIR__ . '/../views/Reportes/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
-
-    public function Parada()
+    public function Resultados()
     {
         require_once __DIR__ . '/../views/layouts/layout.php';
-        require_once __DIR__ . '/../views/controlCapacidad/index.php';
+        require_once __DIR__ . '/../views/Reportes/resultados.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
 }

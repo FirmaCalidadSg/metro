@@ -132,12 +132,32 @@ $router->group('lineaproducto', 'LineaproductoController', function ($group) {
 });
 
 
+$router->group('consultas', 'ConsultasController', function ($group) {
+    $group->add('', 'index');    
+});
+
 $router->group('capacidades', 'CapacidadesController', function ($group) {
     $group->add('', 'index');
     $group->add('registro', 'registro', 'POST');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
+
+$router->group('configuracion', 'ConfiguracionController', function ($group) {
+    $group->add('', 'index');
+});
+$router->group('controlCapacidad', 'ControlCapacidadController', function ($group) {
+    $group->add('', 'index');
+    $group->add('parada', 'parada');
+});
+$router->group('reportes', 'ReportesController', function ($group) {
+    $group->add('', 'index');
+    $group->add('resultados', 'resultados');
+    
+});
+
+
+
 
 try {
     $uri = trim(str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']), '/');
@@ -152,10 +172,3 @@ try {
         echo "Error en la aplicación: " . $e->getMessage();
     }
 }
-$router->group('configuracion', 'ConfiguracionController', function ($group) {
-    $group->add('', 'index');
-});
-$router->group('controlCapacidad', 'ControlCapacidadController', function ($group) {
-    $group->add('', 'index');
-    $group->add('', 'parada', 'POST');
-});
