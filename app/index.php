@@ -34,7 +34,7 @@ $router->group('usuarios', 'UsuariosController', function ($group) {
     $group->add('registro', 'registro', 'POST');
     $group->add('crear', 'crear', 'POST');
     $group->add('credenciales/{id}', 'credenciales');
-    $group->add('actcredenciales', 'actcredenciales','POST');
+    $group->add('actcredenciales', 'actcredenciales', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
 
@@ -152,3 +152,10 @@ try {
         echo "Error en la aplicación: " . $e->getMessage();
     }
 }
+$router->group('configuracion', 'ConfiguracionController', function ($group) {
+    $group->add('', 'index');
+});
+$router->group('controlCapacidad', 'ControlCapacidadController', function ($group) {
+    $group->add('', 'index');
+    $group->add('', 'parada', 'POST');
+});

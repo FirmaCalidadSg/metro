@@ -58,12 +58,13 @@
                             </li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/turnos">Turnos</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/documentos">Todos Los Documentos</a></li>
-                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/configuracion/index">Configuración</a></li>
+                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/configuracion">Configuración</a></li>
+                            
                     </li>
                 </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_PATH; ?>/capacidades">Control de Capacidades</a>
+                    <a class="nav-link" href="<?php echo BASE_PATH; ?>/controlCapacidad">Control de Capacidades</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo BASE_PATH; ?>/consultas">Consultas</a>

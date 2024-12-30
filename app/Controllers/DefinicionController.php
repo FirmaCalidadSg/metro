@@ -19,7 +19,7 @@ class DefinicionController
 
         $definicion = $this->definicion->getAllDefinicion();
         // var_dump($definicion);
-        require_once __DIR__ . '/../views/layouts/configuracion.php';
+        require_once __DIR__ . '/../views/layouts/definicion.php';
         require_once __DIR__ . '/../views/definicion/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

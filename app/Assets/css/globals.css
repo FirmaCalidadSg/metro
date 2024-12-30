@@ -13,9 +13,9 @@ body {
 
 @font-face {
   font-family: 'Poppins';
-  src: url('/fonts/Poppins-SemiBold-copy.ttf');
-  font-weight: semibold;
-  font-style: semibold;
+  src: url('/metro/app/fonts/Poppins-SemiBold.ttf');
+  font-weight: 600;
+  font-style: normal;
 }
 
 /* a blue color as a generic focus style */

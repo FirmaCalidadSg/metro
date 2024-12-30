@@ -54,7 +54,10 @@
     </div>
     <!-- Contenido de la vista -->
     <div class="home">
-        <?php require_once '../app/views/definicion/index.php'; ?>
+        <div class="home-content">
+            <?php require_once '../app/views/producto/index.php'; ?>
+            <?php require_once '../app/views/producto/registro.php'; ?>
+        </div>
     </div>
 
 </body>
