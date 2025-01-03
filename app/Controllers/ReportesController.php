@@ -11,7 +11,7 @@ class ReportesController
 
     public function index()
     {
-        require_once __DIR__ . '/../views/layouts/layout.php';
+        require_once __DIR__ . '/../views/layouts/reportes.php';
         require_once __DIR__ . '/../views/Reportes/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

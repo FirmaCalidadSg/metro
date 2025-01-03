@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../app/Assets/css/globals.css" />
+    <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
+    <link rel="stylesheet" href="../app/Assets/css/style.css" />
 </head>
 
 <body>
-    <div class="paros">
-        <div class="frame"> <img class="img" src="img/03-left.svg" />
+    <div class="paradas">
+        <div class="frame"> <!-- <img class="img" src="../app/Assets/css/images/03-left.svg" /> -->
             <div class="text-wrapper">Volver</div>
         </div>
         <div class="actividad-de">
@@ -28,11 +28,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="buttom"> <img class="img" src="img/02-circle.svg" />
+                <div class="buttom"> <!-- <img class="img" src="../app/Assets/css/images/02-circle.svg" /> -->
                     <div class="text-wrapper-3">Agregar paro</div>
                 </div>
                 <div class="filter">
-                    <p class="text-wrapper-4">Filtrar por tipo de paro</p> <img class="img" src="img/06-drop-down.svg" />
+                    <p class="text-wrapper-4">Filtrar por tipo de paro</p> 
                 </div>
             </div>
         </div>
@@ -96,8 +96,8 @@
                         <div class="text-wrapper-6">Acciones</div>
                     </div>
                     <div class="frame-10">
-                        <div class="pencil-wrapper"><img class="img" src="img/pencil.svg" /></div>
-                        <div class="trash-outline-wrapper"><img class="img" src="img/01-outline.svg" /></div>
+                        <div class="pencil-wrapper"><img class="img" src="../app/Assets/css/images/pencil.svg" /></div>
+                        <div class="trash-outline-wrapper"><img class="img" src="../app/Assets/css/images/01-outline.svg" /></div>
                     </div>
                 </div>
             </div>

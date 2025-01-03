@@ -58,7 +58,7 @@
                             </li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/turnos">Turnos</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/documentos">Todos Los Documentos</a></li>
-                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/configuracion">Configuración</a></li>
+                        
                             
                     </li>
                 </ul>
@@ -70,7 +70,10 @@
                     <a class="nav-link" href="<?php echo BASE_PATH; ?>/consultas">Consultas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_PATH; ?>/capacidades">Reportes</a>
+                    <a class="nav-link" href="<?php echo BASE_PATH; ?>/reportes">Reportes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo BASE_PATH; ?>/configuracion">Configuración</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo BASE_PATH; ?>/logout">Cerrar Sesión</a>

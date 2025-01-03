@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../app/Assets/css/globals.css" />
+    <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
+    <link rel="stylesheet" href="../app/Assets/css/style.css" />
 </head>
 
 <body>
@@ -23,35 +23,32 @@
                     <div class="textfield">
                         <div class="input">
                             <div class="div">Tipo de reporte</div>
-                            <div class="div-2">
-                                <div class="text-wrapper-2">Seleccionar</div> <img class="img" src="img/06-drop-down.svg" />
-                            </div> <img class="underline" src="img/underline-3.svg" />
+                            <select  class="select-line">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select> <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
-                    <div class="textfield-2">
+                    <div class="textfield">
                         <div class="input">
                             <div class="div">Planta</div>
-                            <div class="div-2">
-                                <div class="text-wrapper-2">Seleccionar</div> <img class="img" src="img/06-drop-down.svg" />
-                            </div> <img class="underline" src="img/underline-2.svg" />
+                            <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
                 </div>
                 <div class="element">
-                    <div class="textfield">
+                    <div class="textfield-2">
                         <div class="input">
                             <div class="div">Desde</div>
-                            <div class="div-2">
-                                <div class="text-wrapper-3">dd/mm/aaaa</div> <img class="img" src="img/01-unselected.svg" />
-                            </div> <img class="underline" src="img/underline.svg" />
+                            <!-- <input type="date" class="input-date"> -->
+                            <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
-                    <div class="textfield">
+                    <div class="textfield-2">
                         <div class="input">
                             <div class="div">Hasta</div>
-                            <div class="div-2">
-                                <div class="text-wrapper-3">dd/mm/aaaa</div> <img class="img" src="img/01-unselected.svg" />
-                            </div> <img class="underline" src="img/image.svg" />
+                            <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
                 </div>
@@ -62,4 +59,5 @@
         </div>
     </div>
 </body>
+
 </html>
