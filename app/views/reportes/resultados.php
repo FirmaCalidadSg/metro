@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../app/Assets/css/globals.css" />
+    <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
+    <link rel="stylesheet" href="../app/Assets/css/style.css" />
 </head>
 
 <body>

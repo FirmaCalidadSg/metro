@@ -59,7 +59,7 @@
         </div>
         <div class="sub-menu">
           <a href="<?php echo BASE_PATH; ?>/configuracion">Consultar</a>
-          <a href="#">Registrar</a>
+          <a href="<?php echo BASE_PATH; ?>/configuracion/registrar">Registrar</a>
         </div>
         <!--   <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
@@ -74,7 +74,7 @@
   </div>
   <!-- Contenido de la vista -->
   <div class="home">
-    <?php require_once '../app/views/consultas/index.php'; ?>
+    <?php require_once '../app/views/configuracion/registrar.php'; ?>
 
   </div>
   </div>

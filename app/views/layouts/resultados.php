@@ -19,10 +19,11 @@
     <div class="frame">
             <div class="sidebar-option">
                 <img class="img" src="../app/Assets/css/images/siderbar1.svg"/> 
-                <div class="typography-wrapper"><div class="typography1">Nuevos</div></div>
+                <div class="typography-wrapper"><div class="typography1">Nuevos</div>
+            </div>
              <!--    <img class="arrow" src="../app/Assets/css/images/arrow.svg"/> -->
                 <div class="sub-menu">
-                    <a href="#">Control De Capacidades</a>
+                <a class="nav-link" href="<?php echo BASE_PATH; ?>/controlCapacidad">Control De Capacidades</a>
                     <a href="#">Control De Capacidades batch</a>
                 </div>
             </div>
@@ -30,11 +31,11 @@
                 <img class="img" src="../app/Assets/css/images/siderbar2.svg" />
                 <div class="typography-wrapper">
                     <div class="typography1">Consultas</div>
-                    <div class="sub-menu">
-                        <a href="#">Registradas</a>
-                        <a href="#">Pendientes</a>
-                        <a href="#">Por Estados</a>
-                    </div>
+                </div>
+                <div class="sub-menu">
+                    <a href="#">Registradas</a>
+                    <a href="#">Pendientes</a>
+                    <a href="#">Por Estados</a>
                 </div>
                 <!-- <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
             </div>
@@ -42,11 +43,11 @@
                 <img class="img" src="../app/Assets/css/images/siderbar3.svg" />
                 <div class="typography-wrapper">
                     <div class="typography1">Reportes</div>
-                    <div class="sub-menu">
-                        <a href="#">Registradas</a>
-                        <a href="#">Pendientes</a>
-                        <a href="#">Por Estados</a>
-                    </div>
+                </div>
+                <div class="sub-menu">
+                    <a href="#">Registradas</a>
+                    <a href="#">Pendientes</a>
+                    <a href="#">Por Estados</a>
                 </div>
               <!--   <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
             </div>
@@ -68,8 +69,8 @@
     </div>
     <!-- Contenido de la vista -->
     <div class="home">
-        <div class="card-grande">
-            <?php require_once '../app/views/definicion/index.php'; ?>
+            <?php require_once '../app/views/reportes/resultados.php'; ?>
+
         </div>
     </div>
 <script>
@@ -89,6 +90,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+$(document).ready(function(){
+  $('.property-slider .main-item').on('click', function(){
+    $(this).next('.sub-menu').toggle(); /* Alterna la visibilidad del submenú */
+  });
+});
+
 
 </script>
 </body>

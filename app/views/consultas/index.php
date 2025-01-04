@@ -47,21 +47,15 @@
                 </div>
             </div>
         </div>
-        <div class="info" style="display: none;">
+        <div class="filtro" style="display: none;">
             <div class="text-wrapper" id="resultado"></div>
             <div class="drops-downs">
                 <div class="element">
                     <div class="textfield">
                         <div class="input">
-                            <div class="div">Fecha</div>
+                            <div class="div">Fecha y Hora</div>
                             <div class="p">
-                                <select class="select-line-2">
-                                    <option value="">mm/aaaa</option>
-                                    <option value="01/2022">Enero 2022</option>
-                                    <option value="02/2022">Febrero 2022</option>
-                                    <option value="03/2022">Marzo 2022</option>
-                                    <!-- ... -->
-                                </select>
+                                <input type="datetime-local" class="datatimer"/>
                             </div>
                             <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
@@ -71,10 +65,10 @@
                             <div class="div">Planta</div>
                             <div class="p">
                                 <select class="select-line-3">
-                                    <option value="">Seleccionar</option>
-                                    <option value="planta1">Planta 1</option>
-                                    <option value="planta2">Planta 2</option>
-                                    <option value="planta3">Planta 3</option>
+                                    <option value="" disabled selected>Seleccionar</option>
+                                    <option value="buga">Buga</option>
+                                    <option value="cali">Cali</option>
+                                    <option value="bogota">Bogota</option>
                                 </select>
                             </div>
                             <img class="underline" src="../app/Assets/css/images/underline.svg" />
@@ -87,10 +81,10 @@
                             <div class="div">Linea</div>
                             <div class="p">
                                 <select class="select-line-2">
-                                    <option value="">Seleccionar</option>
-                                    <option value="linea1">Linea 1</option>
-                                    <option value="linea2">Linea 2</option>
-                                    <option value="linea3">Linea 3</option>
+                                    <option value="" disabled selected>Seleccionar</option>
+                                    <option value="liquidos">Liquidos Buga</option>
+                                    <option value="solidos">Solidos</option>
+                                    <option value="mezclas">Mezclas</option>
                                 </select>
                             </div>
                             <img class="underline" src="../app/Assets/css/images/underline.svg" />
@@ -113,9 +107,9 @@
         selectPrincipal.addEventListener('change', function() {
             if (this.value !== "") {
                 // Oculta los elementos .info
-                var infos = document.querySelectorAll('.info');
-                infos.forEach(function(info) {
-                    info.style.display = 'none';
+                var filtros = document.querySelectorAll('.filtro');
+                filtros.forEach(function(filtro) {
+                    filtro.style.display = 'flex';
                 });
 
                 // Guarda el valor seleccionado en localStorage
@@ -126,8 +120,8 @@
                 document.getElementById('submit-btn').click();
 
                 // Muestra los elementos .info después de enviar el formulario
-                infos.forEach(function(info) {
-                    info.style.display = 'flex';
+                filtros.forEach(function(filtro) {
+                    filtro.style.display = 'flex';
                 });
             }
         });

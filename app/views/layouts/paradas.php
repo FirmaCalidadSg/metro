@@ -74,7 +74,7 @@
   </div>
   <!-- Contenido de la vista -->
   <div class="home">
-    <?php require_once '../app/views/consultas/index.php'; ?>
+    <?php require_once '../app/views/paradas/index.php'; ?>
 
   </div>
   </div>

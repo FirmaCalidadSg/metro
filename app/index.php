@@ -141,6 +141,7 @@ $router->group('capacidades', 'CapacidadesController', function ($group) {
 });
 $router->group('configuracion', 'ConfiguracionController', function ($group) {
     $group->add('', 'index');
+    $group->add('registrar', 'registrar');
 });
 $router->group('controlCapacidad', 'ControlCapacidadController', function ($group) {
     $group->add('', 'index');

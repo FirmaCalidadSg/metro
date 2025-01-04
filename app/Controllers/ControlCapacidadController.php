@@ -18,7 +18,7 @@ class ControlCapacidadController
 
     public function Parada()
     {
-        require_once __DIR__ . '/../views/layouts/controlcapacidad.php';
+        require_once __DIR__ . '/../views/layouts/paradas.php';
         require_once __DIR__ . '/../views/controlCapacidad/parada.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

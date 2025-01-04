@@ -95,12 +95,7 @@
                 <div class="textfield-2">
                     <div class="input">
                         <div class="text-wrapper-6">Proceso</div>
-                        <select class="select-line">
-                            <option value="" disabled selected>Seleccionar</option>
-                            <option value="1">Envase líquido</option>
-                            <option value="2">Envase sólido</option>
-                            <option value="3">Envase semilíquido</option>
-                        </select>
+                        <input type="text" class="select-line">
                         <img class="underline" src="../app/Assets/css/images/underline.svg" />
                     </div>
                 </div>
@@ -109,34 +104,14 @@
                 <div class="textfield-2">
                     <div class="input">
                         <div class="text-wrapper-6">Nombre del operario líder</div>
-                        <select class="select-line">
-                            <option value="" disabled selected>Seleccionar</option>
-                            <option value="1">Juan Perez</option>
-                            <option value="2">Maria Gomez</option>
-                            <option value="3">Carlos Rodriguez</option>
-                            <option value="4">Ana Lopez</option>
-                            <option value="5">Luis Martinez</option>
-                            <option value="6">Sofia Hernandez</option>
-                            <option value="7">Diego Ramirez</option>
-                            <option value="8">Diego Ramirez</option>
-                            <option value="9">Sofia Hernandez</option>
-                            <option value="10">Carlos Rodriguez</option>
-
-                        </select>
+                        <input type="text" class="select-line"/>
                         <img class="underline" src="../app/Assets/css/images/underline.svg" />
                     </div>
                 </div>
                 <div class="textfield-2">
                     <div class="input">
                         <div class="text-wrapper-6">No. de operarios</div>
-                        <select class="select-line">
-                            <option value="" disabled selected>Seleccionar</option>
-                            <option value="1">01</option>
-                            <option value="2">02</option>
-                            <option value="3">03</option>
-                            <option value="4">04</option>
-                            <option value="5">05</option>
-                        </select>
+                        <input type="text" class="select-line"/>
                         <img class="underline" src="../app/Assets/css/images/underline.svg" />
                     </div>
                 </div>
@@ -145,14 +120,7 @@
                 <div class="textfield-2">
                     <div class="input">
                         <div class="text-wrapper-6">No. horas hombre</div>
-                        <select class="select-line">
-                            <option value="" disabled selected>Seleccionar</option>
-                            <option value="1">1hr</option>
-                            <option value="2">2hr</option>
-                            <option value="3">3hr</option>
-                            <option value="4">4hr</option>
-                            <option value="5">5hr</option>
-                        </select>
+                        <input type="text" class="select-line"/>
                         <img class="underline" src="../app/Assets/css/images/underline.svg" />
                     </div>
                 </div>
@@ -174,7 +142,7 @@
     <div class="tiempo-de-operacion">
         <div class="frame-5">
             <div class="text-wrapper-10">Tiempo de operación</div>
-            <button class="div-3" onclick="verParos()"> <img class="img-paro" src="../app/Assets/css/images/eye.svg" />
+            <button class="div-3" onclick="redireccionar()"> <img class="img-paro" src="../app/Assets/css/images/eye.svg" />
                 <div class="text-wrapper-11">Ver paros</div>
             </button>
             <button class="div-3"> <img class="img-plus" src="../app/Assets/css/images/circle.svg">
@@ -191,7 +159,12 @@
                         <div class="input">
                             <div class="text-wrapper-6">Producto</div>
                             <div class="div-2">
-                                <div class="text-wrapper-8">Seleccionar</div>
+                                <select class="select-line">
+                                    <option value="" disabled selected>Seleccionar</option>
+                                    <option value="1">Envase líquido</option>
+                                    <option value="2">Envase sólido</option>
+                                    <option value="3">Envase semilíquido</option>
+                                </select>
                             </div> <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
@@ -199,7 +172,14 @@
                         <div class="input">
                             <div class="text-wrapper-6">Hora inicial</div>
                             <div class="div-2">
-                                <div class="text-wrapper-12">----/----</div>
+                                <select class="select-line">
+                                    <option value="" disabled selected>Seleccionar</option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                    <option value="5">05</option>
+                                </select>
                             </div> <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
@@ -208,15 +188,22 @@
                     <div class="textfield-2">
                         <div class="input">
                             <div class="text-wrapper-6">Hora final</div>
-                            <div class="div-2">
-                                <div class="text-wrapper-12">----/----</div>
-                            </div> <img class="underline" src="../app/Assets/css/images/underline.svg" />
+                            <input type="text" class="select-line" />
+                            <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
                     <div class="textfield-2">
                         <div class="input">
                             <div class="text-wrapper-6">Tiempo total</div>
-                            <div class="div-2"></div> <img class="underline" src="../app/Assets/css/images/underline.svg" />
+                            <select class="select-line">
+                                <option value="" disabled selected>Seleccionar</option>
+                                <option value="1">360</option>
+                                <option value="2">3600</option>
+                                <option value="3">3600</option>
+                                <option value="4">3600</option>
+                                <option value="5">3600</option>
+                            </select>
+                            <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
                 </div>
@@ -224,13 +211,15 @@
                     <div class="textfield-2">
                         <div class="input">
                             <div class="text-wrapper-6">Producción conforme</div>
-                            <div class="div-2"></div> <img class="underline" src="../app/Assets/css/images/underline.svg" />
+                            <input type="text" class="select-line" />
+                            <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
                     <div class="textfield-2">
                         <div class="input">
                             <div class="text-wrapper-6">Reproceso</div>
-                            <div class="div-2"></div> <img class="underline" src="../app/Assets/css/images/underline.svg" />
+                            <input type="text" class="select-line" />
+                            <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
                 </div>
@@ -272,4 +261,9 @@
         </div>
     </div>
 </body>
+<script>
+    function redireccionar() {
+        window.location.href = "<?php echo BASE_PATH; ?>/paradas";
+    }
+</script>
 </html>
