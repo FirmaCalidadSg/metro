@@ -21,7 +21,7 @@ class CiudadController
     {        
         $ciudades = $this->ciudad->getAllCiudad();
 
-        require_once __DIR__ . '/../views/layouts/layout.php';
+        require_once __DIR__ . '/../views/layouts/ciudad.php';
         require_once __DIR__ . '/../views/ciudad/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

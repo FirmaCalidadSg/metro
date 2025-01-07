@@ -4,22 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Lineas Y Productos</title>
+    <title>Lineas Y Productos registradas</title>
 </head>
 
 <body>
-    <div class="container">
-        <h2>Lista de Lineas Y Productos</h2>
-        <button onclick="agregarLineaProducto()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Linea Producto</button>
-        <!-- <a href="/metro/app/lineaproducto/registro" class="btn btn-primary">Nuevo LineaProducto</a> -->
-
-        <table class="table table-striped">
+    <div class="lineas-productos">
+        <div class="lineas-productos-header">
+        <table class="custom-table" id="tablaLineasProductos">
+        <div class="dataTable-top">
+                <h2>Lineas Y Productos registradas</h2>
+                <button onclick="agregarLineaProducto()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                    <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+                    <div class="text-style">Agregar</div>
+                </button>
+            </div>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Linea</th>
                     <th>Producto</th>
                     <th>Capacidad de Produccion</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,14 +35,23 @@
                         <td><?php echo $lineaproducto->nombre_producto; ?></td>
                         <td><?php echo $lineaproducto->capacidad_produccion; ?></td>
                         <td>
-                            <button onclick="editarLineaProducto(<?php echo $lineaproducto->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarLineaProducto(<?php echo $lineaproducto->id; ?>)" class="btn btn-danger">Eliminar</button>
+                            <button onclick="verLineaProducto(<?php echo $lineaproducto->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
+                                <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                            </button>
+                            <button onclick="editarLineaProducto(<?php echo $lineaproducto->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                            </button>
+                            <button onclick="eliminarLineaProducto(<?php echo $lineaproducto->id; ?>)" class="btn-danger">
+                                <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        </div>
     </div>
+
 
     <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -157,6 +171,13 @@
                     });
             });
         }
+        var tablaLineasProductos = document.getElementById('tablaLineasProductos');
+        var DataTable = new DataTable(tablaLineasProductos,{
+            perPage: 5,
+            paging: true,
+            perPageSelect: false,
+            sortable: false,
+        });
     </script>
 </body>
 

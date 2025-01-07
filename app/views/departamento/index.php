@@ -8,12 +8,16 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>Lista de Departamentos</h2>
-        <button onclick="agregarDepartamento()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nuevo Departamento</button>
-        <!-- <a href="/metro/app/departamento/registro" class="btn btn-primary">Nuevo Departamento</a> -->
+    <div class="departamento">
+        <div class="departamento-header">
+            <h2>Lista de Departamentos</h2>
+            <button onclick="agregarDepartamento()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+                <div class="text-style">Agregar</div>
+            </button>
 
-        <table class="table table-striped">
+        <div class="table-container">
+        <table class="custom-table" id="tablaDepartamento">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -28,8 +32,15 @@
                         <td><?php echo $departamento->nombre; ?></td>
                         <td><?php echo $departamento->nombre_pais; ?></td>
                         <td>
-                            <button onclick="editarDepartamento(<?php echo $departamento->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarDepartamento(<?php echo $departamento->id; ?>)" class="btn btn-danger">Eliminar</button>
+                            <button onclick="verDepartamento(<?php echo $departamento->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview ">
+                                <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                            </button>
+                            <button onclick="editarDepartamento(<?php echo $departamento->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                            </button>
+                            <button onclick="eliminarDepartamento(<?php echo $departamento->id; ?>)" class="btn-danger">
+                                <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -155,6 +166,17 @@
                     });
             });
         }
+        var tablaDepartamento = document.getElementById('tablaDepartamento');
+        var tablaDepartamento = new DataTable(tablaDepartamento,{
+            perPage: 5,
+            searchable: true,
+            info: true,
+            lengthChange: false,
+            ordering: true,
+            paging: true,
+            pageLength: 5,
+            perPageSelect: false,
+        });
     </script>
 </body>
 

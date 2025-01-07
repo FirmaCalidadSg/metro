@@ -8,12 +8,17 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>Lista de Ciudades</h2>
-        <button onclick="agregarCiudad()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Ciudad</button>
-        <!-- <a href="/metro/app/ciudad/registro" class="btn btn-primary">Nuevo Ciudad</a> -->
+    <div class="ciudad">
+        <div class="ciudad-header">
 
-        <table class="table table-striped">
+        <h2>Lista de Ciudades</h2>
+        <button onclick="agregarCiudad()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+            <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+            <div class="text-style">Agregar</div>
+        </button>
+        <!-- <a href="/metro/app/ciudad/registro" class="btn btn-primary">Nuevo Ciudad</a> -->
+        <div class="table-container">
+        <table class="custom-table" id="tablaCiudad">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -30,8 +35,13 @@
                         <td><?php echo $ciudad->nombre_departamento; ?></td>
                         <td><?php echo $ciudad->codigo_postal; ?></td>
                         <td>
-                            <button onclick="editarCiudad(<?php echo $ciudad->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarCiudad(<?php echo $ciudad->id; ?>)" class="btn btn-danger">Eliminar</button>
+                            <button onclick="verCiudad(<?php echo $ciudad->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview ">
+                                <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                            </button>
+                            <button onclick="editarCiudad(<?php echo $ciudad->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                            </button>
+                            <button onclick="eliminarCiudad(<?php echo $ciudad->id; ?>)" class="btn-danger"><img src="/metro/app/Assets/css/images/delete.svg" title="Eliminar"></button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -157,6 +167,18 @@
                     });
             });
         }
+        var tablaCiudad = document.getElementById('tablaCiudad');
+        var tablaCiudad = new DataTable(tablaCiudad,{
+            perPage: 5,
+            perPageSelect: false,
+            searchable: true,
+            info: true,
+            lengthChange: false,
+            ordering: true,
+            paging: true,
+            pageLength: 5,
+        });
+        
     </script>
 </body>
 

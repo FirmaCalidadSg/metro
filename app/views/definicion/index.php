@@ -8,39 +8,50 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>Lista de Definicion</h2>
-        <button onclick="agregarDefinicion()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Definicion</button>
-        <!-- <a href="/metro/app/definicion/registro" class="btn btn-primary">Nuevo Definicion</a> -->
-        <div class="table-container">
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Valor</th>
-                        <th>Descripcion</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($definicion as $value): ?>
-                        <tr>
-                            <td><?php echo $value->id; ?></td>
-                            <td><?php echo $value->nombre; ?></td>
-                            <td><?php echo $value->valor; ?></td>
-                            <td><?php echo $value->descripcion; ?></td>
-                            <td>
-                                <button onclick="editarDefinicion(<?php echo $value->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
-                                    <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
-                                </button>
-                                <button onclick="eliminarDefinicion(<?php echo $value->id; ?>)" class="btn-danger"><img src="/metro/app/Assets/css/images/delete.svg" title="Eliminar"></button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+    <div class="definicion">
+        <div class="definicion-header">
+        <div class="btn-space">
+                    <h2>Definiciones Registradas</h2>
+                    <button onclick="editarConfiguracion()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                        <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+                        <div class="text-style">Agregar</div>
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="custom-table" id="tablaDefinicion">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Valor</th>
+                                <th>Descripción</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($definicion as $value): ?>
+                                <tr>
+                                    <td><?php echo $value->id; ?></td>
+                                    <td><?php echo $value->nombre; ?></td>
+                                    <td><?php echo $value->valor; ?></td>
+                                    <td><?php echo $value->descripcion; ?></td>
+                                    <td>
+                                        <button onclick="verDefinicion(<?php echo $value->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview ">
+                                            <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                                        </button>
+                                        <button onclick="editarDefinicion(<?php echo $value->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                            <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                                        </button>
+                                        <button onclick="eliminarDefinicion(<?php echo $value->id; ?>)" class="btn-danger"><img src="/metro/app/Assets/css/images/delete.svg" title="Eliminar"></button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+  
 
         <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -56,8 +67,14 @@
                 </div>
             </div>
         </div>
+  
+
+
 
         <script>
+            function editarConfiguracion() {
+                window.location.href = '/metro/app/configuracion/registrar';
+            }
             function editarDefinicion(id) {
 
                 const formData = new FormData();
@@ -71,7 +88,7 @@
                     }
                     return response.text();
                 }).then(data => {
-                    document.getElementById('modal-title').innerHTML = 'ACTUALIZAR DEFINICION';
+                    document.getElementById('modal-title').innerHTML;
                     document.getElementById('modal-body-content').innerHTML = data;
                     addSubmitForm();
                 }).catch(error => {
@@ -83,7 +100,7 @@
 
             function agregarDefinicion() {
 
-                fetch('/metro/app/definicion/registro', {
+                fetch('/metro/app/configuracion/registrar', {
                     method: 'POST'
                 }).then(response => {
                     if (!response.ok) {
@@ -94,6 +111,7 @@
                     document.getElementById('modal-title').innerHTML = 'REGISTRAR DEFINICION';
                     document.getElementById('modal-body-content').innerHTML = data;
                     addSubmitForm();
+                    window.location.href = '/metro/app/configuracion/registrar';
                 }).catch(error => {
                     console.error('Error:', error);
                     alert('Error al procesar la solicitud');
@@ -160,6 +178,15 @@
                         });
                 });
             }
+            document.addEventListener("DOMContentLoaded", function() {
+                var tabla = document.querySelector('#tablaDefinicion');
+                var dataTable = new DataTable(tabla, {
+                    perPage: 2, 
+                    paging: true, 
+                    perPageSelect: false, 
+                    sortable: false, 
+                });
+            });
         </script>
 </body>
 

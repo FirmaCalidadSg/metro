@@ -8,19 +8,23 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>Lista de Daños de Equipos</h2>
-        <button onclick="agregarDano()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Daño</button>
-        <!-- <a href="/metro/app/danoequipo/registro" class="btn btn-primary">Nuevo Dano</a> -->
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
+    <div class="dano">
+        <div class="dano-header">
+            <h2>Lista de Daños de Equipos</h2>
+            <button onclick="agregarDano()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+                <div class="text-style">Agregar</div>
+            </button>
+        <div class="table-container">
+            <table class="custom-table" id="tablaDano">
+                <thead>
+                    <tr>
                     <th>ID</th>
                     <th>Equipo</th>
                     <th>Descripción</th>
                     <th>Fecha</th>
                     <th>Estado</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,8 +36,15 @@
                         <td><?php echo $dano->fecha; ?></td>
                         <td><?php echo $dano->estado; ?></td>
                         <td>
-                            <button onclick="editarDano(<?php echo $dano->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarDano(<?php echo $dano->id; ?>)" class="btn btn-danger">Eliminar</button>
+                        <button onclick="verDano(<?php echo $dano->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview ">
+                                            <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                                        </button>
+                                <button onclick="editarDano(<?php echo $dano->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                    <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                                </button>
+                            <button onclick="eliminarDano(<?php echo $dano->id; ?>)" class="btn-danger">
+                                <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -159,6 +170,15 @@
                     });
             });
         }
+        document.addEventListener("DOMContentLoaded", function() {
+                var tabla = document.querySelector('#tablaDano');
+                var dataTable = new DataTable(tabla, {
+                    perPage: 2, 
+                    paging: true, 
+                    perPageSelect: false, 
+                    sortable: false, 
+            });
+        });
     </script>
 </body>
 

@@ -19,7 +19,7 @@ class ProcesoController
 
         $procesos = $this->proceso->getAllProceso();
 
-        require_once __DIR__ . '/../views/layouts/layout.php';
+        require_once __DIR__ . '/../views/layouts/procesos.php';
         require_once __DIR__ . '/../views/proceso/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

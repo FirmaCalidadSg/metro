@@ -8,12 +8,16 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="pais">
+        <div class="pais-header">
         <h2>Lista de Paises</h2>
-        <button onclick="agregarPais()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Pais</button>
+        <button onclick="agregarPais()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+            <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+            <div class="text-style">Agregar</div>
+        </button>
         <!-- <a href="/metro/app/pais/registro" class="btn btn-primary">Nuevo Pais</a> -->
-
-        <table class="table table-striped">
+        <div class="table-container">
+            <table class="custom-table" id="tablaPais">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -28,8 +32,15 @@
                         <td><?php echo $pais->nombre; ?></td>
                         <td><?php echo $pais->codigo; ?></td>
                         <td>
-                            <button onclick="editarPais(<?php echo $pais->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarPais(<?php echo $pais->id; ?>)" class="btn btn-danger">Eliminar</button>
+                            <button onclick="verPais(<?php echo $pais->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
+                                <img src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                            </button>
+                            <button onclick="editarPais(<?php echo $pais->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                <img src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                            </button>
+                            <button onclick="eliminarPais(<?php echo $pais->id; ?>)" class="btn-danger">
+                                <img src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -155,6 +166,13 @@
                     });
             });
         }
+        var tablaPais = document.getElementById('tablaPais');
+        var dataTable = new DataTable(tablaPais, {
+            perPage: 5, 
+            paging: true, 
+            perPageSelect: false, 
+            sortable: false, 
+        });
     </script>
 </body>
 

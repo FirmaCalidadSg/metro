@@ -19,7 +19,7 @@ class ProductoController
 
         $productos = $this->producto->getAllProducto();
 
-        require_once __DIR__ . '/../views/layouts/configuracion.php';
+        require_once __DIR__ . '/../views/layouts/productos.php';
         require_once __DIR__ . '/../views/producto/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

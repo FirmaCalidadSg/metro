@@ -87,7 +87,7 @@
             }
         }
         function buscar() {
-            window.location.href = '../app/views/reportes/resultados.php';
+            window.location.href = '..app/ReportesController/Resultados';
         }
         // Escuchar cambios en los campos
         tipoReporte.addEventListener('change', validarCampos);

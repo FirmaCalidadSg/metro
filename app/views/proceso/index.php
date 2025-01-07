@@ -8,17 +8,23 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="procesos">
+        <div class="procesos-header">
         <h2>Lista de Procesos</h2>
-        <button onclick="agregarProceso()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nuevo Proceso</button>
+        <button onclick="agregarProceso()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+            <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg" title="Agregar">
+            <div class="text-style">Agregar</div>
+        </button>
+        
         <!-- <a href="/metro/app/proceso/registro" class="btn btn-primary">Nuevo Proceso</a> -->
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
+        <div class="table-container">
+            <table class="custom-table" id="tablaProcesos">
+                <thead>
+                    <tr>
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,8 +34,15 @@
                         <td><?php echo $proceso->nombre; ?></td>
                         <td><?php echo $proceso->descripcion; ?></td>
                         <td>
-                            <button onclick="editarProceso(<?php echo $proceso->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarProceso(<?php echo $proceso->id; ?>)" class="btn btn-danger">Eliminar</button>
+                            <button onclick="verProceso(<?php echo $proceso->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
+                                <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                            </button>
+                            <button onclick="editarProceso(<?php echo $proceso->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                            </button>
+                            <button onclick="eliminarProceso(<?php echo $proceso->id; ?>)" class="btn-danger">
+                                <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -155,6 +168,13 @@
                     });
             });
         }
+        var tablaProcesos = document.getElementById('tablaProcesos');
+        var dataTable = new DataTable(tablaProcesos, {
+            perPage: 2,
+            paging: true,
+            perPageSelect: false,
+            sortable: false,
+        });
     </script>
 </body>
 

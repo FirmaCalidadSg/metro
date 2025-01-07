@@ -21,7 +21,7 @@ class DanoEquipoController
     {        
         $danos = $this->dano->getAllDanoEquipo();
 
-        require_once __DIR__ . '/../views/layouts/layout.php';
+        require_once __DIR__ . '/../views/layouts/dano.php';
         require_once __DIR__ . '/../views/danoequipo/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

@@ -8,12 +8,13 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="usuarios">
+        <div class="usuarios-header">
         <h2>Lista de Usuarios</h2>
         <button onclick="agregarUsuario()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nuevo Usuario</button>
         <!-- <a href="/metro/app/usuarios/registro" class="btn btn-primary">Nuevo Usuario</a> -->
 
-        <table class="table table-striped">
+        <table class="custom-table" id="tablaUsuarios">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -35,9 +36,15 @@
                         <td><?php echo $usuario->usuario; ?></td>
                         <td><?php echo $usuario->rol_id; ?></td>
                         <td>
-                            <button onclick="editarUsuario(<?php echo $usuario->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarUsuario(<?php echo $usuario->id; ?>)" class="btn btn-danger">Eliminar</button>
-                            <button onclick="cambiarCredenciales(<?php echo $usuario->id; ?>)" class="btn btn-info">Cambiar Credenciales</button>
+                            <button onclick="editarUsuario(<?php echo $usuario->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                            </button>
+                            <button onclick="eliminarUsuario(<?php echo $usuario->id; ?>)" class="btn-danger">
+                                <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                            </button>
+                            <button onclick="cambiarCredenciales(<?php echo $usuario->id; ?>)" class="btn-preview">
+                                <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Cambiar Credenciales">
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>

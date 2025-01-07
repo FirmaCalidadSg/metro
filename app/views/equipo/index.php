@@ -8,12 +8,17 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>Lista de Equipos</h2>
-        <button onclick="agregarEquipo()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nuevo Equipo</button>
+    <div class="equipos">
+        <div class="equipos-header">
+            <h2>Lista de Equipos</h2>
+            <button onclick="agregarEquipo()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+                <div class="text-style">Agregar</div>
+            </button>
+    
         <!-- <a href="/metro/app/equipo/registro" class="btn btn-primary">Nuevo Equipo</a> -->
-
-        <table class="table table-striped">
+        <div class="table-container">
+        <table class="custom-table" id="tablaEquipos">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -30,14 +35,24 @@
                         <td><?php echo $equipo->modelo; ?></td>
                         <td><?php echo $equipo->estado; ?></td>
                         <td>
-                            <button onclick="editarEquipo(<?php echo $equipo->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarEquipo(<?php echo $equipo->id; ?>)" class="btn btn-danger">Eliminar</button>
+                            <button onclick="verEquipo(<?php echo $equipo->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
+                                <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                            </button>
+                            <button onclick="editarEquipo(<?php echo $equipo->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                            </button>
+                            <button onclick="eliminarEquipo(<?php echo $equipo->id; ?>)" class="btn-danger">
+                                <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        </div>
     </div>
+    </div>
+
 
     <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -157,6 +172,15 @@
                     });
             });
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            const tablaEquipos = document.getElementById('tablaEquipos');
+            var dataTable = new DataTable(tablaEquipos, {
+                    perPage: 2, 
+                    paging: true, 
+                    perPageSelect: false, 
+                    sortable: false, 
+                });
+        });
     </script>
 </body>
 

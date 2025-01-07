@@ -161,9 +161,9 @@
         const selectElement = document.querySelector(".select-line");
         selectElement.addEventListener("change", mostrarSeleccion);
     });
-/*     document.querySelector('.buttom').addEventListener('click', function() {
-        window.location.href = '../app/views/consultas/registro.php';
-    });   */   
+document.querySelector('.buttom').addEventListener('click', function() {
+    window.location.href = '../app/views/consultas/registro.php';
+});
 </script>
 
 </html>

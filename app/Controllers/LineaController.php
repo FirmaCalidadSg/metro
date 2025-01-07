@@ -21,7 +21,7 @@ class LineaController
     {        
         $lineas = $this->linea->getAllLinea();
 
-        require_once __DIR__ . '/../views/layouts/layout.php';
+        require_once __DIR__ . '/../views/layouts/lineas.php';
         require_once __DIR__ . '/../views/linea/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

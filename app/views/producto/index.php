@@ -8,18 +8,24 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>Lista de Productos</h2>
-        <button onclick="agregarProducto()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nuevo Producto</button>
-        <!-- <a href="/metro/app/producto/registro" class="btn btn-primary">Nuevo Producto</a> -->
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Codigo</th>
-                    <th>Descripcion</th>
+    <div class="productos">
+        <div class="productos-header">
+            <div class="btn-space">
+            <h2>Lista de Productos</h2>
+            <button onclick="agregarProducto()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                <img class="btn-div img" src="/metro/app/Assets/css/images/circle-fill.svg">
+                <div class="text-style">Agregar</div>
+            </button>
+            </div>
+            <!-- <a href="/metro/app/producto/registro" class="btn btn-primary">Nuevo Producto</a> -->
+<!--         <div class="table-container">
+ -->            <table class="custom-table" id="tablaProductos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Codigo</th>
+                        <th>Descripcion</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,8 +36,15 @@
                         <td><?php echo $producto->codigo; ?></td>
                         <td><?php echo $producto->descripcion; ?></td>
                         <td>
-                            <button onclick="editarProducto(<?php echo $producto->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarProducto(<?php echo $producto->id; ?>)" class="btn btn-danger">Eliminar</button>
+                            <button onclick="verProducto(<?php echo $producto->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
+                                <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                            </button>
+                            <button onclick="editarProducto(<?php echo $producto->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">   
+                                <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                            </button>
+                            <button onclick="eliminarProducto(<?php echo $producto->id; ?>)" class="btn-danger">
+                                <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -157,6 +170,13 @@
                     });
             });
         }
+        var tablaProductos = document.getElementById('tablaProductos');
+        var DataTable = new DataTable(tablaProductos,{
+            perPage: 5,
+            paging: true,
+            perPageSelect: false,
+            sortable: false,
+        });
     </script>
 </body>
 

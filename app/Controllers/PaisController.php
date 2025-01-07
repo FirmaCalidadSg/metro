@@ -19,7 +19,7 @@ class PaisController
 
         $paises = $this->pais->getAllPais();
 
-        require_once __DIR__ . '/../views/layouts/layout.php';
+        require_once __DIR__ . '/../views/layouts/pais.php';
         require_once __DIR__ . '/../views/pais/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

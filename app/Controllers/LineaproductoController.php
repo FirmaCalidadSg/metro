@@ -24,7 +24,7 @@ class LineaProductoController
     {        
         $lineas_producto = $this->linea_producto->getAllLineaProducto();
 
-        require_once __DIR__ . '/../views/layouts/layout.php';
+        require_once __DIR__ . '/../views/layouts/Linea-productos.php';
         require_once __DIR__ . '/../views/lineaproducto/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

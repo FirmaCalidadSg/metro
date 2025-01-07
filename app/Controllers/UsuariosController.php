@@ -22,7 +22,7 @@ class UsuariosController
 
         $usuarios = $this->usuarios->getAllUsuarios();
         // var_dump($usuarios);
-        require_once __DIR__ . '/../views/layouts/layout.php';
+        require_once __DIR__ . '/../views/layouts/usuarios.php';
         require_once __DIR__ . '/../views/usuarios/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

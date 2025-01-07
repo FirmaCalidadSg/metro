@@ -8,17 +8,24 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="lineas">
+        <div class="lineas-header">
+        <div class="btn-space">
         <h2>Lista de Lineas</h2>
-        <button onclick="agregarLinea()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Linea</button>
-        <!-- <a href="/metro/app/linea/registro" class="btn btn-primary">Nuevo Linea</a> -->
-
-        <table class="table table-striped">
+        <button onclick="agregarLinea()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                    <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+                    <div class="text-style">Agregar</div>
+                </button>
+            </div>
+        </div>
+        <div class="table-container">
+            <table class="custom-table" id="tablaLineas">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Proceso</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,8 +35,15 @@
                         <td><?php echo $linea->nombre; ?></td>
                         <td><?php echo $linea->nombre_proceso; ?></td>
                         <td>
-                            <button onclick="editarLinea(<?php echo $linea->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                            <button onclick="eliminarLinea(<?php echo $linea->id; ?>)" class="btn btn-danger">Eliminar</button>
+                            <button onclick="verLinea(<?php echo $linea->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
+                                <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                            </button>
+                            <button onclick="editarLinea(<?php echo $linea->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                            </button>
+                            <button onclick="eliminarLinea(<?php echo $linea->id; ?>)" class="btn-danger">
+                                <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -155,6 +169,13 @@
                     });
             });
         }
+        var tablaLineas = document.getElementById('tablaLineas');
+        var dataTable = new DataTable(tablaLineas, {
+            perPage: 5,
+            paging: true,
+            perPageSelect: false,
+            sortable: false,
+        });
     </script>
 </body>
 
