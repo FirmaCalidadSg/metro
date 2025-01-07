@@ -152,7 +152,9 @@ $router->group('reportes', 'ReportesController', function ($group) {
     $group->add('resultados', 'resultados');
     
 });
-
+/* $router->group('registrar', 'ConfiguracionController', function ($group) {
+    $group->add('', 'registrar');
+}); */
 try {
     $uri = trim(str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']), '/');
     $method = $_SERVER['REQUEST_METHOD'];

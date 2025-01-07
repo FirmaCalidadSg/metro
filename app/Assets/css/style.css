@@ -1517,7 +1517,7 @@
   padding: 24px;
   position: relative;
   align-self: stretch;
-  width: 100%;
+  width: 84%;
   flex: 0 0 auto;
   background-color: #ffffff;
   border-radius: 12px;
@@ -1626,6 +1626,25 @@
   align-self: stretch;
   width: 100%;
   flex: 0 0 auto;
+}
+
+.registrar-view .select-register {
+  font-family: var(--body-1-regular-font-family);
+  font-weight: var(--body-1-regular-font-weight);
+  letter-spacing: var(--body-1-regular-letter-spacing);
+  line-height: var(--body-1-regular-line-height);
+  font-style: var(--body-1-regular-font-style);
+  display: flex;
+  padding: .5rem;
+  color: #1e1e1e;
+  font-size: 12px;
+  min-width: 100%;
+  width: 100%;
+  border: 1px;
+  background-color: transparent;
+  border-radius: 12px;
+  border: none;
+  outline: none;
 }
 
 .registrar-view .text-wrapper-2 {
@@ -5203,8 +5222,10 @@
 .custom-table th {
   padding: 12px 15px;
   border: 1px solid #ddd;
-  text-align: center; /* Asegúrate de que el texto esté centrado horizontalmente */
-  vertical-align: middle; /* Centra el texto verticalmente */
+  text-align: center;
+  /* Asegúrate de que el texto esté centrado horizontalmente */
+  vertical-align: middle;
+  /* Centra el texto verticalmente */
   white-space: nowrap;
   font-family: var(--body-1-semibold-font-family);
   font-weight: var(--body-1-semibold-font-weight);
@@ -5219,13 +5240,13 @@
 .custom-table td {
   font-size: 12px;
   color: rgb(80, 77, 77);
-  font-weight: 300; 
+  font-weight: 300;
   border: 1px solid #ddd;
   font-family: var(--body-1-semibold-font-family);
   font-size: 14px;
   letter-spacing: var(--body-1-semibold-letter-spacing);
   line-height: var(--body-1-semibold-line-height);
-  text-transform: none; 
+  text-transform: none;
   border-radius: 20px;
 }
 
@@ -5301,7 +5322,8 @@
 .btn-preview img {
   width: 32px;
   height: 32px;
-} 
+}
+
 .btn-preview:hover img {
   content: url('/metro/app/Assets/css/images/preview-hover.svg');
 }
@@ -5319,19 +5341,22 @@
   position: relative;
   flex: 0 0 auto;
 }
-.image-list{
+
+.image-list {
   fill: #ffffff;
 }
-.btn-space{
+
+.btn-space {
   display: flex;
   align-items: flex-start;
   gap: 24px;
   position: relative;
   align-self: stretch;
-  width: 60%;
+  width: 20%;
   flex: 0 0 auto;
 }
-.btn-space .divider{
+
+.btn-space .divider {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -5342,27 +5367,31 @@
   position: relative;
   flex: 0 0 auto;
 }
-.dataTable-wrapper{
+
+.dataTable-wrapper {
   font-family: var(--body-1-semibold-font-family);
   font-size: 11px;
   letter-spacing: var(--body-1-semibold-letter-spacing);
   line-height: var(--body-1-semibold-line-height);
   width: 100%;
   padding: 5px;
-  
+
 }
-.dataTable-container{
+
+.dataTable-container {
   border-radius: 10px;
 }
-.dataTable-top{
+
+.dataTable-top {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
+  width: 60%;
   padding: 5px;
 
 }
-.space-divider{
+
+.space-divider {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -5374,6 +5403,7 @@
   margin-top: 0;
   padding-top: 0;
 }
+
 .pais {
   display: flex;
   flex-direction: column;
@@ -5433,26 +5463,32 @@
   font-style: var(--body-1-semibold-font-style);
 
 }
-.custom-table dataTable-table{
+
+.custom-table dataTable-table {
   border-radius: 10px;
 }
-.custom-table dataTable-table thead{
+
+.custom-table dataTable-table thead {
   border-radius: 10px;
   text-align: center;
 }
-.custom-table dataTable-table tbody{
+
+.custom-table dataTable-table tbody {
   border-radius: 10px;
   text-align: center;
 }
-.custom-table dataTable-table tbody tr{
+
+.custom-table dataTable-table tbody tr {
   border-radius: 10px;
   text-align: center;
 }
-.custom-table dataTable-table tbody td{
+
+.custom-table dataTable-table tbody td {
   border-radius: 10px;
   text-align: center;
-} 
-.custom-table dataTable-table tbody td{
+}
+
+.custom-table dataTable-table tbody td {
   border-radius: 10px;
   text-align: center;
 }
@@ -5516,6 +5552,7 @@
   font-style: var(--body-1-semibold-font-style);
 
 }
+
 .departamento {
   display: flex;
   flex-direction: column;
@@ -5559,6 +5596,7 @@
   line-height: var(--h6-semibold-line-height);
   font-style: var(--h6-semibold-font-style);
 }
+
 .equipos {
   display: flex;
   flex-direction: column;
@@ -5618,6 +5656,7 @@
   font-style: var(--body-1-semibold-font-style);
 
 }
+
 .dano {
   display: flex;
   flex-direction: column;
@@ -5677,6 +5716,7 @@
   font-style: var(--body-1-semibold-font-style);
 
 }
+
 .procesos {
   display: flex;
   flex-direction: column;
@@ -5736,6 +5776,7 @@
   font-style: var(--body-1-semibold-font-style);
 
 }
+
 .lineas {
   display: flex;
   flex-direction: column;
@@ -5795,6 +5836,7 @@
   font-style: var(--body-1-semibold-font-style);
 
 }
+
 .productos {
   display: flex;
   flex-direction: column;
@@ -5854,6 +5896,7 @@
   font-style: var(--body-1-semibold-font-style);
 
 }
+
 .lineas-productos {
   display: flex;
   flex-direction: column;
@@ -5913,6 +5956,7 @@
   font-style: var(--body-1-semibold-font-style);
 
 }
+
 .usuarios {
   display: flex;
   flex-direction: column;
@@ -5972,5 +6016,3 @@
   font-style: var(--body-1-semibold-font-style);
 
 }
-
-
