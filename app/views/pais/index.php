@@ -9,43 +9,61 @@
 
 <body>
     <div class="pais">
-        <div class="pais-header">
-        <h2>Lista de Paises</h2>
-        <button onclick="agregarPais()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
-            <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
-            <div class="text-style">Agregar</div>
+        <button class="btn-back" onclick="goBack()">
+            <div class="btn-back-text">
+                < Volver</div>
         </button>
-        <!-- <a href="/metro/app/pais/registro" class="btn btn-primary">Nuevo Pais</a> -->
-        <div class="table-container">
+        <div class="pais-header">
+            <div class="btn-space">
+                <h2>Lista de Paises</h2>
+                <button onclick="agregarPais()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                    <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+                    <div class="text-style">Agregar</div>
+                </button>
+                <select class="selector-table">
+                    <option value="" disabled selected>Filtrar por proceso</option>
+                    <?php foreach ($paises as $pais): ?>
+                        <option value="<?php echo $pais->id; ?>"><?php echo $pais->nombre; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <select class="selector-table">
+                    <option value="" disabled selected>Filtrar por linea</option>
+                    <?php foreach ($lineas as $linea): ?>
+                        <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <table class="custom-table" id="tablaPais">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Codigo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($paises as $pais): ?>
+                <thead>
                     <tr>
-                        <td><?php echo $pais->id; ?></td>
-                        <td><?php echo $pais->nombre; ?></td>
-                        <td><?php echo $pais->codigo; ?></td>
-                        <td>
-                            <button onclick="verPais(<?php echo $pais->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
-                                <img src="/metro/app/Assets/css/images/preview.svg" title="Ver">
-                            </button>
-                            <button onclick="editarPais(<?php echo $pais->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
-                                <img src="/metro/app/Assets/css/images/edit.svg" title="Editar">
-                            </button>
-                            <button onclick="eliminarPais(<?php echo $pais->id; ?>)" class="btn-danger">
-                                <img src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
-                            </button>
-                        </td>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Codigo</th>
+                        <th>Acciones</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($paises as $pais): ?>
+                        <tr>
+                            <td><?php echo $pais->id; ?></td>
+                            <td><?php echo $pais->nombre; ?></td>
+                            <td><?php echo $pais->codigo; ?></td>
+                            <td>
+                                <button onclick="verPais(<?php echo $pais->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
+                                    <img src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                                </button>
+                                <button onclick="editarPais(<?php echo $pais->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                    <img src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                                </button>
+                                <button onclick="eliminarPais(<?php echo $pais->id; ?>)" class="btn-danger">
+                                    <img src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -64,6 +82,10 @@
     </div>
 
     <script>
+        function goBack() {
+            window.history.back();
+        }
+
         function editarPais(id) {
 
             const formData = new FormData();
@@ -166,13 +188,6 @@
                     });
             });
         }
-        var tablaPais = document.getElementById('tablaPais');
-        var dataTable = new DataTable(tablaPais, {
-            perPage: 5, 
-            paging: true, 
-            perPageSelect: false, 
-            sortable: false, 
-        });
     </script>
 </body>
 

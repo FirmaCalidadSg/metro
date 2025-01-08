@@ -2,9 +2,9 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="../app/Assets/css/globals.css" />
-    <link rel="stylesheet" href="../app/Assets/css/styleguide.css"/>  
-    <link rel="stylesheet" href="../app/Assets/css/style.css" />
+    <link rel="stylesheet" href="../../app/Assets/css/globals.css" />
+    <link rel="stylesheet" href="../../app/Assets/css/styleguide.css"/>  
+    <link rel="stylesheet" href="../../app/Assets/css/style.css" />
 </head>
 
 <body>
@@ -34,7 +34,7 @@
                                 <option value="linea_productos">Lineas Y Productos</option>
                             </select>
                         </div> 
-                        <img class="underline" src="../app/Assets/css/images/underline.svg" />
+                        <img class="underline" src="../../app/Assets/css/images/underline.svg" />
                     </div>
                 </div>
             </div>
@@ -46,6 +46,7 @@
         document.getElementById("registroSelect").addEventListener("change", function() {
             // Almacenar el valor seleccionado en una variable
             let selectedValue = this.value;
+            
 
         });
     </script>

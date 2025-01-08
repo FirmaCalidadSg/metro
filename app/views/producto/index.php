@@ -9,6 +9,10 @@
 
 <body>
     <div class="productos">
+        <button class="btn-back" onclick="goBack()">
+            <div class="btn-back-text">
+                < Volver</div>
+        </button>
         <div class="productos-header">
             <div class="btn-space">
             <h2>Lista de Productos</h2>
@@ -16,10 +20,21 @@
                 <img class="btn-div img" src="/metro/app/Assets/css/images/circle-fill.svg">
                 <div class="text-style">Agregar</div>
             </button>
+            <select class="selector-table">
+                <option value="" disabled selected>Filtrar por producto</option>
+                <?php foreach ($productos as $producto): ?>
+                    <option value="<?php echo $producto->id; ?>"><?php echo $producto->nombre; ?></option>
+                <?php endforeach; ?>
+            </select>
+            <select class="selector-table">
+                <option value="" disabled selected>Filtrar por codigo</option>
+                <?php foreach ($productos as $producto): ?>
+                    <option value="<?php echo $producto->id; ?>"><?php echo $producto->codigo; ?></option>
+                <?php endforeach; ?>
+            </select>
             </div>
             <!-- <a href="/metro/app/producto/registro" class="btn btn-primary">Nuevo Producto</a> -->
-<!--         <div class="table-container">
- -->            <table class="custom-table" id="tablaProductos">
+            <table class="custom-table" id="tablaProductos">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -68,6 +83,10 @@
     </div>
 
     <script>
+        function goBack() {
+            window.history.back();
+        }
+
         function editarProducto(id) {
 
             const formData = new FormData();
@@ -170,13 +189,7 @@
                     });
             });
         }
-        var tablaProductos = document.getElementById('tablaProductos');
-        var DataTable = new DataTable(tablaProductos,{
-            perPage: 5,
-            paging: true,
-            perPageSelect: false,
-            sortable: false,
-        });
+
     </script>
 </body>
 

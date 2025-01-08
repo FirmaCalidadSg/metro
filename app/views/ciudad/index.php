@@ -5,19 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Ciudades</title>
+    <link rel="stylesheet" href="../../app/Assets/css/globals.css" />
+    <link rel="stylesheet" href="../../app/Assets/css/styleguide.css" />
+    <link rel="stylesheet" href="../../app/Assets/css/style.css" />
 </head>
 
 <body>
     <div class="ciudad">
+    <button class="btn-back" onclick="goBack()">
+            <div class="btn-back-text">
+                < Volver</div>
+        </button>
         <div class="ciudad-header">
-
+        <div class="btn-space">
         <h2>Lista de Ciudades</h2>
         <button onclick="agregarCiudad()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
-            <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+            <img class="image-list" src="../../app/Assets/css/images/circle-fill.svg">
             <div class="text-style">Agregar</div>
         </button>
-        <!-- <a href="/metro/app/ciudad/registro" class="btn btn-primary">Nuevo Ciudad</a> -->
-        <div class="table-container">
+        <select class="selector-table">
+            <option value="" disabled selected>Filtrar por ciudad</option>
+            <?php foreach ($ciudades as $ciudad): ?>
+                <option value="<?php echo $ciudad->id; ?>"><?php echo $ciudad->nombre; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <select class="selector-table">
+            <option value="" disabled selected>Filtrar por linea</option>
+            <?php foreach ($lineas as $linea): ?>
+                <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
+            <?php endforeach; ?>
+        </select>
+        </div>
         <table class="custom-table" id="tablaCiudad">
             <thead>
                 <tr>
@@ -25,6 +43,7 @@
                     <th>Nombre</th>
                     <th>Departamento</th>
                     <th>Codigo Postal</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,6 +67,7 @@
             </tbody>
         </table>
     </div>
+    </div>
 
     <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -65,6 +85,9 @@
     </div>
 
     <script>
+        function goBack() {
+            window.history.back();
+        }
         function editarCiudad(id) {
 
             const formData = new FormData();
@@ -167,18 +190,7 @@
                     });
             });
         }
-        var tablaCiudad = document.getElementById('tablaCiudad');
-        var tablaCiudad = new DataTable(tablaCiudad,{
-            perPage: 5,
-            perPageSelect: false,
-            searchable: true,
-            info: true,
-            lengthChange: false,
-            ordering: true,
-            paging: true,
-            pageLength: 5,
-        });
-        
+
     </script>
 </body>
 

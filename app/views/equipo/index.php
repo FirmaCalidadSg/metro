@@ -9,15 +9,30 @@
 
 <body>
     <div class="equipos">
+    <button class="btn-back" onclick="goBack()">
+            <div class="btn-back-text">
+                < Volver</div>
+        </button>
         <div class="equipos-header">
+            <div class="btn-space">
             <h2>Lista de Equipos</h2>
             <button onclick="agregarEquipo()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
                 <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
                 <div class="text-style">Agregar</div>
             </button>
-    
-        <!-- <a href="/metro/app/equipo/registro" class="btn btn-primary">Nuevo Equipo</a> -->
-        <div class="table-container">
+            <select class="selector-table">
+                <option value="" disabled selected>Filtrar por equipo</option>
+                <?php foreach ($equipos as $equipo): ?>
+                    <option value="<?php echo $equipo->id; ?>"><?php echo $equipo->nombre; ?></option>
+                <?php endforeach; ?>
+            </select>
+            <select class="selector-table">
+                <option value="" disabled selected>Filtrar por linea</option>
+                <?php foreach ($lineas as $linea): ?>
+                    <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
         <table class="custom-table" id="tablaEquipos">
             <thead>
                 <tr>
@@ -51,7 +66,6 @@
         </table>
         </div>
     </div>
-    </div>
 
 
     <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,6 +84,9 @@
     </div>
 
     <script>
+        function goBack() {
+            window.history.back();
+        }
         function editarEquipo(id) {
 
             const formData = new FormData();
@@ -172,15 +189,7 @@
                     });
             });
         }
-        document.addEventListener('DOMContentLoaded', function() {
-            const tablaEquipos = document.getElementById('tablaEquipos');
-            var dataTable = new DataTable(tablaEquipos, {
-                    perPage: 2, 
-                    paging: true, 
-                    perPageSelect: false, 
-                    sortable: false, 
-                });
-        });
+
     </script>
 </body>
 

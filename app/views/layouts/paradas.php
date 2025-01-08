@@ -63,7 +63,30 @@
         </div>
         <!--   <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
+      <div class="sidebar-option">
+        <img class="img" src="../app/Assets/css/images/siderbar4.svg" />
+        <div class="typography-wrapper">
+          <div class="typography1">Configuración</div>
+        </div>
+        <div class="sub-menu">
+      <a href="<?php echo BASE_PATH; ?>/definicion">Definición</a>
+      <a href="<?php echo BASE_PATH; ?>/pais">Países</a>
+      <a href="<?php echo BASE_PATH; ?>/ciudad">Ciudades</a>
+      <a href="<?php echo BASE_PATH; ?>/departamento">Departamentos</a>
+      <a href="<?php echo BASE_PATH; ?>/equipo">Equipos</a>
+      <a href="<?php echo BASE_PATH; ?>/danoequipo">Daños</a>
+      <a href="<?php echo BASE_PATH; ?>/proceso">Procesos</a>
+      <a href="<?php echo BASE_PATH; ?>/linea">Líneas</a>
+      <a href="<?php echo BASE_PATH; ?>/producto">Productos</a>
+      <a href="<?php echo BASE_PATH; ?>/lineaproducto">Línea y Productos</a>
+      <a href="<?php echo BASE_PATH; ?>/paros">Paros</a>
+      <a href="<?php echo BASE_PATH; ?>/subparos">Sub-Paros</a>
+      <a href="<?php echo BASE_PATH; ?>/turnos">Turnos</a>
+      <a href="<?php echo BASE_PATH; ?>/documentos">Todos los Documentos</a>
+      </div>
     </div>
+    </div>
+    
     <div class="divider"></div>
     <button class="sidebar-option-2" id="toggleSidebar" onclick="functionContraer()">
       <img class="locura" src="../app/Assets/css/images/siderbar5.svg" />
@@ -74,7 +97,7 @@
   </div>
   <!-- Contenido de la vista -->
   <div class="home">
-    <?php require_once '../app/views/paradas/index.php'; ?>
+    <?php require_once '../app/views/controlCapacidad/paradas.php'; ?>
 
   </div>
   </div>

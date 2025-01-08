@@ -9,14 +9,31 @@
 
 <body>
     <div class="departamento">
+    <button class="btn-back" onclick="goBack()">
+            <div class="btn-back-text">
+                < Volver</div>
+        </button>
         <div class="departamento-header">
+            <div class="btn-space">
             <h2>Lista de Departamentos</h2>
-            <button onclick="agregarDepartamento()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
-                <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
-                <div class="text-style">Agregar</div>
-            </button>
+            <button onclick="agregarCiudad()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+            <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+            <div class="text-style">Agregar</div>
+        </button>
+            <select class="selector-table">
+                <option value="" disabled selected>Filtrar por departamento</option>
+                <?php foreach ($departamentos as $departamento): ?>
+                    <option value="<?php echo $departamento->id; ?>"><?php echo $departamento->nombre; ?></option>
+                <?php endforeach; ?>
+            </select>
+            <select class="selector-table">
+                <option value="" disabled selected>Filtrar por linea</option>
+                <?php foreach ($lineas as $linea): ?>
+                    <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
-        <div class="table-container">
         <table class="custom-table" id="tablaDepartamento">
             <thead>
                 <tr>
@@ -64,6 +81,9 @@
     </div>
 
     <script>
+        function goBack() {
+            window.history.back();
+        }
         function editarDepartamento(id) {
 
             const formData = new FormData();
@@ -166,17 +186,7 @@
                     });
             });
         }
-        var tablaDepartamento = document.getElementById('tablaDepartamento');
-        var tablaDepartamento = new DataTable(tablaDepartamento,{
-            perPage: 5,
-            searchable: true,
-            info: true,
-            lengthChange: false,
-            ordering: true,
-            paging: true,
-            pageLength: 5,
-            perPageSelect: false,
-        });
+
     </script>
 </body>
 

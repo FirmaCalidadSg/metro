@@ -9,15 +9,32 @@
 
 <body>
     <div class="dano">
+    <button class="btn-back" onclick="goBack()">
+            <div class="btn-back-text">
+                < Volver</div>
+        </button>
         <div class="dano-header">
+            <div class="btn-space">
             <h2>Lista de Daños de Equipos</h2>
             <button onclick="agregarDano()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
                 <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
                 <div class="text-style">Agregar</div>
             </button>
-        <div class="table-container">
-            <table class="custom-table" id="tablaDano">
-                <thead>
+            <select class="selector-table">
+                <option value="" disabled selected>Filtrar por equipo Dañado</option>
+                <?php foreach ($danos as $dano): ?>
+                    <option value="<?php echo $dano->id; ?>"><?php echo $dano->nombre_equipo; ?></option>
+                <?php endforeach; ?>
+            </select>
+            <select class="selector-table">
+                <option value="" disabled selected>Filtrar por linea</option>
+                <?php foreach ($lineas as $linea): ?>
+                    <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <table class="custom-table" id="tablaDano">
+            <thead>
                     <tr>
                     <th>ID</th>
                     <th>Equipo</th>
@@ -68,6 +85,9 @@
     </div>
 
     <script>
+        function goBack() {
+            window.history.back();
+        }
         function editarDano(id) {
 
             const formData = new FormData();
@@ -170,15 +190,6 @@
                     });
             });
         }
-        document.addEventListener("DOMContentLoaded", function() {
-                var tabla = document.querySelector('#tablaDano');
-                var dataTable = new DataTable(tabla, {
-                    perPage: 2, 
-                    paging: true, 
-                    perPageSelect: false, 
-                    sortable: false, 
-            });
-        });
     </script>
 </body>
 

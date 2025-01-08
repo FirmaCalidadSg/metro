@@ -3,10 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Definicion</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
-  <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
+
   <link rel="stylesheet" href="../app/Assets/css/globals.css" />
   <link rel="stylesheet" href="../app/Assets/css/style.css" />
   <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
@@ -62,11 +59,34 @@
         </div>
         <div class="sub-menu">
           <a href="<?php echo BASE_PATH; ?>/configuracion">Consultar</a>
-          <a href="<?php echo BASE_PATH; ?>/configuracion/registrar">Registrar</a>
+          <a href="#">Registrar</a>
         </div>
         <!--   <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
+      <div class="sidebar-option">
+        <img class="img" src="../app/Assets/css/images/siderbar4.svg" />
+        <div class="typography-wrapper">
+          <div class="typography1">Configuración</div>
+        </div>
+        <div class="sub-menu">
+      <a href="<?php echo BASE_PATH; ?>/definicion">Definición</a>
+      <a href="<?php echo BASE_PATH; ?>/pais">Países</a>
+      <a href="<?php echo BASE_PATH; ?>/ciudad">Ciudades</a>
+      <a href="<?php echo BASE_PATH; ?>/departamento">Departamentos</a>
+      <a href="<?php echo BASE_PATH; ?>/equipo">Equipos</a>
+      <a href="<?php echo BASE_PATH; ?>/danoequipo">Daños</a>
+      <a href="<?php echo BASE_PATH; ?>/proceso">Procesos</a>
+      <a href="<?php echo BASE_PATH; ?>/linea">Líneas</a>
+      <a href="<?php echo BASE_PATH; ?>/producto">Productos</a>
+      <a href="<?php echo BASE_PATH; ?>/lineaproducto">Línea y Productos</a>
+      <a href="<?php echo BASE_PATH; ?>/paros">Paros</a>
+      <a href="<?php echo BASE_PATH; ?>/subparos">Sub-Paros</a>
+      <a href="<?php echo BASE_PATH; ?>/turnos">Turnos</a>
+      <a href="<?php echo BASE_PATH; ?>/documentos">Todos los Documentos</a>
+      </div>
     </div>
+    </div>
+    
     <div class="divider"></div>
     <button class="sidebar-option-2" id="toggleSidebar" onclick="functionContraer()">
       <img class="locura" src="../app/Assets/css/images/siderbar5.svg" />
@@ -136,7 +156,8 @@ function handleSidebarOptionClick() {
 // Añadir el evento de clic a cada opción del sidebar
 document.querySelectorAll('.sidebar-option').forEach(option => {
     option.addEventListener('click', handleSidebarOptionClick);
-}); 
+});
+
 
   </script>
 </body>

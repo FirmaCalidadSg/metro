@@ -1150,7 +1150,19 @@
   right: 14px;
   cursor: pointer;
 }
-
+.property-slider .sidebar-option-text-wrapper{
+  display: flex;
+  gap: 10px;
+  position: relative;
+  flex: 1;
+  flex-grow: 1;
+  color: #064d26;
+  margin-left: 10px;
+  font-family: var(--h6-semibold-font-family);
+  font-size: 11px;
+  letter-spacing: 0;
+  line-height: 12px;
+}
 .property-slider .sidebar-option:hover {
   background-color: #d1e3d9;
 }
@@ -1215,8 +1227,10 @@
 }
 
 .property-slider.contraido .image {
-
-  content: url('../app/Assets/css/images/logo-closed.svg');
+  content: url('../../Assets/css/images/logo-closed.svg');
+  transition: all .1s ease;
+  display: block;
+  align-items: center;
 }
 
 .home {
@@ -5266,7 +5280,48 @@
 .custom-table tbody tr:hover {
   background-color: #f1f1f1;
 }
+.header-btn-space {
+  display: flex;
+  min-height: 24px;
+  align-items: center;
+  position: relative;
+  align-self: stretch;
+  width: 50%;
+  flex: 0 0 auto;
+}
 
+.btn-space .selector-table {
+  font-family: var(--body-1-regular-font-family);
+  font-weight: var(--body-1-regular-font-weight);
+  letter-spacing: var(--body-1-regular-letter-spacing);
+  line-height: var(--body-1-regular-line-height);
+  font-style: var(--body-1-regular-font-style);
+  display: flex;
+  padding: .5rem;
+  color: #1e1e1e;
+  font-size: 12px;
+  width: 20%;
+  border: 1px;
+  background-color: transparent;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+}
+.btn-space .underline-btn {
+  position: relative;
+  align-self: stretch;
+  width: 16%;
+  height: 1px;
+  margin-bottom: -1.00px;
+  object-fit: cover;
+  margin-bottom: 30px;
+}
+.select-wrapper {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  margin-right: 10px; 
+}
 
 /* botones */
 .btn {
@@ -5278,7 +5333,30 @@
   border-radius: 12px;
   cursor: pointer;
 }
-
+.btn-back {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-right: 94%;
+}
+.btn-back-text {
+  font-family: var(--body-1-semibold-font-family);
+  font-weight: var(--body-1-semibold-font-weight);
+  color: #0a843c;
+  font-size: 18px;
+  letter-spacing: var(--body-1-semibold-letter-spacing);
+  line-height: var(--body-1-semibold-line-height);
+  font-style: var(--body-1-semibold-font-style);
+  align-items: start;
+  justify-content: start;
+  align-self: start;
+  margin-left: 10px;
+}
 .btn-danger {
   border: none;
   background-color: transparent;
@@ -5348,11 +5426,11 @@
 
 .btn-space {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 24px;
   position: relative;
   align-self: stretch;
-  width: 20%;
+  width: 100%;
   flex: 0 0 auto;
 }
 
@@ -5368,28 +5446,6 @@
   flex: 0 0 auto;
 }
 
-.dataTable-wrapper {
-  font-family: var(--body-1-semibold-font-family);
-  font-size: 11px;
-  letter-spacing: var(--body-1-semibold-letter-spacing);
-  line-height: var(--body-1-semibold-line-height);
-  width: 100%;
-  padding: 5px;
-
-}
-
-.dataTable-container {
-  border-radius: 10px;
-}
-
-.dataTable-top {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 60%;
-  padding: 5px;
-
-}
 
 .space-divider {
   display: flex;
@@ -5463,36 +5519,6 @@
   font-style: var(--body-1-semibold-font-style);
 
 }
-
-.custom-table dataTable-table {
-  border-radius: 10px;
-}
-
-.custom-table dataTable-table thead {
-  border-radius: 10px;
-  text-align: center;
-}
-
-.custom-table dataTable-table tbody {
-  border-radius: 10px;
-  text-align: center;
-}
-
-.custom-table dataTable-table tbody tr {
-  border-radius: 10px;
-  text-align: center;
-}
-
-.custom-table dataTable-table tbody td {
-  border-radius: 10px;
-  text-align: center;
-}
-
-.custom-table dataTable-table tbody td {
-  border-radius: 10px;
-  text-align: center;
-}
-
 .ciudad {
   display: flex;
   flex-direction: column;
@@ -6014,5 +6040,4 @@
   letter-spacing: var(--body-1-semibold-letter-spacing);
   line-height: var(--body-1-semibold-line-height);
   font-style: var(--body-1-semibold-font-style);
-
 }
