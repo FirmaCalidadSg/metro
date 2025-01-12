@@ -16,24 +16,29 @@
         <div class="procesos-header">
             <div class="btn-space">
                 <h2>Lista de Procesos</h2>
-                <button onclick="agregarProceso()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                <button onclick="agregarProceso()" class="btn-div">
                     <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg" title="Agregar">
                     <div class="text-style">Agregar</div>
                 </button>
-                <select class="selector-table">
-                    <option value="" disabled selected>Filtrar por proceso</option>
-                    <?php foreach ($procesos as $proceso): ?>
-                        <option value="<?php echo $proceso->id; ?>"><?php echo $proceso->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <select class="selector-table">
-                    <option value="" disabled selected>Filtrar por linea</option>
-                    <?php foreach ($lineas as $linea): ?>
-                        <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
+                <div class="space-input">
+                    <select class="selector-table" id="proceso-selector">
+                        <option value="" disabled selected>Filtrar por proceso</option>
+                        <?php foreach ($procesos as $proceso): ?>
+                            <option value="<?php echo $proceso->id; ?>"><?php echo $proceso->nombre; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                </div>
+                <div class="space-input">
+                    <select class="selector-table" id="linea-selector">
+                        <option value="" disabled selected>Filtrar por linea</option>
+                        <?php foreach ($lineas as $linea): ?>
+                            <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                </div>
             </div>
-
             <table class="custom-table" id="tablaProcesos">
                 <thead>
                     <tr>
@@ -50,12 +55,12 @@
                             <td><?php echo $proceso->nombre; ?></td>
                             <td><?php echo $proceso->descripcion; ?></td>
                             <td>
-                                <button onclick="verProceso(<?php echo $proceso->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
+                                <a href="../app/proceso/vistaPrevia/<?php echo $proceso->id; ?>" class="btn-preview">
                                     <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
-                                </button>
-                                <button onclick="editarProceso(<?php echo $proceso->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                </a>
+                                <a href="/metro/app/proceso/editarFormulario/<?php echo $proceso->id; ?>" class="btn-warning">
                                     <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
-                                </button>
+                                </a>
                                 <button onclick="eliminarProceso(<?php echo $proceso->id; ?>)" class="btn-danger">
                                     <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
                                 </button>
@@ -66,7 +71,7 @@
             </table>
         </div>
 
-        <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+            <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -82,6 +87,33 @@
         </div>
 
         <script>
+            document.getElementById('proceso-selector').addEventListener('change', function() {
+                filtrarTabla();
+            });
+
+            document.getElementById('linea-selector').addEventListener('change', function() {
+                filtrarTabla();
+            });
+
+            function filtrarTabla() {
+                var procesoSeleccionado = document.getElementById('proceso-selector').value;
+                var lineaSeleccionada = document.getElementById('linea-selector').value;
+
+                var filas = document.querySelectorAll('#tablaProcesos tbody tr');
+
+            filas.forEach(function(fila) {
+                var procesoId = fila.cells[0].textContent.trim();
+                var linea = fila.cells[2].textContent.trim();
+                var descripcion = fila.cells[3].textContent.trim();
+
+                if ((procesoSeleccionado === "" || procesoId == procesoSeleccionado) &&
+                    (lineaSeleccionada === "" || linea == lineaSeleccionada)) {
+                    fila.style.display = "";
+                } else {
+                    fila.style.display = "none";
+                }
+            });
+        }
             function goBack() {
                 window.history.back();
             }
@@ -110,8 +142,9 @@
             }
 
             function agregarProceso() {
+                window.location.href = '/metro/app/proceso/registro';
 
-                fetch('/metro/app/proceso/registro', {
+/*                 fetch('/metro/app/proceso/registro', {
                     method: 'POST'
                 }).then(response => {
                     if (!response.ok) {
@@ -125,7 +158,7 @@
                 }).catch(error => {
                     console.error('Error:', error);
                     alert('Error al procesar la solicitud');
-                });
+                }); */
 
             }
 

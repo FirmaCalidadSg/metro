@@ -33,12 +33,13 @@ class DanoEquipoController
         if (isset($_POST['id'])) {
             $dano = $this->dano->getDanoEquipoById($_POST['id']);
         }
+        require_once __DIR__ . '/../views/layouts/register-dano.php';
         require_once __DIR__ . '/../views/danoequipo/registro.php';
     }
 
     public function crear()
     {
-        $message = 'DanoEquipo registrada exitosamente';
+        $message = 'Daño registrado exitosamente';
         $dano = new DanoEquipo();
         $dano->id = $_POST['id'];
         $dano->descripcion = $_POST['descripcion'];
@@ -48,7 +49,7 @@ class DanoEquipoController
 
         if ($dano->id > 0) {
             $this->dano->updateDanoEquipo($dano);
-            $message = 'DanoEquipo actualizada exitosamente';
+            $message = 'Daño actualizado exitosamente';
         } else {
             $this->dano->createDanoEquipo($dano);
         }
@@ -58,6 +59,67 @@ class DanoEquipoController
         ];
         echo json_encode($response);
     }
+    public function vistaPrevia($id)
+    {
+        if (isset($id)) {
+            $dano = $this->dano->getDanoEquipoById($id);
+        } else {
+            header("Location: /metro/app/danoequipo");
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/vista-previa-dano.php';
+        require_once __DIR__ . '/../views/danoequipo/vista-previa.php';
+    }
+    public function editarFormulario($id)
+    {
+        $equipos = $this->equipo->getAllEquipo();
+        $dano = $this->dano->getDanoEquipoById($id);
+        require_once __DIR__ . '/../views/layouts/editar-dano.php';
+        require_once __DIR__ . '/../views/danoequipo/editar.php';
+    }
+    public function editar($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $response = [
+                'success' => false,
+                'message' => 'Método no permitido.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        $descripcion = $_POST['descripcion'];
+        $equipo = $_POST['equipo'];
+        $fecha = $_POST['fecha'];
+        $estado = $_POST['estado'];
+    
+        $dano = $this->dano->getDanoEquipoById($id);
+    
+        if (!$dano) {
+            $response = [
+                'success' => false,
+                'message' => 'Daño no encontrado.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+       
+        $dano->descripcion = $descripcion;
+        $dano->equipo = $equipo;
+        $dano->fecha = $fecha;
+        $dano->estado = $estado;
+    
+        $this->dano->updateDanoEquipo($dano);
+    
+        $response = [
+            'success' => true,
+            'message' => 'Daño actualizado exitosamente.'
+        ];
+    
+        echo json_encode($response);
+    }
+    
     public function eliminar($id = null)
     {
         try {

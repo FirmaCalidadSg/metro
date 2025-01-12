@@ -97,73 +97,80 @@
             </button>
 
         </div>
-        <button type="submit" id="submit-btn" style="display: none;"></button>
+        <div class="frame-2">
+            <button onclick="redireccionar()" type="submit" id="submit-btn" class="button-center" style="display: none; align-items: center; justify-content: center;"></button>
+        </div>
+
     </div>
 </body>
+</html>
+    
+
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var selectPrincipal = document.querySelector('.select-line');
-        selectPrincipal.addEventListener('change', function() {
-            if (this.value !== "") {
-                // Oculta los elementos .info
-                var filtros = document.querySelectorAll('.filtro');
-                filtros.forEach(function(filtro) {
-                    filtro.style.display = 'flex';
-                });
-
-                // Guarda el valor seleccionado en localStorage
-                var selectedValue = this.value;
-                localStorage.setItem('selectedValue', selectedValue);
-
-                // Envía el formulario para que PHP reciba el valor
-                document.getElementById('submit-btn').click();
-
-                // Muestra los elementos .info después de enviar el formulario
-                filtros.forEach(function(filtro) {
-                    filtro.style.display = 'flex';
-                });
-            }
-        });
-
-        var selects = document.querySelectorAll('select');
-        selects.forEach(function(select) {
-            select.addEventListener('change', function() {
-                var selectedValue = this.value;
-                localStorage.setItem('selectedValue', selectedValue);
+document.addEventListener('DOMContentLoaded', function() {
+    var selectPrincipal = document.querySelector('.select-line');
+    selectPrincipal.addEventListener('change', function() {
+        if (this.value !== "") {
+            // Muestra los elementos .filtro cuando se selecciona algo
+            var filtros = document.querySelectorAll('.filtro');
+            filtros.forEach(function(filtro) {
+                filtro.style.display = 'flex';
             });
+
+            // Guarda el valor seleccionado en localStorage
+            var selectedValue = this.value;
+            localStorage.setItem('selectedValue', selectedValue);
+        }
+    });
+
+    // Evento para el botón "Consultar"
+    var consultarBtn = document.querySelector('.buttom');
+    consultarBtn.addEventListener('click', function() {
+        // Realiza la redirección al hacer clic en "Consultar"
+        redireccionar();
+    });
+
+    var selects = document.querySelectorAll('select');
+    selects.forEach(function(select) {
+        select.addEventListener('change', function() {
+            var selectedValue = this.value;
+            localStorage.setItem('selectedValue', selectedValue);
         });
     });
-
-    function mostrarSeleccion() {
-        // Capturamos el elemento select
-        const selectElement = document.querySelector(".select-line");
-
-        // Obtenemos el texto de la opción seleccionada
-        const opcionSeleccionadaTexto = selectElement.options[selectElement.selectedIndex].text;
-
-        // Limpiamos el valor previamente almacenado
-        localStorage.removeItem('consultaSeleccionada');
-        document.getElementById("resultado").innerHTML = ""; // Limpia el contenido en pantalla
-
-        // Si el valor seleccionado es válido (diferente de vacío)
-        if (selectElement.value) {
-            // Actualizamos el div resultado con el nuevo valor
-            document.getElementById("resultado").innerHTML = opcionSeleccionadaTexto;
-
-            // Guardamos el nuevo valor en localStorage (o puedes almacenarlo de otra manera)
-            localStorage.setItem('consultaSeleccionada', opcionSeleccionadaTexto);
-        }
-    }
-
-    // Asociamos la función mostrarSeleccion() al evento onchange del select
-    document.addEventListener("DOMContentLoaded", function() {
-        const selectElement = document.querySelector(".select-line");
-        selectElement.addEventListener("change", mostrarSeleccion);
-    });
-document.querySelector('.buttom').addEventListener('click', function() {
-    window.location.href = '../app/views/consultas/registro.php';
 });
+
+function mostrarSeleccion() {
+    // Capturamos el elemento select
+    const selectElement = document.querySelector(".select-line");
+
+    // Obtenemos el texto de la opción seleccionada
+    const opcionSeleccionadaTexto = selectElement.options[selectElement.selectedIndex].text;
+
+    // Limpiamos el valor previamente almacenado
+    localStorage.removeItem('consultaSeleccionada');
+    document.getElementById("resultado").innerHTML = ""; // Limpia el contenido en pantalla
+
+    // Si el valor seleccionado es válido (diferente de vacío)
+    if (selectElement.value) {
+        // Actualizamos el div resultado con el nuevo valor
+        document.getElementById("resultado").innerHTML = opcionSeleccionadaTexto;
+
+        // Guardamos el nuevo valor en localStorage (o puedes almacenarlo de otra manera)
+        localStorage.setItem('consultaSeleccionada', opcionSeleccionadaTexto);
+    }
+}
+
+// Asociamos la función mostrarSeleccion() al evento onchange del select
+document.addEventListener("DOMContentLoaded", function() {
+    const selectElement = document.querySelector(".select-line");
+    selectElement.addEventListener("change", mostrarSeleccion);
+});
+
+function redireccionar() {
+    window.location.href = '../app/consultas/registrosconsulta';
+}
+
 </script>
 
 </html>

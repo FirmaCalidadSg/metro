@@ -13,6 +13,7 @@ class DanoEquipo
     public $equipo;
     public $fecha;
     public $estado;
+    public $nombre_equipo;
     public function __construct()
     {
         error_log("Construyendo modelo DanoEquipo");
@@ -41,13 +42,29 @@ class DanoEquipo
     public function getDanoEquipoById($id)
     {
         $query = "SELECT d.*, e.nombre as nombre_equipo FROM danoequipo d
-                INNER JOIN equipo e ON e.id = d.equipo
-                WHERE d.id = :id";
+                    INNER JOIN equipo e ON e.id = d.equipo
+                    WHERE d.id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+    
+        // Verificamos si se encontró el daño de equipo
+        if ($result) {
+            // Creamos un nuevo objeto de tipo DanoEquipo y asignamos los valores
+            $danoEquipo = new DanoEquipo();
+            $danoEquipo->id = $result->id;
+            $danoEquipo->equipo = $result->equipo;
+            $danoEquipo->descripcion = $result->descripcion;
+            $danoEquipo->nombre_equipo = $result->nombre_equipo;
+            // Aquí asignas cualquier otra propiedad que tenga la tabla 'danoequipo'
+    
+            return $danoEquipo;
+        }
+    
+        return null; // Si no se encuentra el daño de equipo, retornamos null
     }
+    
 
     public function createDanoEquipo(DanoEquipo $danoequipo)
     {

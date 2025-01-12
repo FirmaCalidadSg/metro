@@ -30,6 +30,7 @@ class EquipoController
         if (isset($_POST['id'])) {
             $equipo = $this->equipo->getEquipoById($_POST['id']);
         }
+        require_once __DIR__ . '/../views/layouts/register-equipo.php';
         require_once __DIR__ . '/../views/equipo/registro.php';
     }
 
@@ -54,6 +55,76 @@ class EquipoController
         ];
         echo json_encode($response);
     }
+    public function vistaPrevia($id)
+    {
+        if (isset($id)) {
+            $equipo = $this->equipo->getEquipoById($id);
+        } else {
+            header("Location: /metro/app/equipo");
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/vista-previa-equipo.php';
+        require_once __DIR__ . '/../views/equipo/vista-previa.php';
+    }
+    public function editarFormulario($id)
+    {
+        $equipo = $this->equipo->getEquipoById($id);
+    
+        if (!$equipo) {
+            $response = [
+                'success' => false,
+                'message' => 'Equipo no encontrado.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/edit-equipos.php';
+        require_once __DIR__ . '/../views/equipo/editar.php';
+    }
+    public function editar($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $response = [
+                'success' => false,
+                'message' => 'Método no permitido.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Obtener los datos del formulario
+        $nombre = $_POST['nombre'];
+        $modelo = $_POST['modelo'];
+        $estado = $_POST['estado'];
+    
+        // Obtener la definición por ID
+        $equipo = $this->equipo->getEquipoById($id);
+    
+        if (!$equipo) {
+            $response = [
+                'success' => false,
+                'message' => 'Equipo no encontrado.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+       
+        $equipo->nombre = $nombre;
+        $equipo->modelo = $modelo;
+        $equipo->estado = $estado;
+    
+        $this->equipo->updateEquipo($equipo);
+    
+        $response = [
+            'success' => true,
+            'message' => 'Equipo actualizado exitosamente.'
+        ];
+    
+        echo json_encode($response);
+    }
+    
+            
     public function eliminar($id = null)
     {
         try {

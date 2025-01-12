@@ -12,6 +12,7 @@ class Ciudad
     public $nombre;
     public $departamento;
     public $codigo_postal;
+    public $nombre_departamento;
     public function __construct()
     {
         error_log("Construyendo modelo Ciudad");
@@ -39,14 +40,31 @@ class Ciudad
 
     public function getCiudadById($id)
     {
-        $query = "SELECT c.*, d.nombre as nombre_departamento FROM ciudad c
-                INNER JOIN departamento d ON d.id = c.departamento
-                WHERE c.id = :id";
+        $query = "SELECT c.*, d.nombre as nombre_departamento 
+                  FROM ciudad c
+                  INNER JOIN departamento d ON d.id = c.departamento
+                  WHERE c.id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+    
+        // Verificamos si se encontró la ciudad
+        if ($result) {
+            // Creamos un nuevo objeto de tipo Ciudad y asignamos los valores
+            $ciudad = new Ciudad();
+            $ciudad->id = $result->id;
+            $ciudad->nombre = $result->nombre;
+            $ciudad->departamento = $result->departamento;
+            $ciudad->nombre_departamento = $result->nombre_departamento; // Asignamos el valor del departamento{}
+            $ciudad->codigo_postal = $result->codigo_postal;
+    
+            return $ciudad;
+        }
+    
+        return null; // Si no se encuentra la ciudad, retornamos null
     }
+    
 
     public function createCiudad(Ciudad $ciudad)
     {

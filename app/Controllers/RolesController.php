@@ -16,7 +16,7 @@ class RolesController
     public function index()
     {
         $roles = $this->roles->getAllRoles();
-        require_once __DIR__ . '/../views/layouts/layout.php';
+        require_once __DIR__ . '/../views/layouts/roles.php';
         require_once __DIR__ . '/../views/roles/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

@@ -15,9 +15,9 @@ class ReportesController
         require_once __DIR__ . '/../views/Reportes/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
-    public function Resultados()
+    public function resultados()
     {
-        require_once __DIR__ . '/../views/layouts/layout.php';
+        require_once __DIR__ . '/../views/layouts/resultados.php';
         require_once __DIR__ . '/../views/Reportes/resultados.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

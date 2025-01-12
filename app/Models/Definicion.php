@@ -42,8 +42,23 @@ class Definicion
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+    
+        // Verificamos si se encontró el registro
+        if ($result) {
+            // Convertimos el stdClass a un objeto de la clase Definicion
+            $definicion = new Definicion();
+            $definicion->id = $result->id;
+            $definicion->nombre = $result->nombre;
+            $definicion->valor = $result->valor;
+            $definicion->descripcion = $result->descripcion;
+    
+            return $definicion;
+        }
+    
+        return null; // Si no se encuentra la definición, retornamos null
     }
+    
 
     public function createDefinicion(Definicion $definicion)
     {

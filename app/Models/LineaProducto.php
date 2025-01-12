@@ -12,6 +12,8 @@ class LineaProducto
     public $linea;
     public $producto;
     public $capacidad_produccion;
+    public $nombre_linea;
+    public $nombre_producto;
     public function __construct()
     {
         error_log("Construyendo modelo LineaProducto");
@@ -41,14 +43,30 @@ class LineaProducto
     public function getLineaProductoById($id)
     {
         $query = "SELECT lp.*, l.nombre as nombre_linea, p.nombre as nombre_producto FROM lineaproducto lp
-                INNER JOIN linea l ON l.id = lp.linea
-                INNER JOIN producto p ON p.id = lp.producto
-                WHERE lp.id = :id";
+                  INNER JOIN linea l ON l.id = lp.linea
+                  INNER JOIN producto p ON p.id = lp.producto
+                  WHERE lp.id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+    
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+        
+        if ($data) {
+            $lineaProducto = new LineaProducto();
+            $lineaProducto->id = $data->id;
+            $lineaProducto->linea = $data->linea;
+            $lineaProducto->producto = $data->producto;
+            $lineaProducto->nombre_linea = $data->nombre_linea;
+            $lineaProducto->nombre_producto = $data->nombre_producto;
+            $lineaProducto->capacidad_produccion = $data->capacidad_produccion;
+
+            return $lineaProducto;
+        }
+        
+        return null;
     }
+    
 
     public function createLineaProducto(LineaProducto $lineaproducto)
     {

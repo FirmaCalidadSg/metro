@@ -41,8 +41,22 @@ class Pais
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+    
+        // Verificamos si se encontró el registro
+        if ($result) {
+            // Creamos un nuevo objeto de tipo Pais y asignamos los valores
+            $pais = new Pais();
+            $pais->id = $result->id;
+            $pais->nombre = $result->nombre;
+            $pais->codigo = $result->codigo;
+
+            return $pais;
+        }
+    
+        return null; // Si no se encuentra el país, retornamos null
     }
+    
 
     public function createPais(Pais $pais)
     {

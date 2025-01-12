@@ -8,32 +8,42 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>Cambiar Credenciales de Usuario</h2>
-
-        <form id="formCredenciales" class="mt-4">
+    <div class="credenciales">
+        <div class="credenciales-header">
+            <div class="btn-space">
+                <h2>Cambiar Credenciales de Usuario</h2>
+            </div>
+    
+        <form id="formCredenciales" class="formCredenciales-input">
             <input type="hidden" id="userId" name="id" value="<?php echo $usuario->id; ?>">
 
-            <div class="form-group">
-                <label for="usuario">Nombre de Usuario:</label>
+            <div class="formCredenciales-input">
+                <label for="usuario">
+                    <span class="form-label">Nombre de Usuario:</span>
+                </label>
                 <input type="text" class="form-control" id="usuario" name="usuario" value="<?php echo $usuario->usuario; ?>" required>
             </div>
 
-            <div class="form-group">
-                <label for="credencial">Nueva Contraseña:</label>
+            <div class="formCredenciales-input">
+                <label for="credencial">
+                    <span class="form-label">Nueva Contraseña:</span>
+                </label>
                 <input type="password" class="form-control" id="credencial" name="credencial" value="" required placeholder="Ingrese la nueva contraseña">
             </div>
 
-            <div class="form-group">
-                <label for="confirmarCredencial">Confirmar Contraseña:</label>
+            <div class="formCredenciales-input">
+                <label for="confirmarCredencial">
+                    <span class="form-label">Confirmar Contraseña:</span>
+                </label>
                 <input type="password" class="form-control" id="confirmarCredencial" name="confirmarCredencial" required placeholder="Confirme la nueva contraseña">
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
-            <a href="/metro/app/usuarios" class="btn btn-secondary mt-3">Cancelar</a>
+            <button type="submit" class="btn-primary mt-3" >Guardar Cambios</button> 
+            <button type="button" class="btn-secondary mt-3" onclick="window.location.href='/metro/app/usuarios'">Cancelar</button>
+
         </form>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="../../app/Assets/jquery/jquery.min.js"></script>
 
     <script>
         $('#formCredenciales').on('submit', function(e) {

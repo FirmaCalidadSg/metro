@@ -33,6 +33,7 @@ class LineaController
         if (isset($_POST['id'])) {
             $linea = $this->linea->getLineaById($_POST['id']);
         }
+        require_once __DIR__ . '/../views/layouts/register-linea.php';
         require_once __DIR__ . '/../views/linea/registro.php';
     }
 
@@ -56,6 +57,66 @@ class LineaController
         ];
         echo json_encode($response);
     }
+    public function vistaPrevia($id)
+    {
+        if (isset($id)) {
+            $linea = $this->linea->getLineaById($id);
+        } else {
+            header("Location: /metro/app/linea");
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/vista-previa-linea.php';
+        require_once __DIR__ . '/../views/linea/vista-previa.php';
+    }
+    public function editarFormulario($id)
+    {
+        $linea = $this->linea->getLineaById($id);
+        $procesos = $this->proceso->getAllProceso();
+        require_once __DIR__ . '/../views/layouts/editar-lineas.php';
+        require_once __DIR__ . '/../views/linea/editar.php';
+    }
+    public function editar($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $response = [
+                'success' => false,
+                'message' => 'Método no permitido.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Obtener los datos del formulario
+        $nombre = $_POST['nombre'];
+        $proceso = $_POST['proceso'];
+    
+        // Obtener la definición por ID
+        $linea = $this->linea->getLineaById($id);
+    
+        if (!$linea) {
+            $response = [
+                'success' => false,
+                'message' => 'Línea no encontrada.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Actualizar la definición
+        $linea->nombre = $nombre;
+        $linea->proceso = $proceso;
+    
+        // Guardar la definición actualizada
+        $this->linea->updateLinea($linea);
+    
+        $response = [
+            'success' => true,
+            'message' => 'Línea actualizada exitosamente.'
+        ];
+    
+        echo json_encode($response);
+    }
+    
     public function eliminar($id = null)
     {
         try {

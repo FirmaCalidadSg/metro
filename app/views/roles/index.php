@@ -9,18 +9,18 @@
 
 <body>
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col">
-                <h2>Gestión de Roles</h2>
-                <div class="mb-3">
-                    <button onclick="agregarRol()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-primary">Nueva Rol</button>
-                    <!-- <a href="<?php echo BASE_PATH; ?>/roles/registro" class="btn btn-primary">Nuevo Rol</a> -->
-                </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
+    <div class="roles">
+        <div class="roles-header">
+                    <h2>Gestión de Roles</h2>
+                    <div class="mb-3">
+                <button onclick="agregarRol()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-primary">Nueva Rol</button>
+                <!-- <a href="<?php echo BASE_PATH; ?>/roles/registro" class="btn btn-primary">Nuevo Rol</a> -->
+            </div>
+
+        <table class="custom-table" id="tablaRoles">
+            <thead>
+                <tr>
+                    <th>ID</th>
                             <th>Rol</th>
                             <th>Acciones</th>
                         </tr>
@@ -31,8 +31,12 @@
                                 <td><?php echo htmlspecialchars($rol->id); ?></td>
                                 <td><?php echo htmlspecialchars($rol->rol); ?></td>
                                 <td>
-                                    <button onclick="editarRol(<?php echo $rol->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn btn-warning">Editar</button>
-                                    <button onclick="eliminarRol(<?php echo $rol->id; ?>)" class="btn btn-danger">Eliminar</button>
+                                <button onclick="editarRol(<?php echo $rol->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                                </button>
+                                <button onclick="eliminarRol(<?php echo $rol->id; ?>)" class="btn-danger">
+                                    <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                                </button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

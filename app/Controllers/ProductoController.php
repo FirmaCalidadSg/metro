@@ -30,6 +30,7 @@ class ProductoController
         if (isset($_POST['id'])) {
             $producto = $this->producto->getProductoById($_POST['id']);
         }
+        require_once __DIR__ . '/../views/layouts/register-produc.php';
         require_once __DIR__ . '/../views/producto/registro.php';
     }
 
@@ -54,6 +55,66 @@ class ProductoController
         ];
         echo json_encode($response);
     }
+    public function vistaPrevia($id)
+    {
+        if (isset($id)) {
+                $producto = $this->producto->getProductoById($id);
+        } else {
+            header("Location: /metro/app/producto");
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/vista-previa-producto.php';
+        require_once __DIR__ . '/../views/producto/vista-previa.php';
+    }
+    public function editarFormulario($id = null)
+    {
+        if (isset($id)) {
+            $producto = $this->producto->getProductoById($id);
+        }
+        require_once __DIR__ . '/../views/layouts/editar-productos.php';
+        require_once __DIR__ . '/../views/producto/editar.php';
+    }
+    public function editar($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $response = [
+                'success' => false,
+                'message' => 'Método no permitido.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Obtener los datos del formulario
+        $nombre = $_POST['nombre'];
+        $codigo = $_POST['codigo'];
+        $descripcion = $_POST['descripcion'];
+    
+        $producto = $this->producto->getProductoById($id);
+    
+        if (!$producto) {
+            $response = [
+                'success' => false,
+                'message' => 'Producto no encontrado.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        $producto->nombre = $nombre;
+        $producto->codigo = $codigo;
+        $producto->descripcion = $descripcion;
+    
+        $this->producto->updateProducto($producto);
+    
+        $response = [
+            'success' => true,
+            'message' => 'Producto actualizado exitosamente.'
+        ];
+    
+        echo json_encode($response);
+    }
+    
     public function eliminar($id = null)
     {
         try {

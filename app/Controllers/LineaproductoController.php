@@ -37,6 +37,7 @@ class LineaProductoController
         if (isset($_POST['id'])) {
             $linea_producto = $this->linea_producto->getLineaProductoById($_POST['id']);
         }
+        require_once __DIR__ . '/../views/layouts/register-lineProduc.php';
         require_once __DIR__ . '/../views/lineaproducto/registro.php';
     }
 
@@ -59,6 +60,65 @@ class LineaProductoController
             'success' => true,
             'message' => $message
         ];
+        echo json_encode($response);
+    }
+    public function vistaPrevia($id)
+    {
+        if (isset($id)) {
+            $linea_producto = $this->linea_producto->getLineaProductoById($id);
+        } else {
+            header("Location: /metro/app/lineaproducto");
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/vista-previa-lineayproduct.php';
+        require_once __DIR__ . '/../views/lineaproducto/vista-previa.php';
+    }   
+    public function editarFormulario($id = null)
+    {
+        $productos = $this->producto->getAllProducto();
+        $lineas = $this->linea->getAllLinea();
+        $linea_producto = $this->linea_producto->getLineaProductoById($id);
+        require_once __DIR__ . '/../views/layouts/editar-lineasyProductos.php';
+        require_once __DIR__ . '/../views/lineaproducto/editar.php';
+    }
+    public function editar($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $response = [
+                'success' => false,
+                'message' => 'Método no permitido.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Obtener los datos del formulario
+        $linea = $_POST['linea'];
+        $producto = $_POST['producto'];
+        $capacidad_produccion = $_POST['capacidad_produccion'];
+    
+        $linea_producto = $this->linea_producto->getLineaProductoById($id);
+    
+        if (!$linea_producto) {
+            $response = [
+                'success' => false,
+                'message' => 'Linea y/oProducto no encontrada.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        $linea_producto->linea = $linea;
+        $linea_producto->producto = $producto;
+        $linea_producto->capacidad_produccion = $capacidad_produccion;
+    
+        $this->linea_producto->updateLineaProducto($linea_producto);
+    
+        $response = [
+            'success' => true,
+            'message' => 'Linea y/o Producto actualizada exitosamente.'
+        ];
+    
         echo json_encode($response);
     }
     public function eliminar($id = null)

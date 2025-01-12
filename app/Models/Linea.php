@@ -11,6 +11,7 @@ class Linea
     public $id;
     public $nombre;
     public $proceso;
+    public $nombre_proceso;
     public function __construct()
     {
         error_log("Construyendo modelo Linea");
@@ -44,9 +45,21 @@ class Linea
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+    
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+        
+        if ($data) {
+            $linea = new Linea();
+            $linea->id = $data->id;
+            $linea->nombre = $data->nombre;
+            $linea->proceso = $data->proceso;
+            $linea->nombre_proceso = $data->nombre_proceso;
+            return $linea;
+        }
+        
+        return null;
     }
-
+    
     public function createLinea(Linea $linea)
     {
         $query = "INSERT INTO linea (nombre, proceso) VALUES (:nombre, :proceso)";

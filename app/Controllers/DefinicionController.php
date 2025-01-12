@@ -26,34 +26,121 @@ class DefinicionController
 
     public function registro()
     {
-        $definicion = new Definicion();
-        if (isset($_POST['id'])) {
+        $modo = 'crear'; 
+        $definicion = null;  
+    
+        if (isset($_POST['id']) && !empty($_POST['id'])) {
             $definicion = $this->definicion->getDefinicionById($_POST['id']);
+            $modo = 'editar'; 
         }
+      
+        require_once __DIR__ . '/../views/layouts/register-defi.php';
         require_once __DIR__ . '/../views/definicion/registro.php';
     }
+    
+    
 
     public function crear()
     {
-        $message = 'Definicion registrado exitosamente';
+        $message = 'Definicion registrada exitosamente';
         $definicion = new Definicion();
         $definicion->id = $_POST['id'];
         $definicion->nombre = $_POST['nombre'];
         $definicion->valor = $_POST['valor'];
         $definicion->descripcion = $_POST['descripcion'];
-
+    
         if ($definicion->id > 0) {
             $this->definicion->updateDefinicion($definicion);
-            $message = 'Definicion actualizado exitosamente';
+            $message = 'Definicion actualizada exitosamente';
         } else {
             $this->definicion->createDefinicion($definicion);
         }
+    
         $response = [
             'success' => true,
             'message' => $message
         ];
+        
+        // Enviamos la respuesta en formato JSON para que el frontend lo procese
         echo json_encode($response);
     }
+    public function vistaPrevia($id)
+    {
+        if (isset($id)) {
+            $definicion = $this->definicion->getDefinicionById($id);
+        } else {
+            header("Location: /metro/app/definicion");
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/vista-previa-definicion.php';
+        require_once __DIR__ . '/../views/definicion/vistaPrevia.php';
+    }
+    public function editarFormulario($id)
+    {
+        $definicion = $this->definicion->getDefinicionById($id);
+    
+        if (!$definicion) {
+            $response = [
+                'success' => false,
+                'message' => 'Definición no encontrada.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/editar-definiciones.php';
+        require_once __DIR__ . '/../views/definicion/editar.php';
+    }
+    
+    
+    
+    public function editar($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $response = [
+                'success' => false,
+                'message' => 'Método no permitido.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Obtener los datos del formulario
+        $nombre = $_POST['nombre'];
+        $valor = $_POST['valor'];
+        $descripcion = $_POST['descripcion'];
+    
+        // Obtener la definición por ID
+        $definicion = $this->definicion->getDefinicionById($id);
+    
+        if (!$definicion) {
+            $response = [
+                'success' => false,
+                'message' => 'Definición no encontrada.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Actualizar la definición
+        $definicion->nombre = $nombre;
+        $definicion->valor = $valor;
+        $definicion->descripcion = $descripcion;
+    
+        // Guardar la definición actualizada
+        $this->definicion->updateDefinicion($definicion);
+    
+        $response = [
+            'success' => true,
+            'message' => 'Definición actualizada exitosamente.'
+        ];
+    
+        echo json_encode($response);
+    }
+    
+    
+    
+        
+        
     public function eliminar($id = null)
     {
         try {

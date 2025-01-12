@@ -42,9 +42,24 @@ class Producto
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+    
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+        
+        // Si se encuentra el producto, lo retornamos como objeto Producto
+        if ($data) {
+            $producto = new Producto();
+            $producto->id = $data->id;
+            $producto->nombre = $data->nombre;
+            $producto->descripcion = $data->descripcion;
+            $producto->codigo = $data->codigo;
+            
+            
+            return $producto;
+        }
+        
+        return null; // Si no se encuentra el producto, retornamos null
     }
-
+    
     public function createProducto(Producto $producto)
     {
         $query = "INSERT INTO producto (nombre, codigo, descripcion) VALUES (:nombre, :codigo, :descripcion)";

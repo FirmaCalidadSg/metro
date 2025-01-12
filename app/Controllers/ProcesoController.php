@@ -30,6 +30,7 @@ class ProcesoController
         if (isset($_POST['id'])) {
             $proceso = $this->proceso->getProcesoById($_POST['id']);
         }
+        require_once __DIR__ . '/../views/layouts/register-proce.php';
         require_once __DIR__ . '/../views/proceso/registro.php';
     }
 
@@ -52,6 +53,75 @@ class ProcesoController
             'message' => $message
         ];
         echo json_encode($response);
+    }
+    public function editarFormulario($id)
+    {
+        $proceso = $this->proceso->getProcesoById($id);
+    
+        if (!$proceso) {
+            $response = [
+                'success' => false,
+                'message' => 'Proceso no encontrado.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/editar-procesos.php';
+        require_once __DIR__ . '/../views/proceso/editar.php';
+    }
+
+    public function editar($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $response = [
+                'success' => false,
+                'message' => 'Método no permitido.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Obtener los datos del formulario
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+    
+        // Obtener la definición por ID
+        $proceso = $this->proceso->getProcesoById($id);
+    
+        if (!$proceso) {
+            $response = [
+                'success' => false,
+                'message' => 'Proceso no encontrado.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Actualizar la definición
+        $proceso->nombre = $nombre;
+        $proceso->descripcion = $descripcion;
+    
+        // Guardar la definición actualizada
+        $this->proceso->updateProceso($proceso);
+    
+        $response = [
+            'success' => true,
+            'message' => 'Proceso actualizado exitosamente.'
+        ];
+    
+        echo json_encode($response);
+    }
+    
+    public function vistaPrevia($id)
+    {
+        if (isset($id)) {
+            $proceso = $this->proceso->getProcesoById($id);
+        } else {
+            header("Location: /metro/app/proceso");
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/vista-previa-proceso.php';
+        require_once __DIR__ . '/../views/proceso/vista-previa.php';
     }
     public function eliminar($id = null)
     {

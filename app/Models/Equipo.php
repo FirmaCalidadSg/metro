@@ -42,8 +42,22 @@ class Equipo
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+    
+        // Verificamos si se encontró el equipo
+        if ($result) {
+            // Creamos un nuevo objeto de tipo Equipo y asignamos los valores
+            $equipo = new Equipo();
+            $equipo->id = $result->id;
+            $equipo->nombre = $result->nombre;
+            $equipo->modelo = $result->modelo;
+            $equipo->estado = $result->estado;
+            return $equipo;
+        }
+    
+        return null; // Si no se encuentra el equipo, retornamos null
     }
+    
 
     public function createEquipo(Equipo $equipo)
     {

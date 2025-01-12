@@ -18,23 +18,29 @@
         </button>
         <div class="lineas-productos-header">
             <div class="btn-space">
-                <h2>Lineas Y Productos registradas</h2>
-                <button onclick="agregarLineaProducto()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                <h2>Linea y Productos registrados</h2>
+                <button onclick="agregarLineaProducto()" class="btn-div">
                     <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
                     <div class="text-style">Agregar</div>
                 </button>
-                <select class="selector-table">
-                    <option value="" disabled selected>Filtrar por proceso</option>
-                    <?php foreach ($procesos as $proceso): ?>
-                        <option value="<?php echo $proceso->id; ?>"><?php echo $proceso->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <select class="selector-table">
-                    <option value="" disabled selected>Filtrar por linea</option>
-                    <?php foreach ($lineas as $linea): ?>
-                        <option value="<?php echo $lineaproducto->id; ?>"><?php echo $lineaproducto->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
+                <div class="space-input">
+                    <select class="selector-table" id="linea-selector">
+                        <option value="" disabled selected>Filtrar por linea</option>
+                        <?php foreach ($lineas_producto as $lineaproducto): ?>
+                            <option value="<?php echo $lineaproducto->id; ?>"><?php echo $lineaproducto->nombre_linea; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                </div>
+                <div class="space-input">
+                    <select class="selector-table" id="producto-selector">
+                        <option value="" disabled selected>Filtrar por producto</option>
+                        <?php foreach ($lineas_producto as $lineaproducto): ?>
+                            <option value="<?php echo $lineaproducto->nombre_producto; ?>"><?php echo $lineaproducto->nombre_producto; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                </div>
             </div>
             <table class="custom-table" id="tablaLineasProductos">
                 <thead>
@@ -54,12 +60,12 @@
                             <td><?php echo $lineaproducto->nombre_producto; ?></td>
                             <td><?php echo $lineaproducto->capacidad_produccion; ?></td>
                             <td>
-                                <button onclick="verLineaProducto(<?php echo $lineaproducto->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
+                                <a href="../app/lineaproducto/vistaPrevia/<?php echo $lineaproducto->id; ?>" class="btn-preview">
                                     <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
-                                </button>
-                                <button onclick="editarLineaProducto(<?php echo $lineaproducto->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                </a>
+                                <a href="../app/lineaproducto/editarFormulario/<?php echo $lineaproducto->id; ?>" class="btn-warning">
                                     <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
-                                </button>
+                                </a>
                                 <button onclick="eliminarLineaProducto(<?php echo $lineaproducto->id; ?>)" class="btn-danger">
                                     <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
                                 </button>
@@ -69,6 +75,7 @@
                 </tbody>
             </table>
         </div>
+    </div>
 
 
         <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -86,6 +93,33 @@
             </div>
 
             <script>
+                document.getElementById('linea-selector').addEventListener('change', function() {
+                    filtrarTabla();
+                });
+
+                document.getElementById('producto-selector').addEventListener('change', function() {
+                    filtrarTabla();
+                });
+
+                function filtrarTabla() {
+                    var lineaSeleccionada = document.getElementById('linea-selector').value;
+                    var productoSeleccionado = document.getElementById('producto-selector').value;
+
+                    var filas = document.querySelectorAll('#tablaLineasProductos tbody tr');
+
+                    filas.forEach(function(fila) {
+                        var lineaId = fila.cells[0].textContent.trim();
+                        var producto = fila.cells[2].textContent.trim();
+
+                        if ((lineaSeleccionada === "" || lineaId == lineaSeleccionada) &&
+                            (productoSeleccionado === "" || producto == productoSeleccionado)) {
+                            fila.style.display = "";
+                        } else {
+                            fila.style.display = "none";
+                        }
+                    });
+                }
+
                 function goBack() {
                     window.history.back();
                 }
@@ -114,8 +148,9 @@
                 }
 
                 function agregarLineaProducto() {
+                    window.location.href = '/metro/app/lineaproducto/registro';
 
-                    fetch('/metro/app/lineaproducto/registro', {
+/*                     fetch('/metro/app/lineaproducto/registro', {
                         method: 'POST'
                     }).then(response => {
                         if (!response.ok) {
@@ -129,7 +164,7 @@
                     }).catch(error => {
                         console.error('Error:', error);
                         alert('Error al procesar la solicitud');
-                    });
+                    }); */
 
                 }
 

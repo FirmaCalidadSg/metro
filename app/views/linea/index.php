@@ -16,22 +16,28 @@
         <div class="lineas-header">
             <div class="btn-space">
                 <h2>Lista de Lineas</h2>
-                <button onclick="agregarLinea()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                <button onclick="agregarLinea()"class="btn-div">
                     <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
                     <div class="text-style">Agregar</div>
                 </button>
-                <select class="selector-table">
-                    <option value="" disabled selected>Filtrar por Procesos</option>
-                    <?php foreach ($lineas as $linea): ?>
-                        <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre_proceso; ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <select class="selector-table">
-                    <option value="" disabled selected>Filtrar por Lineas</option>
-                    <?php foreach ($lineas as $linea): ?>
-                        <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
+                <div class="space-input">
+                    <select class="selector-table" id="linea-selector">
+                        <option value="" disabled selected>Filtrar por linea</option>
+                        <?php foreach ($lineas as $linea): ?>
+                            <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                </div>
+                <div class="space-input">
+                    <select class="selector-table" id="proceso-selector">
+                        <option value="" disabled selected>Filtrar por proceso</option>
+                        <?php foreach ($lineas as $linea): ?>
+                            <option value="<?php echo $linea->nombre_proceso; ?>"><?php echo $linea->nombre_proceso; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                </div>
             </div>
             <table class="custom-table" id="tablaLineas">
                 <thead>
@@ -49,12 +55,12 @@
                             <td><?php echo $linea->nombre; ?></td>
                             <td><?php echo $linea->nombre_proceso; ?></td>
                             <td>
-                                <button onclick="verLinea(<?php echo $linea->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
+                                <a href="../app/linea/vistaPrevia/<?php echo $linea->id; ?>" class="btn-preview">
                                     <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
-                                </button>
-                                <button onclick="editarLinea(<?php echo $linea->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                </a>
+                                <a href="../app/linea/editarFormulario/<?php echo $linea->id; ?>" class="btn-warning">
                                     <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
-                                </button>
+                                </a>
                                 <button onclick="eliminarLinea(<?php echo $linea->id; ?>)" class="btn-danger">
                                     <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
                                 </button>
@@ -66,7 +72,7 @@
 
         </div>
 
-        <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -82,6 +88,35 @@
         </div>
 
         <script>
+        document.getElementById('linea-selector').addEventListener('change', function() {
+            filtrarTabla();
+        });
+
+        document.getElementById('proceso-selector').addEventListener('change', function() {
+            filtrarTabla();
+        });
+
+        function filtrarTabla() {
+            var lineaSeleccionada = document.getElementById('linea-selector').value;
+            var procesoSeleccionado = document.getElementById('proceso-selector').value;
+
+            var filas = document.querySelectorAll('#tablaLineas tbody tr');
+
+            filas.forEach(function(fila) {
+                var lineaId = fila.cells[0].textContent.trim(); // Columna "ID" (usada para comparar)
+                var proceso = fila.cells[2].textContent.trim(); // Columna "Proceso"
+
+                // Filtrar por ciudad ID o departamento, si corresponde
+                if ((lineaSeleccionada === "" || lineaId == lineaSeleccionada) &&
+                    (procesoSeleccionado === "" || proceso == procesoSeleccionado)) {
+                    fila.style.display = "";
+                } else {
+                    fila.style.display = "none";
+                }
+            });
+        }
+
+
             function goBack() {
                 window.history.back();
             }
@@ -110,8 +145,9 @@
             }
 
             function agregarLinea() {
+                window.location.href = '/metro/app/linea/registro';
 
-                fetch('/metro/app/linea/registro', {
+/*                 fetch('/metro/app/linea/registro', {
                     method: 'POST'
                 }).then(response => {
                     if (!response.ok) {
@@ -125,7 +161,7 @@
                 }).catch(error => {
                     console.error('Error:', error);
                     alert('Error al procesar la solicitud');
-                });
+                }); */
 
             }
 

@@ -33,7 +33,9 @@ class DepartamentoController
         if (isset($_POST['id'])) {
             $departamento = $this->departamento->getDepartamentoById($_POST['id']);
         }
+        require_once __DIR__ . '/../views/layouts/register-depa.php';
         require_once __DIR__ . '/../views/departamento/registro.php';
+
     }
 
     public function crear()
@@ -56,6 +58,76 @@ class DepartamentoController
         ];
         echo json_encode($response);
     }
+    public function vistaPrevia($id)
+    {
+        if (isset($id)) {
+            $departamento = $this->departamento->getDepartamentoById($id);
+        } else {
+            header("Location: /metro/app/departamento");
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/vista-previa-depart.php';
+        require_once __DIR__ . '/../views/departamento/vista-previa.php';
+    }
+    public function editarFormulario($id)
+    {
+        $departamento = $this->departamento->getDepartamentoById($id);
+        $paises = $this->pais->getAllPais();
+        if (!$departamento) {
+            $response = [
+                'success' => false,
+                'message' => 'Departamento no encontrado.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+        
+        require_once __DIR__ . '/../views/layouts/editar-departamento.php';
+        require_once __DIR__ . '/../views/departamento/editar.php';
+    }
+
+    public function editar($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $response = [
+                'success' => false,
+                'message' => 'Método no permitido.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Obtener los datos del formulario
+        $nombre = $_POST['nombre'];
+        $pais = $_POST['pais'];
+    
+        // Obtener la definición por ID
+        $departamento = $this->departamento->getDepartamentoById($id);
+    
+        if (!$departamento) {
+            $response = [
+                'success' => false,
+                'message' => 'Departamento no encontrado.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+       
+        $departamento->nombre = $nombre;
+        $departamento->pais = $pais;
+    
+        $this->departamento->updateDepartamento($departamento);
+    
+        $response = [
+            'success' => true,
+            'message' => 'Departamento actualizado exitosamente.'
+        ];
+    
+        echo json_encode($response);
+    }
+    
+    
     public function eliminar($id = null)
     {
         try {

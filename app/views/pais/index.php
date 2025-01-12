@@ -16,22 +16,28 @@
         <div class="pais-header">
             <div class="btn-space">
                 <h2>Lista de Paises</h2>
-                <button onclick="agregarPais()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
+                <button onclick="agregarPais()" class="btn-div">
                     <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
                     <div class="text-style">Agregar</div>
                 </button>
-                <select class="selector-table">
-                    <option value="" disabled selected>Filtrar por proceso</option>
-                    <?php foreach ($paises as $pais): ?>
-                        <option value="<?php echo $pais->id; ?>"><?php echo $pais->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <select class="selector-table">
-                    <option value="" disabled selected>Filtrar por linea</option>
-                    <?php foreach ($lineas as $linea): ?>
-                        <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
+                <div class="space-input">
+                    <select class="selector-table" id="pais-selector">
+                        <option value="" disabled selected>Filtrar por Pais</option>
+                        <?php foreach ($paises as $pais): ?>
+                            <option value="<?php echo $pais->id; ?>"><?php echo $pais->nombre; ?></option>
+                        <?php endforeach; ?>
+                        </select>
+                        <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                    </div>
+                    <div class="space-input">
+                        <select class="selector-table" id="codigo-selector">
+                            <option value="" disabled selected>Filtrar por codigo</option>
+                            <?php foreach ($paises as $pais): ?>
+                                <option value="<?php echo $pais->codigo; ?>"><?php echo $pais->codigo; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                    </div> 
             </div>
             <table class="custom-table" id="tablaPais">
                 <thead>
@@ -49,12 +55,12 @@
                             <td><?php echo $pais->nombre; ?></td>
                             <td><?php echo $pais->codigo; ?></td>
                             <td>
-                                <button onclick="verPais(<?php echo $pais->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
+                                <a href="../app/pais/vistaPrevia/<?php echo $pais->id; ?>" class="btn-preview">
                                     <img src="/metro/app/Assets/css/images/preview.svg" title="Ver">
-                                </button>
-                                <button onclick="editarPais(<?php echo $pais->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                </a>
+                                <a href="../app/pais/editarFormulario/<?php echo $pais->id; ?>" class="btn-warning">
                                     <img src="/metro/app/Assets/css/images/edit.svg" title="Editar">
-                                </button>
+                                </a>
                                 <button onclick="eliminarPais(<?php echo $pais->id; ?>)" class="btn-danger">
                                     <img src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
                                 </button>
@@ -82,6 +88,35 @@
     </div>
 
     <script>
+        document.getElementById('pais-selector').addEventListener('change', function() {
+            filtrarTabla();
+        });
+
+        document.getElementById('codigo-selector').addEventListener('change', function() {
+            filtrarTabla();
+        });
+
+        function filtrarTabla() {
+            var paisSeleccionado = document.getElementById('pais-selector').value;
+            var codigoSeleccionado = document.getElementById('codigo-selector').value;
+
+            var filas = document.querySelectorAll('#tablaPais tbody tr');
+
+            filas.forEach(function(fila) {
+                var paisId = fila.cells[0].textContent.trim(); // Columna "ID" (usada para comparar)
+                var codigo = fila.cells[2].textContent.trim(); // Columna "Codigo"
+
+                // Filtrar por pais ID o codigo, si corresponde
+                if ((paisSeleccionado === "" || paisId == paisSeleccionado) &&
+                    (codigoSeleccionado === "" || codigo == codigoSeleccionado)) {
+                    fila.style.display = "";
+                } else {
+                    fila.style.display = "none";
+                }
+            });
+        }
+
+
         function goBack() {
             window.history.back();
         }
@@ -110,8 +145,9 @@
         }
 
         function agregarPais() {
+            window.location.href = '/metro/app/pais/registro';
 
-            fetch('/metro/app/pais/registro', {
+/*             fetch('/metro/app/pais/registro', {
                 method: 'POST'
             }).then(response => {
                 if (!response.ok) {
@@ -126,7 +162,7 @@
                 console.error('Error:', error);
                 alert('Error al procesar la solicitud');
             });
-
+ */
         }
 
         function eliminarPais(id) {

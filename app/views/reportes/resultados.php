@@ -10,9 +10,9 @@
 
 <body>
     <div class="resultados-informes">
-        <div class="frame"> <img class="img" src="img/03-left.svg" />
-            <div class="text-wrapper">Volver</div>
-        </div>
+        <button class="btn-back"> 
+            <div class="text-wrapper"> < Volver</div>
+        </button>
         <div class="actividad-de">
             <header class="header">
                 <div class="text">
@@ -45,197 +45,102 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-buttom"> <img class="img" src="img/05-download.svg" />
+                <button class="primary-buttom"> <img class="img" src="../../app/Assets/css/images/folder-down.svg" />
                     <div class="guardar">Descargar</div>
+                </button>
+        
+            <div class="space-input">
+                <select class="selector-table" id="valor-selector">
+                    <option value="" disabled selected>Filtrar por definicion</option>
+                        <?php foreach ($definicion as $value): ?>
+                            <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../../app/Assets/css/images/underline.svg">
                 </div>
-                <div class="filter">
-                    <div class="text-wrapper-4">Filtrar por proceso</div> <img class="img" src="img/image.svg" />
-                </div>
-                <div class="filter-2">
-                    <div class="text-wrapper-4">Filtrar por linea</div> <img class="img" src="img/06-drop-down.svg" />
+                <div class="space-input">
+                    <select class="selector-table" id="departamento-selector">
+                        <option value="" disabled selected>Filtrar por valor</option>
+                        <?php foreach ($definicion as $value): ?>
+                            <option value="<?php echo $value->valor; ?>"><?php echo $value->valor; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../../app/Assets/css/images/underline.svg">
                 </div>
             </header>
             <div class="div-2">
-                <div class="frame-5">
-                    <div class="estado">
-                        <div class="text-wrapper-5">Proceso</div>
-                    </div>
-                    <div class="frame-6">
-                        <div class="text-wrapper-6">Liquidos Buga</div>
-                    </div>
-                    <div class="frame-6">
-                        <div class="text-wrapper-6">Liquidos Buga</div>
-                    </div>
-                    <div class="frame-6">
-                        <div class="text-wrapper-6">Liquidos Buga</div>
-                    </div>
-                    <div class="frame-6">
-                        <div class="text-wrapper-6">Proteicos Buga</div>
-                    </div>
-                    <div class="frame-7">
-                        <div class="text-wrapper-6">Harinas Buga</div>
-                    </div>
-                </div>
-                <div class="frame-8">
-                    <div class="estado">
-                        <div class="text-wrapper-5">Linea</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-7">Linea 1</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-7">Linea 2</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-7">Linea 3</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-7">Linea 1</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-7">Linea 1</div>
-                    </div>
-                </div>
-                <div class="frame-8">
-                    <div class="estado">
-                        <div class="text-wrapper-5">Disponibilidad</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">80%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">80%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">80%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">80%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">80%</div>
-                    </div>
-                </div>
-                <div class="frame-8">
-                    <div class="estado">
-                        <div class="text-wrapper-5">D Proceso</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">50%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">50%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">50%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">50%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">50%</div>
-                    </div>
-                </div>
-                <div class="frame-10">
-                    <div class="estado">
-                        <div class="text-wrapper-8">Disponibilidad MM</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">60%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">60%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">60%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">60%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">60%</div>
-                    </div>
-                </div>
-                <div class="frame-8">
-                    <div class="estado">
-                        <div class="text-wrapper-5">Rendimiento</div>
-                    </div>
-                    <div class="frame-11">
-                        <div class="text-wrapper-9">70%</div>
-                    </div>
-                    <div class="frame-11">
-                        <div class="text-wrapper-9">70%</div>
-                    </div>
-                    <div class="frame-11">
-                        <div class="text-wrapper-9">70%</div>
-                    </div>
-                    <div class="frame-11">
-                        <div class="text-wrapper-9">70%</div>
-                    </div>
-                    <div class="frame-12">
-                        <div class="text-wrapper-9">70%</div>
-                    </div>
-                </div>
-                <div class="frame-10">
-                    <div class="estado">
-                        <div class="text-wrapper-8">Calidad</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">80%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">80%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">80%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">80%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">80%</div>
-                    </div>
-                </div>
-                <div class="frame-13">
-                    <div class="estado">
-                        <div class="text-wrapper-8">Eficiencia</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">90%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">90%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">90%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">90%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">90%</div>
-                    </div>
-                </div>
-                <div class="frame-14">
-                    <div class="estado">
-                        <div class="text-wrapper-8">TFFP</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">90%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">90%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">90%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">90%</div>
-                    </div>
-                    <div class="frame-9">
-                        <div class="text-wrapper-6">90%</div>
-                    </div>
-                </div>
+                <table class="table_container">
+                    <thead>
+                        <tr>
+                            <th>Proceso</th>
+                            <th>Linea</th>
+                            <th>Disponibilidad</th>
+                            <th>D Proceso</th>
+                            <th>Disponibilidad MM</th>
+                            <th>Rendimiento</th>
+                            <th>Calidad</th>
+                            <th>Eficiencia</th>
+                            <th>TFFP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Liquidos Buga</td>
+                            <td>Linea 1</td>
+                            <td>80%</td>
+                            <td>50%</td>
+                            <td>60%</td>
+                            <td>70%</td>
+                            <td>80%</td>
+                            <td>90%</td>
+                            <td>90%</td>
+                        </tr>
+                        <tr>
+                            <td>Liquidos Buga</td>
+                            <td>Linea 2</td>
+                            <td>80%</td>
+                            <td>50%</td>
+                            <td>60%</td>
+                            <td>70%</td>
+                            <td>80%</td>
+                            <td>90%</td>
+                            <td>90%</td>
+                        </tr>
+                        <tr>
+                            <td>Liquidos Buga</td>
+                            <td>Linea 3</td>
+                            <td>80%</td>
+                            <td>50%</td>
+                            <td>60%</td>
+                            <td>70%</td>
+                            <td>80%</td>
+                            <td>90%</td>
+                            <td>90%</td>
+                        </tr>
+                        <tr>
+                            <td>Proteicos Buga</td>
+                            <td>Linea 1</td>
+                            <td>80%</td>
+                            <td>50%</td>
+                            <td>60%</td>
+                            <td>70%</td>
+                            <td>80%</td>
+                            <td>90%</td>
+                            <td>90%</td>
+                        </tr>
+                        <tr>
+                            <td>Harinas Buga</td>
+                            <td>Linea 1</td>
+                            <td>80%</td>
+                            <td>50%</td>
+                            <td>60%</td>
+                            <td>70%</td>
+                            <td>80%</td>
+                            <td>90%</td>
+                            <td>90%</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

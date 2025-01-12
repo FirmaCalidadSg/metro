@@ -30,6 +30,7 @@ class PaisController
         if (isset($_POST['id'])) {
             $pais = $this->pais->getPaisById($_POST['id']);
         }
+        require_once __DIR__ . '/../views/layouts/register-pais.php';
         require_once __DIR__ . '/../views/pais/registro.php';
     }
 
@@ -52,6 +53,74 @@ class PaisController
             'message' => $message
         ];
         echo json_encode($response);
+    }
+    public function editar($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $response = [
+                'success' => false,
+                'message' => 'Método no permitido.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Obtener los datos del formulario
+        $nombre = $_POST['nombre'];
+        $codigo = $_POST['codigo'];
+    
+        // Obtener la definición por ID
+        $pais = $this->pais->getPaisById($id);
+    
+        if (!$pais) {
+            $response = [
+                'success' => false,
+                'message' => 'Pais no encontrado.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+    
+        // Actualizar la definición
+        $pais->nombre = $nombre;
+        $pais->codigo = $codigo;
+    
+        // Guardar la definición actualizada
+        $this->pais->updatePais($pais);
+    
+        $response = [
+            'success' => true,
+            'message' => 'Pais actualizado exitosamente.'
+        ];
+    
+        echo json_encode($response);
+    }
+    public function editarFormulario($id)
+    {
+        $pais = $this->pais->getPaisById($id);
+    
+        if (!$pais) {
+            $response = [
+                'success' => false,
+                'message' => 'Pais no encontrado.'
+            ];
+            echo json_encode($response);
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/editar-pais.php';
+        require_once __DIR__ . '/../views/pais/editar.php';
+    }
+    
+    public function vistaPrevia($id)
+    {
+        if (isset($id)) {
+            $pais = $this->pais->getPaisById($id);
+        } else {
+            header("Location: /metro/app/pais");
+            exit;
+        }
+        require_once __DIR__ . '/../views/layouts/vista-previa-pais.php';
+        require_once __DIR__ . '/../views/pais/vista-previa.php';
     }
     public function eliminar($id = null)
     {

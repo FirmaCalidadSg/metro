@@ -9,66 +9,73 @@
 
 <body>
     <div class="equipos">
-    <button class="btn-back" onclick="goBack()">
+        <button class="btn-back" onclick="goBack()">
             <div class="btn-back-text">
                 < Volver</div>
         </button>
         <div class="equipos-header">
             <div class="btn-space">
-            <h2>Lista de Equipos</h2>
-            <button onclick="agregarEquipo()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
-                <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
-                <div class="text-style">Agregar</div>
-            </button>
-            <select class="selector-table">
-                <option value="" disabled selected>Filtrar por equipo</option>
-                <?php foreach ($equipos as $equipo): ?>
-                    <option value="<?php echo $equipo->id; ?>"><?php echo $equipo->nombre; ?></option>
-                <?php endforeach; ?>
-            </select>
-            <select class="selector-table">
-                <option value="" disabled selected>Filtrar por linea</option>
-                <?php foreach ($lineas as $linea): ?>
-                    <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-        <table class="custom-table" id="tablaEquipos">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Modelo</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($equipos as $equipo): ?>
+                <h2>Lista de Equipos</h2>
+                <button onclick="agregarEquipo()" class="btn-div">
+                    <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+                    <div class="text-style">Agregar</div>
+                </button>
+                <div class="space-input">
+                    <select class="selector-table" id="modelo-selector">
+                        <option value="" disabled selected>Filtrar por modelo</option>
+                        <?php foreach ($equipos as $equipo): ?>
+                            <option value="<?php echo $equipo->modelo; ?>"><?php echo $equipo->modelo; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                </div>
+                <div class="space-input">
+                    <select class="selector-table" id="estado-selector">
+                        <option value="" disabled selected>Filtrar por estado</option>
+                        <?php foreach ($equipos as $equipo): ?>
+                            <option value="<?php echo $equipo->estado; ?>"><?php echo $equipo->estado; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                </div>
+            </div>
+            <table class="custom-table" id="tablaEquipos">
+                <thead>
                     <tr>
-                        <td><?php echo $equipo->id; ?></td>
-                        <td><?php echo $equipo->nombre; ?></td>
-                        <td><?php echo $equipo->modelo; ?></td>
-                        <td><?php echo $equipo->estado; ?></td>
-                        <td>
-                            <button onclick="verEquipo(<?php echo $equipo->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview">
-                                <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
-                            </button>
-                            <button onclick="editarEquipo(<?php echo $equipo->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
-                                <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
-                            </button>
-                            <button onclick="eliminarEquipo(<?php echo $equipo->id; ?>)" class="btn-danger">
-                                <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
-                            </button>
-                        </td>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Modelo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($equipos as $equipo): ?>
+                        <tr>
+                            <td><?php echo $equipo->id; ?></td>
+                            <td><?php echo $equipo->nombre; ?></td>
+                            <td><?php echo $equipo->modelo; ?></td>
+                            <td><?php echo $equipo->estado; ?></td>
+                            <td>
+                                <a href="../app/equipo/vistaPrevia/<?php echo $equipo->id; ?>" class="btn-preview">
+                                    <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                                </a>
+                                <a href="../app/equipo/editarFormulario/<?php echo $equipo->id; ?>" class="btn-warning">
+                                    <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                                </a>
+                                <button onclick="eliminarEquipo(<?php echo $equipo->id; ?>)" class="btn-danger">
+                                    <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 
 
-    <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -84,9 +91,40 @@
     </div>
 
     <script>
+
+        document.getElementById('modelo-selector').addEventListener('change', function() {
+            filtrarTabla();
+        });
+
+        document.getElementById('estado-selector').addEventListener('change', function() {
+            filtrarTabla();
+        });
+
+        function filtrarTabla() {
+            var modeloSeleccionado = document.getElementById('modelo-selector').value;
+            var estadoSeleccionado = document.getElementById('estado-selector').value;
+
+            var filas = document.querySelectorAll('#tablaEquipos tbody tr');
+
+            filas.forEach(function(fila) {
+                var id = fila.cells[0].textContent.trim();
+                var modelo = fila.cells[2].textContent.trim();
+                var estado = fila.cells[3].textContent.trim();
+
+                if ((modeloSeleccionado === "" || modelo == modeloSeleccionado) &&
+                    (estadoSeleccionado === "" || estado == estadoSeleccionado)) {
+                    fila.style.display = "";
+                } else {
+                    fila.style.display = "none";
+                }
+            });
+        }
+
+
         function goBack() {
             window.history.back();
         }
+
         function editarEquipo(id) {
 
             const formData = new FormData();
@@ -112,7 +150,8 @@
 
         function agregarEquipo() {
 
-            fetch('/metro/app/equipo/registro', {
+            window.location.href = '/metro/app/equipo/registro';
+/*             fetch('/metro/app/equipo/registro', {
                 method: 'POST'
             }).then(response => {
                 if (!response.ok) {
@@ -126,7 +165,7 @@
             }).catch(error => {
                 console.error('Error:', error);
                 alert('Error al procesar la solicitud');
-            });
+            }); */
 
         }
 
@@ -189,7 +228,6 @@
                     });
             });
         }
-
     </script>
 </body>
 

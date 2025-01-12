@@ -11,6 +11,7 @@ class Departamento
     public $id;
     public $nombre;
     public $pais;
+    public $nombre_pais;
     public function __construct()
     {
         error_log("Construyendo modelo Departamento");
@@ -38,14 +39,30 @@ class Departamento
 
     public function getDepartamentoById($id)
     {
-        $query = "SELECT d.*, p.nombre as nombre_pais FROM departamento d
-                INNER JOIN pais p ON p.id = d.pais
-                WHERE d.id = :id";
+        $query = "SELECT d.*, p.nombre as nombre_pais 
+                  FROM departamento d
+                  INNER JOIN pais p ON p.id = d.pais
+                  WHERE d.id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+    
+        // Verificamos si se encontró el departamento
+        if ($result) {
+            // Creamos un nuevo objeto de tipo Departamento y asignamos los valores
+            $departamento = new Departamento();
+            $departamento->id = $result->id;
+            $departamento->nombre = $result->nombre;
+            $departamento->pais = $result->pais;
+            $departamento->nombre_pais = $result->nombre_pais; // Asignamos el valor del país
+    
+            return $departamento;
+        }
+    
+        return null; // Si no se encuentra el departamento, retornamos null
     }
+    
 
     public function createDepartamento(Departamento $departamento)
     {

@@ -28,21 +28,21 @@
             <div class="divider"></div>
             <p class="text-wrapper">Ingresa tus credenciales para iniciar sesión</p>
             <div class="drops-downs">
-                <div class="element">
+                <div class="box-info">
                     <div class="textfield">
-                        <div class="input">
+                        <div class="spacer">
                             <div class="div">Correo electrónico</div>
                             <input class="input-login" type="email">
-                            <img class="underline" src="../app/Assets/css/images/underline.svg" />
+                            <img class="under-line" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
                 </div>
-                <div class="element">
+                <div class="box-info">
                     <div class="textfield">
-                        <div class="input">
+                        <div class="spacer">
                             <div class="div">Contraseña</div>
                             <input class="input-login" type="password">
-                            <img class="underline" src="../app/Assets/css/images/underline.svg" />
+                            <img class="under-line" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
                 </div>

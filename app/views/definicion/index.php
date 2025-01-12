@@ -4,60 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Definicion</title>
+    <title>Lista de Definiciones</title>
+    <link rel="stylesheet" href="../app/Assets/css/globals.css" />
+    <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
+    <link rel="stylesheet" href="../app/Assets/css/style.css" />
 </head>
 
 <body>
-    <div class="definicion">
-    <button class="btn-back" onclick="goBack()">
+    <div class="ciudad">
+        <button class="btn-back" onclick="goBack()">
             <div class="btn-back-text">
                 < Volver</div>
         </button>
-        <div class="definicion-header">
+        <div class="ciudad-header">
             <div class="btn-space">
-                <h2>Definiciones Registradas</h2>
-                <button onclick="editarConfiguracion()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-div">
-                    <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+                <h2>Lista de Definiciones</h2>
+                <button onclick="agregarDefinicion()" class="btn-div">
+                    <img class="image-list" src="../app/Assets/css/images/circle-fill.svg">
                     <div class="text-style">Agregar</div>
                 </button>
-                <select class="selector-table">
-                    <option value="" disabled selected>Filtrar por definicion</option>
-                    <?php foreach ($definicion as $value): ?>
-                        <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <select class="selector-table">
-                    <option value="" disabled selected>Filtrar por linea</option>
-                    <?php foreach ($lineas as $linea): ?>
-                        <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
+                <div class="space-input">
+                    <select class="selector-table" id="valor-selector">
+                        <option value="" disabled selected>Filtrar por definicion</option>
+                        <?php foreach ($definicion as $value): ?>
+                            <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                </div>
+                <div class="space-input">
+                    <select class="selector-table" id="departamento-selector">
+                        <option value="" disabled selected>Filtrar por valor</option>
+                        <?php foreach ($definicion as $value): ?>
+                            <option value="<?php echo $value->valor; ?>"><?php echo $value->valor; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
+                </div>
             </div>
             <table class="custom-table" id="tablaDefinicion">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
                         <th>Valor</th>
-                        <th>Descripción</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($definicion as $value): ?>
-                        <tr>
+                        <tr id="fila-<?php echo $value->id; ?>">
                             <td><?php echo $value->id; ?></td>
-                            <td><?php echo $value->nombre; ?></td>
                             <td><?php echo $value->valor; ?></td>
+                            <td><?php echo $value->nombre; ?></td>
                             <td><?php echo $value->descripcion; ?></td>
                             <td>
-                                <button onclick="verDefinicion(<?php echo $value->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-preview ">
-                                    <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
-                                </button>
-                                <button onclick="editarDefinicion(<?php echo $value->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
-                                    <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
-                                </button>
-                                <button onclick="eliminarDefinicion(<?php echo $value->id; ?>)" class="btn-danger"><img src="/metro/app/Assets/css/images/delete.svg" title="Eliminar"></button>
+                                <a href="../app/definicion/vistaPrevia/<?php echo $value->id; ?>" class="btn-preview ">
+                                    <img class="btn-preview img" src="../app/Assets/css/images/preview.svg" title="Ver">
+                                </a>
+                                <a href="../app/definicion/editarFormulario/<?php echo $value->id; ?>" class="btn-warning">
+                                    <img class="btn-warning img" src="../app/Assets/css/images/edit.svg" title="Editar">
+                                </a>
+                                <button onclick="eliminarDefinicion(<?php echo $value->id; ?>)" class="btn-danger"><img src="../app/Assets/css/images/delete.svg" title="Eliminar"></button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -65,81 +74,63 @@
             </table>
         </div>
     </div>
-    </div>
-
-
-    <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modal-title"></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="modal-body-content">
-                    ...
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
 
 
     <script>
+        document.getElementById('valor-selector').addEventListener('change', function() {
+            filtrarTabla();
+        });
+        document.getElementById('valor-selector').addEventListener('change', function() {
+            filtrarTabla();
+        });
+
+        function filtrarTabla() {
+            var valorSeleccionado = document.getElementById('valor-selector').value;
+
+            var filas = document.querySelectorAll('#tablaDefinicion tbody tr');
+
+            filas.forEach(function(fila) {
+                var valor = fila.cells[0].textContent.trim(); // Columna "ID" (usada para comparar)
+
+                // Filtrar por ciudad ID o departamento, si corresponde
+                if ((valorSeleccionado === "" || valor == valorSeleccionado)) {
+                    fila.style.display = "";
+                } else {
+                    fila.style.display = "none";
+                }
+            });
+        }
+
         function goBack() {
             window.history.back();
         }
-        function editarConfiguracion() {
-            window.location.href = '/metro/app/configuracion/registrar';
-        }
-
-        function editarDefinicion(id) {
-
-            const formData = new FormData();
-            formData.append('id', id);
-            fetch('/metro/app/definicion/registro', {
-                method: 'POST',
-                body: formData
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-                return response.text();
-            }).then(data => {
-                document.getElementById('modal-title').innerHTML;
-                document.getElementById('modal-body-content').innerHTML = data;
-                addSubmitForm();
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Error al procesar la solicitud');
-            });
-
-        }
 
         function agregarDefinicion() {
+            window.location.href = '../app/definicion/registro';
+        }
+        function enviarId(id) {
+            const formData = new FormData();
+            formData.append('id', id);
 
-            fetch('/metro/app/configuracion/registrar', {
-                method: 'POST'
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-                return response.text();
-            }).then(data => {
-                document.getElementById('modal-title').innerHTML = 'REGISTRAR DEFINICION';
-                document.getElementById('modal-body-content').innerHTML = data;
-                addSubmitForm();
-                window.location.href = '/metro/app/configuracion/registrar';
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Error al procesar la solicitud');
-            });
-
+            fetch('/metro/app/definicion/crear', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta del servidor');
+                    }
+                    // La redirección ya se maneja en el controlador, no es necesario hacer nada más aquí
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al procesar la solicitud');
+                });
         }
 
+
         function eliminarDefinicion(id) {
-            if (confirm('¿Está seguro de eliminar este definicion?')) {
+            if (confirm('¿Está seguro de eliminar esta definicion?')) {
                 fetch(`/metro/app/definicion/eliminar/${id}`, {
                         method: 'POST',
                         headers: {
@@ -157,7 +148,7 @@
                     })
                     .then(data => {
                         if (data.success) {
-                            alert('Definicion eliminado exitosamente');
+                            alert('Definicion eliminada exitosamente');
                             location.reload();
                         } else {
                             alert('Error al eliminar definicion');

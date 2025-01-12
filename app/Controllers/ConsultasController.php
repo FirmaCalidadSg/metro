@@ -16,4 +16,11 @@ class ConsultasController
         require_once __DIR__ . '/../views/consultas/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
+
+    public function registrosconsulta()
+    {
+        require_once __DIR__ . '/../views/layouts/registro-consultas.php';
+        require_once __DIR__ . '/../views/consultas/registrosconsulta.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+    }
 }

@@ -54,7 +54,10 @@ $router->group('api', 'DefinicionesController', function ($group) {
 // Rutas de definicion
 $router->group('definicion', 'DefinicionController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', 'POST');
+    $group->add('registro', 'registro');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('editarFormulario/{id}', 'editarFormulario');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
@@ -62,7 +65,10 @@ $router->group('definicion', 'DefinicionController', function ($group) {
 // Rutas de paises
 $router->group('pais', 'PaisController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', 'POST');
+    $group->add('registro', 'registro');
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
@@ -70,7 +76,10 @@ $router->group('pais', 'PaisController', function ($group) {
 // Rutas de departamentos
 $router->group('departamento', 'DepartamentoController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', 'POST');
+    $group->add('registro', 'registro');
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
@@ -78,15 +87,20 @@ $router->group('departamento', 'DepartamentoController', function ($group) {
 // Rutas de ciudades
 $router->group('ciudad', 'CiudadController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', 'POST');
+    $group->add('registro', 'registro');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
-
 // Rutas de equipos
 $router->group('equipo', 'EquipoController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', 'POST');
+    $group->add('registro', 'registro');
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
@@ -94,7 +108,10 @@ $router->group('equipo', 'EquipoController', function ($group) {
 // Rutas de daños de equipos
 $router->group('danoequipo', 'DanoEquipoController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', 'POST');
+    $group->add('registro', 'registro');
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
@@ -102,7 +119,10 @@ $router->group('danoequipo', 'DanoEquipoController', function ($group) {
 // Rutas de procesos
 $router->group('proceso', 'ProcesoController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', 'POST');
+    $group->add('registro', 'registro');
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
@@ -110,51 +130,61 @@ $router->group('proceso', 'ProcesoController', function ($group) {
 // Rutas de lineas
 $router->group('linea', 'LineaController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', 'POST');
+    $group->add('registro', 'registro');
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
 // Rutas de productos
 $router->group('producto', 'ProductoController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', 'POST');
+    $group->add('registro', 'registro');
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
 // Rutas de productos
 $router->group('lineaproducto', 'LineaproductoController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', 'POST');
+    $group->add('registro', 'registro');
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
 
 $router->group('consultas', 'ConsultasController', function ($group) {
     $group->add('', 'index');    
+    $group->add('registrosconsulta', 'registrosconsulta');
 });
 
 $router->group('capacidades', 'CapacidadesController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', 'POST');
+    $group->add('registro', 'registro',);
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
 $router->group('configuracion', 'ConfiguracionController', function ($group) {
     $group->add('', 'index');
-    $group->add('registrar', 'registrar');
+    $group->add('registroConfiguracion', 'registroConfiguracion');
 });
 $router->group('controlCapacidad', 'ControlCapacidadController', function ($group) {
     $group->add('', 'index');
-    $group->add('parada', 'parada');
+    $group->add('paradas', 'paradas');
+    $group->add('modal1', 'modal1');
+    $group->add('modal2', 'modal2');
 });
 $router->group('reportes', 'ReportesController', function ($group) {
     $group->add('', 'index');
     $group->add('resultados', 'resultados');
     
 });
-/* $router->group('registrar', 'ConfiguracionController', function ($group) {
-    $group->add('', 'registrar');
-}); */
+
 try {
     $uri = trim(str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']), '/');
     $method = $_SERVER['REQUEST_METHOD'];

@@ -41,8 +41,23 @@ class Proceso
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+    
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+        
+        // Si se encuentra el proceso, lo retornamos como objeto Proceso
+        if ($data) {
+            $proceso = new Proceso();
+            $proceso->id = $data->id;
+            $proceso->nombre = $data->nombre;
+            $proceso->descripcion = $data->descripcion;
+            // Asigna otras propiedades según la estructura de la tabla proceso
+    
+            return $proceso;
+        }
+        
+        return null; // Si no se encuentra el proceso, retornamos null
     }
+    
 
     public function createProceso(Proceso $proceso)
     {

@@ -10,11 +10,10 @@ class ConfiguracionController
         require_once __DIR__ . '/../views/configuracion/index.php';
      
     }
-    public function registrar()
+    public function registroConfiguracion()
     {   
-        require_once   'views/layouts/registro.php';
-        require_once __DIR__ . '/../views/configuracion/registrar.php';
-        print_r(__DIR__);
+        require_once   __DIR__ . '/../views/layouts/registroConfiguracion.php';
+        require_once __DIR__ . '/../views/configuracion/registroConfiguracion.php';
     }
 }   
 

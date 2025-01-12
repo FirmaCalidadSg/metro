@@ -1,5 +1,4 @@
 <div class="container">
-
     <form id="registroForm">
 
         <div class="mb-3">
@@ -39,7 +38,8 @@
         </div>
 
         <div class="col-12">
-            <button type="submit" class="btn btn-primary"><?php echo $usuario->id > 0 ? 'Actualizar' : 'Registrar'; ?></button>
+            <button type="submit" class="btn-primary"><?php echo $usuario->id > 0 ? 'Actualizar' : 'Registrar'; ?></button>
         </div>
     </form>
+    </div>
 </div>

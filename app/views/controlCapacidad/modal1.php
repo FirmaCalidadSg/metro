@@ -3,15 +3,15 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../app/Assets/css/globals.css" />
-    <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
-    <link rel="stylesheet" href="../app/Assets/css/style.css" />
+    <link rel="stylesheet" href="../../app/Assets/css/globals.css" />
+    <link rel="stylesheet" href="../../app/Assets/css/styleguide.css" />
+    <link rel="stylesheet" href="../../app/Assets/css/style.css" />
 </head>
 
 <body>
     <div class="add-paro-modal">
         <div class="paro">
-            <p class="text-wrapper">Seleccione el tipo de paro que quieres agregar</p> <img class="close-empty" src="../app/Assets/css/images/01-empty.svg" />
+            <p class="text-wrapper">Seleccione el tipo de paro que quieres agregar</p> <img class="close-empty" src="../../app/Assets/css/images/x.svg" />
         </div>
         <div class="frame">
             <div class="div-wrapper">
