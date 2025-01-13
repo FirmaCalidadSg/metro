@@ -35,7 +35,7 @@ class UsuariosController
         }
         // require_once __DIR__ . '/../views/layouts/layout.php';
         require_once __DIR__ . '/../views/usuarios/registro.php';
-        // require_once __DIR__ . '/../views/layouts/footer.php';
+        
     }
 
     public function crear()

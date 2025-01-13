@@ -3744,6 +3744,13 @@
   background-color: #fdc428;
   border-radius: 10px;
 }
+.consultas-capacidad .frame-9 {
+  position: relative; 
+  width: 20px; 
+  height: 20px; 
+  background-color: #064d26; 
+  border-radius: 10px; 
+}
 
 .consultas-capacidad .text-wrapper-5 {
   position: relative;
@@ -3978,6 +3985,18 @@
   align-self: stretch;
   width: 100%;
   flex: 0 0 auto;
+}
+.operacion .text-wrapper-19 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: var(--subtitle-1-light-font-family);
+  font-weight: var(--subtitle-1-light-font-weight);
+  color: #1e1e1e;
+  font-size: var(--subtitle-1-light-font-size);
+  letter-spacing: var(--subtitle-1-light-letter-spacing);
+  line-height: var(--subtitle-1-light-line-height);
+  font-style: var(--subtitle-1-light-font-style);
 }
 
 .consultas-capacidad .text-wrapper-12 {
@@ -6318,6 +6337,7 @@ button#btnAgregarProducto.disabled {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.5);
   outline: 0;
   
 }
@@ -6336,7 +6356,6 @@ button#btnAgregarProducto.disabled {
 
 .modal.show .modal-dialog {
   transform: none;
-  z-index: 1111 !important;
 }
 
 .modal-dialog {
@@ -6358,6 +6377,7 @@ button#btnAgregarProducto.disabled {
   border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
   border-radius: var(--bs-modal-border-radius);
   outline: 0;
+  z-index: 1299 !important;
 }
 
 .modal-header {
@@ -6375,10 +6395,12 @@ button#btnAgregarProducto.disabled {
   position: relative;
   flex: 1 1 auto;
   padding: var(--bs-modal-padding);
+  z-index: 1199 !important;
 }
 
 .modal-show {
   display: block;
+  z-index: 1199 !important;
 }
 
 .btn-close {
@@ -6395,7 +6417,8 @@ button#btnAgregarProducto.disabled {
 }
 
 .modal-backdrop {
-  z-index: 1040 !important;
+  z-index: none !important;
+  display: none !important;
 }
 
 .btn {
@@ -6989,4 +7012,3 @@ button#btnAgregarProducto.disabled {
   line-height: var(--body-1-semibold-line-height);
   font-style: var(--body-1-semibold-font-style);
 }
-

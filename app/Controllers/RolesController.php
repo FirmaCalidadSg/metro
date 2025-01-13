@@ -18,7 +18,6 @@ class RolesController
         $roles = $this->roles->getAllRoles();
         require_once __DIR__ . '/../views/layouts/roles.php';
         require_once __DIR__ . '/../views/roles/index.php';
-        require_once __DIR__ . '/../views/layouts/footer.php';
     }
     public function registro()
     {

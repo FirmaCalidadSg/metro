@@ -54,22 +54,19 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+    <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false" backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modal-title">Modal title</h1> 
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title fs-5" id="modal-title"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="modal-body-content">
                     ...
                 </div>
-
             </div>
         </div>
     </div>
-
-
     <script>
         function cambiarCredenciales(id) {
             window.location.href = '/metro/app/usuarios/credenciales/' + id;

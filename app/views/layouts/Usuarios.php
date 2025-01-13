@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="../app/Assets/css/globals.css" />
   <link rel="stylesheet" href="../app/Assets/css/style.css" />
   <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
+  <script src="../app/Assets/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../app/Assets/jquery/jquery.min.js"></script>
 
 
 </head>

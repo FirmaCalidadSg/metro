@@ -50,7 +50,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
                             
                         </td>
                     </tr>
@@ -60,7 +60,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
                             
                         </td>
                     </tr>
@@ -70,7 +70,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
                             
                         </td>
                     </tr>
@@ -80,7 +80,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
                             
                         </td>
                     </tr>
@@ -90,7 +90,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
 
                         </td>
                     </tr>
@@ -100,7 +100,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
                                     
                         </td>
                     </tr>
@@ -110,7 +110,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
                             
                         </td>
                     </tr>
@@ -120,7 +120,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
                             
                         </td>
                     </tr>
@@ -130,7 +130,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
 
                         </td>
                     </tr>
@@ -140,7 +140,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
                                     
                         </td>
                     </tr>
@@ -150,7 +150,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
                             
                         </td>
                     </tr>
@@ -160,7 +160,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
                             
                         </td>
                     </tr>
@@ -170,7 +170,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
 
                         </td>
                     </tr>
@@ -180,7 +180,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
 
                         </td>
                     </tr>
@@ -190,7 +190,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
                             
                         </td>
                     </tr>
@@ -200,7 +200,7 @@
                         <td>Envase líquidos</td>
                         <td>1101260 - AC Girasol gota de oro - 12x1000</td>
                         <td>
-                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" />
+                            <img class="btn-preview" src="../../app/Assets/css/images/preview.svg" onclick="redireccionar()" />
 
                         </td>
                     </tr>
@@ -209,5 +209,9 @@
     
     </div>
 </body>
-
+<script>
+    function redireccionar() {
+        window.location.href = "../../app/consultas/consultaPreview";
+    }
+</script>
 </html>
