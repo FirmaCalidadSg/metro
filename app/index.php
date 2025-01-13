@@ -161,6 +161,7 @@ $router->group('lineaproducto', 'LineaproductoController', function ($group) {
 $router->group('consultas', 'ConsultasController', function ($group) {
     $group->add('', 'index');    
     $group->add('registrosconsulta', 'registrosconsulta');
+    $group->add('consultaPreview', 'consultaPreview');
 });
 
 $router->group('capacidades', 'CapacidadesController', function ($group) {

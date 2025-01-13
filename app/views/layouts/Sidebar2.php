@@ -3,22 +3,22 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="../../Assets/css/globals.css" />
-  <link rel="stylesheet" href="../../Assets/css/style.css" />
-  <link rel="stylesheet" href="../../Assets/css/styleguide.css" />
-  <link rel="stylesheet" href="../../Assets/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../app/Assets/css/globals.css" />
+  <link rel="stylesheet" href="../../app/Assets/css/style.css" />
+  <link rel="stylesheet" href="../../app/Assets/css/styleguide.css" />
+  <link rel="stylesheet" href="../../app/Assets/bootstrap/bootstrap.min.css" />
 </head>
 
 <body>
   <div class="property-slider">
-    <img class="image" src="../../Assets/css/images/logo.svg" />
+    <img class="image" src="../../app/Assets/css/images/logo.svg" />
     <div class="divider"></div>
     <div class="typography">
       <div class="text-wrapper">Acciones</div>
     </div>
     <div class="frame">
       <div class="sidebar-option">
-        <img class="img" src="../../Assets/css/images/siderbar1.svg" />
+        <img class="img" src="../../app/Assets/css/images/siderbar1.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Nuevos</div>
         </div>
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../Assets/css/images/siderbar2.svg" />
+        <img class="img" src="../../app/Assets/css/images/siderbar2.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Consultas</div>
         </div>
@@ -41,7 +41,7 @@
         <!-- <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../Assets/css/images/siderbar3.svg" />
+        <img class="img" src="../../app/Assets/css/images/siderbar3.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Reportes</div>
         </div>
@@ -53,7 +53,7 @@
         <!--   <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../Assets/css/images/siderbar4.svg" />
+        <img class="img" src="../../app/Assets/css/images/siderbar4.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Administración</div>
         </div>
@@ -64,7 +64,7 @@
         <!--   <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../Assets/css/images/caps.svg" />
+        <img class="img" src="../../app/Assets/css/images/caps.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Configuración</div>
         </div>
@@ -86,7 +86,7 @@
         </div>
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../Assets/css/images/admin-user.svg" />
+        <img class="img" src="../../app/Assets/css/images/admin-user.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Gestión y Dirección</div>
         </div>
@@ -96,7 +96,7 @@
         </div>
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../Assets/css/images/usser-logout.svg" />
+        <img class="img" src="../../app/Assets/css/images/usser-logout.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Cerrar Sesión</div>
         </div>
@@ -108,76 +108,62 @@
 
     <div class="divider"></div>
     <button class="sidebar-option-2" id="toggleSidebar" onclick="functionContraer()">
-        <img class="locura" src="../../Assets/css/images/siderbar5.svg" />
+      <img class="locura" src="../../app/Assets/css/images/siderbar5.svg" />
       <div class="div-wrapper">
-        <div class="typography-wrapper">Ocultar Menú </div>
-        
+        <div class="typography-wrapper">Ocultar Menú</div>
       </div>
     </button>
   </div>
   <!-- Contenido de la vista -->
   <div class="home">
-    <?php require_once '../app/views/pais/vista-previa.php'; ?>
+    <main>
 
-  </div>
-  </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const sidebarOptions = document.querySelectorAll('.sidebar-option');
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const sidebarOptions = document.querySelectorAll('.sidebar-option');
 
-      sidebarOptions.forEach(option => {
-        option.addEventListener('click', function() {
-          const subMenu = option.querySelector('.sub-menu');
+          sidebarOptions.forEach(option => {
+            option.addEventListener('click', function() {
+              const subMenu = option.querySelector('.sub-menu');
 
-          // Alternar la visibilidad del submenú
-          if (subMenu.style.display === 'none' || subMenu.style.display === '') {
-            subMenu.style.display = 'flex';
-          } else {
-            subMenu.style.display = 'none';
-          }
+              if (subMenu.style.display === 'none' || subMenu.style.display === '') {
+                subMenu.style.display = 'flex';
+              } else {
+                subMenu.style.display = 'none';
+              }
+            });
+          });
         });
-      });
-    });
-    $(document).ready(function() {
-      $('.property-slider .main-item').on('click', function() {
-        $(this).next('.sub-menu').toggle(); /* Alterna la visibilidad del submenú */
-      });
-    });
 
-    function functionContraer() {
-      const sidebar = document.querySelector('.property-slider');
-      const home = document.querySelector('.home');
+        function functionContraer() {
+          const sidebar = document.querySelector('.property-slider');
+          const home = document.querySelector('.home');
+          const subMenus = document.querySelectorAll('.sub-menu');
 
-      // Alternar la clase 'contraido'
-      sidebar.classList.toggle('contraido');
-      home.classList.toggle('contraido');
-    }
+          sidebar.classList.toggle('contraido');
+          home.classList.toggle('contraido');
 
-    function functionContraer() {
-      const sidebar = document.querySelector('.property-slider');
-      const home = document.querySelector('.home');
+          if (sidebar.classList.contains('contraido')) {
+            subMenus.forEach(subMenu => {
+              subMenu.style.display = 'none';
+            });
+          }
+        }
 
-      // Alternar la clase 'contraido'
-      sidebar.classList.toggle('contraido');
-      home.classList.toggle('contraido');
-    }
+        function handleSidebarOptionClick() {
+          const sidebar = document.querySelector('.property-slider');
+          const home = document.querySelector('.home');
 
-    // Función para remover la clase 'contraido' cuando se hace clic en una opción del sidebar
-    function handleSidebarOptionClick() {
-      const sidebar = document.querySelector('.property-slider');
-      const home = document.querySelector('.home');
+          if (sidebar.classList.contains('contraido')) {
+            sidebar.classList.remove('contraido');
+            home.classList.remove('contraido');
+          }
+        }
 
-      if (sidebar.classList.contains('contraido')) {
-        sidebar.classList.remove('contraido');
-        home.classList.remove('contraido');
-      }
-    }
-
-    // Añadir el evento de clic a cada opción del sidebar
-    document.querySelectorAll('.sidebar-option').forEach(option => {
-      option.addEventListener('click', handleSidebarOptionClick);
-    });
-  </script>
+        document.querySelectorAll('.sidebar-option').forEach(option => {
+          option.addEventListener('click', handleSidebarOptionClick);
+        });
+      </script>
 </body>
 
 </html>

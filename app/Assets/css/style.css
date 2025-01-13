@@ -2081,7 +2081,7 @@
   font-style: var(--body-1-semibold-font-style);
 }
 
-.modal {
+.modal-changes {
   position: fixed;
   top: 0;
   left: 0;
@@ -2094,7 +2094,7 @@
   z-index: 1000;
 }
 
-.modal-content {
+.modal-changes .modal-content {
   background-color: white;
   padding: 20px;
   max-width: 400px;
@@ -2102,7 +2102,7 @@
   text-align: center;
 }
 
-#closeModal {
+.modal-changes #closeModal {
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #06bb51;
@@ -2121,14 +2121,14 @@
   /* Transición suave */
 }
 
-#closeModal:hover {
+.modal-changes #closeModal:hover {
   background-color: #049e45;
   /* Un color más oscuro en hover */
 }
 
 
 
-.modal-title {
+.modal-changes .modal-title {
   font-family: var(--body-1-semibold-font-family);
   font-weight: var(--body-1-semibold-font-weight);
   color: #0b8642;
@@ -2138,7 +2138,7 @@
   text-align: center;
 }
 
-.modal .modal-content .modal-message {
+.modal-changes .modal-content .modal-message {
   font-family: var(--body-1-regular-font-family);
   font-weight: var(--body-1-regular-font-weight);
   color: #1e1e1e;
@@ -2459,12 +2459,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
   padding: 24px;
   position: relative;
   align-self: stretch;
   width: 100%;
-  height: 80%;
+  height: 97%;
   flex: 0 0 auto;
   background-color: #ffffff;
   border-radius: 12px;
@@ -2527,7 +2527,8 @@
   position: relative;
   align-self: stretch;
   width: 100%;
-  height: 11%;
+  height: 100%;
+  max-height: 10%;
   flex: 0 0 auto;
   background-color: transparent;
 }
@@ -2565,14 +2566,11 @@
   line-height: var(--body-1-regular-line-height);
   font-style: var(--body-1-regular-font-style);
   display: flex;
-  margin-top: 5rem;
   padding: .5rem;
   color: #1e1e1e;
   font-size: 12px;
   width: 100%;
   border: 1px;
-  height: 100%;
-  max-height: 70%;
   background-color: transparent;
   border-radius: 12px;
   border: none;
@@ -2581,28 +2579,21 @@
 
 .resultados-informes .space-input{
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
-  position: relative;
-  align-self: stretch;
+  align-self: flex-start;
   width: 15%;
+  height: 50%;
   flex: 0 0 auto;
-  font-family: var(--body-1-regular-font-family);
-  font-weight: var(--body-1-regular-font-weight);
-  letter-spacing: var(--body-1-regular-letter-spacing);
-  line-height: var(--body-1-regular-line-height);
-  font-style: var(--body-1-regular-font-style);
-  display: flex;
-  padding: .5rem;
   color: #1e1e1e;
-  font-size: 12px;
   border: 1px;
-  height: 100%;
   background-color: transparent;
   border-radius: 12px;
   border: none;
   outline: none;
+  margin-top: 2.7%;
 }
 
 .resultados-informes .div {
@@ -6316,28 +6307,25 @@ button#btnAgregarProducto.disabled {
 
 
 .modal {
-  --bs-modal-zindex: 1055;
   --bs-modal-width: 500px;
   --bs-modal-padding: 1rem;
   --bs-modal-margin: 0.5rem;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: var(--bs-modal-zindex);
   display: none;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   outline: 0;
-  background-color: #111111bd;
+  
 }
 
 .modal.fade .modal-dialog {
   transition: transform 0.3s ease-out;
   transform: translate(0, -50px);
-  z-index: 1055 !important;
-}
+  z-index: 1199 !important;}
 
 @media (prefers-reduced-motion: reduce) {
   .modal.fade .modal-dialog {
@@ -6552,12 +6540,453 @@ button#btnAgregarProducto.disabled {
   line-height: var(--body-1-semibold-line-height);
   font-style: var(--body-1-semibold-font-style);
 }
-.registroConfig .text-wrapper-6{
+.resultadosConsulta { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 24px; 
+  padding: 20px;
+  width: 85%;
+  position: relative; 
+  background-color: #f2f5f4; 
+  overflow: hidden; 
+} 
+.resultadosConsulta .informacion-general { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  gap: 24px; 
+  padding: 24px; 
+  position: relative; 
+  align-self: stretch; 
+  width: 100%; 
+  flex: 0 0 auto; 
+  background-color: #ffffff; 
+  border-radius: 12px; 
+  box-shadow: var(--sombras-nivel-1); 
+} 
+.resultadosConsulta .frame { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 0px 0px 20px; 
+  position: relative; 
+  align-self: stretch; 
+  width: 100%; 
+  flex: 0 0 auto; 
+  border-bottom-width: 1px; 
+  border-bottom-style: solid; 
+  border-color: var(--greyoutline); 
+} 
+.resultadosConsulta .text { 
+  display: flex; 
+  align-items: flex-start; 
+  gap: 10px; 
+  position: relative; 
+  flex: 1; 
+  flex-grow: 1; 
+} 
+.resultadosConsulta .text-wrapper { 
+  position: relative; 
+  width: fit-content; 
+  margin-top: -1.00px; 
+  font-family: var(--h5-semibold-font-family); 
+  font-weight: var(--h5-semibold-font-weight); 
+  color: #064d26; 
+  font-size: var(--h5-semibold-font-size); 
+  letter-spacing: var(--h5-semibold-letter-spacing); 
+  line-height: var(--h5-semibold-line-height); 
+  font-style: var(--h5-semibold-font-style); 
+} 
+.resultadosConsulta .info { 
+  display: flex; 
+  align-items: center; 
+  justify-content: flex-end; 
+  gap: 8px; 
+  position: relative; 
+  flex: 1; 
+  flex-grow: 1; 
+} 
+.resultadosConsulta .div { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  justify-content: space-between; 
+  padding: 0px 8px; 
+  position: relative; 
+  flex: 1; 
+  align-self: stretch; 
+  flex-grow: 1; 
+} 
+.resultadosConsulta .text-wrapper-2 { 
+  position: relative; 
+  width: fit-content; 
+  margin-top: -1.00px; 
+  font-family: var(--subtitle-1-semibold-font-family); 
+  font-weight: var(--subtitle-1-semibold-font-weight); 
+  color: #064d26; 
+  font-size: var(--subtitle-1-semibold-font-size); 
+  letter-spacing: var(--subtitle-1-semibold-letter-spacing); 
+  line-height: var(--subtitle-1-semibold-line-height); 
+  font-style: var(--subtitle-1-semibold-font-style); 
+} 
+.resultadosConsulta .div-wrapper { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 4px; 
+  position: relative; 
+  flex: 0 0 auto; 
+} 
+.resultadosConsulta .text-wrapper-3 { 
+  font-family: var(--subtitle-1-light-font-family); 
+  font-weight: var(--subtitle-1-light-font-weight); 
+  position: relative; 
+  width: fit-content; 
+  margin-top: -1.00px; 
+  color: #1e1e1e; 
+  font-size: var(--subtitle-1-light-font-size); 
+  letter-spacing: var(--subtitle-1-light-letter-spacing); 
+  line-height: var(--subtitle-1-light-line-height); 
+  font-style: var(--subtitle-1-light-font-style); 
+} 
+.resultadosConsulta .text-wrapper-4 { 
+  position: relative; 
+  width: fit-content; 
+  margin-top: -1.00px; 
+  font-family: "Poppins-SemiBold", Helvetica; 
+  font-weight: 600; 
+  color: #064d26; 
+  font-size: 16px; 
+  letter-spacing: 0; 
+  line-height: normal; 
+} 
+.resultadosConsulta .frame-2 { 
+  display: flex; 
+  align-items: center; 
+  gap: 4px; 
+  position: relative; 
+  align-self: stretch; 
+  width: 100%; 
+  flex: 0 0 auto; 
+} 
+.resultadosConsulta .calendar { 
+  position: relative; 
+  width: 20px; 
+  height: 20px; 
+} 
+.resultadosConsulta .frame-3 { 
+  position: relative; 
+  width: 20px; 
+  height: 20px; 
+  background-color: #064d26; 
+  border-radius: 10px; 
+} 
+.resultadosConsulta .text-wrapper-5 { 
+  position: relative; 
+  width: fit-content; 
+  font-family: var(--h6-semibold-font-family); 
+  font-weight: var(--h6-semibold-font-weight); 
+  color: #064d26; 
+  font-size: var(--h6-semibold-font-size); 
+  letter-spacing: var(--h6-semibold-letter-spacing); 
+  line-height: var(--h6-semibold-line-height); 
+  font-style: var(--h6-semibold-font-style); 
+} 
+.resultadosConsulta .drops-downs { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  gap: 32px; 
+  position: relative; 
+  align-self: stretch; 
+  width: 100%; 
+  flex: 0 0 auto; 
+} 
+.resultadosConsulta .element { 
+  display: flex; 
+  align-items: center; 
+  gap: 32px; 
+  position: relative; 
+  align-self: stretch; 
+  width: 100%; 
+  flex: 0 0 auto; 
+} 
+.resultadosConsulta .textfield { 
+  gap: 24px; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  position: relative; 
+  flex: 1; 
+  flex-grow: 1; 
+} 
+.resultadosConsulta .input { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  gap: 6px; 
+  position: relative; 
+  align-self: stretch; 
+  width: 100%; 
+  flex: 0 0 auto; 
+} 
+.resultadosConsulta .text-wrapper-6 { 
+  position: relative; 
+  width: fit-content; 
+  margin-top: -1.00px; 
+  font-family: var(--caption-light-font-family); 
+  font-weight: var(--caption-light-font-weight); 
+  color: #1e1e1e; 
+  font-size: var(--caption-light-font-size); 
+  letter-spacing: var(--caption-light-letter-spacing); 
+  line-height: var(--caption-light-line-height); 
+  white-space: nowrap; 
+  font-style: var(--caption-light-font-style); 
+} 
+.resultadosConsulta .div-2 { 
+  display: flex; 
+  min-width: 24px; 
+  min-height: 24px; 
+  align-items: center; 
+  position: relative; 
+  align-self: stretch; 
+  width: 100%; 
+  flex: 0 0 auto; 
+} 
+.resultadosConsulta .text-wrapper-7 { 
+  flex: 1; 
+  font-family: var(--body-1-regular-font-family); 
+  font-weight: var(--body-1-regular-font-weight); 
+  position: relative; 
+  margin-top: -1.00px; 
+  color: #1e1e1e; 
+  font-size: var(--body-1-regular-font-size); 
+  letter-spacing: var(--body-1-regular-letter-spacing); 
+  line-height: var(--body-1-regular-line-height); 
+  font-style: var(--body-1-regular-font-style); 
+} 
+.resultadosConsulta .img { 
+  position: relative; 
+  width: 24px; 
+  height: 24px; 
+} 
+.resultadosConsulta .underline { 
+  position: relative; 
+  align-self: stretch; 
+  width: 100%; 
+  height: 1px; 
+  margin-bottom: -1.00px; 
+  object-fit: cover; 
+} 
+.resultadosConsulta .textfield-2 { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  position: relative; 
+  flex: 1; 
+  flex-grow: 1; 
+} 
+.resultadosConsulta .text-wrapper-8 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: var(--body-1-regular-font-family);
+  font-weight: var(--body-1-regular-font-weight);
+  color: #1e1e1e;
+  font-size: var(--body-1-regular-font-size);
+  letter-spacing: var(--body-1-regular-letter-spacing);
+  line-height: var(--body-1-regular-line-height);
+  font-style: var(--body-1-regular-font-style);
+}
+
+.resultadosConsulta .tiempo-de-operacion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  margin-bottom: -20.00px;
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+.resultadosConsulta .frame-4 {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 4px 0px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.resultadosConsulta .text-wrapper-9 {
+  position: relative;
+  flex: 1;
+  margin-top: -1.00px;
+  font-family: var(--h6-semibold-font-family);
+  font-weight: var(--h6-semibold-font-weight);
+  color: #064d26;
+  font-size: var(--h6-semibold-font-size);
+  letter-spacing: var(--h6-semibold-letter-spacing);
+  line-height: var(--h6-semibold-line-height);
+  font-style: var(--h6-semibold-font-style);
+}
+
+.resultadosConsulta .view {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.resultadosConsulta .text-wrapper-10 {
+  position: relative;
+  width: fit-content;
+  font-family: var(--body-2-regular-font-family);
+  font-weight: var(--body-2-regular-font-weight);
+  color: #1e1e1e;
+  font-size: var(--body-2-regular-font-size);
+  letter-spacing: var(--body-2-regular-letter-spacing);
+  line-height: var(--body-2-regular-line-height);
+  font-style: var(--body-2-regular-font-style);
+}
+
+.resultadosConsulta .operacion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.resultadosConsulta .text-wrapper-11 {
+  position: relative;
+  flex: 1;
+  margin-top: -1.00px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #1e1e1e;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.resultadosConsulta .element-2 {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+}
+
+.resultadosConsulta .text-wrapper-12 {
+  position: relative;
+  width: 506px;
+  height: 24px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #1e1e1e;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.resultadosConsulta .datos {
+  align-items: flex-start;
+  justify-content: space-between;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  display: flex;
+  position: relative;
+}
+
+.resultadosConsulta .element-3 {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: 1;
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+}
+
+.resultadosConsulta .frame-5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 0px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  background-color: #f2f5f4;
+}
+
+.resultadosConsulta .text-wrapper-13 {
+  position: relative;
+  flex: 1;
+  margin-top: -1.00px;
   font-family: var(--body-1-semibold-font-family);
   font-weight: var(--body-1-semibold-font-weight);
+  color: #1e1e1e;
+  font-size: var(--body-1-semibold-font-size);
+  text-align: center;
+  letter-spacing: var(--body-1-semibold-letter-spacing);
+  line-height: var(--body-1-semibold-line-height);
+  font-style: var(--body-1-semibold-font-style);
+}
+
+.resultadosConsulta .text-wrapper-14 {
+  position: relative;
+  width: fit-content;
+  font-family: var(--body-1-light-font-family);
+  font-weight: var(--body-1-light-font-weight);
+  color: #1e1e1e;
+  font-size: var(--body-1-light-font-size);
+  letter-spacing: var(--body-1-light-letter-spacing);
+  line-height: var(--body-1-light-line-height);
+  font-style: var(--body-1-light-font-style);
+}
+
+.resultadosConsulta .buttom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-bottom: -20.00px;
+  border-radius: 8px;
+}
+
+.resultadosConsulta .text-wrapper-15 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: var(--body-1-semibold-font-family);
+  font-weight: var(--body-1-semibold-font-weight);
+  color: transparent;
   font-size: var(--body-1-semibold-font-size);
   letter-spacing: var(--body-1-semibold-letter-spacing);
   line-height: var(--body-1-semibold-line-height);
   font-style: var(--body-1-semibold-font-style);
-  color: #064d26;
 }
+

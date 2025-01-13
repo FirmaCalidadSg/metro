@@ -19,9 +19,8 @@ class PaisController
 
         $paises = $this->pais->getAllPais();
 
-        require_once __DIR__ . '/../views/layouts/pais.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/pais/index.php';
-        require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function registro()
@@ -30,7 +29,7 @@ class PaisController
         if (isset($_POST['id'])) {
             $pais = $this->pais->getPaisById($_POST['id']);
         }
-        require_once __DIR__ . '/../views/layouts/register-pais.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
         require_once __DIR__ . '/../views/pais/registro.php';
     }
 
@@ -107,7 +106,7 @@ class PaisController
             echo json_encode($response);
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/editar-pais.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/pais/editar.php';
     }
     
@@ -119,7 +118,7 @@ class PaisController
             header("Location: /metro/app/pais");
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/vista-previa-pais.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/pais/vista-previa.php';
     }
     public function eliminar($id = null)

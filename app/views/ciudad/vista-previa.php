@@ -115,12 +115,12 @@
 </body>
 <script>
     function editarCiudad() {
-        window.location.href = '/metro/app/ciudad/editar/<?php echo $ciudad->id; ?>';
+        window.location.href = '../../ciudad/editarFormulario/<?php echo $ciudad->id; ?>';
     }
 
     function eliminarCiudad(id) {
         if (confirm('¿Está seguro de eliminar este ciudad?')) {
-            fetch(`/metro/app/ciudad/eliminar/${id}`, {
+            fetch(`../../ciudad/eliminar/${id}`, {
                     method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

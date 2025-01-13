@@ -24,9 +24,8 @@ class LineaProductoController
     {        
         $lineas_producto = $this->linea_producto->getAllLineaProducto();
 
-        require_once __DIR__ . '/../views/layouts/Linea-productos.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/lineaproducto/index.php';
-        require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function registro()
@@ -37,7 +36,7 @@ class LineaProductoController
         if (isset($_POST['id'])) {
             $linea_producto = $this->linea_producto->getLineaProductoById($_POST['id']);
         }
-        require_once __DIR__ . '/../views/layouts/register-lineProduc.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
         require_once __DIR__ . '/../views/lineaproducto/registro.php';
     }
 
@@ -70,7 +69,7 @@ class LineaProductoController
             header("Location: /metro/app/lineaproducto");
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/vista-previa-lineayproduct.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/lineaproducto/vista-previa.php';
     }   
     public function editarFormulario($id = null)
@@ -78,7 +77,7 @@ class LineaProductoController
         $productos = $this->producto->getAllProducto();
         $lineas = $this->linea->getAllLinea();
         $linea_producto = $this->linea_producto->getLineaProductoById($id);
-        require_once __DIR__ . '/../views/layouts/editar-lineasyProductos.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/lineaproducto/editar.php';
     }
     public function editar($id)

@@ -77,9 +77,9 @@
 
                         <div class="textfield-2">
                             <div class="input">
-                                <div class="text-wrapper-5">Descripción</div>
+                                <div class="text-wrapper-5">Código</div>
                                 <div class="div-2">
-                                    <input type="text" name="descripcion" class="select-register" value="<?php echo $producto->descripcion ?? ''; ?>" required>
+                                    <input type="text" name="codigo" class="select-register" value="<?php echo $producto->codigo ?? ''; ?>" required>
                                 </div>
                                 <img class="underline" src="../../Assets/css/images/underline.svg" />
                             </div>
@@ -88,9 +88,9 @@
                     <div class="element">
                         <div class="textfield-2">
                             <div class="input">
-                                <div class="text-wrapper-5">Código</div>
+                                <div class="text-wrapper-5">Descripción</div>
                                 <div class="div-2">
-                                    <input type="text" name="codigo" class="select-register" value="<?php echo $producto->codigo ?? ''; ?>" required>
+                                    <input type="text" name="descripcion" class="select-register" value="<?php echo $producto->descripcion ?? ''; ?>" required>
                                 </div>
                             </div>
                             <img class="underline" src="../../Assets/css/images/underline.svg" />
@@ -104,7 +104,7 @@
 
 
             <!-- Modal HTML -->
-            <div class="modal" id="successModal" style="display: none;">
+            <div class="modal-changes" id="successModal" style="display: none;">
                 <div class="modal-content">
                     <div class="modal-title">
                         <h2 id="modal-title">¡Éxito!</h2>

@@ -19,9 +19,8 @@ class DefinicionController
 
         $definicion = $this->definicion->getAllDefinicion();
         // var_dump($definicion);
-        require_once __DIR__ . '/../views/layouts/definicion.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/definicion/index.php';
-        require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function registro()
@@ -34,7 +33,7 @@ class DefinicionController
             $modo = 'editar'; 
         }
       
-        require_once __DIR__ . '/../views/layouts/register-defi.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
         require_once __DIR__ . '/../views/definicion/registro.php';
     }
     
@@ -72,7 +71,7 @@ class DefinicionController
             header("Location: /metro/app/definicion");
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/vista-previa-definicion.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/definicion/vistaPrevia.php';
     }
     public function editarFormulario($id)
@@ -87,7 +86,7 @@ class DefinicionController
             echo json_encode($response);
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/editar-definiciones.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/definicion/editar.php';
     }
     

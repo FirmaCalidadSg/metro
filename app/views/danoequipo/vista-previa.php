@@ -74,7 +74,7 @@
                             <div class="input">
                                 <div class="text-wrapper-5">Equipo</div>
                                 <div class="div-2">
-                                    <input type="text" class="select-register" value="<?php echo $dano->nombre_equipo ?? ''; ?>" readonly>
+                                    <input type="text" class="select-register" value="<?php echo $equipo->nombre_equipo ?? ''; ?>" readonly>
                                 </div>
                                 <img class="underline" src="../../Assets/css/images/underline.svg" />
                             </div>
@@ -121,12 +121,12 @@
 </body>
 <script>
     function editarDano() {
-        window.location.href = '/metro/app/danoequipo/editar/<?php echo $dano->id; ?>';
+        window.location.href = '../../danoequipo/editarFormulario/<?php echo $dano->id; ?>';
     }
 
     function eliminarDano(id) {
         if (confirm('¿Está seguro de eliminar este dano?')) {
-            fetch(`/metro/app/danoequipo/eliminar/${id}`, {
+            fetch(`../../danoequipo/eliminar/${id}`, {
                     method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -144,7 +144,7 @@
                     .then(data => {
                         if (data.success) {
                             alert('Daño eliminado exitosamente');
-                            window.location.href = '/metro/app/danoequipo';
+                            window.location.href = '<?php echo BASE_PATH; ?>/danoequipo';
                         } else {
                             alert('Error al eliminar daño');
                         }

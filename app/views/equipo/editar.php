@@ -104,7 +104,7 @@
 
 
             <!-- Modal HTML -->
-            <div class="modal" id="successModal" style="display: none;">
+            <div class="modal-changes" id="successModal" style="display: none;">
                 <div class="modal-content">
                     <div class="modal-title">
                         <h2 id="modal-title">¡Éxito!</h2>

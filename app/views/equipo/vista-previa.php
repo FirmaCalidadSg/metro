@@ -111,13 +111,13 @@
     </div>
 </body>
 <script>
-    function editarPais() {
-        window.location.href = '/metro/app/pais/editar/<?php echo $pais->id; ?>';
+    function editarEquipo() {
+        window.location.href = '../../equipo/editarFormulario/<?php echo $equipo->id; ?>';
     }
 
-    function eliminarPais(id) {
-        if (confirm('¿Está seguro de eliminar este pais?')) {
-            fetch(`/metro/app/pais/eliminar/${id}`, {
+    function eliminarEquipo(id) {
+        if (confirm('¿Está seguro de eliminar este equipo?')) {
+            fetch(`../../equipo/eliminar/${id}`, {
                     method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -134,10 +134,10 @@
                     })
                     .then(data => {
                         if (data.success) {
-                            alert('Pais eliminado exitosamente');
+                            alert('Equipo eliminado exitosamente');
                             location.reload();
                         } else {
-                            alert('Error al eliminar pais');
+                            alert('Error al eliminar equipo');
                         }
                     })
                     .catch(error => {

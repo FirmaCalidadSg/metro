@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="btn-container">
-                    <button type="button" class="btn-editar" onclick="editarDefinicion()">Editar</button>
+                    <a type="button"  class="btn-editar" onclick="editarDefinicion()">Editar</a>
                     <button type="button" class="btn-eliminar" onclick="eliminarDefinicion()">Eliminar</button>
                 </div>
             </form>
@@ -115,12 +115,12 @@
 </body>
 <script>
     function editarDefinicion() {
-        window.location.href = '/metro/app/definicion/editar/<?php echo $definicion->id; ?>';
+        window.location.href = '../../definicion/editarFormulario/<?php echo $definicion->id; ?>';
     }
 
     function eliminarDefinicion(id) {
         if (confirm('¿Está seguro de eliminar este definicion?')) {
-            fetch(`/metro/app/definicion/eliminar/${id}`, {
+            fetch(`../../definicion/eliminar/${id}`, {
                     method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -138,7 +138,7 @@
                     .then(data => {
                         if (data.success) {
                             alert('Definicion eliminado exitosamente');
-                            location.reload();
+                            window.location.href = '<?php echo BASE_PATH; ?>/definicion';
                         } else {
                             alert('Error al eliminar definicion');
                         }

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../app/Assets/css/style.css" />
   <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
   <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
+
 </head>
 
 <body>
@@ -23,7 +24,6 @@
         <div class="typography-wrapper">
           <div class="typography1">Nuevos</div>
         </div>
-        <!--    <img class="arrow" src="../app/Assets/css/images/arrow.svg"/> -->
         <div class="sub-menu">
           <a class="nav-link" href="<?php echo BASE_PATH; ?>/controlCapacidad">Control De Capacidades</a>
           <a href="#">Control De Capacidades batch</a>
@@ -39,7 +39,6 @@
           <a href="#">Pendientes</a>
           <a href="#">Por Estados</a>
         </div>
-        <!-- <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
       <div class="sidebar-option">
         <img class="img" src="../app/Assets/css/images/siderbar3.svg" />
@@ -51,7 +50,6 @@
           <a href="#">Pendientes</a>
           <a href="#">Por Estados</a>
         </div>
-        <!--   <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
       <div class="sidebar-option">
         <img class="img" src="../app/Assets/css/images/siderbar4.svg" />
@@ -62,7 +60,6 @@
           <a href="<?php echo BASE_PATH; ?>/configuracion">Consultar</a>
           <a href="<?php echo BASE_PATH; ?>/configuracion/registroConfiguracion">Registrar</a>
         </div>
-        <!--   <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
       <div class="sidebar-option">
         <img class="img" src="../app/Assets/css/images/caps.svg" />
@@ -115,69 +112,55 @@
       </div>
     </button>
   </div>
-  <!-- Contenido de la vista -->
   <div class="home">
-    <?php require_once '../app/views/definicion/index.php'; ?>
+    <main>
 
-  </div>
-  </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const sidebarOptions = document.querySelectorAll('.sidebar-option');
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const sidebarOptions = document.querySelectorAll('.sidebar-option');
 
-      sidebarOptions.forEach(option => {
-        option.addEventListener('click', function() {
-          const subMenu = option.querySelector('.sub-menu');
+          sidebarOptions.forEach(option => {
+            option.addEventListener('click', function() {
+              const subMenu = option.querySelector('.sub-menu');
 
-          // Alternar la visibilidad del submenú
-          if (subMenu.style.display === 'none' || subMenu.style.display === '') {
-            subMenu.style.display = 'flex';
-          } else {
-            subMenu.style.display = 'none';
-          }
+              if (subMenu.style.display === 'none' || subMenu.style.display === '') {
+                subMenu.style.display = 'flex';
+              } else {
+                subMenu.style.display = 'none';
+              }
+            });
+          });
         });
-      });
-    });
-    $(document).ready(function() {
-      $('.property-slider .main-item').on('click', function() {
-        $(this).next('.sub-menu').toggle(); /* Alterna la visibilidad del submenú */
-      });
-    });
 
-    function functionContraer() {
-      const sidebar = document.querySelector('.property-slider');
-      const home = document.querySelector('.home');
+        function functionContraer() {
+          const sidebar = document.querySelector('.property-slider');
+          const home = document.querySelector('.home');
+          const subMenus = document.querySelectorAll('.sub-menu');
 
-      // Alternar la clase 'contraido'
-      sidebar.classList.toggle('contraido');
-      home.classList.toggle('contraido');
-    }
+          sidebar.classList.toggle('contraido');
+          home.classList.toggle('contraido');
 
-    function functionContraer() {
-      const sidebar = document.querySelector('.property-slider');
-      const home = document.querySelector('.home');
+          if (sidebar.classList.contains('contraido')) {
+            subMenus.forEach(subMenu => {
+              subMenu.style.display = 'none';
+            });
+          }
+        }
 
-      // Alternar la clase 'contraido'
-      sidebar.classList.toggle('contraido');
-      home.classList.toggle('contraido');
-    }
+        function handleSidebarOptionClick() {
+          const sidebar = document.querySelector('.property-slider');
+          const home = document.querySelector('.home');
 
-    // Función para remover la clase 'contraido' cuando se hace clic en una opción del sidebar
-    function handleSidebarOptionClick() {
-      const sidebar = document.querySelector('.property-slider');
-      const home = document.querySelector('.home');
+          if (sidebar.classList.contains('contraido')) {
+            sidebar.classList.remove('contraido');
+            home.classList.remove('contraido');
+          }
+        }
 
-      if (sidebar.classList.contains('contraido')) {
-        sidebar.classList.remove('contraido');
-        home.classList.remove('contraido');
-      }
-    }
-
-    // Añadir el evento de clic a cada opción del sidebar
-    document.querySelectorAll('.sidebar-option').forEach(option => {
-      option.addEventListener('click', handleSidebarOptionClick);
-    });
-  </script>
+        document.querySelectorAll('.sidebar-option').forEach(option => {
+          option.addEventListener('click', handleSidebarOptionClick);
+        });
+      </script>
 </body>
 
 </html>

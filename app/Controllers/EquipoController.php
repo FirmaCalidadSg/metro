@@ -19,9 +19,8 @@ class EquipoController
 
         $equipos = $this->equipo->getAllEquipo();
 
-        require_once __DIR__ . '/../views/layouts/equipo.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/equipo/index.php';
-        require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function registro()
@@ -30,7 +29,7 @@ class EquipoController
         if (isset($_POST['id'])) {
             $equipo = $this->equipo->getEquipoById($_POST['id']);
         }
-        require_once __DIR__ . '/../views/layouts/register-equipo.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
         require_once __DIR__ . '/../views/equipo/registro.php';
     }
 
@@ -63,7 +62,7 @@ class EquipoController
             header("Location: /metro/app/equipo");
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/vista-previa-equipo.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/equipo/vista-previa.php';
     }
     public function editarFormulario($id)
@@ -78,7 +77,7 @@ class EquipoController
             echo json_encode($response);
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/edit-equipos.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/equipo/editar.php';
     }
     public function editar($id)

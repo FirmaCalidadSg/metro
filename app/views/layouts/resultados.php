@@ -117,8 +117,6 @@
   <!-- Contenido de la vista -->
   <div class="home">
     <?php require_once '../app/views/reportes/resultados.php'; ?>
-
-  </div>
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {

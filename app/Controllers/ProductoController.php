@@ -19,9 +19,8 @@ class ProductoController
 
         $productos = $this->producto->getAllProducto();
 
-        require_once __DIR__ . '/../views/layouts/productos.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/producto/index.php';
-        require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function registro()
@@ -30,8 +29,8 @@ class ProductoController
         if (isset($_POST['id'])) {
             $producto = $this->producto->getProductoById($_POST['id']);
         }
-        require_once __DIR__ . '/../views/layouts/register-produc.php';
-        require_once __DIR__ . '/../views/producto/registro.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
+            require_once __DIR__ . '/../views/producto/registro.php';
     }
 
     public function crear()
@@ -63,7 +62,7 @@ class ProductoController
             header("Location: /metro/app/producto");
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/vista-previa-producto.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/producto/vista-previa.php';
     }
     public function editarFormulario($id = null)
@@ -71,7 +70,7 @@ class ProductoController
         if (isset($id)) {
             $producto = $this->producto->getProductoById($id);
         }
-        require_once __DIR__ . '/../views/layouts/editar-productos.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/producto/editar.php';
     }
     public function editar($id)

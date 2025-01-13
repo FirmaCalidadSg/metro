@@ -21,9 +21,8 @@ class LineaController
     {        
         $lineas = $this->linea->getAllLinea();
 
-        require_once __DIR__ . '/../views/layouts/lineas.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/linea/index.php';
-        require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function registro()
@@ -33,7 +32,7 @@ class LineaController
         if (isset($_POST['id'])) {
             $linea = $this->linea->getLineaById($_POST['id']);
         }
-        require_once __DIR__ . '/../views/layouts/register-linea.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
         require_once __DIR__ . '/../views/linea/registro.php';
     }
 
@@ -65,14 +64,14 @@ class LineaController
             header("Location: /metro/app/linea");
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/vista-previa-linea.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/linea/vista-previa.php';
     }
     public function editarFormulario($id)
     {
         $linea = $this->linea->getLineaById($id);
         $procesos = $this->proceso->getAllProceso();
-        require_once __DIR__ . '/../views/layouts/editar-lineas.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/linea/editar.php';
     }
     public function editar($id)

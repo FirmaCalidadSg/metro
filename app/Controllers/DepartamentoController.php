@@ -21,9 +21,8 @@ class DepartamentoController
     {        
         $departamentos = $this->departamento->getAllDepartamento();
 
-        require_once __DIR__ . '/../views/layouts/departamento.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/departamento/index.php';
-        require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function registro()
@@ -33,7 +32,7 @@ class DepartamentoController
         if (isset($_POST['id'])) {
             $departamento = $this->departamento->getDepartamentoById($_POST['id']);
         }
-        require_once __DIR__ . '/../views/layouts/register-depa.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
         require_once __DIR__ . '/../views/departamento/registro.php';
 
     }
@@ -66,7 +65,7 @@ class DepartamentoController
             header("Location: /metro/app/departamento");
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/vista-previa-depart.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/departamento/vista-previa.php';
     }
     public function editarFormulario($id)
@@ -82,7 +81,7 @@ class DepartamentoController
             exit;
         }
         
-        require_once __DIR__ . '/../views/layouts/editar-departamento.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/departamento/editar.php';
     }
 

@@ -111,12 +111,12 @@
 </body>
 <script>
     function editarProducto() {
-        window.location.href = '/metro/app/producto/editar/<?php echo $producto->id; ?>';
+        window.location.href = '../../producto/editarFormulario/<?php echo $producto->id; ?>';
     }
 
     function eliminarProducto(id) {
         if (confirm('¿Está seguro de eliminar este producto?')) {
-            fetch(`/metro/app/producto/eliminar/${id}`, {
+            fetch(`../../producto/eliminar/${id}`, {
                     method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

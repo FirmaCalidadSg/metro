@@ -101,7 +101,7 @@
 </body>
 <script>
     function editarDepartamento() {
-        window.location.href = '/metro/app/departamento/editar/<?php echo $departamento->id; ?>';
+        window.location.href = '../../departamento/editarFormulario/<?php echo $departamento->id; ?>';
     }
 
     function eliminarDepartamento(id) {

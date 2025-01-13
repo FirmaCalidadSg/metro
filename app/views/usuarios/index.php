@@ -14,7 +14,7 @@
                 <h2>Lista de Usuarios</h2>
             </div>
             <button onclick="agregarUsuario()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-primary">Nuevo Usuario</button>
-
+        
         <table class="custom-table" id="tablaUsuarios">
             <thead>
                 <tr>
@@ -54,12 +54,12 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="false" data-bs-keyboard="false">
+    <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="modal-title">Modal title</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="modal-title fs-5" id="modal-title">Modal title</h1> 
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="modal-body-content">
                     ...
@@ -100,7 +100,7 @@
 
         function agregarUsuario() {
 
-            fetch('/metro/app/usuarios/registro', {
+            fetch('../app/usuarios/registro', {
                 method: 'POST'
             }).then(response => {
                 if (!response.ok) {

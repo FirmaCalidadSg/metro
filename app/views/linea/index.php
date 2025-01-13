@@ -55,10 +55,10 @@
                             <td><?php echo $linea->nombre; ?></td>
                             <td><?php echo $linea->nombre_proceso; ?></td>
                             <td>
-                                <a href="../app/linea/vistaPrevia/<?php echo $linea->id; ?>" class="btn-preview">
+                                <button onclick="verLinea(<?php echo $linea->id; ?>)" class="btn-preview">
                                     <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
-                                </a>
-                                <a href="../app/linea/editarFormulario/<?php echo $linea->id; ?>" class="btn-warning">
+                                </button>
+                                <bu href="../app/linea/editarFormulario/<?php echo $linea->id; ?>" class="btn-warning">
                                     <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
                                 </a>
                                 <button onclick="eliminarLinea(<?php echo $linea->id; ?>)" class="btn-danger">
@@ -142,6 +142,9 @@
                     alert('Error al procesar la solicitud');
                 });
 
+            }
+            function verLinea(id) {
+                window.location.href = '../app/linea/vistaPrevia/<?php echo $linea->id; ?>';
             }
 
             function agregarLinea() {

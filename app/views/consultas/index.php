@@ -27,7 +27,9 @@
                         <div class="input">
                             <div class="div-2">
                                 <div class="text-wrapper-3">
-                                    <div class="p">Selecciona el tipo de consulta</div>
+                                    <div class="div-2">
+                                        <div class="p">Selecciona el tipo de consulta</div>
+                                    </div>
                                     <form id="consulta-select">
                                         <select class="select-line" name="tipo-consulta">
                                             <option value="" selected disabled>Seleccionar</option>

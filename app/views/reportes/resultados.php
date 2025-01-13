@@ -50,19 +50,19 @@
                 </button>
         
             <div class="space-input">
-                <select class="selector-table" id="valor-selector">
-                    <option value="" disabled selected>Filtrar por definicion</option>
-                        <?php foreach ($definicion as $value): ?>
+                <select class="selector-table" id="proceso-selector">
+                    <option value="" disabled selected>Filtrar por Proceso</option>
+                        <?php foreach ($proceso as $value): ?>
                             <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
                         <?php endforeach; ?>
                     </select>
                     <img class="underline-btn" src="../../app/Assets/css/images/underline.svg">
                 </div>
                 <div class="space-input">
-                    <select class="selector-table" id="departamento-selector">
-                        <option value="" disabled selected>Filtrar por valor</option>
-                        <?php foreach ($definicion as $value): ?>
-                            <option value="<?php echo $value->valor; ?>"><?php echo $value->valor; ?></option>
+                    <select class="selector-table" id="linea-selector">
+                        <option value="" disabled selected>Filtrar por Linea</option>
+                        <?php foreach ($linea as $value): ?>
+                            <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
                         <?php endforeach; ?>
                     </select>
                     <img class="underline-btn" src="../../app/Assets/css/images/underline.svg">

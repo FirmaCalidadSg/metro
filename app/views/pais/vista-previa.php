@@ -101,7 +101,7 @@
 </body>
 <script>
     function editarPais() {
-        window.location.href = '/metro/app/pais/editar/<?php echo $pais->id; ?>';
+        window.location.href = '../../pais/editarFormulario/<?php echo $pais->id; ?>';
     }
 
     function eliminarPais(id) {

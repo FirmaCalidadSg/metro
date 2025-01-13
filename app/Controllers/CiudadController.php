@@ -21,9 +21,8 @@ class CiudadController
     {
         $ciudades = $this->ciudad->getAllCiudad();
 
-        require_once __DIR__ . '/../views/layouts/ciudad.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/ciudad/index.php';
-        require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function registro()
@@ -33,7 +32,7 @@ class CiudadController
         if (isset($_POST['id'])) {
             $ciudad = $this->ciudad->getCiudadById($_POST['id']);
         }
-        require_once __DIR__ . '/../views/layouts/register-city.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
         require_once __DIR__ . '/../views/ciudad/registro.php';
     }
     public function vistaPrevia($id)
@@ -44,7 +43,7 @@ class CiudadController
             header("Location: /metro/app/ciudad");
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/vista-previa-ciudad.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/ciudad/vista-previa.php';
     }
     
@@ -104,7 +103,7 @@ class CiudadController
             echo json_encode($response);
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/editar-ciudad.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/ciudad/editar.php';
     }
     

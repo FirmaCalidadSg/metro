@@ -101,12 +101,12 @@
 </body>
 <script>
     function editarProceso() {
-        window.location.href = '/metro/app/proceso/editar/<?php echo $proceso->id; ?>';
+        window.location.href = '../../proceso/editarFormulario/<?php echo $proceso->id; ?>';
     }
 
     function eliminarProceso(id) {
         if (confirm('¿Está seguro de eliminar este proceso?')) {
-            fetch(`/metro/app/proceso/eliminar/${id}`, {
+            fetch(`../../proceso/eliminar/${id}`, {
                     method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

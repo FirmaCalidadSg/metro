@@ -101,12 +101,12 @@
 </body>
 <script>
     function editarLinea() {
-        window.location.href = '/metro/app/linea/editar/<?php echo $linea->id; ?>';
+        window.location.href = '../../linea/editarFormulario/<?php echo $linea->id; ?>';
     }
 
     function eliminarLinea(id) {
         if (confirm('¿Está seguro de eliminar esta linea?')) {
-            fetch(`/metro/app/linea/eliminar/${id}`, {
+            fetch(`../../linea/eliminar/${id}`, {
                     method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

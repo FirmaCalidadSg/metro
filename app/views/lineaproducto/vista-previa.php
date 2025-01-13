@@ -92,21 +92,21 @@
                     </div>
                 </div>
                 <div class="btn-container">
-                    <button type="button" class="btn-editar" onclick="editarLinea()">Editar</button>
-                    <button type="button" class="btn-eliminar" onclick="eliminarLinea()">Eliminar</button>
+                    <button type="button" class="btn-editar" onclick="editarLineaProducto()">Editar</button>
+                    <button type="button" class="btn-eliminar" onclick="eliminarLineaProducto()">Eliminar</button>
                 </div>
             </form>
         </div>
     </div>
 </body>
 <script>
-    function editarLinea() {
-        window.location.href = '/metro/app/linea/editar/<?php echo $linea->id; ?>';
+    function editarLineaProducto() {
+        window.location.href = '../../lineaproducto/editarFormulario/<?php echo $linea_producto->id; ?>';
     }
 
-    function eliminarLinea(id) {
+    function eliminarLineaProducto(id) {
         if (confirm('¿Está seguro de eliminar esta linea?')) {
-            fetch(`/metro/app/linea/eliminar/${id}`, {
+            fetch(`../../lineaproducto/eliminar/${id}`, {
                     method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -123,10 +123,10 @@
                     })
                     .then(data => {
                         if (data.success) {
-                            alert('Linea eliminada exitosamente');
+                            alert('Linea y/o producto eliminada exitosamente');
                             location.reload();
                         } else {
-                            alert('Error al eliminar linea');
+                            alert('Error al eliminar linea y/o producto');
                         }
                     })
                     .catch(error => {

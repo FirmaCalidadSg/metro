@@ -24,7 +24,7 @@
                     <div class="text-style">Agregar</div>
                 </button>
                 <div class="space-input">
-                    <select class="selector-table" id="valor-selector">
+                    <select class="selector-table" id="definicion-selector">
                         <option value="" disabled selected>Filtrar por definicion</option>
                         <?php foreach ($definicion as $value): ?>
                             <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
@@ -33,7 +33,7 @@
                     <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
                 </div>
                 <div class="space-input">
-                    <select class="selector-table" id="departamento-selector">
+                    <select class="selector-table" id="valor-selector">
                         <option value="" disabled selected>Filtrar por valor</option>
                         <?php foreach ($definicion as $value): ?>
                             <option value="<?php echo $value->valor; ?>"><?php echo $value->valor; ?></option>
@@ -77,29 +77,34 @@
 
 
     <script>
-        document.getElementById('valor-selector').addEventListener('change', function() {
-            filtrarTabla();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Escuchar cambios en los selects
+            document.getElementById('definicion-selector').addEventListener('change', filtrarTabla);
+            document.getElementById('valor-selector').addEventListener('change', filtrarTabla);
+
+            // Función para filtrar la tabla
+            function filtrarTabla() {
+                var valorSeleccionado = document.getElementById('valor-selector').value;
+                var definicionSeleccionado = document.getElementById('definicion-selector').value;
+
+                // Obtener todas las filas de la tabla
+                var filas = document.querySelectorAll('#tablaDefinicion tbody tr');
+
+                filas.forEach(function(fila) {
+                    var valor = fila.cells[1].textContent.trim(); // Columna "Valor"
+                    var nombre = fila.cells[2].textContent.trim(); // Columna "Nombre"
+
+                    // Filtrar por departamento y país, si están seleccionados
+                    if ((definicionSeleccionado === "" || definicion == definicionSeleccionado) &&
+                        (valorSeleccionado === "" || valor == valorSeleccionado)) {
+                        fila.style.display = "";
+                    } else {
+                        fila.style.display = "none";
+                    }
+                });
+            }
         });
-        document.getElementById('valor-selector').addEventListener('change', function() {
-            filtrarTabla();
-        });
 
-        function filtrarTabla() {
-            var valorSeleccionado = document.getElementById('valor-selector').value;
-
-            var filas = document.querySelectorAll('#tablaDefinicion tbody tr');
-
-            filas.forEach(function(fila) {
-                var valor = fila.cells[0].textContent.trim(); // Columna "ID" (usada para comparar)
-
-                // Filtrar por ciudad ID o departamento, si corresponde
-                if ((valorSeleccionado === "" || valor == valorSeleccionado)) {
-                    fila.style.display = "";
-                } else {
-                    fila.style.display = "none";
-                }
-            });
-        }
 
         function goBack() {
             window.history.back();
@@ -108,6 +113,7 @@
         function agregarDefinicion() {
             window.location.href = '../app/definicion/registro';
         }
+
         function enviarId(id) {
             const formData = new FormData();
             formData.append('id', id);
