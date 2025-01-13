@@ -49,27 +49,6 @@
             <form method="POST" class="form-register">
                 <div class="drops-downs">
                     <div class="element">
-                        <div class="textfield">
-                            <div class="input">
-                                <div class="text-wrapper-5">Planta</div>
-                                <div class="div-2">
-                                    <input type="text" class="select-register" value="<?php echo $pais->Linea ?? ''; ?>" readonly>
-                                </div>
-                                <img class="underline" src="../../Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Linea</div>
-                                <div class="div-2">
-                                    <input type="text" class="select-register" value="<?php echo $pais->Linea ?? ''; ?>" readonly>
-                                </div>
-                                <img class="underline" src="../../Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="element">
                         <div class="textfield-2">
                             <div class="input">
                                 <div class="text-wrapper-5">Nombre</div>

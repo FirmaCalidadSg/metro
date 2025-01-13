@@ -29,23 +29,28 @@ class RolesController
     }
     public function crear()
     {
-        $message = 'Rol registrado exitosamente';
+        $message = 'Rol registrado exitosamente';  // Mensaje por defecto para crear
         $rol = new Roles();
-        $rol->id = $_POST['id'];
-        $rol->rol = $_POST['rol'];
+        $rol->id = isset($_POST['id']) ? $_POST['id'] : 0;  // Asegúrate de que `id` esté presente
+        $rol->rol = $_POST['rol'];  // Asigna el valor del rol
 
-        if ($rol->id > 0) {
+        if ($rol->id > 0) {  // Si el ID existe, actualiza el rol
             $this->roles->updateRol($rol);
             $message = 'Rol actualizado exitosamente';
-        } else {
+        } else {  // Si no, crea un nuevo rol
             $this->roles->createRol($rol);
         }
+
+        // Respuesta con éxito y mensaje de la operación
         $response = [
             'success' => true,
             'message' => $message
         ];
+
+        // Responder en formato JSON para que el frontend pueda manejarlo
         echo json_encode($response);
     }
+
     public function eliminar($id = null)
     {
         try {

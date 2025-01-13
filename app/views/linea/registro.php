@@ -44,37 +44,6 @@
             <form method="POST" class="form-register" action="/metro/app/linea/<?php echo isset($linea->id) && $linea->id > 0 ? 'actualizar' : 'crear'; ?>">
                 <div class="drops-downs">
                     <div class="element">
-                        <div class="textfield">
-                            <div class="input">
-                                <div class="text-wrapper-5">Planta</div>
-                                <div class="div-2">
-                                    <select class="select-register" name="planta">
-                                        <option value="">Seleccionar</option>
-                                        <!--                             <?php foreach ($equipos as $value): ?>
-                                <option value="<?php echo $value->id; ?>"></option>
-                            <?php endforeach; ?> -->
-                                    </select>
-                                </div>
-                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Linea</div>
-                                <div class="div-2">
-                                    <select class="select-register" name="linea">
-                                        <option value="">Seleccionar</option>
-                                        <!--                             <?php foreach ($equipos as $value): ?>
-                                <option value="<?php echo $value->id; ?>"></option>
-                            <?php endforeach; ?> -->
-                                    </select>
-                                </div>
-                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="element">
                         <div class="textfield-2">
                             <div class="input">
                                 <div class="text-wrapper-5">Nombre</div>
@@ -93,6 +62,22 @@
                                         <option value="">Seleccionar</option>
                                         <?php foreach ($procesos as $proceso) { ?>
                                             <option value="<?php echo $proceso->id; ?>"><?php echo $proceso->nombre; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <div class="textfield-2">
+                            <div class="input">
+                                <div class="text-wrapper-5">Producto</div>
+                                <div class="div-2">
+                                    <select class="select-register" name="producto">
+                                        <option value="">Seleccionar</option>
+                                        <?php foreach ($productos as $producto) { ?>
+                                            <option value="<?php echo $producto->id; ?>"><?php echo $producto->nombre; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

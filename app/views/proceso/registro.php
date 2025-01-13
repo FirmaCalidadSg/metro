@@ -42,134 +42,114 @@
 
             <!-- Agregamos el formulario que enviará los datos a la función crear del controlador -->
             <form method="POST" class="form-register" action="/metro/app/proceso/<?php echo isset($proceso->id) && $proceso->id > 0 ? 'actualizar' : 'crear'; ?>">
-            <div class="drops-downs">
-        <div class="element">
-            <div class="textfield">
-                <div class="input">
-                    <div class="text-wrapper-5">Planta</div>
-                    <div class="div-2">
-                        <select class="select-register" name="planta">
-                            <option value="">Seleccionar</option>
-<!--                             <?php foreach ($equipos as $value): ?>
-                                <option value="<?php echo $value->nombre; ?>"></option>
-                            <?php endforeach; ?> -->
-                        </select>
+                <div class="drops-downs">
+                    <div class="element">
+                        <div class="textfield-2">
+                            <div class="input">
+                                <div class="text-wrapper-5">Nombre</div>
+                                <div class="div-2">
+                                    <input type="text" name="nombre" class="select-register" value="<?php echo $proceso->nombre ?? ''; ?>" placeholder="Nombre" required>
+                                </div>
+                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
+                            </div>
+                        </div>
+
+                        <div class="textfield-2">
+                            <div class="input">
+                                <div class="text-wrapper-5">Descripción</div>
+                                <div class="div-2">
+                                    <input type="text" name="descripcion" class="select-register" value="<?php echo $proceso->descripcion ?? ''; ?>" placeholder="Descripción" required>
+                                </div>
+                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
+                            </div>
+                        </div>
+                        <div class="textfield-2">
+                            <div class="input">
+                                <div class="text-wrapper-5">Linea</div>
+                                <div class="div-2">
+                                    <select name="linea" class="select-register" required>
+                                        <option value="<?php echo $proceso->linea ?? ''; ?>"><?php echo $proceso->linea ?? ''; ?></option>
+                                        <option value="1">1</option>
+                                        <!-- Opciones adicionales pueden ser agregadas aquí -->
+                                    </select>
+                                </div>
+                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
+                            </div>
+                        </div>
                     </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
                 </div>
-            </div>
-            <div class="textfield-2">
-                <div class="input">
-                    <div class="text-wrapper-5">Linea</div>
-                    <div class="div-2">
-                        <select class="select-register" name="linea">
-                            <option value="">Seleccionar</option>
-<!--                             <?php foreach ($equipos as $value): ?>
-                                <option value="<?php echo $value->nombre; ?>"></option>
-                            <?php endforeach; ?> -->
-                        </select>
-                    </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                </div>
-            </div>
         </div>
 
-        <div class="element">
-            <div class="textfield-2">
-                <div class="input">
-                    <div class="text-wrapper-5">Nombre</div>
-                    <div class="div-2">
-                        <input type="text" name="nombre" class="select-register" value="<?php echo $proceso->nombre ?? ''; ?>" placeholder="Nombre" required>
+        <input type="hidden" id="id" name="id" value="<?php echo $dano->id ?? ''; ?>">
+        <button type="submit" class="btn btn-primary">
+            <?php echo isset($dano->id) && $dano->id > 0 ? 'Actualizar' : 'Registrar'; ?>
+        </button>
+        </form>
+
+        <!-- Modal HTML -->
+        <div class="modal-changes" id="successModal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-title">
+                        <h2 id="modal-title">¡Éxito!</h2>
                     </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
+                    <p class="modal-message" id="modal-message">La operación se completó correctamente.</p>
+                    <button id="closeModal">Cerrar</button>
                 </div>
             </div>
-
-            <div class="textfield-2">
-                <div class="input">
-                    <div class="text-wrapper-5">Descripción</div>
-                    <div class="div-2">
-                            <input type="text" name="descripcion" class="select-register" value="<?php echo $proceso->descripcion ?? ''; ?>" placeholder="Descripción" required>
-                    </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    
-    <input type="hidden" id="id" name="id" value="<?php echo $dano->id ?? ''; ?>">
-    <button type="submit" class="btn btn-primary">
-        <?php echo isset($dano->id) && $dano->id > 0 ? 'Actualizar' : 'Registrar'; ?>
-    </button>
-</form>
-
-    <!-- Modal HTML -->
-    <div class="modal" id="successModal" style="display: none;">
-    <div class="modal-content">
-        <div class="modal-title">
-            <h2 id="modal-title">¡Éxito!</h2>
-        </div>
-        <p class="modal-message" id="modal-message">La operación se completó correctamente.</p>
-        <button id="closeModal">Cerrar</button>
-    </div>
-</div>
-
 
 </body>
 <script>
-function showModal(message, isSuccess = true) {
-    document.getElementById('modal-message').innerHTML = message;
-    
-    document.getElementById('modal-title').innerHTML = isSuccess ? '¡Éxito!' : 'Error';
-    document.getElementById('successModal').style.backgroundColor = isSuccess ? '#111111bd' : '#F44336'; 
-    document.getElementById('successModal').style.display = 'flex'; 
-    document.getElementById('closeModal').addEventListener('click', function () {
-        closeModal(isSuccess);
-    });
+    function showModal(message, isSuccess = true) {
+        document.getElementById('modal-message').innerHTML = message;
 
-    setTimeout(() => {
-        closeModal(isSuccess);
-    }, 5000); 
-}
+        document.getElementById('modal-title').innerHTML = isSuccess ? '¡Éxito!' : 'Error';
+        document.getElementById('successModal').style.backgroundColor = isSuccess ? '#111111bd' : '#F44336';
+        document.getElementById('successModal').style.display = 'flex';
+        document.getElementById('closeModal').addEventListener('click', function() {
+            closeModal(isSuccess);
+        });
 
-function closeModal(isSuccess) {
-    document.getElementById('successModal').style.display = 'none';
-    
-    // Si es éxito, redirigir a la lista de definiciones
-    if (isSuccess) {
-        window.location.href = "<?php echo BASE_PATH; ?>/proceso";
+        setTimeout(() => {
+            closeModal(isSuccess);
+        }, 5000);
     }
-}
 
-// Enviar el formulario mediante Fetch
-document.querySelector('form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Evitar que se recargue la página al enviar el formulario
+    function closeModal(isSuccess) {
+        document.getElementById('successModal').style.display = 'none';
 
-    // Recopilar datos del formulario
-    const formData = new FormData(this);
-
-    // Realizar la petición Fetch para enviar el formulario
-    fetch('/metro/app/proceso/crear', {
-        method: 'POST',
-        body: formData
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la respuesta del servidor');
+        // Si es éxito, redirigir a la lista de definiciones
+        if (isSuccess) {
+            window.location.href = "<?php echo BASE_PATH; ?>/proceso";
         }
-        return response.json();
-    }).then(data => {
-        if (data.success) {
-            showModal(data.message, true); // Mostrar modal si la operación fue exitosa
-        } else {
-            showModal(data.message, false); // Mostrar modal con error
-        }
-    }).catch(error => {
-    /*     console.error('Error:', error); */
+    }
+
+    // Enviar el formulario mediante Fetch
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault(); // Evitar que se recargue la página al enviar el formulario
+
+        // Recopilar datos del formulario
+        const formData = new FormData(this);
+
+        // Realizar la petición Fetch para enviar el formulario
+        fetch('/metro/app/proceso/crear', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor');
+            }
+            return response.json();
+        }).then(data => {
+            if (data.success) {
+                showModal(data.message, true); // Mostrar modal si la operación fue exitosa
+            } else {
+                showModal(data.message, false); // Mostrar modal con error
+            }
+        }).catch(error => {
+            /*     console.error('Error:', error); */
             showModal('Ocurrió un error inesperado', false); // Mostrar error en el modal
         });
     });
-
 </script>
 
 </html>

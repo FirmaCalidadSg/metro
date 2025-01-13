@@ -44,27 +44,6 @@
             <form method="POST" class="form-register" action="/metro/app/departamento/editar/<?php echo $departamento->id; ?>">
                 <div class="drops-downs">
                     <div class="element">
-                        <div class="textfield">
-                            <div class="input">
-                                <div class="text-wrapper-5">Planta</div>
-                                <div class="div-2">
-                                    <!-- <input type="text" name="planta" class="select-register" value="<?php echo $departamento->planta ?? ''; ?>" required> -->
-                                </div>
-                                <img class="underline" src="../../Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Linea</div>
-                                <div class="div-2">
-                                    <!-- <input type="text" name="linea" class="select-register" value="<?php echo $departamento->linea ?? ''; ?>" required> -->
-                                </div>
-                                <img class="underline" src="../../Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="element">
                         <div class="textfield-2">
                             <div class="input">
                                 <div class="text-wrapper-5">Nombre</div>
@@ -89,6 +68,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
                 <input type="hidden" name="id" value="<?php echo $departamento->id ?? ''; ?>">
                 <button type="submit" class="btn btn-primary">Actualizar</button>

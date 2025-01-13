@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Config\Database;
 use PDO;
+use App\Models\Dano;
 
 class Equipo
 {
@@ -12,6 +13,7 @@ class Equipo
     public $nombre;
     public $modelo;
     public $estado;
+    public $dano;
     public function __construct()
     {
         error_log("Construyendo modelo Equipo");

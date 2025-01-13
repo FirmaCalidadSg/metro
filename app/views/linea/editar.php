@@ -44,27 +44,6 @@
             <form method="POST" class="form-register" action="/metro/app/linea/editar/<?php echo $linea->id; ?>">
                 <div class="drops-downs">
                     <div class="element">
-                        <div class="textfield">
-                            <div class="input">
-                                <div class="text-wrapper-5">Planta</div>
-                                <div class="div-2">
-                                    <!-- <input type="text" name="planta" class="select-register" value="<?php echo $linea->planta ?? ''; ?>" required> -->
-                                </div>
-                                <img class="underline" src="../../Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Linea</div>
-                                <div class="div-2">
-                                    <!-- <input type="text" name="linea" class="select-register" value="<?php echo $linea->linea ?? ''; ?>" required> -->
-                                </div>
-                                <img class="underline" src="../../Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="element">
                         <div class="textfield-2">
                             <div class="input">
                                 <div class="text-wrapper-5">Nombre</div>
@@ -84,6 +63,22 @@
                                         <?php foreach ($procesos as $proceso) { ?>
                                             <option value="<?php echo $proceso->id; ?>" <?php echo $linea->proceso == $proceso->id ? 'selected' : ''; ?>><?php echo $proceso->nombre; ?></option>
                                         <?php } ?>
+                                    </select>
+                                </div>
+                                <img class="underline" src="../../Assets/css/images/underline.svg" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <div class="textfield-2">
+                            <div class="input">
+                                <div class="text-wrapper-5">Producto</div>
+                                <div class="div-2">
+                                    <select class="select-register" name="producto">|
+                                        <option value="">Seleccionar</option>
+                                        <?php foreach ($productos as $producto): ?>
+                                            <option value="<?php echo $producto->id; ?><?php echo $linea->producto == $producto->id ? 'selected' : ''; ?>"><?php echo $producto->nombre; ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <img class="underline" src="../../Assets/css/images/underline.svg" />

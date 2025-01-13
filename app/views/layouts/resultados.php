@@ -98,12 +98,12 @@
       <div class="sidebar-option">
         <img class="img" src="../../app/Assets/css/images/usser-logout.svg" />
         <div class="typography-wrapper">
-          <div class="typography1">Cerrar Sesión</div>
-        </div>
-        <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/logout">Cerrar Sesión</a>
+          <div class="typography1">
+            <a href="<?php echo BASE_PATH; ?>/logout">Cerrar Sesión</a>
+          </div>
         </div>
       </div>
+
     </div>
 
     <div class="divider"></div>

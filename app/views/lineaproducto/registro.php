@@ -44,37 +44,6 @@
             <form method="POST" class="form-register" action="/metro/app/linea/<?php echo isset($linea_producto->id) && $linea_producto->id > 0 ? 'actualizar' : 'crear'; ?>">
                 <div class="drops-downs">
                     <div class="element">
-                        <div class="textfield">
-                            <div class="input">
-                                <div class="text-wrapper-5">Planta</div>
-                                <div class="div-2">
-                                    <select class="select-register" name="planta">
-                                        <option value="">Seleccionar</option>
-                                        <!--                              <?php foreach ($equipos as $value): ?>
-                                <option value="<?php echo $value->id; ?>"></option>
-                            <?php endforeach; ?> -->
-                                    </select>
-                                </div>
-                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Linea</div>
-                                <div class="div-2">
-                                    <select class="select-register" name="linea">
-                                        <option value="">Seleccionar</option>
-                                        <!--                             <?php foreach ($lineas as $value): ?>
-                                <option value="<?php echo $value->id; ?>"></option>
-                            <?php endforeach; ?>  -->
-                                    </select>
-                                </div>
-                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="element">
                         <div class="textfield-2">
                             <div class="input">
                                 <div class="text-wrapper-5">Linea</div>
@@ -89,7 +58,8 @@
                                 <img class="underline" src="../../app/Assets/css/images/underline.svg" />
                             </div>
                         </div>
-
+                    </div>
+                    <div class="element">
                         <div class="textfield-2">
                             <div class="input">
                                 <div class="text-wrapper-5">Producto</div>

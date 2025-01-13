@@ -44,41 +44,17 @@
             <form method="POST" class="form-register" action="/metro/app/departamento/<?php echo isset($departamento->id) && $departamento->id > 0 ? 'actualizar' : 'crear'; ?>">
                 <div class="drops-downs">
                     <div class="element">
-                        <div class="textfield">
-                            <div class="input">
-                                <div class="text-wrapper-5">Planta</div>
-                                <div class="div-2">
-                                    <select class="select-register" name="planta">
-                                        <option value="">Seleccionar</option>
-                                        <!--                             <?php foreach ($departamento as $value): ?>
-                                <option value="<?php echo $value->id; ?>" <?php echo isset($departamento->planta) && $departamento->planta == $value->id ? 'selected' : ''; ?>>
-                                    <?php echo $value->nombre; ?>
-                                </option>
-                            <?php endforeach; ?> -->
-                                    </select>
-                                </div>
-                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
                         <div class="textfield-2">
                             <div class="input">
-                                <div class="text-wrapper-5">Linea</div>
+                                <div class="text-wrapper-5">Nombre</div>
                                 <div class="div-2">
-                                    <select class="select-register" name="linea">
-                                        <option value="">Seleccionar</option>
-                                        <!--                             <?php foreach ($departamento as $value): ?>
-                                <option value="<?php echo $value->id; ?>" <?php echo isset($departamento->linea) && $departamento->linea == $value->id ? 'selected' : ''; ?>>
-                                    <?php echo $value->nombre; ?>
-                                </option>
-                            <?php endforeach; ?> -->
-                                    </select>
+                                    <input type="text" name="nombre" class="select-register" placeholder="Nombre" required>
+
                                 </div>
                                 <img class="underline" src="../../app/Assets/css/images/underline.svg" />
                             </div>
                         </div>
-                    </div>
 
-                    <div class="element">
                         <div class="textfield-2">
                             <div class="input">
                                 <div class="text-wrapper-5">Pais</div>
@@ -88,17 +64,7 @@
                                         <?php foreach ($paises as $pais) { ?>
                                             <option value="<?php echo $pais->id; ?>"><?php echo $pais->nombre; ?></option>
                                         <?php } ?>
-                                    </select>
-                                </div>
-                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Nombre</div>
-                                <div class="div-2">
-                                    <input type="text" name="nombre" class="select-register" placeholder="Nombre" required>
+                                    </select>|
                                 </div>
                                 <img class="underline" src="../../app/Assets/css/images/underline.svg" />
                             </div>
@@ -106,6 +72,7 @@
                     </div>
                 </div>
 
+            <div class="btn-container">
                 <input type="hidden" id="id" name="id" value="<?php echo $departamento->id ?? ''; ?>">
                 <button type="submit" class="btn btn-primary">
                     <?php echo isset($departamento->id) && $departamento->id > 0 ? 'Actualizar' : 'Registrar'; ?>
@@ -113,7 +80,7 @@
             </form>
 
             <!-- Modal HTML -->
-            <div class="modal" id="successModal" style="display: none;">
+            <div class="modal-changes" id="successModal" style="display: none;">
                 <div class="modal-content">
                     <div class="modal-title">
                         <h2 id="modal-title">¡Éxito!</h2>

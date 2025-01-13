@@ -38,8 +38,8 @@
                 <input type="password" class="form-control" id="confirmarCredencial" name="confirmarCredencial" required placeholder="Confirme la nueva contraseña">
             </div>
 
-            <button type="submit" class="btn-primary mt-3" >Guardar Cambios</button> 
-            <button type="button" class="btn-secondary mt-3" onclick="window.location.href='/metro/app/usuarios'">Cancelar</button>
+            <button type="submit" class="btn-primary mt-6" >Guardar Cambios</button> 
+            <button type="button" class="btn-secondary mt-6" onclick="window.location.href='/metro/app/usuarios'">Cancelar</button>
 
         </form>
     </div>

@@ -44,41 +44,6 @@
             <form method="POST" class="form-register" action="/metro/app/pais/<?php echo isset($pais->id) && $pais->id > 0 ? 'actualizar' : 'crear'; ?>">
             <div class="drops-downs">
         <div class="element">
-            <div class="textfield">
-                <div class="input">
-                    <div class="text-wrapper-5">Planta</div>
-                    <div class="div-2">
-                        <select class="select-register" name="planta">
-                            <option value="">Seleccionar</option>
-<!--                             <?php foreach ($pais as $value): ?>
-                                <option value="<?php echo $value->id; ?>" <?php echo isset($pais->planta) && $pais->planta == $value->id ? 'selected' : ''; ?>>
-                                    <?php echo $value->nombre; ?>
-                                </option>
-                            <?php endforeach; ?> -->
-                        </select>
-                    </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                </div>
-            </div>
-            <div class="textfield-2">
-                <div class="input">
-                    <div class="text-wrapper-5">Linea</div>
-                    <div class="div-2">
-                        <select class="select-register" name="linea">
-                            <option value="">Seleccionar</option>
-<!--                             <?php foreach ($pais as $value): ?>
-                                <option value="<?php echo $value->id; ?>" <?php echo isset($pais->linea) && $pais->linea == $value->id ? 'selected' : ''; ?>>
-                                    <?php echo $value->nombre; ?>
-                                </option>
-                            <?php endforeach; ?> -->
-                        </select>
-                    </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                </div>
-            </div>
-        </div>
-
-        <div class="element">
             <div class="textfield-2">
                 <div class="input">
                     <div class="text-wrapper-5">Nombre</div>

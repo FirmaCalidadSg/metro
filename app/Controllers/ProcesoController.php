@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 
 use App\Models\Proceso;
-
+use App\Models\Linea;
 class ProcesoController
 {
     public $proceso;
@@ -83,7 +83,8 @@ class ProcesoController
         // Obtener los datos del formulario
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
-    
+        $linea = $_POST['linea'];
+
         // Obtener la definición por ID
         $proceso = $this->proceso->getProcesoById($id);
     
@@ -99,7 +100,8 @@ class ProcesoController
         // Actualizar la definición
         $proceso->nombre = $nombre;
         $proceso->descripcion = $descripcion;
-    
+        $proceso->nombre = $linea;
+
         // Guardar la definición actualizada
         $this->proceso->updateProceso($proceso);
     

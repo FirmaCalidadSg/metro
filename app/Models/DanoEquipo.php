@@ -57,8 +57,9 @@ class DanoEquipo
             $danoEquipo->equipo = $result->equipo;
             $danoEquipo->descripcion = $result->descripcion;
             $danoEquipo->nombre_equipo = $result->nombre_equipo;
-            // Aquí asignas cualquier otra propiedad que tenga la tabla 'danoequipo'
-    
+            $danoEquipo->fecha = $result->fecha;
+            $danoEquipo->estado = $result->estado;
+            
             return $danoEquipo;
         }
     

@@ -46,7 +46,9 @@
                         <th>Nombre</th>
                         <th>Modelo</th>
                         <th>Estado</th>
+                        <th>Daño</th>
                         <th>Acciones</th>
+                    
                     </tr>
                 </thead>
                 <tbody>
@@ -56,6 +58,7 @@
                             <td><?php echo $equipo->nombre; ?></td>
                             <td><?php echo $equipo->modelo; ?></td>
                             <td><?php echo $equipo->estado; ?></td>
+                            <td>valor</td>
                             <td>
                                 <a href="../app/equipo/vistaPrevia/<?php echo $equipo->id; ?>" class="btn-preview">
                                     <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">

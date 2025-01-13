@@ -14,43 +14,43 @@
                 <h2>Lista de Usuarios</h2>
             </div>
             <button onclick="agregarUsuario()" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-primary">Nuevo Usuario</button>
-        
-        <table class="custom-table" id="tablaUsuarios">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Identificación</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Usuario</th>
-                    <th>Rol</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($usuarios as $usuario): ?>
+
+            <table class="custom-table" id="tablaUsuarios">
+                <thead>
                     <tr>
-                        <td><?php echo $usuario->id; ?></td>
-                        <td><?php echo $usuario->identificacion; ?></td>
-                        <td><?php echo $usuario->nombres; ?></td>
-                        <td><?php echo $usuario->apellidos; ?></td>
-                        <td><?php echo $usuario->usuario; ?></td>
-                        <td><?php echo $usuario->rol_id; ?></td>
-                        <td>
-                            <button onclick="editarUsuario(<?php echo $usuario->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
-                                <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
-                            </button>
-                            <button onclick="eliminarUsuario(<?php echo $usuario->id; ?>)" class="btn-danger">
-                                <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
-                            </button>
-                            <button onclick="cambiarCredenciales(<?php echo $usuario->id; ?>)" class="btn-adjust">
-                                <img class="btn-adjust img" src="/metro/app/Assets/css/images/set3.svg" title="Cambiar Credenciales">
-                            </button>
-                        </td>
+                        <th>ID</th>
+                        <th>Identificación</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Usuario</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($usuarios as $usuario): ?>
+                        <tr>
+                            <td><?php echo $usuario->id; ?></td>
+                            <td><?php echo $usuario->identificacion; ?></td>
+                            <td><?php echo $usuario->nombres; ?></td>
+                            <td><?php echo $usuario->apellidos; ?></td>
+                            <td><?php echo $usuario->usuario; ?></td>
+                            <td><?php echo $usuario->rol_id; ?></td>
+                            <td>
+                                <button onclick="editarUsuario(<?php echo $usuario->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                    <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                                </button>
+                                <button onclick="eliminarUsuario(<?php echo $usuario->id; ?>)" class="btn-danger">
+                                    <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                                </button>
+                                <button onclick="cambiarCredenciales(<?php echo $usuario->id; ?>)" class="btn-adjust">
+                                    <img class="btn-adjust img" src="/metro/app/Assets/css/images/set3.svg" title="Cambiar Credenciales">
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -67,15 +67,26 @@
             </div>
         </div>
     </div>
+
+    <div class="modal-Admin" id="successModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-title">
+                <h2 id="modal-title">¡Éxito!</h2>
+            </div>
+            <p class="modal-message" id="modal-message">La operación se completó correctamente.</p>
+            <button id="closeModal">Cerrar</button>
+        </div>
+    </div>
+
     <script>
         function cambiarCredenciales(id) {
             window.location.href = '/metro/app/usuarios/credenciales/' + id;
         }
 
         function editarUsuario(id) {
-
             const formData = new FormData();
             formData.append('id', id);
+
             fetch('/metro/app/usuarios/registro', {
                 method: 'POST',
                 body: formData
@@ -87,37 +98,65 @@
             }).then(data => {
                 document.getElementById('modal-title').innerHTML = 'ACTUALIZAR USUARIO';
                 document.getElementById('modal-body-content').innerHTML = data;
-                addSubmitForm();
+                addSubmitForm(); // Se mantiene el formulario y la lógica de envío
+                showModal('Datos del usuario cargados exitosamente', true); // Mostrar mensaje de éxito
             }).catch(error => {
                 console.error('Error:', error);
-                alert('Error al procesar la solicitud');
+                showModal('Error al procesar la solicitud', false); // Mostrar mensaje de error
             });
-
         }
 
         function agregarUsuario() {
-
-            fetch('../app/usuarios/registro', {
-                method: 'POST'
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-                return response.text();
-            }).then(data => {
-                document.getElementById('modal-title').innerHTML = 'REGISTRAR USUARIO';
-                document.getElementById('modal-body-content').innerHTML = data;
-                addSubmitForm();
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Error al procesar la solicitud');
+            const modal = new bootstrap.Modal(document.getElementById('modal-id'), {
+                backdrop: 'static'
             });
+            modal.show();
 
+            fetch('/metro/app/usuarios/registro', {
+                    method: 'POST'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al obtener el formulario');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('modal-title').innerHTML = 'REGISTRAR USUARIO';
+                    document.getElementById('modal-body-content').innerHTML = data;
+                    addSubmitForm();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function showModal(message, success) {
+            const modalRegistro = bootstrap.Modal.getInstance(document.getElementById('modal-id'));
+            modalRegistro.hide(); // Cierra el modal de registro/actualización
+
+            const modalConfirmacion = document.getElementById('successModal');
+            const modalMessage = document.getElementById('modal-message');
+            modalMessage.textContent = message;
+
+            if (success) {
+                modalConfirmacion.style.backgroundColor = '#11111bd';
+            } else {
+                modalConfirmacion.style.backgroundColor = '#dc3545';
+            }
+
+            modalConfirmacion.style.display = 'block';
+
+            const closeModalButton = document.getElementById('closeModal');
+            closeModalButton.onclick = function() {
+                modalConfirmacion.style.display = 'none'; // Cierra el modal de confirmación
+                location.reload(); // Recarga la página
+            };
         }
 
         function eliminarUsuario(id) {
             if (confirm('¿Está seguro de eliminar este usuario?')) {
-                fetch(`/metro/app/usuarios/eliminar/${id}`, {
+                fetch(`../app/usuarios/eliminar/${id}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -149,27 +188,24 @@
 
         function addSubmitForm() {
             const formulario = document.getElementById('registroForm');
+
             formulario.addEventListener('submit', function(event) {
-                event.preventDefault();
+                event.preventDefault(); // Evita el comportamiento por defecto
 
                 const formData = new FormData(event.currentTarget);
 
+                // Enviar los datos al backend para crear/actualizar
                 fetch('/metro/app/usuarios/crear', {
                         method: 'POST',
                         body: formData
                     })
                     .then(response => response.json())
                     .then(data => {
-                        if (data.success) {
-                            alert(data.message);
-                            window.location.href = '/metro/app/usuarios';
-                        } else {
-                            alert('Error al registrar usuario: ' + data.message);
-                        }
+                        showModal(data.message, data.success);
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        alert('Error al procesar la solicitud');
+                        showModal('Error al procesar la solicitud', false);
                     });
             });
         }

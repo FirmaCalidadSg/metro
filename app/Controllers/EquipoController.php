@@ -95,6 +95,8 @@ class EquipoController
         $nombre = $_POST['nombre'];
         $modelo = $_POST['modelo'];
         $estado = $_POST['estado'];
+        $id = $_POST['id'];
+        $dano = $_POST['dano'];
     
         // Obtener la definición por ID
         $equipo = $this->equipo->getEquipoById($id);

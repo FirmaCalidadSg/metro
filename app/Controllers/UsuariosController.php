@@ -49,18 +49,23 @@ class UsuariosController
         $usuario->nombres = $_POST['nombres'];
         $usuario->apellidos = $_POST['apellidos'];
         $usuario->usuario = $_POST['usuario'];
+    
         if ($usuario->id > 0) {
             $this->usuarios->updateUsuario($usuario);
             $message = 'Usuario actualizado exitosamente';
         } else {
             $this->usuarios->createUsuario($usuario);
         }
+    
+        // Respuesta en formato JSON
         $response = [
             'success' => true,
             'message' => $message
         ];
-        echo json_encode($response);
+        echo json_encode($response);  // Se devuelve al frontend el mensaje y el estado
     }
+    
+    
     public function eliminar($id = null)
     {
         try {

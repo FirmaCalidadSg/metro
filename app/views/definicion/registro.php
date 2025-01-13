@@ -41,146 +41,112 @@
             </div>
 
             <form method="POST" class="form-register" action="/metro/app/definicion/<?php echo isset($definicion->id) && $definicion->id > 0 ? 'actualizar' : 'crear'; ?>">
-            <div class="drops-downs">
-        <div class="element">
-            <div class="textfield">
-                <div class="input">
-                    <div class="text-wrapper-5">Planta</div>
-                    <div class="div-2">
-                        <select class="select-register" name="planta">
-                            <option value="">Seleccionar</option>
-                            <?php foreach ($planta as $value): ?>
-                                <option value="<?php echo $value->id; ?>"></option>
-                            <?php endforeach; ?>
-                        </select>
+                <div class="drops-downs">
+                    <div class="element">
+                        <div class="textfield-2">
+                            <div class="input">
+                                <div class="text-wrapper-5">Valor</div>
+                                <div class="div-2">
+                                    <input type="text" name="valor" class="select-register" value="<?php echo $definicion->valor ?? ''; ?>" placeholder="Valor" required>
+                                </div>
+                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
+                            </div>
+                        </div>
+
+                        <div class="textfield-2">
+                            <div class="input">
+                                <div class="text-wrapper-5">Nombre</div>
+                                <div class="div-2">
+                                    <input type="text" name="nombre" class="select-register" value="<?php echo $definicion->nombre ?? ''; ?>" placeholder="Nombre" required>
+                                </div>
+                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
+                            </div>
+                        </div>
                     </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                </div>
-            </div>
-            <div class="textfield-2">
-                <div class="input">
-                    <div class="text-wrapper-5">Linea</div>
-                    <div class="div-2">
-                        <select class="select-register" name="linea">
-                            <option value="">Seleccionar</option>
-                            <?php foreach ($linea as $value): ?>
-                                <option value="<?php echo $value->id; ?>"></option>
-                            <?php endforeach; ?>
-                        </select>
+                    <div class="element">
+                        <div class="textfield-2">
+                            <div class="input">
+                                <div class="text-wrapper-5">Descripción</div>
+                                <div class="div-2">
+                                    <input type="text" name="descripcion" class="select-register" value="<?php echo $definicion->descripcion ?? ''; ?>" placeholder="Descripción" required>
+                                </div>
+                            </div>
+                            <img class="underline" src="../../app/Assets/css/images/underline.svg" />
+                        </div>
                     </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
                 </div>
-            </div>
+
         </div>
 
-        <div class="element">
-            <div class="textfield-2">
-                <div class="input">
-                    <div class="text-wrapper-5">Valor</div>
-                    <div class="div-2">
-                        <input type="text" name="valor" class="select-register" value="<?php echo $definicion->valor ?? ''; ?>" placeholder="Valor" required>
-                    </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                </div>
-            </div>
+        <input type="hidden" id="id" name="id" value="<?php echo $definicion->id ?? ''; ?>">
+        <button type="submit" class="btn btn-primary">
+            <?php echo isset($definicion->id) && $definicion->id > 0 ? 'Actualizar' : 'Registrar'; ?>
+        </button>
+        </form>
 
-            <div class="textfield-2">
-                <div class="input">
-                    <div class="text-wrapper-5">Nombre</div>
-                    <div class="div-2">
-                        <input type="text" name="nombre" class="select-register" value="<?php echo $definicion->nombre ?? ''; ?>" placeholder="Nombre" required>
-                    </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
+        <!-- Modal HTML -->
+        <div class="modal" id="isSuccessModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-title">
+                    <h2 id="modal-title">¡Éxito!</h2>
                 </div>
+                <p class="modal-message" id="modal-message">La operación se completó correctamente.</p>
+                <button id="closeModal">Cerrar</button>
             </div>
         </div>
-        <div class="element">
-            <div class="textfield-2">
-                <div class="input">
-                    <div class="text-wrapper-5">Descripción</div>
-                    <div class="div-2">
-                        <input type="text" name="descripcion" class="select-register" value="<?php echo $definicion->descripcion ?? ''; ?>" placeholder="Descripción" required>
-                    </div>
-                </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                </div>
-            </div>
-        </div>
-
-    </div>
-    
-    <input type="hidden" id="id" name="id" value="<?php echo $definicion->id ?? ''; ?>">
-    <button type="submit" class="btn btn-primary">
-        <?php echo isset($definicion->id) && $definicion->id > 0 ? 'Actualizar' : 'Registrar'; ?>
-    </button>
-</form>
-
-    <!-- Modal HTML -->
-    <div class="modal" id="successModal" style="display: none;">
-    <div class="modal-content">
-        <div class="modal-title">
-            <h2 id="modal-title">¡Éxito!</h2>
-        </div>
-        <p class="modal-message" id="modal-message">La operación se completó correctamente.</p>
-        <button id="closeModal">Cerrar</button>
-    </div>
-</div>
 
 
 </body>
 <script>
-function showModal(message, isSuccess = true) {
-    document.getElementById('modal-message').innerHTML = message;
-    
-    document.getElementById('modal-title').innerHTML = isSuccess ? '¡Éxito!' : 'Error';
-    document.getElementById('successModal').style.backgroundColor = isSuccess ? '#111111bd' : '#F44336'; 
-    document.getElementById('successModal').style.display = 'flex'; 
-    document.getElementById('closeModal').addEventListener('click', function () {
-        closeModal(isSuccess);
-    });
+    function showModal(message, isSuccess = true) {
+        document.getElementById('modal-message').innerHTML = message;
 
-    setTimeout(() => {
-        closeModal(isSuccess);
-    }, 5000); 
-}
+        document.getElementById('modal-title').innerHTML = isSuccess ? '¡Éxito!' : 'Error';
+        document.getElementById('isSuccessModal').style.backgroundColor = isSuccess ? '#111111bd' : '#F44336';
+        document.getElementById('isSuccessModal').style.display = 'flex';
+        document.getElementById('closeModal').addEventListener('click', function() {
+            closeModal(isSuccess);
+        });
 
-function closeModal(isSuccess) {
-    document.getElementById('successModal').style.display = 'none';
-    
-    if (isSuccess) {
-        window.location.href = "<?php echo BASE_PATH; ?>/definicion";
+        setTimeout(() => {
+            closeModal(isSuccess);
+        }, 5000);
     }
-    else{
-        window.location.href = "<?php echo BASE_PATH; ?>/definicion";
-    }
-}
 
-document.querySelector('form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Evitar que se recargue la página al enviar el formulario
+    function closeModal(isSuccess) {
+        document.getElementById('isSuccessModal').style.display = 'none';
 
-    const formData = new FormData(this);
-
-    fetch('/metro/app/definicion/crear', {
-        method: 'POST',
-        body: formData
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la respuesta del servidor');
-        }
-        return response.json();
-    }).then(data => {
-        if (data.success) {
-            showModal(data.message, true);
+        if (isSuccess) {
+            window.location.href = "<?php echo BASE_PATH; ?>/definicion";
         } else {
-            showModal(data.message, false);
+            window.location.href = "<?php echo BASE_PATH; ?>/definicion";
         }
-    }).catch(error => {
-    /*     console.error('Error:', error); */
+    }
+
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault(); // Evitar que se recargue la página al enviar el formulario
+
+        const formData = new FormData(this);
+
+        fetch('/metro/app/definicion/crear', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor');
+            }
+            return response.json();
+        }).then(data => {
+            if (data.success) {
+                showModal(data.message, true);
+            } else {
+                showModal(data.message, false);
+            }
+        }).catch(error => {
+            /*     console.error('Error:', error); */
             showModal('Ocurrió un error inesperado', false);
         });
     });
-
 </script>
 
 </html>
-    

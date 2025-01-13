@@ -44,27 +44,6 @@
             <form method="POST" class="form-register" action="/metro/app/lineaproducto/editar/<?php echo $linea_producto->id; ?>">
                 <div class="drops-downs">
                     <div class="element">
-                        <div class="textfield">
-                            <div class="input">
-                                <div class="text-wrapper-5">Planta</div>
-                                <div class="div-2">
-                                    <!-- <input type="text" name="planta" class="select-register" value="<?php echo $linea_producto->planta ?? ''; ?>" required> -->
-                                </div>
-                                <img class="underline" src="../../Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Linea</div>
-                                <div class="div-2">
-                                    <!-- <input type="text" name="linea" class="select-register" value="<?php echo $lineaproducto->linea ?? ''; ?>" required> -->
-                                </div>
-                                <img class="underline" src="../../Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="element">
                         <div class="textfield-2">
                             <div class="input">
                                 <div class="text-wrapper-5">Linea</div>
@@ -79,7 +58,8 @@
                                 <img class="underline" src="../../Assets/css/images/underline.svg" />
                             </div>
                         </div>
-
+                    </div>
+                    <div class="element">
                         <div class="textfield-2">
                             <div class="input">
                                 <div class="text-wrapper-5">Producto</div>
@@ -94,8 +74,7 @@
                                 <img class="underline" src="../../Assets/css/images/underline.svg" />
                             </div>
                         </div>
-                    </div>
-                    <div class="element">
+
                         <div class="textfield-2">
                             <div class="input">
                                 <div class="text-wrapper-5">Capacidad de Producción</div>

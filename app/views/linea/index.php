@@ -45,6 +45,7 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Proceso</th>
+                        <th>Producto</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -54,15 +55,16 @@
                             <td><?php echo $linea->id; ?></td>
                             <td><?php echo $linea->nombre; ?></td>
                             <td><?php echo $linea->nombre_proceso; ?></td>
+                            <td> Valor</td>
                             <td>
                                 <button onclick="verLinea(<?php echo $linea->id; ?>)" class="btn-preview">
-                                    <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
+                                    <img class="btn-preview img" src="../app/Assets/css/images/preview.svg" title="Ver">
                                 </button>
-                                <bu href="../app/linea/editarFormulario/<?php echo $linea->id; ?>" class="btn-warning">
-                                    <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                                <a href="../app/linea/editarFormulario/<?php echo $linea->id; ?>" class="btn-warning">
+                                    <img class="btn-warning img" src="../app/Assets/css/images/edit.svg" title="Editar">
                                 </a>
                                 <button onclick="eliminarLinea(<?php echo $linea->id; ?>)" class="btn-danger">
-                                    <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                                    <img class="btn-danger img" src="../app/Assets/css/images/delete.svg" title="Eliminar">
                                 </button>
                             </td>
                         </tr>
