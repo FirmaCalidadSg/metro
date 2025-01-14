@@ -51,7 +51,7 @@
                                     <select class="select-register" name="equipo">
                                         <option value="">Seleccionar</option>
                                         <?php foreach ($equipos as $equipo) { ?>
-                                            <option value="<?php echo $equipo->id; ?>"><?php echo $equipo->nombre_equipo;?></option>
+                                            <option value="<?php echo $equipo->id; ?>"><?php echo $equipo->nombre;?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -102,7 +102,7 @@
         </form>
 
         <!-- Modal HTML -->
-        <div class="modal" id="successModal" style="display: none;">
+        <div class="modal-changes" id="successModal" style="display: none;">
             <div class="modal-content">
                 <div class="modal-title">
                     <h2 id="modal-title">¡Éxito!</h2>

@@ -43,7 +43,7 @@
                                 <button id="eliminarBtn" class="btn-danger" onclick="confirmarEliminar(<?php echo $usuario->usuario_id; ?>)">
                                     <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
                                 </button>
-                                <button onclick="cambiarCredenciales(<?php echo $usuario->id; ?>)" class="btn-adjust">
+                                <button onclick="cambiarCredenciales(<?php echo $usuario->usuario_id; ?>)" class="btn-adjust">
                                     <img class="btn-adjust img" src="/metro/app/Assets/css/images/set3.svg" title="Cambiar Credenciales">
                                 </button>
                             </td>
@@ -80,7 +80,7 @@
 
     <script>
         function cambiarCredenciales(id) {
-            window.location.href = '/metro/app/usuarios/credenciales/' + id;
+            window.location.href = '../app/usuarios/credenciales/' + id;
         }
 
         function editarUsuario(id) {

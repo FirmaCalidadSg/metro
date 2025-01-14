@@ -13,7 +13,7 @@ class Equipo
     public $nombre;
     public $modelo;
     public $estado;
-    public $dano;
+    public $dano_id;
     public function __construct()
     {
         error_log("Construyendo modelo Equipo");
@@ -37,6 +37,14 @@ class Equipo
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function getEquipoAndDanos($id){
+        $query = "SELECT * e.id as e.nombre, e.modelo, e.estado, d.descripcion
+        FROM equipo e
+        JOIN danos d ON e.danos = d.id";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
     public function getEquipoById($id)
     {
@@ -54,10 +62,11 @@ class Equipo
             $equipo->nombre = $result->nombre;
             $equipo->modelo = $result->modelo;
             $equipo->estado = $result->estado;
+            
             return $equipo;
         }
     
-        return null; // Si no se encuentra el equipo, retornamos null
+        return null; 
     }
     
 

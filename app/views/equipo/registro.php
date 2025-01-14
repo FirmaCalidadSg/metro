@@ -81,8 +81,7 @@
                                     <div class="text-wrapper-5">Daño</div>
                                     <div class="div-2">
                                         <select name="dano" class="select-register" required>
-                                            <option value="">Seleccione el daño</option>
-                                            <option value=<?php echo $daño->dano ?? ''; ?>><?php echo $daño->dano ?? 'select'; ?></option>
+                                            <option value=<?php echo $equipo->dano ?? ''; ?>><?php echo $equipo->dano ?? ''; ?></option>
                                             <!-- Opciones adicionales pueden ser agregadas aquí -->
                                         </select>
                                     </div>

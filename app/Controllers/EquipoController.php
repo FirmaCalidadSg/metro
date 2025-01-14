@@ -4,10 +4,12 @@ namespace App\Controllers;
 
 
 use App\Models\Equipo;
+use App\Models\DanoEquipo;
 
 class EquipoController
 {
     public $equipo;
+    public $dano;
 
     public function __construct()
     {
@@ -27,7 +29,7 @@ class EquipoController
     {
         $equipo = new Equipo();
         if (isset($_POST['id'])) {
-            $equipo = $this->equipo->getEquipoById($_POST['id']);
+            $equipo = $this->equipo->getEquipoAndDanos($_POST['id']);
         }
         require_once __DIR__ . '/../views/layouts/Sidebar2.php';
         require_once __DIR__ . '/../views/equipo/registro.php';
@@ -66,8 +68,10 @@ class EquipoController
         require_once __DIR__ . '/../views/equipo/vista-previa.php';
     }
     public function editarFormulario($id)
-    {
+    { 
+        
         $equipo = $this->equipo->getEquipoById($id);
+
     
         if (!$equipo) {
             $response = [
