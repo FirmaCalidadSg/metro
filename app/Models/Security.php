@@ -94,6 +94,6 @@ class Security
         $query = "SELECT id, rol FROM roles";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }

@@ -72,7 +72,6 @@
                 </div>
                 <div class="btn-container">
                     <button type="button" class="btn-editar" onclick="editarPais()">Editar</button>
-                    <button type="button" class="btn-eliminar" onclick="eliminarPais()">Eliminar</button>
                 </div>
             </form>
         </div>

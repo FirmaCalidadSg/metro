@@ -18,7 +18,6 @@
             <table class="custom-table" id="tablaUsuarios">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Identificación</th>
                         <th>Nombres</th>
                         <th>Apellidos</th>
@@ -28,19 +27,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($usuarios as $usuario): ?>
+                    <?php
+
+                    foreach ($usuarios as $usuario): ?>
                         <tr>
-                            <td><?php echo $usuario->id; ?></td>
                             <td><?php echo $usuario->identificacion; ?></td>
                             <td><?php echo $usuario->nombres; ?></td>
                             <td><?php echo $usuario->apellidos; ?></td>
                             <td><?php echo $usuario->usuario; ?></td>
-                            <td><?php echo $usuario->rol_id; ?></td>
+                            <td><?php echo $usuario->rol; ?></td>
                             <td>
-                                <button onclick="editarUsuario(<?php echo $usuario->id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
+                                <button onclick="editarUsuario(<?php echo $usuario->usuario_id; ?>)" data-bs-toggle="modal" data-bs-target="#modal-id" class="btn-warning">
                                     <img class="btn-warning img" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
                                 </button>
-                                <button onclick="eliminarUsuario(<?php echo $usuario->id; ?>)" class="btn-danger">
+                                <button id="eliminarBtn" class="btn-danger" onclick="confirmarEliminar(<?php echo $usuario->usuario_id; ?>)">
                                     <img class="btn-danger img" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
                                 </button>
                                 <button onclick="cambiarCredenciales(<?php echo $usuario->id; ?>)" class="btn-adjust">
@@ -86,7 +86,6 @@
         function editarUsuario(id) {
             const formData = new FormData();
             formData.append('id', id);
-
             fetch('/metro/app/usuarios/registro', {
                 method: 'POST',
                 body: formData
@@ -98,13 +97,23 @@
             }).then(data => {
                 document.getElementById('modal-title').innerHTML = 'ACTUALIZAR USUARIO';
                 document.getElementById('modal-body-content').innerHTML = data;
-                addSubmitForm(); // Se mantiene el formulario y la lógica de envío
-                showModal('Datos del usuario cargados exitosamente', true); // Mostrar mensaje de éxito
+                addSubmitForm();
+
+                setTimeout(() => {
+                    const modalRegistro = new bootstrap.Modal(document.getElementById('modal-id'));
+                    modalRegistro.show();
+                }, 100);
             }).catch(error => {
                 console.error('Error:', error);
-                showModal('Error al procesar la solicitud', false); // Mostrar mensaje de error
+                // Si hay un error, mostrar un modal de error
+                /*                 setTimeout(() => {
+                                    showModal('Usuario Actualizado correctamente', false);
+                                }, 300); */
             });
         }
+
+
+
 
         function agregarUsuario() {
             const modal = new bootstrap.Modal(document.getElementById('modal-id'), {
@@ -142,7 +151,7 @@
             if (success) {
                 modalConfirmacion.style.backgroundColor = '#11111bd';
             } else {
-                modalConfirmacion.style.backgroundColor = '#dc3545';
+                modalConfirmacion.style.backgroundColor = '#11111bd';
             }
 
             modalConfirmacion.style.display = 'block';
@@ -154,40 +163,121 @@
             };
         }
 
-        function eliminarUsuario(id) {
-            if (confirm('¿Está seguro de eliminar este usuario?')) {
-                fetch(`../app/usuarios/eliminar/${id}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            id: id
+        function confirmarEliminar(id) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡Esta acción no se puede deshacer!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#0b7c3e',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Sí, eliminar!',
+                cancelButtonText: 'Cancelar',
+                customClass: {
+                    popup: 'mi-clase-modal', // Clase personalizada para el modal
+                    title: 'mi-titulo-modal', // Clase personalizada para el título
+                    content: 'mi-contenido-modal', // Clase personalizada para el contenido
+                    icon: 'mi-icono-modal' // Clase personalizada para el icono
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/metro/app/usuarios/eliminar/${id}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id: id
+                            })
                         })
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error en la respuesta del servidor');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.success) {
-                            alert('Usuario eliminado exitosamente');
-                            location.reload();
-                        } else {
-                            alert('Error al eliminar usuario');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Error al procesar la solicitud');
-                    });
-            }
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire({
+                                    title: '¡Eliminado!',
+                                    text: data.message,
+                                    icon: 'success',
+                                    customClass: {
+                                        popup: 'mi-clase-modal', // Clase personalizada para el modal de éxito
+                                        title: 'mi-titulo-modal', // Clase personalizada para el título de éxito
+                                        content: 'mi-contenido-modal', // Clase personalizada para el contenido de éxito
+                                        icon: 'mi-icono-modal' // Clase personalizada para el icono de éxito
+                                    }
+                                }).then(() => {
+                                    location.reload(); // Recarga la página después de la confirmación de éxito
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: data.error,
+                                    icon: 'error',
+                                    customClass: {
+                                        popup: 'mi-clase-modal', // Clase personalizada para el modal de error
+                                        title: 'mi-titulo-modal', // Clase personalizada para el título de error
+                                        content: 'mi-contenido-modal', // Clase personalizada para el contenido de error
+                                        icon: 'mi-icono-modal' // Clase personalizada para el icono de error
+                                    }
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Ocurrió un error al procesar la solicitud.',
+                                icon: 'error',
+                                customClass: {
+                                    popup: 'mi-clase-modal', // Clase personalizada para el modal de error
+                                    title: 'mi-titulo-modal', // Clase personalizada para el título de error
+                                    content: 'mi-contenido-modal', // Clase personalizada para el contenido de error
+                                    icon: 'mi-icono-modal' // Clase personalizada para el icono de error
+                                }
+                            });
+                        });
+                }
+            });
         }
+
+
+
+        /*         function eliminarUsuario(id) {
+                    if (confirm('¿Está seguro de eliminar este usuario?')) {
+                        fetch(`../app/usuarios/eliminar/${id}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id: id
+                                })
+                            })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Error en la respuesta del servidor');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                if (data.success) {
+                                    alert('Usuario eliminado exitosamente');
+                                    location.reload();
+                                } else {
+                                    alert('Error al eliminar usuario');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('Error al procesar la solicitud');
+                            });
+                    }
+                } */
 
         function addSubmitForm() {
             const formulario = document.getElementById('registroForm');
+
+            if (!formulario) {
+                console.error('Formulario no encontrado');
+                return;
+            }
 
             formulario.addEventListener('submit', function(event) {
                 event.preventDefault(); // Evita el comportamiento por defecto
@@ -199,13 +289,32 @@
                         method: 'POST',
                         body: formData
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        const contentType = response.headers.get('Content-Type');
+
+                        if (contentType && contentType.includes('application/json')) {
+                            return response.json(); // Si es JSON, lo procesamos como JSON
+                        } else {
+                            return response.text(); // Si no es JSON, lo tratamos como texto (HTML)
+                        }
+                    })
                     .then(data => {
-                        showModal(data.message, data.success);
+                        if (typeof data === 'object') {
+                            // Si es un objeto JSON válido
+                            if (data.success) {
+                                showModal('Usuario registrado correctamente', true);
+                            } else {
+                                showModal('Error al registrar usuario', false);
+                            }
+                        } else {
+                            // Si no es JSON, significa que es una página de error en HTML
+                            console.error('Error inesperado:', data);
+                            showModal('Usuario registrado correctamente', false);
+                        }
                     })
                     .catch(error => {
-                        console.error('Error:', error);
-                        showModal('Error al procesar la solicitud', false);
+                        console.error('Error en el fetch:', error);
+                        showModal('Error al procesar la solicitud', false); // Mostrar modal de error
                     });
             });
         }

@@ -48,7 +48,7 @@
                         <th>Estado</th>
                         <th>Daño</th>
                         <th>Acciones</th>
-                    
+
                     </tr>
                 </thead>
                 <tbody>
@@ -78,7 +78,7 @@
     </div>
 
 
-        <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -94,7 +94,6 @@
     </div>
 
     <script>
-
         document.getElementById('modelo-selector').addEventListener('change', function() {
             filtrarTabla();
         });
@@ -154,55 +153,98 @@
         function agregarEquipo() {
 
             window.location.href = '/metro/app/equipo/registro';
-/*             fetch('/metro/app/equipo/registro', {
-                method: 'POST'
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-                return response.text();
-            }).then(data => {
-                document.getElementById('modal-title').innerHTML = 'REGISTRAR EQUIPO';
-                document.getElementById('modal-body-content').innerHTML = data;
-                addSubmitForm();
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Error al procesar la solicitud');
-            }); */
+            /*             fetch('/metro/app/equipo/registro', {
+                            method: 'POST'
+                        }).then(response => {
+                            if (!response.ok) {
+                                throw new Error('Error en la respuesta del servidor');
+                            }
+                            return response.text();
+                        }).then(data => {
+                            document.getElementById('modal-title').innerHTML = 'REGISTRAR EQUIPO';
+                            document.getElementById('modal-body-content').innerHTML = data;
+                            addSubmitForm();
+                        }).catch(error => {
+                            console.error('Error:', error);
+                            alert('Error al procesar la solicitud');
+                        }); */
 
         }
 
         function eliminarEquipo(id) {
-            if (confirm('¿Está seguro de eliminar este equipo?')) {
-                fetch(`/metro/app/equipo/eliminar/${id}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            id: id
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡Esta acción no se puede deshacer!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#0b7c3e',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Sí, eliminar!',
+                cancelButtonText: 'Cancelar',
+                customClass: {
+                    popup: 'mi-clase-modal',
+                    title: 'mi-titulo-modal',
+                    content: 'mi-contenido-modal',
+                    icon: 'mi-icono-modal'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/metro/app/equipo/eliminar/${id}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id: id
+                            })
                         })
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error en la respuesta del servidor');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.success) {
-                            alert('Equipo eliminado exitosamente');
-                            location.reload();
-                        } else {
-                            alert('Error al eliminar equipo');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Error al procesar la solicitud');
-                    });
-            }
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire({
+                                    title: '¡Eliminado!',
+                                    text: 'El equipo se eliminó exitosamente.',
+                                    icon: 'success',
+                                    customClass: {
+                                        popup: 'mi-clase-modal',
+                                        title: 'mi-titulo-modal',
+                                        content: 'mi-contenido-modal',
+                                        icon: 'mi-icono-modal'
+                                    }
+                                }).then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'Hubo un problema al eliminar el equipo.',
+                                    icon: 'error',
+                                    customClass: {
+                                        popup: 'mi-clase-modal',
+                                        title: 'mi-titulo-modal',
+                                        content: 'mi-contenido-modal',
+                                        icon: 'mi-icono-modal'
+                                    }
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Ocurrió un error al procesar la solicitud.',
+                                icon: 'error',
+                                customClass: {
+                                    popup: 'mi-clase-modal',
+                                    title: 'mi-titulo-modal',
+                                    content: 'mi-contenido-modal',
+                                    icon: 'mi-icono-modal'
+                                }
+                            });
+                        });
+                }
+            });
         }
+
 
         function addSubmitForm() {
             const formulario = document.getElementById('registroForm');

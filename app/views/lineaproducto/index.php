@@ -78,98 +78,114 @@
     </div>
 
 
-        <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modal-title"></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="modal-body-content">
-                        ...
-                    </div>
-
+    <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modal-title"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body" id="modal-body-content">
+                    ...
+                </div>
+
             </div>
+        </div>
 
-            <script>
-                document.getElementById('linea-selector').addEventListener('change', function() {
-                    filtrarTabla();
+        <script>
+            document.getElementById('linea-selector').addEventListener('change', function() {
+                filtrarTabla();
+            });
+
+            document.getElementById('producto-selector').addEventListener('change', function() {
+                filtrarTabla();
+            });
+
+            function filtrarTabla() {
+                var lineaSeleccionada = document.getElementById('linea-selector').value;
+                var productoSeleccionado = document.getElementById('producto-selector').value;
+
+                var filas = document.querySelectorAll('#tablaLineasProductos tbody tr');
+
+                filas.forEach(function(fila) {
+                    var lineaId = fila.cells[0].textContent.trim();
+                    var producto = fila.cells[2].textContent.trim();
+
+                    if ((lineaSeleccionada === "" || lineaId == lineaSeleccionada) &&
+                        (productoSeleccionado === "" || producto == productoSeleccionado)) {
+                        fila.style.display = "";
+                    } else {
+                        fila.style.display = "none";
+                    }
+                });
+            }
+
+            function goBack() {
+                window.history.back();
+            }
+
+            function editarLineaProducto(id) {
+
+                const formData = new FormData();
+                formData.append('id', id);
+                fetch('/metro/app/lineaproducto/registro', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta del servidor');
+                    }
+                    return response.text();
+                }).then(data => {
+                    document.getElementById('modal-title').innerHTML = 'ACTUALIZAR LINEA Y PRODUCTO';
+                    document.getElementById('modal-body-content').innerHTML = data;
+                    addSubmitForm();
+                }).catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al procesar la solicitud');
                 });
 
-                document.getElementById('producto-selector').addEventListener('change', function() {
-                    filtrarTabla();
-                });
+            }
 
-                function filtrarTabla() {
-                    var lineaSeleccionada = document.getElementById('linea-selector').value;
-                    var productoSeleccionado = document.getElementById('producto-selector').value;
+            function agregarLineaProducto() {
+                window.location.href = '/metro/app/lineaproducto/registro';
 
-                    var filas = document.querySelectorAll('#tablaLineasProductos tbody tr');
+                /*                     fetch('/metro/app/lineaproducto/registro', {
+                                        method: 'POST'
+                                    }).then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Error en la respuesta del servidor');
+                                        }
+                                        return response.text();
+                                    }).then(data => {
+                                        document.getElementById('modal-title').innerHTML = 'REGISTRAR LINEA Y PRODUCTO';
+                                        document.getElementById('modal-body-content').innerHTML = data;
+                                        addSubmitForm();
+                                    }).catch(error => {
+                                        console.error('Error:', error);
+                                        alert('Error al procesar la solicitud');
+                                    }); */
 
-                    filas.forEach(function(fila) {
-                        var lineaId = fila.cells[0].textContent.trim();
-                        var producto = fila.cells[2].textContent.trim();
+            }
 
-                        if ((lineaSeleccionada === "" || lineaId == lineaSeleccionada) &&
-                            (productoSeleccionado === "" || producto == productoSeleccionado)) {
-                            fila.style.display = "";
-                        } else {
-                            fila.style.display = "none";
-                        }
-                    });
-                }
-
-                function goBack() {
-                    window.history.back();
-                }
-
-                function editarLineaProducto(id) {
-
-                    const formData = new FormData();
-                    formData.append('id', id);
-                    fetch('/metro/app/lineaproducto/registro', {
-                        method: 'POST',
-                        body: formData
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error en la respuesta del servidor');
-                        }
-                        return response.text();
-                    }).then(data => {
-                        document.getElementById('modal-title').innerHTML = 'ACTUALIZAR LINEA Y PRODUCTO';
-                        document.getElementById('modal-body-content').innerHTML = data;
-                        addSubmitForm();
-                    }).catch(error => {
-                        console.error('Error:', error);
-                        alert('Error al procesar la solicitud');
-                    });
-
-                }
-
-                function agregarLineaProducto() {
-                    window.location.href = '/metro/app/lineaproducto/registro';
-
-/*                     fetch('/metro/app/lineaproducto/registro', {
-                        method: 'POST'
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error en la respuesta del servidor');
-                        }
-                        return response.text();
-                    }).then(data => {
-                        document.getElementById('modal-title').innerHTML = 'REGISTRAR LINEA Y PRODUCTO';
-                        document.getElementById('modal-body-content').innerHTML = data;
-                        addSubmitForm();
-                    }).catch(error => {
-                        console.error('Error:', error);
-                        alert('Error al procesar la solicitud');
-                    }); */
-
-                }
-
-                function eliminarLineaProducto(id) {
-                    if (confirm('¿Está seguro de eliminar esta linea y producto?')) {
+            function eliminarLineaProducto(id) {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡Esta acción no se puede deshacer!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#0b7c3e',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!',
+                    cancelButtonText: 'Cancelar',
+                    customClass: {
+                        popup: 'mi-clase-modal',
+                        title: 'mi-titulo-modal',
+                        content: 'mi-contenido-modal',
+                        icon: 'mi-icono-modal'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
                         fetch(`/metro/app/lineaproducto/eliminar/${id}`, {
                                 method: 'POST',
                                 headers: {
@@ -179,55 +195,82 @@
                                     id: id
                                 })
                             })
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('Error en la respuesta del servidor');
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                if (data.success) {
-                                    alert('LineaProducto eliminado exitosamente');
-                                    location.reload();
-                                } else {
-                                    alert('Error al eliminar linea y producto');
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                alert('Error al procesar la solicitud');
-                            });
-                    }
-                }
-
-                function addSubmitForm() {
-                    const formulario = document.getElementById('registroForm');
-                    formulario.addEventListener('submit', function(event) {
-                        event.preventDefault();
-
-                        const formData = new FormData(event.currentTarget);
-
-                        fetch('/metro/app/lineaproducto/crear', {
-                                method: 'POST',
-                                body: formData
-                            })
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success) {
-                                    alert(data.message);
-                                    window.location.href = '/metro/app/lineaproducto';
+                                    Swal.fire({
+                                        title: '¡Eliminado!',
+                                        text: 'La línea y el producto se eliminaron exitosamente.',
+                                        icon: 'success',
+                                        customClass: {
+                                            popup: 'mi-clase-modal',
+                                            title: 'mi-titulo-modal',
+                                            content: 'mi-contenido-modal',
+                                            icon: 'mi-icono-modal'
+                                        }
+                                    }).then(() => {
+                                        location.reload();
+                                    });
                                 } else {
-                                    console.error(data);
-                                    alert('Error al registrar linea y producto: ' + data.message);
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'Hubo un problema al eliminar la línea y el producto.',
+                                        icon: 'error',
+                                        customClass: {
+                                            popup: 'mi-clase-modal',
+                                            title: 'mi-titulo-modal',
+                                            content: 'mi-contenido-modal',
+                                            icon: 'mi-icono-modal'
+                                        }
+                                    });
                                 }
                             })
                             .catch(error => {
-                                console.error('Error:', error);
-                                alert('Error al procesar la solicitud');
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'Ocurrió un error al procesar la solicitud.',
+                                    icon: 'error',
+                                    customClass: {
+                                        popup: 'mi-clase-modal',
+                                        title: 'mi-titulo-modal',
+                                        content: 'mi-contenido-modal',
+                                        icon: 'mi-icono-modal'
+                                    }
+                                });
                             });
-                    });
-                }
-            </script>
+                    }
+                });
+            }
+
+
+            function addSubmitForm() {
+                const formulario = document.getElementById('registroForm');
+                formulario.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const formData = new FormData(event.currentTarget);
+
+                    fetch('/metro/app/lineaproducto/crear', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert(data.message);
+                                window.location.href = '/metro/app/lineaproducto';
+                            } else {
+                                console.error(data);
+                                alert('Error al registrar linea y producto: ' + data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Error al procesar la solicitud');
+                        });
+                });
+            }
+        </script>
 </body>
 
 </html>

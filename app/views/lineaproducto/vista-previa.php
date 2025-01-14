@@ -84,7 +84,6 @@
                 </div>
                 <div class="btn-container">
                     <button type="button" class="btn-editar" onclick="editarLineaProducto()">Editar</button>
-                    <button type="button" class="btn-eliminar" onclick="eliminarLineaProducto()">Eliminar</button>
                 </div>
             </form>
         </div>
@@ -94,38 +93,7 @@
     function editarLineaProducto() {
         window.location.href = '../../lineaproducto/editarFormulario/<?php echo $linea_producto->id; ?>';
     }
-
-    function eliminarLineaProducto(id) {
-        if (confirm('¿Está seguro de eliminar esta linea?')) {
-            fetch(`../../lineaproducto/eliminar/${id}`, {
-                    method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            id: id
-                        })
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error en la respuesta del servidor');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.success) {
-                            alert('Linea y/o producto eliminada exitosamente');
-                            location.reload();
-                        } else {
-                            alert('Error al eliminar linea y/o producto');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                alert('Error al procesar la solicitud');
-            });
-        }
-    }
+    
 </script>
 
 </html>

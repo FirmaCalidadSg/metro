@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../app/Assets/css/style.css" />
   <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
   <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
+  <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
 
 </head>
 
@@ -20,13 +21,18 @@
     </div>
     <div class="frame">
       <div class="sidebar-option">
+
         <img class="img" src="../app/Assets/css/images/siderbar1.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Nuevos</div>
         </div>
         <div class="sub-menu">
+        <li class="sub-item">
           <a class="nav-link" href="<?php echo BASE_PATH; ?>/controlCapacidad">Control De Capacidades</a>
+        </li>
+          <li class="sub-item">
           <a href="#">Control De Capacidades batch</a>
+          </li>
         </div>
       </div>
       <div class="sidebar-option">

@@ -1208,6 +1208,17 @@
   color: #0a843c;
 }
 
+.proporty-slider .sub-item{
+  display: flex;
+  width: 100%;
+  position: relative;
+  color: #064d26;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 120;
+  font-size: 12px;
+  line-height: 14.0px;
+  text-decoration: none;
+}
 .property-slider .locura {
   position: relative;
   width: 26px;
@@ -5331,7 +5342,6 @@ button#btnAgregarProducto.disabled {
   letter-spacing: var(--body-1-semibold-letter-spacing);
   line-height: var(--body-1-semibold-line-height);
   font-style: var(--body-1-semibold-font-style);
-  border-radius: 20px;
 }
 
 .custom-table td {
@@ -5344,16 +5354,11 @@ button#btnAgregarProducto.disabled {
   letter-spacing: var(--body-1-semibold-letter-spacing);
   line-height: var(--body-1-semibold-line-height);
   text-transform: none;
-  border-radius: 20px;
-}
-
-.custom-table thead {
   background-color: #ffffff;
-  color: black;
-  text-transform: uppercase;
-  text-align: start;
-  font-weight: 300;
-  border-radius: 20px;
+}
+.custom-table td:hover {
+  background-color: #f2f2f2;
+  border-radius: 1px;
 }
 
 .custom-table tbody tr:nth-child(even) {
@@ -7081,5 +7086,29 @@ button#btnAgregarProducto.disabled {
     letter-spacing: var(--body-1-regular-letter-spacing);
     line-height: var(--body-1-regular-line-height);
     text-align: center;
+  
 }
+.mi-clase-modal {
+  font-family: var(--body-1-regular-font-family);
+  padding: 2rem; 
+}
+
+.mi-titulo-modal {
+  font-family: var(--body-1-semibold-font-family);
+  color: #0b8642;
+}
+
+.mi-contenido-modal {
+  font-family: var(--body-1-regular-font-family);
+}
+
+.mi-icono-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centrar verticalmente */
+    margin-left: 40%;
+  
+}
+
 

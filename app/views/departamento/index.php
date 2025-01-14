@@ -90,33 +90,33 @@
         </div>
 
         <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Escuchar cambios en los selects
-    document.getElementById('departamento-selector').addEventListener('change', filtrarTabla);
-    document.getElementById('pais-selector').addEventListener('change', filtrarTabla);
+            document.addEventListener('DOMContentLoaded', function() {
+                // Escuchar cambios en los selects
+                document.getElementById('departamento-selector').addEventListener('change', filtrarTabla);
+                document.getElementById('pais-selector').addEventListener('change', filtrarTabla);
 
-    // Función para filtrar la tabla
-    function filtrarTabla() {
-        var departamentoSeleccionado = document.getElementById('departamento-selector').value;
-        var paisSeleccionado = document.getElementById('pais-selector').value;
+                // Función para filtrar la tabla
+                function filtrarTabla() {
+                    var departamentoSeleccionado = document.getElementById('departamento-selector').value;
+                    var paisSeleccionado = document.getElementById('pais-selector').value;
 
-        // Obtener todas las filas de la tabla
-        var filas = document.querySelectorAll('#tablaDepartamento tbody tr');
+                    // Obtener todas las filas de la tabla
+                    var filas = document.querySelectorAll('#tablaDepartamento tbody tr');
 
-        filas.forEach(function(fila) {
-            var departamento = fila.cells[1].textContent.trim(); // Columna "Departamento"
-            var pais = fila.cells[2].textContent.trim();         // Columna "Pais"
+                    filas.forEach(function(fila) {
+                        var departamento = fila.cells[1].textContent.trim(); // Columna "Departamento"
+                        var pais = fila.cells[2].textContent.trim(); // Columna "Pais"
 
-            // Filtrar por departamento y país, si están seleccionados
-            if ((departamentoSeleccionado === "" || departamento == departamentoSeleccionado) &&
-                (paisSeleccionado === "" || pais == paisSeleccionado)) {
-                fila.style.display = "";
-            } else {
-                fila.style.display = "none";
-            }
-        });
-    }
-});
+                        // Filtrar por departamento y país, si están seleccionados
+                        if ((departamentoSeleccionado === "" || departamento == departamentoSeleccionado) &&
+                            (paisSeleccionado === "" || pais == paisSeleccionado)) {
+                            fila.style.display = "";
+                        } else {
+                            fila.style.display = "none";
+                        }
+                    });
+                }
+            });
 
 
 
@@ -152,55 +152,98 @@ document.addEventListener('DOMContentLoaded', function() {
             function agregarDepartamento() {
                 window.location.href = '/metro/app/departamento/registro';
 
- /*                fetch('/metro/app/departamento/registro', {
-                    method: 'POST'
-                }).then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error en la respuesta del servidor');
-                    }
-                    return response.text();
-                }).then(data => {
-                    document.getElementById('modal-title').innerHTML = 'REGISTRAR DEPARTAMENTO';
-                    document.getElementById('modal-body-content').innerHTML = data;
-                    addSubmitForm();
-                }).catch(error => {
-                    console.error('Error:', error);
-                    alert('Error al procesar la solicitud');
-                });
- */
+                /*                fetch('/metro/app/departamento/registro', {
+                                   method: 'POST'
+                               }).then(response => {
+                                   if (!response.ok) {
+                                       throw new Error('Error en la respuesta del servidor');
+                                   }
+                                   return response.text();
+                               }).then(data => {
+                                   document.getElementById('modal-title').innerHTML = 'REGISTRAR DEPARTAMENTO';
+                                   document.getElementById('modal-body-content').innerHTML = data;
+                                   addSubmitForm();
+                               }).catch(error => {
+                                   console.error('Error:', error);
+                                   alert('Error al procesar la solicitud');
+                               });
+                */
             }
 
             function eliminarDepartamento(id) {
-                if (confirm('¿Está seguro de eliminar este departamento?')) {
-                    fetch(`/metro/app/departamento/eliminar/${id}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                id: id
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡Esta acción no se puede deshacer!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#0b7c3e',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!',
+                    cancelButtonText: 'Cancelar',
+                    customClass: {
+                        popup: 'mi-clase-modal',
+                        title: 'mi-titulo-modal',
+                        content: 'mi-contenido-modal',
+                        icon: 'mi-icono-modal'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`/metro/app/departamento/eliminar/${id}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id: id
+                                })
                             })
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Error en la respuesta del servidor');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.success) {
-                                alert('Departamento eliminado exitosamente');
-                                location.reload();
-                            } else {
-                                alert('Error al eliminar departamento');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('Error al procesar la solicitud');
-                        });
-                }
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Swal.fire({
+                                        title: '¡Eliminado!',
+                                        text: data.message,
+                                        icon: 'success',
+                                        customClass: {
+                                            popup: 'mi-clase-modal',
+                                            title: 'mi-titulo-modal',
+                                            content: 'mi-contenido-modal',
+                                            icon: 'mi-icono-modal'
+                                        }
+                                    }).then(() => {
+                                        location.reload(); // Recargar la página después de eliminar
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: data.error,
+                                        icon: 'error',
+                                        customClass: {
+                                            popup: 'mi-clase-modal',
+                                            title: 'mi-titulo-modal',
+                                            content: 'mi-contenido-modal',
+                                            icon: 'mi-icono-modal'
+                                        }
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'Ocurrió un error al procesar la solicitud.',
+                                    icon: 'error',
+                                    customClass: {
+                                        popup: 'mi-clase-modal',
+                                        title: 'mi-titulo-modal',
+                                        content: 'mi-contenido-modal',
+                                        icon: 'mi-icono-modal'
+                                    }
+                                });
+                            });
+                    }
+                });
             }
+
 
             function addSubmitForm() {
                 const formulario = document.getElementById('registroForm');

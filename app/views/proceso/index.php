@@ -71,7 +71,7 @@
             </table>
         </div>
 
-            <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -101,19 +101,20 @@
 
                 var filas = document.querySelectorAll('#tablaProcesos tbody tr');
 
-            filas.forEach(function(fila) {
-                var procesoId = fila.cells[0].textContent.trim();
-                var linea = fila.cells[2].textContent.trim();
-                var descripcion = fila.cells[3].textContent.trim();
+                filas.forEach(function(fila) {
+                    var procesoId = fila.cells[0].textContent.trim();
+                    var linea = fila.cells[2].textContent.trim();
+                    var descripcion = fila.cells[3].textContent.trim();
 
-                if ((procesoSeleccionado === "" || procesoId == procesoSeleccionado) &&
-                    (lineaSeleccionada === "" || linea == lineaSeleccionada)) {
-                    fila.style.display = "";
-                } else {
-                    fila.style.display = "none";
-                }
-            });
-        }
+                    if ((procesoSeleccionado === "" || procesoId == procesoSeleccionado) &&
+                        (lineaSeleccionada === "" || linea == lineaSeleccionada)) {
+                        fila.style.display = "";
+                    } else {
+                        fila.style.display = "none";
+                    }
+                });
+            }
+
             function goBack() {
                 window.history.back();
             }
@@ -144,54 +145,96 @@
             function agregarProceso() {
                 window.location.href = '/metro/app/proceso/registro';
 
-/*                 fetch('/metro/app/proceso/registro', {
-                    method: 'POST'
-                }).then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error en la respuesta del servidor');
-                    }
-                    return response.text();
-                }).then(data => {
-                    document.getElementById('modal-title').innerHTML = 'REGISTRAR PROCESO';
-                    document.getElementById('modal-body-content').innerHTML = data;
-                    addSubmitForm();
-                }).catch(error => {
-                    console.error('Error:', error);
-                    alert('Error al procesar la solicitud');
-                }); */
+                /*                 fetch('/metro/app/proceso/registro', {
+                                    method: 'POST'
+                                }).then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Error en la respuesta del servidor');
+                                    }
+                                    return response.text();
+                                }).then(data => {
+                                    document.getElementById('modal-title').innerHTML = 'REGISTRAR PROCESO';
+                                    document.getElementById('modal-body-content').innerHTML = data;
+                                    addSubmitForm();
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                    alert('Error al procesar la solicitud');
+                                }); */
 
             }
 
             function eliminarProceso(id) {
-                if (confirm('¿Está seguro de eliminar este proceso?')) {
-                    fetch(`/metro/app/proceso/eliminar/${id}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                id: id
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡Esta acción no se puede deshacer!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#0b7c3e',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!',
+                    cancelButtonText: 'Cancelar',
+                    customClass: {
+                        popup: 'mi-clase-modal',
+                        title: 'mi-titulo-modal',
+                        content: 'mi-contenido-modal',
+                        icon: 'mi-icono-modal'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`/metro/app/proceso/eliminar/${id}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id: id
+                                })
                             })
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Error en la respuesta del servidor');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.success) {
-                                alert('Proceso eliminado exitosamente');
-                                location.reload();
-                            } else {
-                                alert('Error al eliminar proceso');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('Error al procesar la solicitud');
-                        });
-                }
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Swal.fire({
+                                        title: '¡Eliminado!',
+                                        text: 'El proceso se eliminó exitosamente.',
+                                        icon: 'success',
+                                        customClass: {
+                                            popup: 'mi-clase-modal',
+                                            title: 'mi-titulo-modal',
+                                            content: 'mi-contenido-modal',
+                                            icon: 'mi-icono-modal'
+                                        }
+                                    }).then(() => {
+                                        location.reload();
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'Hubo un problema al eliminar el proceso.',
+                                        icon: 'error',
+                                        customClass: {
+                                            popup: 'mi-clase-modal',
+                                            title: 'mi-titulo-modal',
+                                            content: 'mi-contenido-modal',
+                                            icon: 'mi-icono-modal'
+                                        }
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'Ocurrió un error al procesar la solicitud.',
+                                    icon: 'error',
+                                    customClass: {
+                                        popup: 'mi-clase-modal',
+                                        title: 'mi-titulo-modal',
+                                        content: 'mi-contenido-modal',
+                                        icon: 'mi-icono-modal'
+                                    }
+                                });
+                            });
+                    }
+                });
             }
 
             function addSubmitForm() {

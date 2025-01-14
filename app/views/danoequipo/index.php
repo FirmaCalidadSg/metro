@@ -102,24 +102,25 @@
                 filtrarTabla();
             });
 
-        function filtrarTabla() {
-            var equipoSeleccionado = document.getElementById('equipo-selector').value;
-            var estadoSeleccionado = document.getElementById('estado-selector').value;
+            function filtrarTabla() {
+                var equipoSeleccionado = document.getElementById('equipo-selector').value;
+                var estadoSeleccionado = document.getElementById('estado-selector').value;
 
-            var filas = document.querySelectorAll('#tablaDano tbody tr');
+                var filas = document.querySelectorAll('#tablaDano tbody tr');
 
-            filas.forEach(function(fila) {
-                var equipoId = fila.cells[0].textContent.trim();
-                var estado = fila.cells[4].textContent.trim();
+                filas.forEach(function(fila) {
+                    var equipoId = fila.cells[0].textContent.trim();
+                    var estado = fila.cells[4].textContent.trim();
 
-                if ((equipoSeleccionado === "" || equipoId == equipoSeleccionado) &&
-                    (estadoSeleccionado === "" || estado == estadoSeleccionado)) {
-                    fila.style.display = "";
-                } else {
-                    fila.style.display = "none";
-                }
-            });
-        }
+                    if ((equipoSeleccionado === "" || equipoId == equipoSeleccionado) &&
+                        (estadoSeleccionado === "" || estado == estadoSeleccionado)) {
+                        fila.style.display = "";
+                    } else {
+                        fila.style.display = "none";
+                    }
+                });
+            }
+
             function goBack() {
                 window.history.back();
             }
@@ -150,55 +151,98 @@
             function agregarDano() {
                 window.location.href = '/metro/app/danoequipo/registro';
 
-/*                 fetch('/metro/app/danoequipo/registro', {
-                    method: 'POST'
-                }).then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error en la respuesta del servidor');
-                    }
-                    return response.text();
-                }).then(data => {
-                    document.getElementById('modal-title').innerHTML = 'REGISTRAR DAÑO';
-                    document.getElementById('modal-body-content').innerHTML = data;
-                    addSubmitForm();
-                }).catch(error => {
-                    console.error('Error:', error);
-                    alert('Error al procesar la solicitud');
-                }); */
+                /*                 fetch('/metro/app/danoequipo/registro', {
+                                    method: 'POST'
+                                }).then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Error en la respuesta del servidor');
+                                    }
+                                    return response.text();
+                                }).then(data => {
+                                    document.getElementById('modal-title').innerHTML = 'REGISTRAR DAÑO';
+                                    document.getElementById('modal-body-content').innerHTML = data;
+                                    addSubmitForm();
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                    alert('Error al procesar la solicitud');
+                                }); */
 
             }
 
             function eliminarDano(id) {
-                if (confirm('¿Está seguro de eliminar este dano?')) {
-                    fetch(`/metro/app/danoequipo/eliminar/${id}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                id: id
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡Esta acción no se puede deshacer!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#0b7c3e',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!',
+                    cancelButtonText: 'Cancelar',
+                    customClass: {
+                        popup: 'mi-clase-modal',
+                        title: 'mi-titulo-modal',
+                        content: 'mi-contenido-modal',
+                        icon: 'mi-icono-modal'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`/metro/app/danoequipo/eliminar/${id}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id: id
+                                })
                             })
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Error en la respuesta del servidor');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.success) {
-                                alert('Daño eliminado exitosamente');
-                                location.reload();
-                            } else {
-                                alert('Error al eliminar dano');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('Error al procesar la solicitud');
-                        });
-                }
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Swal.fire({
+                                        title: '¡Eliminado!',
+                                        text: 'El daño se eliminó exitosamente.',
+                                        icon: 'success',
+                                        customClass: {
+                                            popup: 'mi-clase-modal',
+                                            title: 'mi-titulo-modal',
+                                            content: 'mi-contenido-modal',
+                                            icon: 'mi-icono-modal'
+                                        }
+                                    }).then(() => {
+                                        location.reload();
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'Hubo un problema al eliminar el daño.',
+                                        icon: 'error',
+                                        customClass: {
+                                            popup: 'mi-clase-modal',
+                                            title: 'mi-titulo-modal',
+                                            content: 'mi-contenido-modal',
+                                            icon: 'mi-icono-modal'
+                                        }
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'Ocurrió un error al procesar la solicitud.',
+                                    icon: 'error',
+                                    customClass: {
+                                        popup: 'mi-clase-modal',
+                                        title: 'mi-titulo-modal',
+                                        content: 'mi-contenido-modal',
+                                        icon: 'mi-icono-modal'
+                                    }
+                                });
+                            });
+                    }
+                });
             }
+
 
             function addSubmitForm() {
                 const formulario = document.getElementById('registroForm');

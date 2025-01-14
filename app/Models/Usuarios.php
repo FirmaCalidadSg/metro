@@ -16,9 +16,11 @@ class Usuarios
     public $nombres;
     public $usuario;
     public $rol_id;
+    public $usuario_id;
+
     public function __construct()
     {
-        error_log("Construyendo modelo Usuarios");
+        // error_log("Construyendo modelo Usuarios");
         try {
             $this->db = Database::getInstance()->getConnection();
             $this->db->query('SELECT 1');
@@ -33,12 +35,20 @@ class Usuarios
 
     public function getAllUsuarios()
     {
-        $query = "SELECT * FROM usuarios";
+        $query = "SELECT a.id as usuario_id, a.apellidos, a.nombres, a.usuario, a.credencial,a.identificacion, r.rol 
+        FROM usuarios a 
+        JOIN roles r ON a.rol_id = r.id";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-
+    public function getUsuarios1()
+    {
+        $query = "SELECT * FROM usuarios JOIN roles ON rol_id = roles.id";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 
     public function getUsuarioById($id)
     {
@@ -46,7 +56,8 @@ class Usuarios
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+        return $result;
     }
 
     public function createUsuario(Usuarios $usuario)
@@ -61,7 +72,8 @@ class Usuarios
         $stmt->bindParam(':credencial', $usuario->credencial, PDO::PARAM_STR);
         $stmt->bindParam(':rol_id', $usuario->rol_id, PDO::PARAM_STR);
         $stmt->bindParam(':identificacion', $usuario->identificacion, PDO::PARAM_STR);
-        return $stmt->execute();
+/*         $stmt->bindParam('id', $usuario->usuario_id, PDO::PARAM_STR);
+ */        return $stmt->execute();
     }
 
     public function updateUsuario(Usuarios $usuario)

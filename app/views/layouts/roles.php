@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
   <script src="../app/Assets/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="../app/Assets/jquery/jquery.min.js"></script>
+  <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
 
 
 </head>

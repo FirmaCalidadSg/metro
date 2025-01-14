@@ -167,36 +167,79 @@
         }
 
         function eliminarCiudad(id) {
-            if (confirm('¿Está seguro de eliminar este ciudad?')) {
-                fetch(`/metro/app/ciudad/eliminar/${id}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            id: id
-                        })
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error en la respuesta del servidor');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.success) {
-                            alert('Ciudad eliminado exitosamente');
-                            location.reload();
-                        } else {
-                            alert('Error al eliminar ciudad');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Error al procesar la solicitud');
-                    });
-            }
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡Esta acción no se puede deshacer!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#0b7c3e',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí, eliminar!',
+        cancelButtonText: 'Cancelar',
+        customClass: {
+            popup: 'mi-clase-modal', // Clase personalizada para el modal
+            title: 'mi-titulo-modal', // Clase personalizada para el título
+            content: 'mi-contenido-modal', // Clase personalizada para el contenido
+            icon: 'mi-icono-modal' // Clase personalizada para el icono
         }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`/metro/app/ciudad/eliminar/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: id
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: '¡Eliminado!',
+                            text: data.message,
+                            icon: 'success',
+                            customClass: {
+                                popup: 'mi-clase-modal', // Clase personalizada para el modal de éxito
+                                title: 'mi-titulo-modal', // Clase personalizada para el título de éxito
+                                content: 'mi-contenido-modal', // Clase personalizada para el contenido de éxito
+                                icon: 'mi-icono-modal' // Clase personalizada para el icono de éxito
+                            }
+                        }).then(() => {
+                            location.reload(); // Recargar la página después de eliminar
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: data.error,
+                            icon: 'error',
+                            customClass: {
+                                popup: 'mi-clase-modal', // Clase personalizada para el modal de error
+                                title: 'mi-titulo-modal', // Clase personalizada para el título de error
+                                content: 'mi-contenido-modal', // Clase personalizada para el contenido de error
+                                icon: 'mi-icono-modal' // Clase personalizada para el icono de error
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Ocurrió un error al procesar la solicitud.',
+                        icon: 'error',
+                        customClass: {
+                            popup: 'mi-clase-modal', // Clase personalizada para el modal de error
+                            title: 'mi-titulo-modal', // Clase personalizada para el título de error
+                            content: 'mi-contenido-modal', // Clase personalizada para el contenido de error
+                            icon: 'mi-icono-modal' // Clase personalizada para el icono de error
+                        }
+                    });
+                });
+        }
+    });
+}
+
 
         function addSubmitForm() {
             const formulario = document.getElementById('registroForm');

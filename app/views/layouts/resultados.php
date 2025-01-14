@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../../app/Assets/css/globals.css" />
   <link rel="stylesheet" href="../../app/Assets/css/style.css" />
   <link rel="stylesheet" href="../../app/Assets/css/styleguide.css" />
+  <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
 </head>
 
 <body>

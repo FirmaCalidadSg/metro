@@ -130,35 +130,91 @@
 
 
         function eliminarRol(id) {
-            if (confirm('¿Está seguro de eliminar este rol?')) {
-                fetch(`/metro/app/roles/eliminar/${id}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            id: id
+            // Modal de confirmación con SweetAlert
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡Esta acción no se puede deshacer!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#0b7c3e',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Sí, eliminar!',
+                cancelButtonText: 'Cancelar',
+                customClass: {
+                    popup: 'mi-clase-modal', // Clase personalizada para el modal
+                    title: 'mi-titulo-modal', // Clase personalizada para el título
+                    content: 'mi-contenido-modal', // Clase personalizada para el contenido
+                    icon: 'mi-icono-modal' // Clase personalizada para el icono
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Realizar la petición al backend para eliminar el rol
+                    fetch(`/metro/app/roles/eliminar/${id}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id: id
+                            })
                         })
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error en la respuesta del servidor');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.success) {
-                            alert('Rol eliminado exitosamente');
-                            location.reload();
-                        } else {
-                            alert('Error al eliminar roles');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Error al procesar la solicitud');
-                    });
-            }
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Error en la respuesta del servidor');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                // Mostrar mensaje de éxito con SweetAlert
+                                Swal.fire(
+                                    '¡Eliminado!',
+                                    'El rol se eliminó exitosamente.',
+                                    'success', {
+                                        customClass: {
+                                            popup: 'mi-clase-modal', // Clase personalizada para el modal
+                                            title: 'mi-titulo-modal', // Clase personalizada para el título
+                                            content: 'mi-contenido-modal', // Clase personalizada para el contenido
+                                            icon: 'mi-icono-modal' // Clase personalizada para el icono
+                                        }
+                                    }
+                                ).then(() => {
+                                    location.reload(); // Recargar la página solo después de que el usuario cierre el modal
+                                });
+                            } else {
+                                // Mostrar mensaje de error con SweetAlert
+                                Swal.fire(
+                                    'Error',
+                                    'Hubo un problema al eliminar el rol.',
+                                    'error', {
+                                        customClass: {
+                                            popup: 'mi-clase-modal', // Clase personalizada para el modal
+                                            title: 'mi-titulo-modal', // Clase personalizada para el título
+                                            content: 'mi-contenido-modal', // Clase personalizada para el contenido
+                                            icon: 'mi-icono-modal' // Clase personalizada para el icono
+                                        }
+                                    }
+                                );
+                            }
+                        })
+                        .catch(error => {
+                            // Mostrar mensaje de error general con SweetAlert
+                            console.error('Error:', error);
+                            Swal.fire(
+                                'Error',
+                                'Ocurrió un error al procesar la solicitud.',
+                                'error', {
+                                    customClass: {
+                                        popup: 'mi-clase-modal', // Clase personalizada para el modal
+                                        title: 'mi-titulo-modal', // Clase personalizada para el título
+                                        content: 'mi-contenido-modal', // Clase personalizada para el contenido
+                                        icon: 'mi-icono-modal' // Clase personalizada para el icono
+                                    }
+                                }
+                            );
+                        });
+                }
+            });
         }
 
         function addSubmitForm() {

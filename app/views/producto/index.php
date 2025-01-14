@@ -97,24 +97,24 @@
                 filtrarTabla();
             });
 
-        function filtrarTabla() {
-            var productoSeleccionado = document.getElementById('producto-selector').value;
-            var codigoSeleccionado = document.getElementById('codigo-selector').value;
+            function filtrarTabla() {
+                var productoSeleccionado = document.getElementById('producto-selector').value;
+                var codigoSeleccionado = document.getElementById('codigo-selector').value;
 
-            var filas = document.querySelectorAll('#tablaProductos tbody tr');
+                var filas = document.querySelectorAll('#tablaProductos tbody tr');
 
-            filas.forEach(function(fila) {
-                var productoId = fila.cells[0].textContent.trim();
-                var codigo = fila.cells[2].textContent.trim();
+                filas.forEach(function(fila) {
+                    var productoId = fila.cells[0].textContent.trim();
+                    var codigo = fila.cells[2].textContent.trim();
 
-                if ((productoSeleccionado === "" || productoId == productoSeleccionado) &&
-                    (codigoSeleccionado === "" || codigo == codigoSeleccionado)) {
-                    fila.style.display = "";
-                } else {
-                    fila.style.display = "none";
-                }
-            });
-        }
+                    if ((productoSeleccionado === "" || productoId == productoSeleccionado) &&
+                        (codigoSeleccionado === "" || codigo == codigoSeleccionado)) {
+                        fila.style.display = "";
+                    } else {
+                        fila.style.display = "none";
+                    }
+                });
+            }
 
             function goBack() {
                 window.history.back();
@@ -145,55 +145,98 @@
 
             function agregarProducto() {
                 window.location.href = '/metro/app/producto/registro';
-/*                 fetch('/metro/app/producto/registro', {
-                    method: 'POST'
-                }).then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error en la respuesta del servidor');
-                    }
-                    return response.text();
-                }).then(data => {
-                    document.getElementById('modal-title').innerHTML = 'REGISTRAR PRODUCTO';
-                    document.getElementById('modal-body-content').innerHTML = data;
-                    addSubmitForm();
-                }).catch(error => {
-                    console.error('Error:', error);
-                    alert('Error al procesar la solicitud');
-                }); */
+                /*                 fetch('/metro/app/producto/registro', {
+                                    method: 'POST'
+                                }).then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Error en la respuesta del servidor');
+                                    }
+                                    return response.text();
+                                }).then(data => {
+                                    document.getElementById('modal-title').innerHTML = 'REGISTRAR PRODUCTO';
+                                    document.getElementById('modal-body-content').innerHTML = data;
+                                    addSubmitForm();
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                    alert('Error al procesar la solicitud');
+                                }); */
 
             }
 
             function eliminarProducto(id) {
-                if (confirm('¿Está seguro de eliminar este producto?')) {
-                    fetch(`/metro/app/producto/eliminar/${id}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                id: id
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡Esta acción no se puede deshacer!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#0b7c3e',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!',
+                    cancelButtonText: 'Cancelar',
+                    customClass: {
+                        popup: 'mi-clase-modal',
+                        title: 'mi-titulo-modal',
+                        content: 'mi-contenido-modal',
+                        icon: 'mi-icono-modal'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`/metro/app/producto/eliminar/${id}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id: id
+                                })
                             })
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Error en la respuesta del servidor');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.success) {
-                                alert('Producto eliminado exitosamente');
-                                location.reload();
-                            } else {
-                                alert('Error al eliminar producto');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('Error al procesar la solicitud');
-                        });
-                }
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Swal.fire({
+                                        title: '¡Eliminado!',
+                                        text: 'El producto se eliminó exitosamente.',
+                                        icon: 'success',
+                                        customClass: {
+                                            popup: 'mi-clase-modal',
+                                            title: 'mi-titulo-modal',
+                                            content: 'mi-contenido-modal',
+                                            icon: 'mi-icono-modal'
+                                        }
+                                    }).then(() => {
+                                        location.reload();
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'Hubo un problema al eliminar el producto.',
+                                        icon: 'error',
+                                        customClass: {
+                                            popup: 'mi-clase-modal',
+                                            title: 'mi-titulo-modal',
+                                            content: 'mi-contenido-modal',
+                                            icon: 'mi-icono-modal'
+                                        }
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'Ocurrió un error al procesar la solicitud.',
+                                    icon: 'error',
+                                    customClass: {
+                                        popup: 'mi-clase-modal',
+                                        title: 'mi-titulo-modal',
+                                        content: 'mi-contenido-modal',
+                                        icon: 'mi-icono-modal'
+                                    }
+                                });
+                            });
+                    }
+                });
             }
+
 
             function addSubmitForm() {
                 const formulario = document.getElementById('registroForm');

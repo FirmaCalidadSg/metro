@@ -83,7 +83,6 @@
                 </div>
                 <div class="btn-container">
                     <button type="button" class="btn-editar" onclick="editarLinea()">Editar</button>
-                    <button type="button" class="btn-eliminar" onclick="eliminarLinea()">Eliminar</button>
                 </div>
             </form>
         </div>
