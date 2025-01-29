@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 30-11-2024 a las 21:53:22
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.1.25
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 29-01-2025 a las 20:41:51
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,8 @@ CREATE TABLE `ciudad` (
 INSERT INTO `ciudad` (`id`, `nombre`, `departamento`, `codigo_postal`) VALUES
 (6, 'Ibagué', 1, '000'),
 (7, 'Cali', 2, '760000'),
-(8, 'Cúcuta', 3, '777000');
+(8, 'Cúcuta', 3, '777000'),
+(10, 'Buga', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -123,7 +124,7 @@ CREATE TABLE `equipo` (
 --
 
 INSERT INTO `equipo` (`id`, `nombre`, `modelo`, `estado`) VALUES
-(1, 'E1', 'EM1', 'OK'),
+(1, 'E1', 'EM1---', 'OK'),
 (3, 'E2', 'EM2', 'OK');
 
 -- --------------------------------------------------------
@@ -135,18 +136,23 @@ INSERT INTO `equipo` (`id`, `nombre`, `modelo`, `estado`) VALUES
 CREATE TABLE `linea` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `proceso` int(11) NOT NULL
+  `proceso` int(11) NOT NULL,
+  `planta_id` int(11) NOT NULL,
+  `tipo_unidad` int(11) NOT NULL,
+  `citg` int(11) NOT NULL COMMENT 'Aplica Capacidad ideal teórica General',
+  `citr` int(11) NOT NULL COMMENT ' Aplica Capacidad ideal teórica por referencia',
+  `supervisor` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `linea`
 --
 
-INSERT INTO `linea` (`id`, `nombre`, `proceso`) VALUES
-(1, 'Linea 1', 1),
-(2, 'Linea 2', 1),
-(3, 'Linea 3', 3),
-(4, 'Linea 4', 3);
+INSERT INTO `linea` (`id`, `nombre`, `proceso`, `planta_id`, `tipo_unidad`, `citg`, `citr`, `supervisor`) VALUES
+(1, 'Linea 1', 1, 1, 0, 0, 0, ''),
+(2, 'Linea 2', 1, 1, 0, 0, 0, ''),
+(3, 'Linea 3', 3, 2, 0, 0, 0, ''),
+(4, 'Linea 4', 3, 2, 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -188,7 +194,30 @@ CREATE TABLE `pais` (
 
 INSERT INTO `pais` (`id`, `nombre`, `codigo`) VALUES
 (1, 'Colombia', '57'),
-(3, 'Venezuela', '58');
+(3, 'Venezuela', '58'),
+(4, 'Chile', '054');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `plantas`
+--
+
+CREATE TABLE `plantas` (
+  `id` int(11) NOT NULL,
+  `nombre_planta` varchar(255) NOT NULL,
+  `ciudad_id` int(11) NOT NULL,
+  `responsable_id` int(11) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `plantas`
+--
+
+INSERT INTO `plantas` (`id`, `nombre_planta`, `ciudad_id`, `responsable_id`, `created`) VALUES
+(1, 'Buga', 10, NULL, '2025-01-26 19:53:03'),
+(2, 'Palmira', 10, NULL, '2025-01-29 19:30:48');
 
 -- --------------------------------------------------------
 
@@ -199,16 +228,25 @@ INSERT INTO `pais` (`id`, `nombre`, `codigo`) VALUES
 CREATE TABLE `proceso` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `descripcion` varchar(250) DEFAULT NULL
+  `descripcion` varchar(250) DEFAULT NULL,
+  `planta_id` int(11) NOT NULL,
+  `responsable_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `proceso`
 --
 
-INSERT INTO `proceso` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'Proceso 1', 'Proceso D1'),
-(3, 'Proceso 2', 'Desc P2');
+INSERT INTO `proceso` (`id`, `nombre`, `descripcion`, `planta_id`, `responsable_id`) VALUES
+(1, 'EMPAQUE SÓLIDOS', 'EMPAQUE SÓLIDOS', 1, 0),
+(3, 'ENVASE LÍQUIDOS', 'ENVASE LÍQUIDOS', 1, 0),
+(4, 'FRACCIONAMIENTO', 'FRACCIONAMIENTO', 1, 0),
+(5, 'INYECCION PREFORMA', 'INYECCION PREFORMA', 1, 0),
+(6, 'INTERESTERIFICACION', 'INTERESTERIFICACION', 1, 0),
+(7, 'INYECCIÓN CONVENCIONAL', 'INYECCIÓN CONVENCIONAL', 1, 0),
+(8, 'INYECCIÓN PARED DELGADA IML', 'INYECCIÓN PARED DELGADA IML', 1, 0),
+(9, 'INYECTO- SOPLADO', 'INYECTO- SOPLADO', 1, 0),
+(10, 'JABONERÍA', 'INYECTO- SOPLADO', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -234,6 +272,19 @@ INSERT INTO `producto` (`id`, `nombre`, `codigo`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `refencia_linea`
+--
+
+CREATE TABLE `refencia_linea` (
+  `id` int(11) NOT NULL,
+  `referencia` varchar(255) NOT NULL,
+  `capacidad_teorica` varchar(255) NOT NULL,
+  `linea_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -251,6 +302,32 @@ INSERT INTO `roles` (`id`, `rol`) VALUES
 (2, 'Administrador'),
 (3, 'Supervisor'),
 (4, 'Operador');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `turnos`
+--
+
+CREATE TABLE `turnos` (
+  `id` int(11) NOT NULL,
+  `turno` varchar(255) NOT NULL,
+  `planta_id` int(11) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `hora_inicio` time NOT NULL,
+  `hora_fin` time NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `turnos`
+--
+
+INSERT INTO `turnos` (`id`, `turno`, `planta_id`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`, `created`) VALUES
+(1, '1', 1, '2025-01-01', '2025-01-31', '06:00:00', '14:00:00', '2025-01-26 22:34:57'),
+(2, '2', 1, '2025-01-01', '2025-01-31', '14:00:00', '22:00:00', '2025-01-26 22:35:49'),
+(3, '3', 1, '2025-01-01', '2025-01-31', '22:00:00', '06:00:00', '2025-01-26 22:36:09');
 
 -- --------------------------------------------------------
 
@@ -274,10 +351,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `usuario`, `credencial`, `rol_id`, `identificacion`, `creacion`) VALUES
-(1, 'ALEXANDER', 'OREJUELA  ARBOLEDA', 'root', '$2y$10$iR/2TjBAgXX/kHXFo5An7u5gtJpm9e5/QlnbBOZwfFMj4zkzlBPQy', 1, 14696620, '2024-11-27 14:58:29'),
 (2, 'ALEXANDER', 'OREJUELA  ARBOLEDA', 'root', '$2y$10$2ntEdxSS/UY4518ec8GYUejHlzaolXBKHieH..LvJYWu1DFu.5S6y', 1, 14696620, '2024-11-27 15:08:49'),
-(5, 'VICTOR', 'ZAPATA OCAMPO', 'VZ', '$2y$10$0FuMCoQToiYTSQDmO0k8JekOBbDu/tKvwJoxIkAbDOOhBOhniFZIe', 1, 4456, '2024-11-29 06:20:00'),
-(6, 'BURAK', 'ZAPATA OCAMPO', 'BZ', '$2y$10$26B.gJcg5ixU0ArYjhc09e1g0g6DgEzSEy83uNEL5wniU8nbM83mS', 1, 4458, '2024-11-29 06:23:16');
+(3, 'Emilia11', 'Jeiger11', 'jemilia11', '$2y$10$qwUeAjtFo05TwxpI5IK4AOY/BpDu.645ZLik48LTS9KnUTNLhpONm', 3, 1112233, '2024-11-27 15:52:19'),
+(5, 'juan ', 'Patiño', 'j.patino', '$2y$10$8tjkp3O5Z27u3h1TmNytt.8TNe.NGVy5/DjRwYC1sIsHlq/0nMGGO', 2, 123456, '2025-01-16 22:03:53'),
+(6, 'ALEXANDER', 'OREJUELA  ARBOLEDA', 'a.orejuela', '$2y$10$Hrt.VJQWPH7mBHFXGCt9lulA9Mavgg9z9PFaZsOKAJysJrnQciV62', 2, 7894444, '2025-01-17 14:16:44');
 
 --
 -- Índices para tablas volcadas
@@ -338,6 +415,12 @@ ALTER TABLE `pais`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `plantas`
+--
+ALTER TABLE `plantas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `proceso`
 --
 ALTER TABLE `proceso`
@@ -350,9 +433,21 @@ ALTER TABLE `producto`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `refencia_linea`
+--
+ALTER TABLE `refencia_linea`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `turnos`
+--
+ALTER TABLE `turnos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -369,7 +464,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `danoequipo`
@@ -411,13 +506,19 @@ ALTER TABLE `lineaproducto`
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `plantas`
+--
+ALTER TABLE `plantas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `proceso`
 --
 ALTER TABLE `proceso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -426,51 +527,28 @@ ALTER TABLE `producto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `refencia_linea`
+--
+ALTER TABLE `refencia_linea`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de la tabla `turnos`
+--
+ALTER TABLE `turnos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `ciudad`
---
-ALTER TABLE `ciudad`
-  ADD CONSTRAINT `ciudad_ibfk_1` FOREIGN KEY (`departamento`) REFERENCES `departamento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `danoequipo`
---
-ALTER TABLE `danoequipo`
-  ADD CONSTRAINT `danoequipo_ibfk_1` FOREIGN KEY (`equipo`) REFERENCES `equipo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `departamento`
---
-ALTER TABLE `departamento`
-  ADD CONSTRAINT `departamento_ibfk_1` FOREIGN KEY (`pais`) REFERENCES `pais` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `linea`
---
-ALTER TABLE `linea`
-  ADD CONSTRAINT `linea_ibfk_1` FOREIGN KEY (`proceso`) REFERENCES `proceso` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `lineaproducto`
---
-ALTER TABLE `lineaproducto`
-  ADD CONSTRAINT `lineaproducto_ibfk_1` FOREIGN KEY (`linea`) REFERENCES `linea` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lineaproducto_ibfk_2` FOREIGN KEY (`producto`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
