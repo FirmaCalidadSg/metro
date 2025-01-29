@@ -4,11 +4,13 @@ namespace App\Models;
 
 use App\Config\Database;
 use PDO;
+
 class Security
 {
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         error_log("Construyendo modelo Security");
         try {
             $this->db = Database::getInstance()->getConnection();
@@ -18,9 +20,10 @@ class Security
         }
     }
 
-    public function login($username, $password) {
+    public function login($username, $password)
+    {
         error_log("Intento de login para usuario: " . $username);
-        
+
         // Autenticación simple para pruebas
         if ($username === 'admin' && $password === '123456') {
             return [
@@ -36,12 +39,13 @@ class Security
         ];
     }
 
-    public function createUser($username, $password) {
+    public function createUser($username, $password)
+    {
         try {
             // Verificar si el usuario ya existe
             $stmt = $this->db->prepare("SELECT id FROM users WHERE username = ?");
             $stmt->execute([$username]);
-            
+
             if ($stmt->fetch()) {
                 return [
                     'success' => false,
@@ -51,19 +55,18 @@ class Security
 
             // Crear nuevo usuario
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            
+
             $stmt = $this->db->prepare(
                 "INSERT INTO users (username, password_hash, active, created_at) 
                  VALUES (?, ?, 1, GETDATE())"
             );
-            
+
             $stmt->execute([$username, $passwordHash]);
 
             return [
                 'success' => true,
                 'message' => 'Usuario creado exitosamente'
             ];
-
         } catch (\PDOException $e) {
             error_log("Error creando usuario: " . $e->getMessage());
             return [
@@ -73,24 +76,28 @@ class Security
         }
     }
 
-    public function validateCSRFToken($token) {
+    public function validateCSRFToken($token)
+    {
         return isset($_SESSION['token']) && hash_equals($_SESSION['token'], $token);
     }
 
-    private function validatePassword($password, $hash) {
+    private function validatePassword($password, $hash)
+    {
         return password_verify($password, $hash);
     }
 
-    public function getUserByUsername($username) {
-        $query = "SELECT id, username, password FROM users WHERE username = :username";
+    public function getUserByUsername($username)
+    {
+        $query = "SELECT id, usuario, credencial FROM usuarios WHERE usuario = :username";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getAllRoles() {
+    public function getAllRoles()
+    {
         $query = "SELECT id, rol FROM roles";
         $stmt = $this->db->prepare($query);
         $stmt->execute();

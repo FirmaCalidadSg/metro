@@ -15,7 +15,7 @@
         </button>
         <div class="pais-header">
             <div class="btn-space">
-                <h2>Lista de Paises</h2>
+                <h2>Plantas Registradas</h2>
                 <button onclick="agregarPais()" class="btn-div">
                     <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
                     <div class="text-style">Agregar</div>
@@ -42,10 +42,10 @@
             <table class="custom-table" id="tablaPais">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Codigo</th>
-                        <th>Acciones</th>
+                        <th>Planta</th>
+                        <th>Pais</th>
+                        <th>Ciudad</th>
+                        <th>Reponsable</th>
                     </tr>
                 </thead>
                 <tbody>

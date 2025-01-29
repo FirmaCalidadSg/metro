@@ -18,7 +18,7 @@ class LineaController
     }
 
     public function index()
-    {        
+    {
         $lineas = $this->linea->getAllLinea();
 
         require_once __DIR__ . '/../views/layouts/Sidebar.php';
@@ -84,14 +84,14 @@ class LineaController
             echo json_encode($response);
             exit;
         }
-    
+
         // Obtener los datos del formulario
         $nombre = $_POST['nombre'];
         $proceso = $_POST['proceso'];
-    
+
         // Obtener la definición por ID
         $linea = $this->linea->getLineaById($id);
-    
+
         if (!$linea) {
             $response = [
                 'success' => false,
@@ -100,22 +100,22 @@ class LineaController
             echo json_encode($response);
             exit;
         }
-    
+
         // Actualizar la definición
         $linea->nombre = $nombre;
         $linea->proceso = $proceso;
-    
+
         // Guardar la definición actualizada
         $this->linea->updateLinea($linea);
-    
+
         $response = [
             'success' => true,
             'message' => 'Línea actualizada exitosamente.'
         ];
-    
+
         echo json_encode($response);
     }
-    
+
     public function eliminar($id = null)
     {
         try {
@@ -137,5 +137,11 @@ class LineaController
         } catch (\PDOException $e) {
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
+    }
+
+    public function getbyplanta()
+    {
+        $lineas =  $this->linea->GetByPlanta($_REQUEST['planta']);
+        echo json_encode($lineas);
     }
 }

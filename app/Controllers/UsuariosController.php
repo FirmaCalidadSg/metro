@@ -21,11 +21,43 @@ class UsuariosController
         $this->usuarios = new Usuarios();
     }
 
+    public function auth()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = $_POST['email'];
+            $password = $_POST['password'];
+            // Primero obtener el usuario y su hash almacenado
+            $user = $this->security->getUserByUsername($username);
+            // Verificar si el usuario existe y la contraseña coincide
+            if ($user && password_verify($password, $user['credencial'])) {
+                session_start();
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['usuario'];
+                $response = [
+                    'success' => true,
+                    'message' => 'Login exitoso',
+                    'url' => BASE_PATH . '/usuarios'
+                ];
+                echo json_encode($response);
+                // exit;
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Usuario o contraseña incorrectos',
+                    'url' => BASE_PATH . '/login'
+                ];
+                echo json_encode($response);
+            }
+        } else {
+            require_once __DIR__ . '/../views/security/login.php';
+        }
+    }
+
     public function index()
     {
         $usuarios = $this->usuarios->getAllUsuarios();
         // var_dump($usuarios);
-        require_once __DIR__ . '/../views/layouts/Usuarios.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/usuarios/index.php';
     }
 
@@ -33,7 +65,7 @@ class UsuariosController
     {
         // $usuario11 = $this->usuarios->getUsuarios1();
         $roles = $this->security->getAllRoles();
-        $usuario = new Usuarios();        
+        $usuario = new Usuarios();
         if (isset($_REQUEST['id'])) {
             $usuario = $usuario->getUsuarioById($_REQUEST['id']);
         }
@@ -46,7 +78,7 @@ class UsuariosController
         try {
             $message = 'Usuario registrado exitosamente';
             $usuario = new Usuarios();
-    
+
             $usuario->id = $_POST['id'];
             $usuario->rol_id = $_POST['rol'];
             $usuario->credencial = password_hash($_POST['credencial'], PASSWORD_DEFAULT);
@@ -54,7 +86,7 @@ class UsuariosController
             $usuario->nombres = $_POST['nombres'];
             $usuario->apellidos = $_POST['apellidos'];
             $usuario->usuario = $_POST['usuario'];
-    
+
             if ($usuario->id > 0) {
                 if ($this->usuarios->updateUsuario($usuario)) {
                     $message = 'Usuario actualizado exitosamente';
@@ -70,7 +102,7 @@ class UsuariosController
                     $success = false;
                 }
             }
-            
+
             $response = [
                 'success' => $success ?? true,
                 'message' => $message
@@ -137,5 +169,13 @@ class UsuariosController
         // var_dump($usuario);
         $result = $this->usuarios->updateCredenciales($usuario);
         echo json_encode($result);
+    }
+
+
+    public function dasboard()
+    {
+        require_once __DIR__ . '/../views/layouts/header.php';
+        require_once __DIR__ . '/../views/security/dashboard.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
     }
 }

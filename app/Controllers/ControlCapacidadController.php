@@ -2,18 +2,33 @@
 
 namespace App\Controllers;
 
+use App\Models\Ciudad;
+use App\Models\Departamento;
+use App\Models\Plantas;
+use App\Models\Turno;
+
 class ControlCapacidadController
 {
+    public $ciudad;
+    public $departamento;
+    public $planta;
+    public $turnos;
 
-    public function __construct() {}
+    public function __construct()
+    {
+        $this->ciudad = new Ciudad();
+        $this->departamento = new Departamento();
+        $this->planta = new Plantas();
+        $this->turnos = new Turno();
+    }
 
 
 
     public function index()
     {
+        $plantas = $this->planta->getAllPlantas();
         require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/controlCapacidad/index.php';
-        
     }
 
     public function paradas()

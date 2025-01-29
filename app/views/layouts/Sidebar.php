@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
-
   <link rel="stylesheet" href="../app/Assets/css/globals.css" />
   <link rel="stylesheet" href="../app/Assets/css/style.css" />
   <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
   <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
-  <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
-
+  <link rel="stylesheet" href="../app/Assets/datatable/datatables.css" />
 </head>
-
 <body>
   <div class="property-slider">
     <img class="image" src="../app/Assets/css/images/logo.svg" />
@@ -27,11 +23,11 @@
           <div class="typography1">Nuevos</div>
         </div>
         <div class="sub-menu">
-        <li class="sub-item">
-          <a class="nav-link" href="<?php echo BASE_PATH; ?>/controlCapacidad">Control De Capacidades</a>
-        </li>
           <li class="sub-item">
-          <a href="#">Control De Capacidades batch</a>
+            <a class="nav-link" href="<?php echo BASE_PATH; ?>/controlCapacidad">Control De Capacidades</a>
+          </li>
+          <li class="sub-item">
+            <a href="#">Control De Capacidades batch</a>
           </li>
         </div>
       </div>
@@ -73,20 +69,21 @@
           <div class="typography1">Configuración</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/definicion">Definición</a>
-          <a href="<?php echo BASE_PATH; ?>/pais">Países</a>
-          <a href="<?php echo BASE_PATH; ?>/ciudad">Ciudades</a>
-          <a href="<?php echo BASE_PATH; ?>/departamento">Departamentos</a>
-          <a href="<?php echo BASE_PATH; ?>/equipo">Equipos</a>
-          <a href="<?php echo BASE_PATH; ?>/danoequipo">Daños</a>
-          <a href="<?php echo BASE_PATH; ?>/proceso">Procesos</a>
-          <a href="<?php echo BASE_PATH; ?>/linea">Líneas</a>
-          <a href="<?php echo BASE_PATH; ?>/producto">Productos</a>
-          <a href="<?php echo BASE_PATH; ?>/lineaproducto">Línea y Productos</a>
-          <a href="<?php echo BASE_PATH; ?>/paros">Paros</a>
-          <a href="<?php echo BASE_PATH; ?>/subparos">Sub-Paros</a>
-          <a href="<?php echo BASE_PATH; ?>/turnos">Turnos</a>
-          <a href="<?php echo BASE_PATH; ?>/documentos">Todos los Documentos</a>
+          <a href="<?php echo BASE_PATH; ?>definicion">Definición</a>
+          <a href="<?php echo BASE_PATH; ?>pais">Países</a>
+          <a href="<?php echo BASE_PATH; ?>ciudad">Ciudades</a>
+          <a href="<?php echo BASE_PATH; ?>departamento">Departamentos</a>
+          <a href="<?php echo BASE_PATH; ?>turnos">Turnos</a>
+          <a href="<?php echo BASE_PATH; ?>plantas">plantas</a>
+          <a href="<?php echo BASE_PATH; ?>equipo">Equipos</a>
+          <a href="<?php echo BASE_PATH; ?>danoequipo">Daños</a>
+          <a href="<?php echo BASE_PATH; ?>proceso">Procesos</a>
+          <a href="<?php echo BASE_PATH; ?>linea">Líneas</a>
+          <a href="<?php echo BASE_PATH; ?>producto">Productos</a>
+          <a href="<?php echo BASE_PATH; ?>lineaproducto">Línea y Productos</a>
+          <a href="<?php echo BASE_PATH; ?>paros">Paros</a>
+          <a href="<?php echo BASE_PATH; ?>subparos">Sub-Paros</a>
+          <!-- <a href="<?php echo BASE_PATH; ?>/documentos">Todos los Documentos</a> -->
         </div>
       </div>
       <div class="sidebar-option">
@@ -119,7 +116,12 @@
     </button>
   </div>
   <div class="home">
+
     <main>
+      <script src="../app/Assets/jquery/jquery.min.js"></script>
+      <script src="../app/Assets/bootstrap/bootstrap.bundle.min.js"></script>
+      <script src="../app/Assets/datatable/datatables.js"></script>
+      <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
 
       <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -165,6 +167,37 @@
 
         document.querySelectorAll('.sidebar-option').forEach(option => {
           option.addEventListener('click', handleSidebarOptionClick);
+        });
+
+        
+
+        $(document).ready(function() {
+          $('#table').DataTable({
+            "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+              },
+              "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+            }
+          });
         });
       </script>
 </body>

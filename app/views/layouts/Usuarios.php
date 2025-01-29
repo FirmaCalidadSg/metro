@@ -74,20 +74,20 @@
           <div class="typography1">Configuración</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/definicion">Definición</a>
-          <a href="<?php echo BASE_PATH; ?>/pais">Países</a>
-          <a href="<?php echo BASE_PATH; ?>/ciudad">Ciudades</a>
-          <a href="<?php echo BASE_PATH; ?>/departamento">Departamentos</a>
-          <a href="<?php echo BASE_PATH; ?>/equipo">Equipos</a>
-          <a href="<?php echo BASE_PATH; ?>/danoequipo">Daños</a>
-          <a href="<?php echo BASE_PATH; ?>/proceso">Procesos</a>
-          <a href="<?php echo BASE_PATH; ?>/linea">Líneas</a>
-          <a href="<?php echo BASE_PATH; ?>/producto">Productos</a>
-          <a href="<?php echo BASE_PATH; ?>/lineaproducto">Línea y Productos</a>
-          <a href="<?php echo BASE_PATH; ?>/paros">Paros</a>
-          <a href="<?php echo BASE_PATH; ?>/subparos">Sub-Paros</a>
-          <a href="<?php echo BASE_PATH; ?>/turnos">Turnos</a>
-          <a href="<?php echo BASE_PATH; ?>/documentos">Todos los Documentos</a>
+          <a href="<?php echo BASE_PATH; ?>definicion">Definición</a>
+          <a href="<?php echo BASE_PATH; ?>pais">Países</a>
+          <a href="<?php echo BASE_PATH; ?>ciudad">Ciudades</a>
+          <a href="<?php echo BASE_PATH; ?>departamento">Departamentos</a>
+          <a href="<?php echo BASE_PATH; ?>equipo">Equipos</a>
+          <a href="<?php echo BASE_PATH; ?>danoequipo">Daños</a>
+          <a href="<?php echo BASE_PATH; ?>proceso">Procesos</a>
+          <a href="<?php echo BASE_PATH; ?>linea">Líneas</a>
+          <a href="<?php echo BASE_PATH; ?>producto">Productos</a>
+          <a href="<?php echo BASE_PATH; ?>lineaproducto">Línea y Productos</a>
+          <a href="<?php echo BASE_PATH; ?>paros">Paros</a>
+          <a href="<?php echo BASE_PATH; ?>subparos">Sub-Paros</a>
+          <a href="<?php echo BASE_PATH; ?>turnos">Turnos</a>
+          <a href="<?php echo BASE_PATH; ?>documentos">Todos los Documentos</a>
         </div>
       </div>
       <div class="sidebar-option">

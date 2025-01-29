@@ -41,9 +41,9 @@ class Proceso
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-    
+
         $data = $stmt->fetch(PDO::FETCH_OBJ);
-        
+
         // Si se encuentra el proceso, lo retornamos como objeto Proceso
         if ($data) {
             $proceso = new Proceso();
@@ -51,13 +51,23 @@ class Proceso
             $proceso->nombre = $data->nombre;
             $proceso->descripcion = $data->descripcion;
             // Asigna otras propiedades según la estructura de la tabla proceso
-    
+
             return $proceso;
         }
-        
+
         return null; // Si no se encuentra el proceso, retornamos null
     }
-    
+
+    public function getProcesoByPlanta($id)
+    {
+        $query = "SELECT p.id as proceso_id,p.nombre FROM proceso p WHERE p.planta_id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $data;
+    }
+
 
     public function createProceso(Proceso $proceso)
     {

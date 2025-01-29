@@ -25,7 +25,7 @@ class Router {
     public function match($uri, $method = 'GET') {
         foreach ($this->routes as $pattern => $route) {
             $pattern = $this->convertPattern($pattern);
-            if (preg_match($pattern, $uri, $matches) && $route['method'] === $method) {
+            if (preg_match($pattern, $uri, $matches) && in_array($method, $route['methods'])) {
                 array_shift($matches);
                 $this->params = $matches;
                 return $route;

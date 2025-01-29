@@ -68,11 +68,11 @@ class EquipoController
         require_once __DIR__ . '/../views/equipo/vista-previa.php';
     }
     public function editarFormulario($id)
-    { 
-        
+    {
+
         $equipo = $this->equipo->getEquipoById($id);
 
-    
+
         if (!$equipo) {
             $response = [
                 'success' => false,
@@ -94,17 +94,17 @@ class EquipoController
             echo json_encode($response);
             exit;
         }
-    
+
         // Obtener los datos del formulario
         $nombre = $_POST['nombre'];
         $modelo = $_POST['modelo'];
         $estado = $_POST['estado'];
         $id = $_POST['id'];
         $dano = $_POST['dano'];
-    
+
         // Obtener la definición por ID
         $equipo = $this->equipo->getEquipoById($id);
-    
+
         if (!$equipo) {
             $response = [
                 'success' => false,
@@ -113,23 +113,23 @@ class EquipoController
             echo json_encode($response);
             exit;
         }
-    
-       
+
+
         $equipo->nombre = $nombre;
         $equipo->modelo = $modelo;
         $equipo->estado = $estado;
-    
+
         $this->equipo->updateEquipo($equipo);
-    
+
         $response = [
             'success' => true,
             'message' => 'Equipo actualizado exitosamente.'
         ];
-    
+
         echo json_encode($response);
     }
-    
-            
+
+
     public function eliminar($id = null)
     {
         try {

@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../app/Assets/css/globals.css" />
-    <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
-    <link rel="stylesheet" href="../app/Assets/css/style.css" />
-</head>
-
-<body>
+<div class="col-md-12">
     <div class="consultas-capacidad">
         <div class="info-capacidad">
             <div class="frame">
@@ -55,20 +45,12 @@
                     </div>
                     <div class="textfield-2">
                         <div class="input">
-                            <div class="text-wrapper-6">Planta</div>
-                            <select class="select-line">
-                                <option value="" disabled selected>Seleccionar</option>
-                                <option value="buga">Buga</option>
-                                <option value="cali">Cali</option>
-                                <option value="medellin">Medellin</option>
-                                <option value="barranquilla">Barranquilla</option>
-                                <option value="cartagena">Cartagena</option>
-                                <option value="santamartha">Santa Marta</option>
-                                <option value="pereira">Pereira</option>
-                                <option value="manizales">Manizales</option>
-                                <option value="pasto">Pasto</option>
-                                <option value="cucuta">Cucuta</option>
-                                <option value="bogota">Bogota</option>
+                            <div class="text-wrapper-6">Plantas</div>
+                            <select class="select-line" name="planta_id" id="planta_id" onchange="ByPlanta(this)">
+                                <option value="">Seleccionar</option>
+                                <?php foreach ($plantas as $value): ?>
+                                    <option value="<?php echo $value->id ?>"><?php echo $value->nombre_planta ?></option>
+                                <?php endforeach; ?>
                             </select>
                             <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
@@ -76,18 +58,10 @@
                 </div>
                 <div class="element">
                     <div class="textfield-2">
-                        <div class="input">
+                        <div class="input" id="data_linea">
                             <div class="text-wrapper-6">Linea</div>
-                            <select class="select-line">
-                                <option value="" disabled selected>Seleccionar</option>
-                                <option value="liquidosbogota">Liquidos Bogota</option>
-                                <option value="liquidosbarranquilla">Liquidos Barranquilla</option>
-                                <option value="liquidoscartagena">Liquidos Cartagena</option>
-                                <option value="liquidosmedellin">Liquidos Medellin</option>
-                                <option value="liquidospereira">Liquidos Pereira</option>
-                                <option value="liquidosmanizales">Liquidos Manizales</option>
-                                <option value="liquidospasto">Liquidos Pasto</option>
-                                <option value="liquidoscucuta">Liquidos Cucuta</option>
+                            <select class="select-line" id="linea_id" name="linea_id">
+                                <option value="">Seleccione una línea</option>
                             </select>
                             <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
@@ -95,7 +69,9 @@
                     <div class="textfield-2">
                         <div class="input">
                             <div class="text-wrapper-6">Proceso</div>
-                            <input type="text" class="select-line">
+                            <select class="select-line" id="proceso_id" name="proceso_id">
+                                <option value="">Seleccionar</option>
+                            </select>
                             <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
@@ -111,7 +87,7 @@
                     <div class="textfield-2">
                         <div class="input">
                             <div class="text-wrapper-6">No. de operarios</div>
-                            <input type="text" class="select-line" />
+                            <input type="text" class="select-line" id="num_operarios" name="num_operarios" onchange="handleInputChange(this)" />
                             <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
@@ -120,18 +96,16 @@
                     <div class="textfield-2">
                         <div class="input">
                             <div class="text-wrapper-6">No. horas hombre</div>
-                            <input type="text" class="select-line" />
+                            <input type="text" class="select-line" id="h_hombre" name="h_hombre" />
                             <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
                     </div>
                     <div class="textfield-2">
                         <div class="input">
                             <div class="text-wrapper-6">Turno</div>
-                            <select class="select-line">
+                            <select class="select-line" name="turno_id" id="turno_id">
                                 <option value="" disabled selected>Seleccionar</option>
-                                <option value="1">Turno 1</option>
-                                <option value="2">Turno 2</option>
-                                <option value="3">Turno 3</option>
+
                             </select>
                             <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
@@ -253,80 +227,174 @@
                 Guardar
             </button>
         </div>
-</body>
-<script>
-    function redireccionar() {
-        window.location.href = "../app/controlCapacidad/paradas";
-    }
+    </div>
+    <!-- <script src="../app/Assets/jquery/jquery.min.js"></script> -->
+    <script>
+        // function redireccionar() {
+        //     window.location.href = "../app/controlCapacidad/paradas";
+        // }
 
-    function redireccionarModals() {
-        window.location.href = "../app/controlCapacidad/modal1";
-    }
-    document.addEventListener("DOMContentLoaded", function() {
-        const botonesParos = [
-            document.getElementById('verParos'),
-            document.getElementById('agregarParos'),
-            document.getElementById('borrar')
-        ];
+        // function redireccionarModals() {
+        //     window.location.href = "../app/controlCapacidad/modal1";
+        // }
 
-        const botonAgregarProducto = document.getElementById('btnAgregarProducto');
-        const botonGuardar = document.getElementById('btnGuardar');
+        function ByPlanta() {
+            var planta = $('#planta_id').val();
+            Linea(planta);
+            Turno(planta);
+            Proceso(planta);
+        }
 
-        const inputsRequeridos = [
-            document.querySelector('.consultas-capacidad input[type="date"]'),
-            document.querySelector('.operacion select.select-line'),
-            document.querySelector('.consultas-capacidad select.select-line'),
-            document.querySelector('.operacion input[type="time"]'),
-            document.querySelector('.operacion input[type="text"]')
-        ];
+        const input = document.getElementById('num_operarios');
 
-        function toggleButtons() {
-            inputsRequeridos.forEach((input, index) => {
-                console.log(`Input ${index} (${input && input.type}): ${input ? input.value : "null"}`);
+        input.addEventListener('input', function() {
+            console.log('Valor en tiempo real:', input.value);
+            result = input.value * 8;
+            $('#h_hombre').val(result).attr('readonly');
+        });
+
+        function Linea(planta) {
+            $.ajax({
+                url: '<?php echo BASE_PATH ?>linea/getbyplanta/',
+                type: 'GET',
+                data: {
+                    planta: planta
+                },
+                success: function(response) {
+                    var lineas = JSON.parse(response);
+                    var select = $('#linea_id');
+                    select.empty();
+                    select.append('<option value="">Seleccione una línea</option>');
+                    $.each(lineas, function(i, linea) {
+                        select.append($('<option>', {
+                            value: linea.id,
+                            text: linea.nombre
+                        }));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
             });
+        }
 
-            const algunVacio = inputsRequeridos.some(input => input == null || input.value.length === 0);
-            console.log(`Algún input vacío: ${algunVacio}`);
+        function Turno(planta) {
 
-            botonesParos.forEach(boton => {
+
+            $.ajax({
+                url: '<?php echo BASE_PATH ?>turno/getturnobyplanta/',
+                type: 'GET',
+                data: {
+                    planta: planta
+                },
+
+                success: function(response) {
+                    var turnos = JSON.parse(response);
+                    var select = $('#turno_id');
+                    select.empty();
+                    select.append('<option value="">Seleccione un turno</option>');
+                    $.each(turnos, function(i, turno) {
+                        select.append($('<option>', {
+                            value: turno.turno_id,
+                            text: turno.turno
+                        }));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        function Proceso(planta) {
+            $.ajax({
+                url: '<?php echo BASE_PATH ?>proceso/GetProcesoByPlanta/',
+                type: 'GET',
+                data: {
+                    planta: planta
+                },
+
+                success: function(response) {
+                    var procesos = JSON.parse(response);
+                    var select = $('#proceso_id');
+                    select.empty();
+                    select.append('<option value="">Seleccione un proceso</option>');
+                    $.each(procesos, function(i, proceso) {
+                        select.append($('<option>', {
+                            value: proceso.proceso,
+                            text: proceso.nombre
+                        }));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const botonesParos = [
+                document.getElementById('verParos'),
+                document.getElementById('agregarParos'),
+                document.getElementById('borrar')
+            ];
+
+            const botonAgregarProducto = document.getElementById('btnAgregarProducto');
+            const botonGuardar = document.getElementById('btnGuardar');
+
+            const inputsRequeridos = [
+                document.querySelector('.consultas-capacidad input[type="date"]'),
+                document.querySelector('.operacion select.select-line'),
+                document.querySelector('.consultas-capacidad select.select-line'),
+                document.querySelector('.operacion input[type="time"]'),
+                document.querySelector('.operacion input[type="text"]')
+            ];
+
+            function toggleButtons() {
+                inputsRequeridos.forEach((input, index) => {
+                    console.log(`Input ${index} (${input && input.type}): ${input ? input.value : "null"}`);
+                });
+
+                const algunVacio = inputsRequeridos.some(input => input == null || input.value.length === 0);
+                console.log(`Algún input vacío: ${algunVacio}`);
+
+                botonesParos.forEach(boton => {
+                    if (algunVacio) {
+                        boton.disabled = true;
+                        boton.style.color = '#9c9c9c'; // Color gris claro
+                    } else {
+                        boton.disabled = false;
+                        boton.style.color = 'black';
+                    }
+                });
+
                 if (algunVacio) {
-                    boton.disabled = true;
-                    boton.style.color = '#9c9c9c'; // Color gris claro
+                    botonAgregarProducto.disabled = true;
+                    botonAgregarProducto.style.borderColor = '#9c9c9c';
+                    botonAgregarProducto.style.color = '#9c9c9c';
+                    botonGuardar.disabled = true;
+                    botonGuardar.style.backgroundColor = '#cccccc';
+                    botonGuardar.style.color = '#666666';
+                    botonGuardar.style.border = '1px solid #aaaaaa';
+                    botonBorrar.style.display = 'none';
                 } else {
-                    boton.disabled = false;
-                    boton.style.color = 'black';
+                    botonAgregarProducto.disabled = false;
+                    botonAgregarProducto.style.borderColor = '#0a843c';
+                    botonAgregarProducto.style.color = '#0a843c';
+                    botonGuardar.disabled = false;
+                    botonGuardar.style.backgroundColor = '#0a843c';
+                    botonGuardar.style.color = '#ffffff';
+                    botonGuardar.style.border = 'none';
+                    botonBorrar.style.display = 'flex';
+                }
+            }
+
+            inputsRequeridos.forEach(input => {
+                if (input) {
+                    input.addEventListener('input', toggleButtons);
                 }
             });
 
-            if (algunVacio) {
-                botonAgregarProducto.disabled = true;
-                botonAgregarProducto.style.borderColor = '#9c9c9c'; 
-                botonAgregarProducto.style.color = '#9c9c9c';
-                botonGuardar.disabled = true;
-                botonGuardar.style.backgroundColor = '#cccccc';
-                botonGuardar.style.color = '#666666';
-                botonGuardar.style.border = '1px solid #aaaaaa';
-                botonBorrar.style.display = 'none';
-            } else {
-                botonAgregarProducto.disabled = false;
-                botonAgregarProducto.style.borderColor = '#0a843c';
-                botonAgregarProducto.style.color = '#0a843c';
-                botonGuardar.disabled = false;
-                botonGuardar.style.backgroundColor = '#0a843c';
-                botonGuardar.style.color = '#ffffff';
-                botonGuardar.style.border = 'none';
-                botonBorrar.style.display = 'flex';
-            }
-        }
-
-        inputsRequeridos.forEach(input => {
-            if (input) {
-                input.addEventListener('input', toggleButtons);
-            }
+            toggleButtons();
         });
-
-        toggleButtons();
-    });
-</script>
-
-</html>
+    </script>

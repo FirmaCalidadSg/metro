@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../app/Assets/css/globals.css" />
-    <link rel="stylesheet" href="../../app/Assets/css/styleguide.css" />
-    <link rel="stylesheet" href="../../app/Assets/css/style.css" />
-    <title>Registro</title>
-</head>
-
-<body>
     <div class="registroConfig">
         <div class="info">
             <div class="frame">
@@ -106,7 +95,7 @@
             </div>
 
 
-</body>
+
 <script>
     function showModal(message, isSuccess = true) {
         document.getElementById('modal-message').innerHTML = message;

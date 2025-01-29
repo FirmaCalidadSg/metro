@@ -15,18 +15,21 @@ class RouterGroup
     }
 
     public function add($path, $action, $method = 'GET')
-    {
-        $fullPath = $this->prefix . '/' . trim($path, '/');
-        $fullPath = trim($fullPath, '/');
+{
+    $fullPath = $this->prefix . '/' . trim($path, '/');
+    $fullPath = trim($fullPath, '/');
 
-        $this->routes[$fullPath] = [
-            'controller' => $this->controller,
-            'action' => $action,
-            'method' => $method
-        ];
+    // Asegúrate de que $method sea siempre un array para manejar múltiples métodos
+    $methods = is_array($method) ? $method : [$method];
 
-        return $this;
-    }
+    $this->routes[$fullPath] = [
+        'controller' => $this->controller,
+        'action' => $action,
+        'methods' => $methods // Cambiado de 'method' a 'methods'
+    ];
+
+    return $this;
+}
 
     public function getRoutes()
     {

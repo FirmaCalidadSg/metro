@@ -35,6 +35,14 @@ class Linea
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    public function GetByPlanta($id)
+    {
+        $query = "SELECT l.id, l.nombre, l.proceso FROM linea l WHERE planta_id=:planta";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':planta', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
 
     public function getLineaById($id)
@@ -45,9 +53,9 @@ class Linea
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-    
+
         $data = $stmt->fetch(PDO::FETCH_OBJ);
-        
+
         if ($data) {
             $linea = new Linea();
             $linea->id = $data->id;
@@ -56,10 +64,10 @@ class Linea
             $linea->nombre_proceso = $data->nombre_proceso;
             return $linea;
         }
-        
+
         return null;
     }
-    
+
     public function createLinea(Linea $linea)
     {
         $query = "INSERT INTO linea (nombre, proceso) VALUES (:nombre, :proceso)";

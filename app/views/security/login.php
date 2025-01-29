@@ -53,21 +53,59 @@
                 </div>
             </button>
         </div>
+        <script src="../app/Assets/jquery/jquery.min.js"></script>
+        <script src="../app/Assets/sweetalert2/sweetalert2@11.js"></script>
+        <script src=""></script>
+        <script>
+            $(document).ready(function() {
+                $('.buttom').on('click', function(e) {
+                    e.preventDefault();
+
+                    var email = $('input[type="email"]').val();
+                    var password = $('input[type="password"]').val();
+
+                    $.ajax({
+                        url: '/metro/app/usuarios/auth', // Change this to your actual login endpoint
+                        type: 'POST',
+                        data: {
+                            email: email,
+                            password: password
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            Swal.fire({
+                                title: response.success ? '¡Éxito!' : '¡Error!',
+                                text: response.message,
+                                icon: response.success ? 'success' : 'error'
+                            }).then(function() {
+                                if (response.success) {
+                                    window.location.href = response.url;
+                                }
+                            });
+
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle error response
+                            console.error(error);
+                            // Show error message
+                        }
+                    });
+                });
+            });
+        </script>
     </div>
     <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const finalLogo = document.getElementById("finalLogo");
-  const logIn = document.querySelector(".alianza-metro .log-in");
+        document.addEventListener("DOMContentLoaded", function() {
+            const finalLogo = document.getElementById("finalLogo");
+            const logIn = document.querySelector(".alianza-metro .log-in");
 
-  finalLogo.addEventListener("animationend", function(event) {
-    if (event.animationName === "slideIn") {
-      logIn.style.display = "flex";
-      finalLogo.style.display = "none";
-    }
-  });
-});
-
-
+            finalLogo.addEventListener("animationend", function(event) {
+                if (event.animationName === "slideIn") {
+                    logIn.style.display = "flex";
+                    finalLogo.style.display = "none";
+                }
+            });
+        });
     </script>
 </body>
 

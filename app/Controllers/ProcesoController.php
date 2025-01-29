@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 use App\Models\Proceso;
 use App\Models\Linea;
+
 class ProcesoController
 {
     public $proceso;
@@ -56,7 +57,7 @@ class ProcesoController
     public function editarFormulario($id)
     {
         $proceso = $this->proceso->getProcesoById($id);
-    
+
         if (!$proceso) {
             $response = [
                 'success' => false,
@@ -79,7 +80,7 @@ class ProcesoController
             echo json_encode($response);
             exit;
         }
-    
+
         // Obtener los datos del formulario
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
@@ -87,7 +88,7 @@ class ProcesoController
 
         // Obtener la definición por ID
         $proceso = $this->proceso->getProcesoById($id);
-    
+
         if (!$proceso) {
             $response = [
                 'success' => false,
@@ -96,7 +97,7 @@ class ProcesoController
             echo json_encode($response);
             exit;
         }
-    
+
         // Actualizar la definición
         $proceso->nombre = $nombre;
         $proceso->descripcion = $descripcion;
@@ -104,15 +105,15 @@ class ProcesoController
 
         // Guardar la definición actualizada
         $this->proceso->updateProceso($proceso);
-    
+
         $response = [
             'success' => true,
             'message' => 'Proceso actualizado exitosamente.'
         ];
-    
+
         echo json_encode($response);
     }
-    
+
     public function vistaPrevia($id)
     {
         if (isset($id)) {
@@ -145,5 +146,12 @@ class ProcesoController
         } catch (\PDOException $e) {
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
+    }
+
+
+    public function GetProcesoByPlanta()
+    {
+        $procesos = $this->proceso->getProcesoByPlanta($_REQUEST['planta']);
+        echo json_encode($procesos);
     }
 }

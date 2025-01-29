@@ -32,10 +32,16 @@
                             Configuración
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/definicion">Definicion</a></li>
+                            <!-- <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/definicion">Definicion</a></li> -->
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/pais">Paises</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/ciudad">Ciudad</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/departamento">Departamentos</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/plantas">Plantas</a></li>
+
+                            <li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -58,8 +64,8 @@
                             </li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/turnos">Turnos</a></li>
                             <li><a class="dropdown-item" href="<?php echo BASE_PATH; ?>/documentos">Todos Los Documentos</a></li>
-                        
-                            
+
+
                     </li>
                 </ul>
                 </li>

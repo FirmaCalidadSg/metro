@@ -10,7 +10,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Constantes
-define('BASE_PATH', '/metro/app');
+define('BASE_PATH', '/metro/app/');
 define('APP_PATH', __DIR__);
 
 // Autoloader
@@ -24,6 +24,7 @@ $router = new Router();
 $router->group('', 'SecurityController', function ($group) {
     $group->add('', 'index');
     $group->add('login', 'login');
+    $group->add('auth', 'auth');
     $group->add('logout', 'logout');
     $group->add('dashboard', 'dashboard');
 });
@@ -31,6 +32,8 @@ $router->group('', 'SecurityController', function ($group) {
 // Rutas de usuarios
 $router->group('usuarios', 'UsuariosController', function ($group) {
     $group->add('', 'index');
+    $group->add('dashboard', 'dashboard');
+    $group->add('auth', 'auth', 'POST');
     $group->add('registro', 'registro', 'POST');
     $group->add('crear', 'crear', 'POST');
     $group->add('credenciales/{id}', 'credenciales');
@@ -125,6 +128,7 @@ $router->group('proceso', 'ProcesoController', function ($group) {
     $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
+    $group->add('GetProcesoByPlanta/{id}', 'GetProcesoByPlanta', 'GET');
 });
 
 // Rutas de lineas
@@ -136,6 +140,7 @@ $router->group('linea', 'LineaController', function ($group) {
     $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
+    $group->add('getbyplanta/{id}', 'getbyplanta', 'GET');
 });
 // Rutas de productos
 $router->group('producto', 'ProductoController', function ($group) {
@@ -183,6 +188,18 @@ $router->group('controlCapacidad', 'ControlCapacidadController', function ($grou
 $router->group('reportes', 'ReportesController', function ($group) {
     $group->add('', 'index');
     $group->add('resultados', 'resultados');
+});
+
+$router->group('plantas', 'PlantasController', function ($group) {
+    $group->add('', 'index');
+    $group->add('crud', 'crud');
+    $group->add('registrar', 'registrar', 'POST');
+});
+$router->group('turno', 'TurnosController', function ($group) {
+    $group->add('', 'index');
+    $group->add('crud', 'crud');
+    $group->add('registrar', 'registrar', 'POST');
+    $group->add('getturnobyplanta/{id}', 'getturnobyplanta', 'GET');
 });
 
 try {

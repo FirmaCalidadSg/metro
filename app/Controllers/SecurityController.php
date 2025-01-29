@@ -41,7 +41,7 @@ class SecurityController
 
     public function login()
     {
-        error_log("Método login llamado");
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'] ?? '';
             $password = $_POST['password'] ?? '';
@@ -64,6 +64,15 @@ class SecurityController
             require_once __DIR__ . '/../views/security/login.php';
         }
     }
+
+    public function Auth()
+    {
+
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+    }
+
+
 
     public function logout()
     {

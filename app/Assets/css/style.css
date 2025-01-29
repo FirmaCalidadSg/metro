@@ -5323,7 +5323,7 @@ button#btnAgregarProducto.disabled {
   border-radius: 10px;
   font-family: var(--body-1-semibold-font-family);
   background-color: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: none; /* Eliminado el shadow para evitar efectos visuales */
   padding: 16px;
 }
 
@@ -5331,9 +5331,7 @@ button#btnAgregarProducto.disabled {
   padding: 12px 15px;
   border: 1px solid #ddd;
   text-align: center;
-  /* Asegúrate de que el texto esté centrado horizontalmente */
   vertical-align: middle;
-  /* Centra el texto verticalmente */
   white-space: nowrap;
   font-family: var(--body-1-semibold-font-family);
   font-weight: var(--body-1-semibold-font-weight);
@@ -5345,28 +5343,21 @@ button#btnAgregarProducto.disabled {
 }
 
 .custom-table td {
-  font-size: 12px;
+  padding: 12px 15px;
+  font-size: 14px;
   color: rgb(80, 77, 77);
   font-weight: 300;
   border: 1px solid #ddd;
   font-family: var(--body-1-semibold-font-family);
-  font-size: 14px;
   letter-spacing: var(--body-1-semibold-letter-spacing);
   line-height: var(--body-1-semibold-line-height);
   text-transform: none;
   background-color: #ffffff;
 }
-.custom-table td:hover {
-  background-color: #f2f2f2;
-  border-radius: 1px;
-}
 
+/* Eliminados los efectos hover y animaciones */
 .custom-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.custom-table tbody tr:hover {
-  background-color: #f1f1f1;
+  background-color: #f8f8f8;
 }
 
 .header-btn-space {
