@@ -1796,9 +1796,9 @@
   align-items: center;
   gap: 24px;
   padding: 20px;
-  width: 83%;
+  width: 100%;
   position: relative;
-  background-color: #f2f5f4;
+  /* background-color: #f2f5f4; */
 }
 
 .registroConfig .info {
