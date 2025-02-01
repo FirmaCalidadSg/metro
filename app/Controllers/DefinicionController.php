@@ -28,12 +28,14 @@ class DefinicionController
         $modo = 'crear'; 
         $definicion = null;  
     
-        if (isset($_POST['id']) && !empty($_POST['id'])) {
-            $definicion = $this->definicion->getDefinicionById($_POST['id']);
+        if (isset($_REQUEST['id']) && !empty($_REQUEST['id'])) {
+            $definicion = $this->definicion->getDefinicionById($_REQUEST['id']);
             $modo = 'editar'; 
         }
+
+        
       
-        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
+      /*   require_once __DIR__ . '/../views/layouts/Sidebar2.php'; */
         require_once __DIR__ . '/../views/definicion/registro.php';
     }
     
@@ -47,21 +49,28 @@ class DefinicionController
         $definicion->nombre = $_POST['nombre'];
         $definicion->valor = $_POST['valor'];
         $definicion->descripcion = $_POST['descripcion'];
-    
-        if ($definicion->id > 0) {
-            $this->definicion->updateDefinicion($definicion);
+        
+        $result = $definicion->id > 0 ? $this->definicion->updateDefinicion($definicion) : $this->definicion->createDefinicion($definicion);
+        echo json_encode($result, true);
+       /*  if ($definicion->id > 0) {
+            $response = $this->definicion->updateDefinicion($definicion);
             $message = 'Definicion actualizada exitosamente';
         } else {
-            $this->definicion->createDefinicion($definicion);
+            $response = $this->definicion->createDefinicion($definicion);
         }
     
         $response = [
             'success' => true,
             'message' => $message
         ];
+
+        $result = [
+            'status' => 'success',
+            'msn' => 'Planta registada con éxito',
+        ];
         
         // Enviamos la respuesta en formato JSON para que el frontend lo procese
-        echo json_encode($response);
+        echo json_encode($response); */
     }
     public function vistaPrevia($id)
     {
@@ -142,24 +151,14 @@ class DefinicionController
         
     public function eliminar($id = null)
     {
-        try {
-            // Verificar si el ID viene en la URL
-            if ($id === null) {
-                // Si no viene en la URL, intentar obtenerlo del POST
-                $data = json_decode(file_get_contents('php://input'), true);
-                $id = $data['id'] ?? null;
-            }
 
-            if ($id === null) {
-                throw new \Exception('ID no proporcionado');
-            }
-
-            // Eliminar el definicion
-            $this->definicion->deleteDefinicion($id);
-
-            echo json_encode(['success' => true]);
-        } catch (\PDOException $e) {
-            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
-        }
+        
+        $response = $this->definicion->deleteDefinicion($id);
+        echo json_encode($response);
+    
     }
+
+        
+
+    
 }

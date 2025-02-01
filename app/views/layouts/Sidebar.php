@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
+  <title>Alianza team</title>
   <link rel="stylesheet" href="../app/Assets/css/globals.css" />
   <link rel="stylesheet" href="../app/Assets/css/style.css" />
   <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
   <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="../app/Assets/datatable/datatables.css" />
 </head>
+
 <body>
   <div class="property-slider">
     <img class="image" src="../app/Assets/css/images/logo.svg" />
@@ -140,6 +143,21 @@
           });
         });
 
+        function Cargar(url, controlador, data) {
+          urls = '<?php echo BASE_PATH ?>'+ controlador +'/' + url;
+          $.ajax({
+            url: urls,
+            type: 'GET',
+            data: data,
+            success: function(response) {
+              $('#index').html(response);
+            },
+            error: function(xhr, status, error) {
+              console.error('Error:', error);
+            }
+          });
+        }
+
         function functionContraer() {
           const sidebar = document.querySelector('.property-slider');
           const home = document.querySelector('.home');
@@ -169,7 +187,7 @@
           option.addEventListener('click', handleSidebarOptionClick);
         });
 
-        
+
 
         $(document).ready(function() {
           $('#table').DataTable({

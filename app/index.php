@@ -58,11 +58,14 @@ $router->group('api', 'DefinicionesController', function ($group) {
 $router->group('definicion', 'DefinicionController', function ($group) {
     $group->add('', 'index');
     $group->add('registro', 'registro');
+    $group->add('registro/{id}', 'registro');
     $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('editar/{id}', 'editar', 'POST');
     $group->add('editarFormulario/{id}', 'editarFormulario');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
+    $group->add('eliminar/{id}', 'eliminar', 'POST');
+
 });
 
 // Rutas de paises

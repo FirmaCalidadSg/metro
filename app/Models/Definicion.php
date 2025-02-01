@@ -43,7 +43,7 @@ class Definicion
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_OBJ);
-    
+
         // Verificamos si se encontró el registro
         if ($result) {
             // Convertimos el stdClass a un objeto de la clase Definicion
@@ -52,13 +52,13 @@ class Definicion
             $definicion->nombre = $result->nombre;
             $definicion->valor = $result->valor;
             $definicion->descripcion = $result->descripcion;
-    
+
             return $definicion;
         }
-    
+
         return null; // Si no se encuentra la definición, retornamos null
     }
-    
+
 
     public function createDefinicion(Definicion $definicion)
     {
@@ -67,7 +67,23 @@ class Definicion
         $stmt->bindParam(':nombre', $definicion->nombre, PDO::PARAM_STR);
         $stmt->bindParam(':valor', $definicion->valor, PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $definicion->descripcion, PDO::PARAM_STR);
-        return $stmt->execute();
+
+        $id = "";
+        if ($stmt->execute()) {
+            $id = $this->db->lastInsertId();
+            $result = [
+                'status' => 'success',
+                'msn' => 'Definición registada con éxito',
+                'id' => $id,
+            ];
+        } else {
+            $result = [
+                'status' => 'error',
+                'msn' => 'Error, en el registro de la definición',
+                'id' => $id,
+            ];
+        }
+        return $result;
     }
 
     public function updateDefinicion(Definicion $definicion)
@@ -83,7 +99,21 @@ class Definicion
         $stmt->bindParam(':nombre', $definicion->nombre, PDO::PARAM_STR);
         $stmt->bindParam(':valor', $definicion->valor, PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $definicion->descripcion, PDO::PARAM_STR);
-        return $stmt->execute();
+        if ($stmt->execute()) {
+            $id = $definicion->id;
+            $result = [
+                'status' => 'success',
+                'msn' => 'Definición actualizada con éxito',
+                'id' => $id,
+            ];
+        } else {
+            $result = [
+                'status' => 'error',
+                'msn' => 'Error, en la actualización de la definición',
+
+            ];
+        }
+        return $result;
     }
 
     public function deleteDefinicion($id)
@@ -91,6 +121,20 @@ class Definicion
         $query = "DELETE FROM definicion WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        return $stmt->execute();
+        $result = $stmt->execute();
+        if ($stmt->execute()) {
+            $result = [
+                'status' => 'success',
+                'msn' => 'Definición eliminada con exito',
+
+            ];
+        } else {
+            $result = [
+                'status' => 'error',
+                'msn' => 'Error, en la eliminación de la definición',
+
+            ];
+        }
+        return $result;
     }
 }

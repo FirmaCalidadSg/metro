@@ -1,152 +1,69 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../app/Assets/css/globals.css" />
-    <link rel="stylesheet" href="../../app/Assets/css/styleguide.css" />
-    <link rel="stylesheet" href="../../app/Assets/css/style.css" />
-    <title>Registro</title>
-</head>
-
-<body>
-    <div class="registroConfig">
-        <div class="info">
-            <div class="frame">
-                <div class="text">
-                    <div class="text-wrapper">Nueva Definición</div>
-                </div>
-                <div class="div">
-                    <div class="frame-2">
-                        <div class="text-wrapper-2">Creado por</div>
-                        <div class="div-wrapper">
-                            <div class="text-wrapper-3">Sebastian Diaz</div>
-                        </div>
-                    </div>
-                    <div class="frame-2">
-                        <div class="text-wrapper-2">Fecha registro</div>
-                        <div class="frame-3">
-                            <div class="img-calendar">
-                                <img src="../../app/Assets/css/images/calender.svg" />
-                            </div>
-                            <div class="text-wrapper-3">
-                                <?php
-                                $fecha = date('d/m/Y');
-                                echo $fecha;
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<form method="POST" id="formdefinicion" class="" action="">
+    <div class="drops-downs">
+        <div class="element">
+            <div class="form-group">
+                <label for="valor">Valor</label>
+                <input type="text" name="valor" class="form-control" id="valor" value="<?php echo $definicion->valor ?? ''; ?>" placeholder="Valor" required>
             </div>
 
-            <form method="POST" class="form-register" action="/metro/app/definicion/<?php echo isset($definicion->id) && $definicion->id > 0 ? 'actualizar' : 'crear'; ?>">
-                <div class="drops-downs">
-                    <div class="element">
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Valor</div>
-                                <div class="div-2">
-                                    <input type="text" name="valor" class="select-register" value="<?php echo $definicion->valor ?? ''; ?>" placeholder="Valor" required>
-                                </div>
-                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Nombre</div>
-                                <div class="div-2">
-                                    <input type="text" name="nombre" class="select-register" value="<?php echo $definicion->nombre ?? ''; ?>" placeholder="Nombre" required>
-                                </div>
-                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="element">
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Descripción</div>
-                                <div class="div-2">
-                                    <input type="text" name="descripcion" class="select-register" value="<?php echo $definicion->descripcion ?? ''; ?>" placeholder="Descripción" required>
-                                </div>
-                            </div>
-                            <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                        </div>
-                    </div>
-                </div>
-
-        </div>
-
-        <input type="hidden" id="id" name="id" value="<?php echo $definicion->id ?? ''; ?>">
-        <button type="submit" class="btn btn-primary">
-            <?php echo isset($definicion->id) && $definicion->id > 0 ? 'Actualizar' : 'Registrar'; ?>
-        </button>
-        </form>
-
-        <!-- Modal HTML -->
-        <div class="modal-changes" id="isSuccessModal" style="display: none;">
-            <div class="modal-content">
-                <div class="modal-title">
-                    <h2 id="modal-title">¡Éxito!</h2>
-                </div>
-                <p class="modal-message" id="modal-message">La operación se completó correctamente.</p>
-                <button id="closeModal">Cerrar</button>
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" class="form-control" id="nombre" value="<?php echo $definicion->nombre ?? ''; ?>" placeholder="Nombre" required>
             </div>
         </div>
+        <div class="element">
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <input type="text" name="descripcion" class="form-control" id="descripcion" value="<?php echo $definicion->descripcion ?? ''; ?>" placeholder="Descripción" required>
+            </div>
+        </div>
+    </div>
 
-
-</body>
+    <input type="hidden" id="id" name="id" value="<?php echo $definicion->id ?? ''; ?>">
+    <button type="submit" class="btn btn-primary">
+        <?php echo isset($definicion->id) && $definicion->id > 0 ? 'Actualizar' : 'Registrar'; ?>
+    </button>
+</form>
 <script>
-    function showModal(message, isSuccess = true) {
-        document.getElementById('modal-message').innerHTML = message;
-
-        document.getElementById('modal-title').innerHTML = isSuccess ? '¡Éxito!' : 'Error';
-        document.getElementById('isSuccessModal').style.backgroundColor = isSuccess ? '#111111bd' : '#F44336';
-        document.getElementById('isSuccessModal').style.display = 'flex';
-        document.getElementById('closeModal').addEventListener('click', function() {
-            closeModal(isSuccess);
-        });
-
-        setTimeout(() => {
-            closeModal(isSuccess);
-        }, 5000);
-    }
-
-    function closeModal(isSuccess) {
-        document.getElementById('isSuccessModal').style.display = 'none';
-
-        if (isSuccess) {
-            window.location.href = "<?php echo BASE_PATH; ?>/definicion";
-        } else {
-            window.location.href = "<?php echo BASE_PATH; ?>/definicion";
-        }
-    }
-
-    document.querySelector('form').addEventListener('submit', function(e) {
-        e.preventDefault(); // Evitar que se recargue la página al enviar el formulario
-
-        const formData = new FormData(this);
-
-        fetch('/metro/app/definicion/crear', {
-            method: 'POST',
-            body: formData
-        }).then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor');
+    $('#formdefinicion').on('submit', function(e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        $.ajax({
+            url: '<?php echo BASE_PATH ?>definicion/crear',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(response) {
+               
+                if (response.status == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Éxito!',
+                        text: response.msn,
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        $('#table').DataTable().ajax.reload();
+                        location.reload(); // Agregado para recargar la página
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Hubo un error al guardar la planta',
+                        confirmButtonText: 'Aceptar'
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error en el servidor: ' + error,
+                    confirmButtonText: 'Aceptar'
+                });
             }
-            return response.json();
-        }).then(data => {
-            if (data.success) {
-                showModal(data.message, true);
-            } else {
-                showModal(data.message, false);
-            }
-        }).catch(error => {
-            /*     console.error('Error:', error); */
-            showModal('Ocurrió un error inesperado', false);
         });
     });
 </script>
-
-</html>
