@@ -72,6 +72,7 @@ $router->group('definicion', 'DefinicionController', function ($group) {
 $router->group('pais', 'PaisController', function ($group) {
     $group->add('', 'index');
     $group->add('registro', 'registro');
+    $group->add('registro/{id}', 'registro'); // siempre hay que agragarla
     $group->add('editarFormulario/{id}', 'editarFormulario');
     $group->add('editar/{id}', 'editar', 'POST');
     $group->add('vistaPrevia/{id}', 'vistaPrevia');

@@ -21,6 +21,8 @@ class DefinicionController
         // var_dump($definicion);
         require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/definicion/index.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+
     }
 
     public function registro()

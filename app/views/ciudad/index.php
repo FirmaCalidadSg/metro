@@ -11,36 +11,18 @@
 </head>
 
 <body>
-    <div class="ciudad">
+    <div class="pais">
         <button class="btn-back" onclick="goBack()">
             <div class="btn-back-text">
                 < Volver</div>
         </button>
-        <div class="ciudad-header">
+        <div class="pais-header">
             <div class="btn-space">
                 <h2>Lista de Ciudades</h2>
-                <button onclick="agregarCiudad()"class="btn-div">
+                <button onclick="agregarCiudad()" class="btn-div">
                     <img class="image-list" src="../app/Assets/css/images/circle-fill.svg">
                     <div class="text-style">Agregar</div>
                 </button>
-                <div class="space-input">
-                    <select class="selector-table" id="ciudad-selector">
-                        <option value="" disabled selected>Filtrar por ciudad</option>
-                        <?php foreach ($ciudades as $ciudad): ?>
-                            <option value="<?php echo $ciudad->id; ?>"><?php echo $ciudad->nombre; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
-                </div>
-                <div class="space-input">
-                    <select class="selector-table" id="departamento-selector">
-                        <option value="" disabled selected>Filtrar por departamento</option>
-                        <?php foreach ($ciudades as $ciudad): ?>
-                            <option value="<?php echo $ciudad->nombre_departamento; ?>"><?php echo $ciudad->nombre_departamento; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <img class="underline-btn" src="../app/Assets/css/images/underline.svg">
-                </div>
             </div>
             <table class="custom-table" id="tablaCiudad">
                 <thead>
@@ -85,187 +67,52 @@
                 <div class="modal-body" id="modal-body-content">
                     ...
                 </div>
-
             </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('ciudad-selector').addEventListener('change', function() {
-            filtrarTabla();
-        });
-
-        document.getElementById('departamento-selector').addEventListener('change', function() {
-            filtrarTabla();
-        });
-
-        function filtrarTabla() {
-            var ciudadSeleccionada = document.getElementById('ciudad-selector').value;
-            var departamentoSeleccionado = document.getElementById('departamento-selector').value;
-
-            var filas = document.querySelectorAll('#tablaCiudad tbody tr');
-
-            filas.forEach(function(fila) {
-                var ciudadId = fila.cells[0].textContent.trim(); // Columna "ID" (usada para comparar)
-                var departamento = fila.cells[2].textContent.trim(); // Columna "Departamento"
-
-                // Filtrar por ciudad ID o departamento, si corresponde
-                if ((ciudadSeleccionada === "" || ciudadId == ciudadSeleccionada) &&
-                    (departamentoSeleccionado === "" || departamento == departamentoSeleccionado)) {
-                    fila.style.display = "";
-                } else {
-                    fila.style.display = "none";
-                }
-            });
-        }
-
         function goBack() {
             window.history.back();
         }
 
-        function editarCiudad(id) {
-
-            const formData = new FormData();
-            formData.append('id', id);
-            fetch('/metro/app/ciudad/registro', {
-                method: 'POST',
-                body: formData
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-                return response.text();
-            }).then(data => {
-                document.getElementById('modal-title').innerHTML = 'ACTUALIZAR CIUDAD';
-                document.getElementById('modal-body-content').innerHTML = data;
-                addSubmitForm();
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Error al procesar la solicitud');
-            });
-
-        }
-
         function agregarCiudad() {
             window.location.href = '/metro/app/ciudad/registro';
-/*             fetch('/metro/app/ciudad/registro', {
-                method: 'POST'
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-                return response.text();
-            }).then(data => {
-                document.getElementById('modal-title').innerHTML = 'REGISTRAR CIUDAD';
-                document.getElementById('modal-body-content').innerHTML = data;
-                addSubmitForm();
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Error al procesar la solicitud');
-            });
- */
         }
 
         function eliminarCiudad(id) {
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: "¡Esta acción no se puede deshacer!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#0b7c3e',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '¡Sí, eliminar!',
-        cancelButtonText: 'Cancelar',
-        customClass: {
-            popup: 'mi-clase-modal', // Clase personalizada para el modal
-            title: 'mi-titulo-modal', // Clase personalizada para el título
-            content: 'mi-contenido-modal', // Clase personalizada para el contenido
-            icon: 'mi-icono-modal' // Clase personalizada para el icono
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(`/metro/app/ciudad/eliminar/${id}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id: id
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire({
-                            title: '¡Eliminado!',
-                            text: data.message,
-                            icon: 'success',
-                            customClass: {
-                                popup: 'mi-clase-modal', // Clase personalizada para el modal de éxito
-                                title: 'mi-titulo-modal', // Clase personalizada para el título de éxito
-                                content: 'mi-contenido-modal', // Clase personalizada para el contenido de éxito
-                                icon: 'mi-icono-modal' // Clase personalizada para el icono de éxito
-                            }
-                        }).then(() => {
-                            location.reload(); // Recargar la página después de eliminar
-                        });
-                    } else {
-                        Swal.fire({
-                            title: 'Error',
-                            text: data.error,
-                            icon: 'error',
-                            customClass: {
-                                popup: 'mi-clase-modal', // Clase personalizada para el modal de error
-                                title: 'mi-titulo-modal', // Clase personalizada para el título de error
-                                content: 'mi-contenido-modal', // Clase personalizada para el contenido de error
-                                icon: 'mi-icono-modal' // Clase personalizada para el icono de error
-                            }
-                        });
-                    }
-                })
-                .catch(error => {
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Ocurrió un error al procesar la solicitud.',
-                        icon: 'error',
-                        customClass: {
-                            popup: 'mi-clase-modal', // Clase personalizada para el modal de error
-                            title: 'mi-titulo-modal', // Clase personalizada para el título de error
-                            content: 'mi-contenido-modal', // Clase personalizada para el contenido de error
-                            icon: 'mi-icono-modal' // Clase personalizada para el icono de error
-                        }
-                    });
-                });
-        }
-    });
-}
-
-
-        function addSubmitForm() {
-            const formulario = document.getElementById('registroForm');
-            formulario.addEventListener('submit', function(event) {
-                event.preventDefault();
-
-                const formData = new FormData(event.currentTarget);
-
-                fetch('/metro/app/ciudad/crear', {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡Esta acción no se puede deshacer!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#0b7c3e',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Sí, eliminar!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/metro/app/ciudad/eliminar/${id}`, {
                         method: 'POST',
-                        body: formData
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id: id })
                     })
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            alert(data.message);
-                            window.location.href = '/metro/app/ciudad';
+                            Swal.fire('¡Eliminado!', data.message, 'success').then(() => {
+                                location.reload();
+                            });
                         } else {
-                            console.error(data);
-                            alert('Error al registrar ciudad: ' + data.message);
+                            Swal.fire('Error', data.error, 'error');
                         }
                     })
                     .catch(error => {
-                        console.error('Error:', error);
-                        alert('Error al procesar la solicitud');
+                        Swal.fire('Error', 'Ocurrió un error al procesar la solicitud.', 'error');
                     });
+                }
             });
         }
     </script>

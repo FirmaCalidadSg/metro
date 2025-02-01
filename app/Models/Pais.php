@@ -41,9 +41,9 @@ class Pais
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(PDO::FETCH_OBJ);
     
-        // Verificamos si se encontró el registro
+        /* // Verificamos si se encontró el registro
         if ($result) {
             // Creamos un nuevo objeto de tipo Pais y asignamos los valores
             $pais = new Pais();
@@ -54,7 +54,7 @@ class Pais
             return $pais;
         }
     
-        return null; // Si no se encuentra el país, retornamos null
+        return null; // Si no se encuentra el país, retornamos null */
     }
     
 
@@ -64,7 +64,23 @@ class Pais
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':nombre', $pais->nombre, PDO::PARAM_STR);
         $stmt->bindParam(':codigo', $pais->codigo, PDO::PARAM_STR);
-        return $stmt->execute();
+        
+        $id = "";
+        if ($stmt->execute()) {
+            $id = $this->db->lastInsertId();
+            $result = [
+                'status' => 'success',
+                'msn' => 'Definición registada con éxito',
+                'id' => $id,
+            ];
+        } else {
+            $result = [
+                'status' => 'error',
+                'msn' => 'Error, en el registro de la definición',
+                'id' => $id,
+            ];
+        }
+        return $result;
     }
 
     public function updatePais(Pais $pais)
@@ -78,7 +94,22 @@ class Pais
         $stmt->bindParam(':id', $pais->id, PDO::PARAM_INT);
         $stmt->bindParam(':nombre', $pais->nombre, PDO::PARAM_STR);
         $stmt->bindParam(':codigo', $pais->codigo, PDO::PARAM_STR);
-        return $stmt->execute();
+        
+        $result = [];
+        if ($stmt->execute()) {
+            $result = [
+                'status' => 'success',
+                'msn' => 'Definición actualizada con éxito',
+                'id' => $pais->id,
+            ];
+        } else {
+            $result = [
+                'status' => 'error',
+                'msn' => 'Error, en la actualización de la definición',
+                'id' => $pais->id,
+            ];
+        }
+        return $result;
     }
 
     public function deletePais($id)

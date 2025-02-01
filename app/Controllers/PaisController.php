@@ -21,15 +21,18 @@ class PaisController
 
         require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/pais/index.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+
     }
 
     public function registro()
     {
         $pais = new Pais();
-        if (isset($_POST['id'])) {
-            $pais = $this->pais->getPaisById($_POST['id']);
+        //print_r($_REQUEST['id']);
+        if (isset($_REQUEST['id'])) {
+            $pais = $this->pais->getPaisById($_REQUEST['id']);
         }
-        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
+       
         require_once __DIR__ . '/../views/pais/registro.php';
     }
 
@@ -41,17 +44,8 @@ class PaisController
         $pais->nombre = $_POST['nombre'];
         $pais->codigo = $_POST['codigo'];
 
-        if ($pais->id > 0) {
-            $this->pais->updatePais($pais);
-            $message = 'Pais actualizado exitosamente';
-        } else {
-            $this->pais->createPais($pais);
-        }
-        $response = [
-            'success' => true,
-            'message' => $message
-        ];
-        echo json_encode($response);
+        $result = $pais->id > 0 ? $this->pais->updatePais($pais) : $this->pais->createPais($pais);
+        echo json_encode($result, true);
     }
     public function editar($id)
     {
@@ -85,14 +79,8 @@ class PaisController
         $pais->codigo = $codigo;
     
         // Guardar la definición actualizada
-        $this->pais->updatePais($pais);
-    
-        $response = [
-            'success' => true,
-            'message' => 'Pais actualizado exitosamente.'
-        ];
-    
-        echo json_encode($response);
+        $result = $this->pais->updatePais($pais);
+        echo json_encode($result, true);
     }
     public function editarFormulario($id)
     {
@@ -136,8 +124,7 @@ class PaisController
             }
 
             // Eliminar el pais
-            $this->pais->deletePais($id);
-
+            $result = $this->pais->deletePais($id);
             echo json_encode(['success' => true]);
         } catch (\PDOException $e) {
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);

@@ -44,8 +44,8 @@
                         text: response.msn,
                         confirmButtonText: 'Aceptar'
                     }).then((result) => {
-                        $('#table').DataTable().ajax.reload();
-                        location.reload(); // Agregado para recargar la página
+                        
+                        location.reload(); 
                     });
                 } else {
                     Swal.fire({

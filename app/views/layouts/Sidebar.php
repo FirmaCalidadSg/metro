@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
   <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="../app/Assets/datatable/datatables.css" />
+  <link rel="stylesheet" href="../app/Assets/fontawesome-free-5.15.4-web/css/all.min.css">
 </head>
 
 <body>
@@ -126,6 +127,9 @@
       <script src="../app/Assets/datatable/datatables.js"></script>
       <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
 
+     
+
+
       <script>
         document.addEventListener('DOMContentLoaded', function() {
           const sidebarOptions = document.querySelectorAll('.sidebar-option');
@@ -143,7 +147,9 @@
           });
         });
 
-        function Cargar(url, controlador, data) {
+
+
+        /* function Cargar(url, controlador, data) {
           urls = '<?php echo BASE_PATH ?>'+ controlador +'/' + url;
           $.ajax({
             url: urls,
@@ -156,7 +162,7 @@
               console.error('Error:', error);
             }
           });
-        }
+        } */
 
         function functionContraer() {
           const sidebar = document.querySelector('.property-slider');
