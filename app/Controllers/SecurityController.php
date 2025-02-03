@@ -19,7 +19,7 @@ class SecurityController
         // Redirigir a login si no hay sesión activa
         session_start();
         if (!isset($_SESSION['user_id'])) {
-            header('Location: ' . BASE_PATH . '/login');
+            header('Location: ' . BASE_PATH . 'login');
             exit;
         }
         // Si hay sesión, mostrar dashboard o página principal

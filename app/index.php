@@ -10,7 +10,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Constantes
-define('BASE_PATH', '/metro/app/');
+define('BASE_PATH', '/metro/app');
 define('APP_PATH', __DIR__);
 
 // Autoloader
@@ -28,7 +28,6 @@ $router->group('', 'SecurityController', function ($group) {
     $group->add('logout', 'logout');
     $group->add('dashboard', 'dashboard');
 });
-
 // Rutas de usuarios
 $router->group('usuarios', 'UsuariosController', function ($group) {
     $group->add('', 'index');
@@ -40,7 +39,6 @@ $router->group('usuarios', 'UsuariosController', function ($group) {
     $group->add('actcredenciales', 'actcredenciales', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
-
 // Rutas de roles
 $router->group('roles', 'RolesController', function ($group) {
     $group->add('', 'index');
@@ -53,7 +51,6 @@ $router->group('api', 'DefinicionesController', function ($group) {
     $group->add('usuarios', 'usuarios');
     $group->add('roles', 'roles');
 });
-
 // Rutas de definicion
 $router->group('definicion', 'DefinicionController', function ($group) {
     $group->add('', 'index');
@@ -67,7 +64,6 @@ $router->group('definicion', 'DefinicionController', function ($group) {
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 
 });
-
 // Rutas de paises
 $router->group('pais', 'PaisController', function ($group) {
     $group->add('', 'index');
@@ -79,7 +75,6 @@ $router->group('pais', 'PaisController', function ($group) {
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
-
 // Rutas de departamentos
 $router->group('departamento', 'DepartamentoController', function ($group) {
     $group->add('', 'index');
@@ -90,7 +85,6 @@ $router->group('departamento', 'DepartamentoController', function ($group) {
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
-
 // Rutas de ciudades
 $router->group('ciudad', 'CiudadController', function ($group) {
     $group->add('', 'index');
@@ -205,6 +199,16 @@ $router->group('turno', 'TurnosController', function ($group) {
     $group->add('registrar', 'registrar', 'POST');
     $group->add('getturnobyplanta/{id}', 'getturnobyplanta', 'GET');
 });
+
+$router->group('paros', 'ParosController', function ($group) {
+    $group->add('', 'index');
+    $group->add('crud', 'crud');
+    $group->add('registrar', 'registrar', 'POST');
+    $group->add('getturnobyplanta/{id}', 'getturnobyplanta', 'GET');
+});
+
+
+
 
 try {
     $uri = trim(str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']), '/');
