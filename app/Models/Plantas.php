@@ -7,21 +7,19 @@ use PDO;
 
 class Plantas
 {
-
     private $db;
+
     public $id;
-    public $nombre;
+    public $nombre_planta;
     public $ciudad_id;
     public $responsable_id;
     public $created;
 
-
     public function __construct()
     {
-        error_log("Construyendo modelo Plantas");
+        error_log("Construyendo modelo Planta");
         try {
             $this->db = Database::getInstance()->getConnection();
-            $this->db->query('SELECT 1');
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->exec("SET NAMES utf8mb4");
         } catch (\Exception $e) {
@@ -32,10 +30,10 @@ class Plantas
 
     public function getAllPlantas()
     {
-        $query = "SELECT p.*, c.nombre as ciudad_nombre
-                  FROM plantas p
-                  INNER JOIN ciudad c ON c.id = p.ciudad_id
-                  ";
+        $query = "SELECT p.*, c.nombre AS ciudad_nombre, r.nombres AS responsable_nombre 
+                  FROM plantas p 
+                  LEFT JOIN ciudad c ON p.ciudad_id = c.id 
+                  LEFT JOIN usuarios r ON p.responsable_id = r.id";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -43,63 +41,68 @@ class Plantas
 
     public function getPlantaById($id)
     {
-        $query = "SELECT p.*, c.nombre as ciudad_nombre, d.nombre as departamento_nombre, pa.nombre as pais_nombre
-                  FROM plantas p
-                  INNER JOIN ciudad c ON c.id = p.ciudad
-                  INNER JOIN departamento d ON d.id = p.departamento
-                  INNER JOIN pais pa ON pa.id = p.pais
-                  WHERE p.id = :id";
+        $query = "SELECT * FROM plantas WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_OBJ);
-
-        // Verificamos si se encontró la planta
-        if ($result) {
-            // Creamos un nuevo objeto de tipo Plantas y asignamos los valores
-            $planta = new Plantas();
-            $planta->id = $result->id;
-            $planta->nombre = $result->nombre;
-            $planta->ciudad_id = $result->ciudad;
-            $planta->ciudad_nombre = $result->ciudad_nombre;
-        }
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function createPlanta($planta)
+    public function createPlanta(Planta $planta)
     {
-        $query = "INSERT INTO plantas (nombre_planta, ciudad_id, responsable_id)
-                  VALUES (:nombre, :ciudad, :responsable_id)";
+        $query = "INSERT INTO plantas (nombre_planta, ciudad_id, responsable_id) 
+                  VALUES (:nombre_planta, :ciudad_id, :responsable_id)";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':nombre', $planta->nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':ciudad', $planta->ciudad_id, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_planta', $planta->nombre_planta, PDO::PARAM_STR);
+        $stmt->bindParam(':ciudad_id', $planta->ciudad_id, PDO::PARAM_INT);
         $stmt->bindParam(':responsable_id', $planta->responsable_id, PDO::PARAM_INT);
-        $id = "";
+
         if ($stmt->execute()) {
-            $id = $this->db->lastInsertId();
-            $result = [
+            return [
                 'status' => 'success',
-                'msn' => 'Planta registada con éxito',
-                'id' => $id,
+                'msn' => 'Planta registrada con éxito',
+                'id' => $this->db->lastInsertId(),
             ];
         } else {
-            $result = [
+            return [
                 'status' => 'error',
-                'msn' => 'Planta no registada con éxito, trate de nuevo mas tarde',
-                'id' => $id,
+                'msn' => 'Error en el registro de la Planta',
             ];
         }
-        return $result;
     }
 
-    public function updatePlanta($planta)
+    public function updatePlanta(Planta $planta)
     {
-        $query = "UPDATE plantas SET nombre = :nombre, ciudad = :ciudad, responsable_id = :responsable_id
+        $query = "UPDATE plantas SET 
+                    nombre_planta = :nombre_planta, 
+                    ciudad_id = :ciudad_id, 
+                    responsable_id = :responsable_id
                   WHERE id = :id";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':nombre', $planta->nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':ciudad', $planta->ciudad_id, PDO::PARAM_INT);
-        $stmt->bindParam(':responsable_id', $planta->responsable_id, PDO::PARAM_INT);
         $stmt->bindParam(':id', $planta->id, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre_planta', $planta->nombre_planta, PDO::PARAM_STR);
+        $stmt->bindParam(':ciudad_id', $planta->ciudad_id, PDO::PARAM_INT);
+        $stmt->bindParam(':responsable_id', $planta->responsable_id, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return [
+                'status' => 'success',
+                'msn' => 'Planta actualizada con éxito',
+                'id' => $planta->id,
+            ];
+        } else {
+            return [
+                'status' => 'error',
+                'msn' => 'Error en la actualización de la Planta',
+            ];
+        }
+    }
+
+    public function deletePlanta($id)
+    {
+        $query = "DELETE FROM plantas WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
 }

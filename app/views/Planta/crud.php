@@ -1,70 +1,38 @@
-<form id="formPlanta" method="POST">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col md-6">
-                <input type="hidden" id="id_planta" name="id_planta">
-                <div class="form-group">
-                    <label for="nombre">Nombre de la Planta</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
-                </div>
-            </div>
-            <div class="col md-6">
-                <div class="form-group">
-                    <label for="ubicacion">Ubicación</label>
-                    <select id='ciudad_id' name="ciudad_id" class="form-control select2">
-                        <option value="">Seleccionar</option>
-                        <?php foreach ($ciudades as $value): ?>
-                            <option value="<?php echo $value->id ?>"><?php echo $value->nombre ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-            </div>
+<div class="">
+    <form action="" method="POST" id="formPlantas">
+        <div class="mb-3">
+            <label for="nombre_planta" class="form-label">Nombre de la Planta</label>
+            <input type="text" class="form-control" id="nombre_planta" name="nombre_planta" placeholder="Nombre de la planta" value="<?= $planta->nombre_planta ?? '' ?>" required>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </div>
-</form>
-<script>
-    $('#formPlanta').on('submit', function(e) {
-        e.preventDefault();
-        let formData = new FormData(this);
-        $.ajax({
-            url: '<?php echo BASE_PATH ?>plantas/registrar',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            success: function(response) {
-                if (response.status == 'success') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Éxito!',
-                        text: 'Planta guardada correctamente',
-                        confirmButtonText: 'Aceptar'
-                    }).then((result) => {                        
-                            $('#table').DataTable().ajax.reload();
-                        
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Hubo un error al guardar la planta',
-                        confirmButtonText: 'Aceptar'
-                    });
-                }
-            },
-            error: function(xhr, status, error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Error en el servidor: ' + error,
-                    confirmButtonText: 'Aceptar'
-                });
-            }
-        });
-    });
-</script>
+
+        <div class="mb-3">
+            <label for="ciudad_id" class="form-label">Ciudad</label>
+            <select class="form-control" id="ciudad_id" name="ciudad_id" required>
+                <option value="">Seleccione una Ciudad</option>
+                <?php foreach ($ciudades as $ciudad): ?>
+                    <option value="<?= $ciudad->id ?>" <?= isset($planta->ciudad_id) && $planta->ciudad_id == $ciudad->id ? 'selected' : '' ?>>
+                        <?= $ciudad->nombre ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="responsable_id" class="form-label">Responsable</label>
+            <select class="form-control" id="responsable_id" name="responsable_id">
+                <option value="">Seleccione un Responsable</option>
+                <?php foreach ($responsables as $responsable): ?>
+                    <option value="<?= $responsable->id ?>" <?= isset($planta->responsable_id) && $planta->responsable_id == $responsable->id ? 'selected' : '' ?>>
+                        <?= $responsable->nombre ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <input type="hidden" id="id" name="id" value="<?= $planta->id ?? ''; ?>">
+
+        <a onclick="Registrar('plantas', 'crear', 'formPlantas')" class="btn btn-primary">
+            <?= isset($planta->id) && $planta->id > 0 ? 'Actualizar' : 'Registrar'; ?>
+        </a>
+    </form>
+</div>

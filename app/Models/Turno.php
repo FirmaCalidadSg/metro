@@ -8,20 +8,20 @@ use PDO;
 class Turno
 {
     private $db;
+
     public $id;
     public $nombre;
     public $planta_id;
     public $fecha_inicio;
     public $fecha_fin;
-    public $hora_fin;
     public $hora_inicio;
-    public $planta;
+    public $hora_fin;
+
     public function __construct()
     {
-        error_log("Construyendo modelo Turnos");
+        error_log("Construyendo modelo Turno");
         try {
             $this->db = Database::getInstance()->getConnection();
-            $this->db->query('SELECT 1');
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->exec("SET NAMES utf8mb4");
         } catch (\Exception $e) {
@@ -30,63 +30,92 @@ class Turno
         }
     }
 
-
     public function getAllTurnos()
     {
-        $query = "SELECT t.id as turno_id, turno,fecha_inicio, fecha_fin,hora_inicio,hora_fin, p.nombre_planta
-        FROM turnos t 
-        JOIN plantas p ON t.planta_id = p.id
-        ";
+        $query = "SELECT t.id AS turno_id, t.turno, t.fecha_inicio, t.fecha_fin, t.hora_inicio, t.hora_fin, 
+                         p.nombre_planta AS nombre_planta 
+                  FROM turnos t 
+                  JOIN plantas p ON t.planta_id = p.id;";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-
-    public function getTurnosById($id)
+    public function getTurnoById($id)
     {
-        $query = "SELECT t.id as turno_id, turno,fecha_inicio, fecha_fin,hora_inicio,hora_fin, p.nombre_planta
-        FROM turnos t 
-        JOIN plantas p ON t.planta_id = p.id
-        WHERE t.planta_id=:id
-        ";
+        $query = "SELECT t.id AS turno_id, t.turno, t.fecha_inicio,t.planta_id, t.fecha_fin, t.hora_inicio, t.hora_fin, 
+                         p.nombre_planta AS nombre_planta 
+                  FROM turnos t 
+                  JOIN plantas p ON t.planta_id = p.id
+                  WHERE t.id = :id;";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-        return $result; 
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-
-    public function createTurnos(Turnos $Turnos)
+    public function createTurno(Turno $turno)
     {
-        $query = "INSERT INTO Turnos (nombre, departamento, codigo_postal) VALUES (:nombre, :departamento, :codigo_postal)";
+        $query = "INSERT INTO turnos (turno, planta_id, fecha_inicio, fecha_fin, hora_inicio, hora_fin) 
+                  VALUES (:nombre, :planta_id, :fecha_inicio, :fecha_fin, :hora_inicio, :hora_fin)";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':nombre', $Turnos->nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':departamento', $Turnos->departamento, PDO::PARAM_STR);
-        $stmt->bindParam(':codigo_postal', $Turnos->codigo_postal, PDO::PARAM_STR);
-        return $stmt->execute();
+        $stmt->bindParam(':nombre', $turno->nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':planta_id', $turno->planta_id, PDO::PARAM_INT);
+        $stmt->bindParam(':fecha_inicio', $turno->fecha_inicio, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_fin', $turno->fecha_fin, PDO::PARAM_STR);
+        $stmt->bindParam(':hora_inicio', $turno->hora_inicio, PDO::PARAM_STR);
+        $stmt->bindParam(':hora_fin', $turno->hora_fin, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return [
+                'status' => 'success',
+                'msn' => 'Turno registrado con éxito',
+                'id' => $this->db->lastInsertId(),
+            ];
+        } else {
+            return [
+                'status' => 'error',
+                'msn' => 'Error en el registro del turno',
+            ];
+        }
     }
 
-    public function updateTurnos(Turnos $Turnos)
+    public function updateTurno(Turno $turno)
     {
-        $query = "UPDATE Turnos SET 
-            nombre = :nombre, 
-            departamento = :departamento,
-            codigo_postal = :codigo_postal
-            WHERE id = :id";
-
+        $query = "UPDATE turnos SET 
+                    turno = :nombre, 
+                    planta_id = :planta_id, 
+                    fecha_inicio = :fecha_inicio, 
+                    fecha_fin = :fecha_fin, 
+                    hora_inicio = :hora_inicio, 
+                    hora_fin = :hora_fin
+                  WHERE id = :id";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':id', $Turnos->id, PDO::PARAM_INT);
-        $stmt->bindParam(':nombre', $Turnos->nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':departamento', $Turnos->departamento, PDO::PARAM_STR);
-        $stmt->bindParam(':codigo_postal', $Turnos->codigo_postal, PDO::PARAM_STR);
-        return $stmt->execute();
+        $stmt->bindParam(':id', $turno->id, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre', $turno->nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':planta_id', $turno->planta_id, PDO::PARAM_INT);
+        $stmt->bindParam(':fecha_inicio', $turno->fecha_inicio, PDO::PARAM_STR);
+        $stmt->bindParam(':fecha_fin', $turno->fecha_fin, PDO::PARAM_STR);
+        $stmt->bindParam(':hora_inicio', $turno->hora_inicio, PDO::PARAM_STR);
+        $stmt->bindParam(':hora_fin', $turno->hora_fin, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return [
+                'status' => 'success',
+                'msn' => 'Turno actualizado con éxito',
+                'id' => $turno->id,
+            ];
+        } else {
+            return [
+                'status' => 'error',
+                'msn' => 'Error en la actualización del turno',
+            ];
+        }
     }
 
-    public function deleteTurnos($id)
+    public function deleteTurno($id)
     {
-        $query = "DELETE FROM Turnos WHERE id = :id";
+        $query = "DELETE FROM turnos WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
