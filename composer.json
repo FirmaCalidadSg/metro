@@ -1,0 +1,17 @@
+{
+    "name": "alexander/metro",
+    "autoload": {
+        "psr-4": {
+            "Alexander\\Metro\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "FirmaCalidadSg",
+            "email": "software@calidadsg.com"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "5.0.2"
+    }
+}

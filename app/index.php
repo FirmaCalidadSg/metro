@@ -10,7 +10,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Constantes
-define('BASE_PATH', '/metro/app');
+define('BASE_PATH', '/metro/app/');
 define('APP_PATH', __DIR__);
 
 // Autoloader

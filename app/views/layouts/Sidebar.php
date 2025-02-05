@@ -45,7 +45,7 @@
           <a href="#">Pendientes</a>
           <a href="#">Por Estados</a>
         </div>
-      </div>
+      </div>      
       <div class="sidebar-option">
         <img class="img" src="../app/Assets/css/images/siderbar3.svg" />
         <div class="typography-wrapper">
@@ -120,8 +120,8 @@
     </button>
   </div>
   <div class="home">
-
     <main>
+    <div class="col-md-12">
       <script src="../app/Assets/jquery/jquery.min.js"></script>
       <script src="../app/Assets/bootstrap/bootstrap.bundle.min.js"></script>
       <script src="../app/Assets/datatable/datatables.js"></script>

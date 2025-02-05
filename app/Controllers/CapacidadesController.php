@@ -23,8 +23,7 @@ class CapacidadesController
     public function index()
     {
         require_once __DIR__ . '/../views/layouts/layout.php';
-        $ciudades = $this->ciudad->getAllCiudad();
-  
+        $ciudades = $this->ciudad->getAllCiudad();  
         require_once __DIR__ . '/../views/ciudad/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

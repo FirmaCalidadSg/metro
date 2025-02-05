@@ -1,151 +1,135 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../app/Assets/css/globals.css" />
-    <link rel="stylesheet" href="../../app/Assets/css/styleguide.css" />
-    <link rel="stylesheet" href="../../app/Assets/css/style.css" />
-    <title>Registro</title>
-</head>
-
-<body>
-    <div class="registroConfig">
-        <div class="info">
-            <div class="frame">
-                <div class="text">
-                    <div class="text-wrapper">Nuevo Producto</div>
-                </div>
-                <div class="div">
-                    <div class="frame-2">
-                        <div class="text-wrapper-2">Creado por</div>
-                        <div class="div-wrapper">
-                            <div class="text-wrapper-3">Sebastian Diaz</div>
+<div class="container mt-5">
+        <!-- Formulario de selección -->
+        <div class="card border-0 mb-3">
+            <h5 class="card-header">Registro Productos</h5>
+            <div class="card-body">
+                <form id="productForm" method="POST" action="/metro/app/producto/<?php echo isset($producto->id) && $producto->id > 0 ? 'actualizar' : 'crear'; ?>">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Planta</label>
+                            <select class="form-select" name="planta" required>
+                                <option value="" selected>Seleccionar</option>
+                                <?php foreach ($plantas as $value): ?>
+                                    <option value="<?php echo $value->id ?>"><?php echo $value->nombre_planta ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
-                    </div>
-                    <div class="frame-2">
-                        <div class="text-wrapper-2">Fecha registro</div>
-                        <div class="frame-3">
-                            <div class="img-calendar">
-                                <img src="../../app/Assets/css/images/calender.svg" />
+
+                        <div class="col-md-4">
+                            <label class="form-label">Proceso</label>
+                            <select class="form-select" name="proceso" required>
+                                <option value="" selected>Seleccionar</option>
+                                <?php foreach ($procesos as $value): ?>
+                                    <option value="<?php echo $value->id ?>"><?php echo $value->nombre ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Línea</label>
+                            <select class="form-select" name="linea" required>
+                                <option value="">Seleccionar</option>
+                                <?php foreach ($lineas as $value): ?>
+                                    <option value="<?php echo $value->id ?>"><?php echo $value->nombre ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label d-block">¿Tiene Referencias?</label>
+                            <div class="form-check form-check-inline" required>
+                                <input class="form-check-input" type="radio" name="referencia" value="si" id="refSi" onchange="Ref(this)">
+                                <label class="form-check-label" for="refSi">Sí</label>
                             </div>
-                            <div class="text-wrapper-3">
-                                <?php
-                                $fecha = date('d/m/Y');
-                                echo $fecha;
-                                ?>
+                            <div class="form-check form-check-inline" required>
+                                <input class="form-check-input" type="radio" name="referencia" value="no" id="refNo" onchange="Ref(this)" checked>
+                                <label class="form-check-label" for="refNo">No</label>
                             </div>
                         </div>
+                        <div id="ref"></div>
                     </div>
-                </div>
-            </div>
-
-            <form method="POST" class="form-register" action="/metro/app/producto/<?php echo isset($producto->id) && $producto->id > 0 ? 'actualizar' : 'crear'; ?>">
-            <div class="drops-downs">
-        <div class="element">
-            <div class="textfield-2">
-                <div class="input">
-                    <div class="text-wrapper-5">Nombre</div>
-                    <div class="div-2">
-                        <input type="text" name="nombre" class="select-register" value="<?php echo $producto->nombre ?? ''; ?>" placeholder="Nombre" required>
-                    </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                </div>
-            </div>
-
-            <div class="textfield-2">
-                <div class="input">
-                    <div class="text-wrapper-5">Codigo</div>
-                    <div class="div-2">
-                        <input type="text" name="codigo" class="select-register" value="<?php echo $producto->codigo ?? ''; ?>" placeholder="Codigo" required>
-                    </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                </div>
-            </div>
-        </div>
-        <div class="element">
-            <div class="textfield-2">
-                <div class="input">
-                    <div class="text-wrapper-5">Descripción</div>
-                    <div class="div-2">
-                        <input type="text" name="descripcion" class="select-register" value="<?php echo $producto->descripcion ?? ''; ?>" placeholder="Descripción" required>
-                    </div>
-                </div>
-                    <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                </div>
             </div>
         </div>
 
+        <!-- Formulario de registro/actualización -->
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" value="<?php echo $producto->nombre ?? ''; ?>" placeholder="Nombre" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Código</label>
+                        <input type="text" name="codigo" class="form-control" value="<?php echo $producto->codigo ?? ''; ?>" placeholder="Código" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Descripción</label>
+                        <input type="text" name="descripcion" class="form-control" value="<?php echo $producto->descripcion ?? ''; ?>" placeholder="Descripción" required>
+                    </div>
+                </div>
+
+                <input type="hidden" name="id" value="<?php echo $producto->id ?? ''; ?>">
+
+                <button type="submit" class="btn btn-primary mt-3">
+                    <?php echo isset($producto->id) && $producto->id > 0 ? 'Actualizar' : 'Registrar'; ?>
+                </button>
+                </form>
+            </div>
+        </div>
     </div>
-    
-    <input type="hidden" id="id" name="id" value="<?php echo $producto->id ?? ''; ?>">
-    <button type="submit" class="btn btn-primary">
-        <?php echo isset($producto->id) && $producto->id > 0 ? 'Actualizar' : 'Registrar'; ?>
-    </button>
-</form>
 
-    <!-- Modal HTML -->
-    <div class="modal-changes" id="successModal" style="display: none;">
-    <div class="modal-content">
-        <div class="modal-title">
-            <h2 id="modal-title">¡Éxito!</h2>
+    <script>
+        function Ref(radio) {
+            const refDiv = document.getElementById('ref');
+
+            if (radio.value === 'si') {
+                refDiv.innerHTML = `
+        <div class="mt-3">
+          <label class="form-label">Referencia del Producto</label>
+          <input type="text" class="form-control" name="referencia_producto" placeholder="Ingrese la referencia">
         </div>
-        <p class="modal-message" id="modal-message">La operación se completó correctamente.</p>
-        <button id="closeModal">Cerrar</button>
-    </div>
-</div>
-
-
-</body>
-<script>
-function showModal(message, isSuccess = true) {
-    document.getElementById('modal-message').innerHTML = message;
-    
-    document.getElementById('modal-title').innerHTML = isSuccess ? '¡Éxito!' : 'Error';
-    document.getElementById('successModal').style.backgroundColor = isSuccess ? '#111111bd' : '#F44336'; 
-    document.getElementById('successModal').style.display = 'flex'; 
-    document.getElementById('closeModal').addEventListener('click', function () {
-        closeModal(isSuccess);
-    });
-
-    setTimeout(() => {
-        closeModal(isSuccess);
-    }, 5000); 
-}
-
-function closeModal(isSuccess) {
-    document.getElementById('successModal').style.display = 'none';
-    
-    if (isSuccess) {
-        window.location.href = "<?php echo BASE_PATH; ?>/producto";
-    }
-}
-
-document.querySelector('form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Evitar que se recargue la página al enviar el formulario
-
-    const formData = new FormData(this);
-
-    fetch('/metro/app/producto/crear', {
-        method: 'POST',
-        body: formData
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la respuesta del servidor');
+      `;
+            } else {
+                refDiv.innerHTML = ''; // Vaciar el contenido del div pero mantenerlo visible
+            }
         }
-        return response.json();
-    }).then(data => {
-        if (data.success) {
-            showModal(data.message, true);
-        } else {
-            showModal(data.message, false);
-        }
-    }).catch(error => {
-    /*     console.error('Error:', error); */
-            showModal('Ocurrió un error inesperado', false);
+
+
+        // Manejar envío del formulario con AJAX
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta del servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    Swal.fire({
+                        icon: data.success ? 'success' : 'error',
+                        title: data.success ? '¡Éxito!' : 'Error',
+                        text: data.message
+                    }).then(() => {
+                        window.location.href = "/metro/app/producto/";
+
+                    });
+                })
+                .catch(() => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Ocurrió un error inesperado'
+                    });
+                });
         });
-    });
-
-</script>
-
-</html>
+    </script>

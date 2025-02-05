@@ -70,19 +70,19 @@
                 </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_PATH; ?>/controlCapacidad">Control de Capacidades</a>
+                    <a class="nav-link" href="<?php echo BASE_PATH; ?>controlCapacidad">Control de Capacidades</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_PATH; ?>/consultas">Consultas</a>
+                    <a class="nav-link" href="<?php echo BASE_PATH; ?>consultas">Consultas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_PATH; ?>/reportes">Reportes</a>
+                    <a class="nav-link" href="<?php echo BASE_PATH; ?>reportes">Reportes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_PATH; ?>/configuracion">Configuración</a>
+                    <a class="nav-link" href="<?php echo BASE_PATH; ?>configuracion">Configuración</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo BASE_PATH; ?>/logout">Cerrar Sesión</a>
+                    <a class="nav-link" href="<?php echo BASE_PATH; ?>logout">Cerrar Sesión</a>
                 </li>
                 </ul>
             </div>
