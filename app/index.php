@@ -208,6 +208,39 @@ $router->group('paros', 'ParosController', function ($group) {
 });
 
 
+$router->group('categoriaParos', 'CategoriaParosController', function ($group) {
+    $group->add('', 'index');
+    $group->add('registro', 'registro');
+    $group->add('registro/{id}', 'registro'); // siempre hay que agragarla
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
+    $group->add('crear', 'crear', 'POST');
+    $group->add('eliminar/{id}', 'eliminar', 'POST');
+});
+
+$router->group('subCategoriaParos', 'SubCategoriaParosController', function ($group) {
+    $group->add('', 'index');
+    $group->add('registro', 'registro');
+    $group->add('registro/{id}', 'registro'); // siempre hay que agragarla
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
+    $group->add('crear', 'crear', 'POST');
+    $group->add('eliminar/{id}', 'eliminar', 'POST');
+});
+
+$router->group('tiposParos', 'TiposParosController', function ($group) {
+    $group->add('', 'index');
+    $group->add('registro', 'registro');
+    $group->add('registro/{id}', 'registro'); // siempre hay que agragarla
+    $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('editar/{id}', 'editar', 'POST');
+    $group->add('vistaPrevia/{id}', 'vistaPrevia');
+    $group->add('crear', 'crear', 'POST');
+    $group->add('eliminar/{id}', 'eliminar', 'POST');
+});
+
 
 
 try {
