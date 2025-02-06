@@ -191,14 +191,21 @@ $router->group('reportes', 'ReportesController', function ($group) {
 
 $router->group('plantas', 'PlantasController', function ($group) {
     $group->add('', 'index');
-    $group->add('crud', 'crud');
+    $group->add('registro', 'registro');
+    $group->add('registro/{id}', 'registro'); // siempre hay que agragarla
+    $group->add('crear', 'crear', 'POST');
     $group->add('registrar', 'registrar', 'POST');
+    $group->add('eliminar/{id}', 'eliminar', 'POST');
+
 });
 $router->group('turno', 'TurnosController', function ($group) {
     $group->add('', 'index');
     $group->add('crud', 'crud');
-    $group->add('registrar', 'registrar', 'POST');
+    $group->add('registro', 'registro');
+    $group->add('registro/{id}', 'registro'); // siempre hay que agragarla
+    $group->add('crear', 'crear', 'POST');
     $group->add('getturnobyplanta/{id}', 'getturnobyplanta', 'GET');
+    $group->add('eliminar/{id}', 'eliminar', 'POST');
     $group->add('getturnobyid/{id}', 'getturnobyid', 'GET');
 });
 

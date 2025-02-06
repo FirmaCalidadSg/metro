@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-01-2025 a las 20:41:51
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 06-02-2025 a las 15:36:45
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `metrolink`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoriaparos`
+--
+
+CREATE TABLE `categoriaparos` (
+  `id_categoria` int(11) NOT NULL,
+  `id_distribucion` int(11) NOT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `descripcion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categoriaparos`
+--
+
+INSERT INTO `categoriaparos` (`id_categoria`, `id_distribucion`, `nombre`, `descripcion`) VALUES
+(5, 1, 'Planeado De No Operación', 'Planeado De No Operación'),
+(6, 1, 'Paros Operacionales', 'Paros Operacionales'),
+(7, 1, 'Fallas de Equipos', 'Fallas de Equipos'),
+(8, 1, 'Fallas Organizacionales', 'Fallas Organizacionales'),
+(9, 1, 'Productos de Calidad', 'Productos de Calidad');
 
 -- --------------------------------------------------------
 
@@ -83,7 +107,7 @@ CREATE TABLE `definicion` (
 --
 
 INSERT INTO `definicion` (`id`, `nombre`, `valor`, `descripcion`) VALUES
-(1, 'D1', 'Definicion valor', 'Descripcion D1');
+(1, 'D1', 'Definicion valors', 'Descripcion D1');
 
 -- --------------------------------------------------------
 
@@ -105,6 +129,28 @@ INSERT INTO `departamento` (`id`, `nombre`, `pais`) VALUES
 (1, 'Tolima', 1),
 (2, 'Valle del Cauca', 1),
 (3, 'Norte de Santander', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `distribuciontiempos`
+--
+
+CREATE TABLE `distribuciontiempos` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `distribuciontiempos`
+--
+
+INSERT INTO `distribuciontiempos` (`id`, `nombre`) VALUES
+(2, 'Paradas Y/O Ajustes (Mantenimiento)'),
+(3, 'Paradas Y/O Ajustes (Proceso) (Disponibilidad)'),
+(4, 'Perdidas De Velocidad (Rendimiento)'),
+(1, 'Planeado De No Operación'),
+(5, 'Productos de Calidad');
 
 -- --------------------------------------------------------
 
@@ -306,6 +352,67 @@ INSERT INTO `roles` (`id`, `rol`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `subcategoriaparos`
+--
+
+CREATE TABLE `subcategoriaparos` (
+  `id_subcategoria` int(11) NOT NULL,
+  `id_categoria` int(11) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `descripcion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `subcategoriaparos`
+--
+
+INSERT INTO `subcategoriaparos` (`id_subcategoria`, `id_categoria`, `nombre`, `descripcion`) VALUES
+(10, 5, 'Mantenimiento Programado', 'Mantenimiento Programado'),
+(11, 5, 'Tiempo fuera de programación', 'Tiempo fuera de programación'),
+(12, 5, 'Falta de programación', 'Falta de programación'),
+(13, 6, 'Cambios y ajustes', 'Cambios y ajustes'),
+(14, 6, 'Limpieza operacional', 'Limpieza operacional'),
+(15, 7, 'Fallas mecánicas', 'Fallas mecánicas'),
+(16, 7, 'Fallas eléctricas', 'Fallas eléctricas'),
+(17, 8, 'Falta de materiales', 'Falta de materiales'),
+(18, 8, 'Falta de personal', 'Falta de personal'),
+(19, 8, 'Falta de servicios', 'Falta de servicios'),
+(20, 9, 'Productos defectuosos	', 'Productos defectuosos	'),
+(21, 9, 'Reproceso', 'Reproceso');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tiposparos`
+--
+
+CREATE TABLE `tiposparos` (
+  `id_tipo` int(11) NOT NULL,
+  `id_subcategoria` int(11) DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `descripcion` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tiposparos`
+--
+
+INSERT INTO `tiposparos` (`id_tipo`, `id_subcategoria`, `nombre`, `descripcion`) VALUES
+(1, 10, 'Mantenimiento Correctivo	', 'Mantenimiento Correctivo	'),
+(2, 10, 'Mantenimiento Preventivo	', 'Mantenimiento Preventivo	'),
+(3, 11, 'Domingo, festivo', 'Domingo, festivo'),
+(4, 12, 'Sin programa de producción', 'Sin programa de producción'),
+(5, 13, 'Cambio de formato', 'Cambio de formato'),
+(6, 13, 'Cambio de sabor', 'Cambio de sabor'),
+(7, 13, 'Ajustes de equipo', 'Ajustes de equipo'),
+(8, 14, 'Limpieza de equipo', 'Limpieza de equipo'),
+(9, 15, 'Falla mecánica', 'Falla mecánica'),
+(10, 16, 'Falla eléctrica', 'Falla eléctrica'),
+(11, 17, 'Falta de materia prima', 'Falta de materia prima');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `turnos`
 --
 
@@ -361,6 +468,12 @@ INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `usuario`, `credencial`, `
 --
 
 --
+-- Indices de la tabla `categoriaparos`
+--
+ALTER TABLE `categoriaparos`
+  ADD PRIMARY KEY (`id_categoria`);
+
+--
 -- Indices de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
@@ -386,6 +499,13 @@ ALTER TABLE `definicion`
 ALTER TABLE `departamento`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pais` (`pais`);
+
+--
+-- Indices de la tabla `distribuciontiempos`
+--
+ALTER TABLE `distribuciontiempos`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
 -- Indices de la tabla `equipo`
@@ -445,6 +565,20 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `subcategoriaparos`
+--
+ALTER TABLE `subcategoriaparos`
+  ADD PRIMARY KEY (`id_subcategoria`),
+  ADD KEY `id_categoria` (`id_categoria`);
+
+--
+-- Indices de la tabla `tiposparos`
+--
+ALTER TABLE `tiposparos`
+  ADD PRIMARY KEY (`id_tipo`),
+  ADD KEY `id_subcategoria` (`id_subcategoria`);
+
+--
 -- Indices de la tabla `turnos`
 --
 ALTER TABLE `turnos`
@@ -459,6 +593,12 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `categoriaparos`
+--
+ALTER TABLE `categoriaparos`
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudad`
@@ -476,12 +616,18 @@ ALTER TABLE `danoequipo`
 -- AUTO_INCREMENT de la tabla `definicion`
 --
 ALTER TABLE `definicion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `distribuciontiempos`
+--
+ALTER TABLE `distribuciontiempos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
@@ -506,7 +652,7 @@ ALTER TABLE `lineaproducto`
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `plantas`
@@ -539,16 +685,44 @@ ALTER TABLE `roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de la tabla `subcategoriaparos`
+--
+ALTER TABLE `subcategoriaparos`
+  MODIFY `id_subcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de la tabla `tiposparos`
+--
+ALTER TABLE `tiposparos`
+  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT de la tabla `turnos`
 --
 ALTER TABLE `turnos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `subcategoriaparos`
+--
+ALTER TABLE `subcategoriaparos`
+  ADD CONSTRAINT `subcategoriaparos_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoriaparos` (`id_categoria`);
+
+--
+-- Filtros para la tabla `tiposparos`
+--
+ALTER TABLE `tiposparos`
+  ADD CONSTRAINT `tiposparos_ibfk_1` FOREIGN KEY (`id_subcategoria`) REFERENCES `subcategoriaparos` (`id_subcategoria`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
