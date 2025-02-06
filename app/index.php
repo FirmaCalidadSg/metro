@@ -62,7 +62,6 @@ $router->group('definicion', 'DefinicionController', function ($group) {
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
-
 });
 // Rutas de paises
 $router->group('pais', 'PaisController', function ($group) {
@@ -145,6 +144,7 @@ $router->group('producto', 'ProductoController', function ($group) {
     $group->add('', 'index');
     $group->add('registro', 'registro');
     $group->add('editarFormulario/{id}', 'editarFormulario');
+    $group->add('agregarproducto', 'agregarproducto');
     $group->add('editar/{id}', 'editar', 'POST');
     $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
@@ -182,6 +182,7 @@ $router->group('controlCapacidad', 'ControlCapacidadController', function ($grou
     $group->add('paradas', 'paradas');
     $group->add('modal1', 'modal1');
     $group->add('modal2', 'modal2');
+    $group->add('RegistroCtrlCap', 'RegistroCtrlCap', 'POST');
 });
 $router->group('reportes', 'ReportesController', function ($group) {
     $group->add('', 'index');
@@ -198,6 +199,7 @@ $router->group('turno', 'TurnosController', function ($group) {
     $group->add('crud', 'crud');
     $group->add('registrar', 'registrar', 'POST');
     $group->add('getturnobyplanta/{id}', 'getturnobyplanta', 'GET');
+    $group->add('getturnobyid/{id}', 'getturnobyid', 'GET');
 });
 
 $router->group('paros', 'ParosController', function ($group) {

@@ -40,4 +40,9 @@ class TurnosController
         $turnos =   $this->turno->getTurnosById($_REQUEST['planta']);
         echo json_encode($turnos);
     }
+    public function GetTurnoById()
+    {
+        $turnos =   $this->turno->getTurno($_REQUEST['turno_id']);
+        echo json_encode($turnos);
+    }
 }

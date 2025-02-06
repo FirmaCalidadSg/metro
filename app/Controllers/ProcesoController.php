@@ -151,7 +151,7 @@ class ProcesoController
 
     public function GetProcesoByPlanta()
     {
-        $procesos = $this->proceso->getProcesoByPlanta($_REQUEST['planta']);
+        $procesos = $this->proceso->getProcesoByPlanta($_REQUEST['linea']);
         echo json_encode($procesos);
     }
 }

@@ -60,7 +60,7 @@ class Proceso
 
     public function getProcesoByPlanta($id)
     {
-        $query = "SELECT p.id as proceso_id,p.nombre FROM proceso p WHERE p.planta_id = :id";
+        $query = "SELECT p.id as proceso_id,p.nombre FROM proceso p WHERE p.linea_id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();

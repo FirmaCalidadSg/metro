@@ -51,6 +51,11 @@ class ProductoController
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
+    public function agregarproducto()
+    {
+        require_once __DIR__ . '/../views/producto/agregarprodcontrol.php';
+    }
+
     public function crear()
     {
         $message = 'Producto registrado exitosamente';
