@@ -48,14 +48,17 @@ class Plantas
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function createPlanta(Planta $planta)
+    public function createPlanta(Plantas $planta)
     {
+
+        //print_r($planta->responsable_id);
+        
         $query = "INSERT INTO plantas (nombre_planta, ciudad_id, responsable_id) 
                   VALUES (:nombre_planta, :ciudad_id, :responsable_id)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':nombre_planta', $planta->nombre_planta, PDO::PARAM_STR);
         $stmt->bindParam(':ciudad_id', $planta->ciudad_id, PDO::PARAM_INT);
-        $stmt->bindParam(':responsable_id', $planta->responsable_id, PDO::PARAM_INT);
+        $stmt->bindParam(':responsable_id', $planta->responsable_id, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             return [
@@ -71,7 +74,7 @@ class Plantas
         }
     }
 
-    public function updatePlanta(Planta $planta)
+    public function updatePlanta(Plantas $planta)
     {
         $query = "UPDATE plantas SET 
                     nombre_planta = :nombre_planta, 
@@ -82,7 +85,7 @@ class Plantas
         $stmt->bindParam(':id', $planta->id, PDO::PARAM_INT);
         $stmt->bindParam(':nombre_planta', $planta->nombre_planta, PDO::PARAM_STR);
         $stmt->bindParam(':ciudad_id', $planta->ciudad_id, PDO::PARAM_INT);
-        $stmt->bindParam(':responsable_id', $planta->responsable_id, PDO::PARAM_INT);
+        $stmt->bindParam(':responsable_id', $planta->responsable_id, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             return [

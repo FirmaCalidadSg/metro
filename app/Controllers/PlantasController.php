@@ -31,7 +31,7 @@ class PlantasController
     public function registro()
     {
         $planta = new Plantas();
-        //$ciudades = $this->ciudad->getAllCiudades();
+        $ciudades = $this->ciudad->getAllCiudad();
         //$responsables = $this->responsable->getAllResponsables();
 
         if (isset($_REQUEST['id'])) {
@@ -48,11 +48,11 @@ class PlantasController
     {
         try {
             $planta = new Plantas();
-            $planta->id = $_POST['id'] ?? null;
+            $planta->id = $_POST['id'];
             $planta->nombre_planta = $_POST['nombre_planta'];
             $planta->ciudad_id = $_POST['ciudad_id'];
-            $planta->responsable_id = $_POST['responsable_id'] ?? null;
-
+            $planta->responsable_id = $_POST['responsable_id'];
+            //print_r($planta->responsable_id);
             $result = $planta->id > 0
                 ? $this->planta->updatePlanta($planta)
                 : $this->planta->createPlanta($planta);

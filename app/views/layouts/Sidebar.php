@@ -10,6 +10,17 @@
   <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="../app/Assets/datatable/datatables.css" />
   <link rel="stylesheet" href="../app/Assets/fontawesome-free-5.15.4-web/css/all.min.css">
+  <style>
+    #table_wrapper {
+    width: 100%;  
+    /* overflow-x: auto; */ /* Evita que se expanda más de la cuenta */
+}
+
+table.dataTable {
+    width: 100% !important; /* Asegura que la tabla no se redimensione */
+}
+
+  </style>
 </head>
 
 <body>
@@ -45,7 +56,7 @@
           <a href="#">Pendientes</a>
           <a href="#">Por Estados</a>
         </div>
-      </div>      
+      </div>
       <div class="sidebar-option">
         <img class="img" src="../app/Assets/css/images/siderbar3.svg" />
         <div class="typography-wrapper">
@@ -73,21 +84,21 @@
           <div class="typography1">Configuración</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/definicion">Definición</a>
-          <a href="<?php echo BASE_PATH; ?>/pais">Países</a>
-          <a href="<?php echo BASE_PATH; ?>/ciudad">Ciudades</a>
-          <a href="<?php echo BASE_PATH; ?>/departamento">Departamentos</a>
-          <a href="<?php echo BASE_PATH; ?>/turnos">Turnos</a>
-          <a href="<?php echo BASE_PATH; ?>/plantas">plantas</a>
-          <a href="<?php echo BASE_PATH; ?>/equipo">Equipos</a>
-          <a href="<?php echo BASE_PATH; ?>/danoequipo">Daños</a>
-          <a href="<?php echo BASE_PATH; ?>/proceso">Procesos</a>
-          <a href="<?php echo BASE_PATH; ?>/linea">Líneas</a>
-          <a href="<?php echo BASE_PATH; ?>/producto">Productos</a>
-          <a href="<?php echo BASE_PATH; ?>/lineaproducto">Línea y Productos</a>
-          <a href="<?php echo BASE_PATH; ?>/categoriaParos">Paros</a>
-          <a href="<?php echo BASE_PATH; ?>/subCategoriaParos">Sub-Paros</a>
-          <a href="<?php echo BASE_PATH; ?>/tiposParos">Razones</a>
+          <a href="<?php echo BASE_PATH; ?>definicion">Definición</a>
+          <a href="<?php echo BASE_PATH; ?>pais">Países</a>
+          <a href="<?php echo BASE_PATH; ?>ciudad">Ciudades</a>
+          <a href="<?php echo BASE_PATH; ?>departamento">Departamentos</a>
+          <a href="<?php echo BASE_PATH; ?>turnos">Turnos</a>
+          <a href="<?php echo BASE_PATH; ?>plantas">plantas</a>
+          <a href="<?php echo BASE_PATH; ?>equipo">Equipos</a>
+          <a href="<?php echo BASE_PATH; ?>danoequipo">Daños</a>
+          <a href="<?php echo BASE_PATH; ?>proceso">Procesos</a>
+          <a href="<?php echo BASE_PATH; ?>linea">Líneas</a>
+          <a href="<?php echo BASE_PATH; ?>producto">Productos</a>
+          <a href="<?php echo BASE_PATH; ?>lineaproducto">Línea y Productos</a>
+          <a href="<?php echo BASE_PATH; ?>categoriaParos">Paros</a>
+          <a href="<?php echo BASE_PATH; ?>subCategoriaParos">Sub-Paros</a>
+          <a href="<?php echo BASE_PATH; ?>tiposParos">Razones</a>
 
           <!-- <a href="<?php echo BASE_PATH; ?>/documentos">Todos los Documentos</a> -->
         </div>
@@ -123,109 +134,115 @@
   </div>
   <div class="home">
     <main>
-    <div class="col-md-12">
-      <script src="../app/Assets/jquery/jquery.min.js"></script>
-      <script src="../app/Assets/bootstrap/bootstrap.bundle.min.js"></script>
-      <script src="../app/Assets/datatable/datatables.js"></script>
-      <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
-
-     
+      <div class="col-md-12">
+        <script src="../app/Assets/jquery/jquery.min.js"></script>
+        <script src="../app/Assets/bootstrap/bootstrap.bundle.min.js"></script>
+        <script src="../app/Assets/datatable/datatables.js"></script>
+        <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
 
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          const sidebarOptions = document.querySelectorAll('.sidebar-option');
 
-          sidebarOptions.forEach(option => {
-            option.addEventListener('click', function() {
-              const subMenu = option.querySelector('.sub-menu');
 
-              if (subMenu.style.display === 'none' || subMenu.style.display === '') {
-                subMenu.style.display = 'flex';
-              } else {
-                subMenu.style.display = 'none';
-              }
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const sidebarOptions = document.querySelectorAll('.sidebar-option');
+
+            sidebarOptions.forEach(option => {
+              option.addEventListener('click', function() {
+                const subMenu = option.querySelector('.sub-menu');
+
+                if (subMenu.style.display === 'none' || subMenu.style.display === '') {
+                  subMenu.style.display = 'flex';
+                } else {
+                  subMenu.style.display = 'none';
+                }
+              });
             });
           });
-        });
 
 
 
-        /* function Cargar(url, controlador, data) {
-          urls = '<?php echo BASE_PATH ?>'+ controlador +'/' + url;
-          $.ajax({
-            url: urls,
-            type: 'GET',
-            data: data,
-            success: function(response) {
-              $('#index').html(response);
-            },
-            error: function(xhr, status, error) {
-              console.error('Error:', error);
-            }
-          });
-        } */
-
-        function functionContraer() {
-          const sidebar = document.querySelector('.property-slider');
-          const home = document.querySelector('.home');
-          const subMenus = document.querySelectorAll('.sub-menu');
-
-          sidebar.classList.toggle('contraido');
-          home.classList.toggle('contraido');
-
-          if (sidebar.classList.contains('contraido')) {
-            subMenus.forEach(subMenu => {
-              subMenu.style.display = 'none';
-            });
-          }
-        }
-
-        function handleSidebarOptionClick() {
-          const sidebar = document.querySelector('.property-slider');
-          const home = document.querySelector('.home');
-
-          if (sidebar.classList.contains('contraido')) {
-            sidebar.classList.remove('contraido');
-            home.classList.remove('contraido');
-          }
-        }
-
-        document.querySelectorAll('.sidebar-option').forEach(option => {
-          option.addEventListener('click', handleSidebarOptionClick);
-        });
-
-
-
-        $(document).ready(function() {
-          $('#table').DataTable({
-            "language": {
-              "sProcessing": "Procesando...",
-              "sLengthMenu": "Mostrar _MENU_ registros",
-              "sZeroRecords": "No se encontraron resultados",
-              "sEmptyTable": "Ningún dato disponible en esta tabla",
-              "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-              "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-              "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-              "sInfoPostFix": "",
-              "sSearch": "Buscar:",
-              "sUrl": "",
-              "sInfoThousands": ",",
-              "sLoadingRecords": "Cargando...",
-              "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
+          /* function Cargar(url, controlador, data) {
+            urls = '<?php echo BASE_PATH ?>'+ controlador +'/' + url;
+            $.ajax({
+              url: urls,
+              type: 'GET',
+              data: data,
+              success: function(response) {
+                $('#index').html(response);
               },
-              "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              error: function(xhr, status, error) {
+                console.error('Error:', error);
               }
+            });
+          } */
+
+          function functionContraer() {
+            const sidebar = document.querySelector('.property-slider');
+            const home = document.querySelector('.home');
+            const subMenus = document.querySelectorAll('.sub-menu');
+
+            sidebar.classList.toggle('contraido');
+            home.classList.toggle('contraido');
+
+            if (sidebar.classList.contains('contraido')) {
+              subMenus.forEach(subMenu => {
+                subMenu.style.display = 'none';
+              });
             }
+          }
+
+          function handleSidebarOptionClick() {
+            const sidebar = document.querySelector('.property-slider');
+            const home = document.querySelector('.home');
+
+            if (sidebar.classList.contains('contraido')) {
+              sidebar.classList.remove('contraido');
+              home.classList.remove('contraido');
+            }
+          }
+
+          document.querySelectorAll('.sidebar-option').forEach(option => {
+            option.addEventListener('click', handleSidebarOptionClick);
           });
-        });
-      </script>
+
+
+
+          $(document).ready(function() {
+            var table = $('#table').DataTable({
+              "scrollX": false, // Habilita el desplazamiento horizontal
+              "autoWidth": false, // Evita que DataTables reajuste las columnas
+              "stateSave": true, // Guarda el estado para evitar que se reinicie
+              "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast": "Último",
+                  "sNext": "Siguiente",
+                  "sPrevious": "Anterior"
+                }
+              }
+            });
+
+            // Restaurar posición del scroll horizontal
+            if (sessionStorage.getItem("scrollPosition")) {
+              $('#table_wrapper .dataTables_scrollBody').scrollLeft(sessionStorage.getItem("scrollPosition"));
+            }
+
+            // Guardar la posición cuando el usuario haga scroll
+            $('#table_wrapper .dataTables_scrollBody').on('scroll', function() {
+              sessionStorage.setItem("scrollPosition", $(this).scrollLeft());
+            });
+          });
+        </script>
 </body>
 
 </html>

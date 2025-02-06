@@ -19,14 +19,7 @@
 
         <div class="mb-3">
             <label for="responsable_id" class="form-label">Responsable</label>
-            <select class="form-control" id="responsable_id" name="responsable_id">
-                <option value="">Seleccione un Responsable</option>
-                <?php foreach ($responsables as $responsable): ?>
-                    <option value="<?= $responsable->id ?>" <?= isset($planta->responsable_id) && $planta->responsable_id == $responsable->id ? 'selected' : '' ?>>
-                        <?= $responsable->nombre ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+            <input type="text" class="form-control" id="responsable_id" name="responsable_id" placeholder="Nombre del Responsable" value="" required>
         </div>
 
         <input type="hidden" id="id" name="id" value="<?= $planta->id ?? ''; ?>">

@@ -253,7 +253,7 @@ CREATE TABLE `plantas` (
   `id` int(11) NOT NULL,
   `nombre_planta` varchar(255) NOT NULL,
   `ciudad_id` int(11) NOT NULL,
-  `responsable_id` int(11) DEFAULT NULL,
+  `responsable_id` varchar(255) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

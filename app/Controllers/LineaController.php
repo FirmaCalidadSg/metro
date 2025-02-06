@@ -2,146 +2,88 @@
 
 namespace App\Controllers;
 
-
 use App\Models\Linea;
 use App\Models\Proceso;
+use App\Models\Plantas;
+use App\Models\UnidadMedida;
+
 
 class LineaController
 {
-    public $linea;
-    public $proceso;
+    private $linea;
+    private $proceso;
+    private $planta;
+    private $unidad;
+
 
     public function __construct()
     {
         $this->linea = new Linea();
         $this->proceso = new Proceso();
+        $this->planta = new Plantas();
+        $this->unidad = new UnidadMedida();
+
     }
 
     public function index()
     {
-        $lineas = $this->linea->getAllLinea();
+        $lineas = $this->linea->getAllLineas();
+        
 
         require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/linea/index.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function registro()
     {
-        $procesos = $this->proceso->getAllProceso();
         $linea = new Linea();
-        if (isset($_POST['id'])) {
-            $linea = $this->linea->getLineaById($_POST['id']);
+        $procesos = $this->proceso->getAllproceso();
+        $plantas = $this->planta->getAllPlantas();
+        $unidad = $this->unidad->getAllUnidadesMedida();
+
+        if (isset($_REQUEST['id'])) {
+            $linea = $this->linea->getLineaById($_REQUEST['id']);
         }
-        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
+
         require_once __DIR__ . '/../views/linea/registro.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+
     }
 
     public function crear()
     {
-        $message = 'Linea registrada exitosamente';
+
+        //print_r($_REQUEST['procesos']);
         $linea = new Linea();
-        $linea->id = $_POST['id'];
+        $linea->id = $_POST['id'] ?? null;
         $linea->nombre = $_POST['nombre'];
-        $linea->proceso = $_POST['proceso'];
+        $linea->proceso = "null";
+        $linea->planta_id = $_POST['planta_id'];
+        $linea->tipo_unidad = $_POST['tipo_unidad'];
+        $linea->citg = $_POST['citg'];
+        $linea->citr = $_POST['citr'];
+        $linea->supervisor = $_POST['supervisor'];
 
-        if ($linea->id > 0) {
-            $this->linea->updateLinea($linea);
-            $message = 'Linea actualizada exitosamente';
-        } else {
-            $this->linea->createLinea($linea);
-        }
-        $response = [
-            'success' => true,
-            'message' => $message
-        ];
-        echo json_encode($response);
-    }
-    public function vistaPrevia($id)
-    {
-        if (isset($id)) {
-            $linea = $this->linea->getLineaById($id);
-        } else {
-            header("Location: /metro/app/linea");
-            exit;
-        }
-        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
-        require_once __DIR__ . '/../views/linea/vista-previa.php';
-    }
-    public function editarFormulario($id)
-    {
-        $linea = $this->linea->getLineaById($id);
-        $procesos = $this->proceso->getAllProceso();
-        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
-        require_once __DIR__ . '/../views/linea/editar.php';
-    }
-    public function editar($id)
-    {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            $response = [
-                'success' => false,
-                'message' => 'Método no permitido.'
-            ];
-            echo json_encode($response);
-            exit;
-        }
+        $result = $linea->id > 0 ? $this->linea->updateLinea($linea) : $this->linea->createLinea($linea);
+        $linea->id > 0 ? $linea_id = $linea->id : $linea_id = $result['id'];
+        if($result){
+            $proceso = $_POST['procesos'];
+           
+            
 
-        // Obtener los datos del formulario
-        $nombre = $_POST['nombre'];
-        $proceso = $_POST['proceso'];
-
-        // Obtener la definición por ID
-        $linea = $this->linea->getLineaById($id);
-
-        if (!$linea) {
-            $response = [
-                'success' => false,
-                'message' => 'Línea no encontrada.'
-            ];
-            echo json_encode($response);
-            exit;
-        }
-
-        // Actualizar la definición
-        $linea->nombre = $nombre;
-        $linea->proceso = $proceso;
-
-        // Guardar la definición actualizada
-        $this->linea->updateLinea($linea);
-
-        $response = [
-            'success' => true,
-            'message' => 'Línea actualizada exitosamente.'
-        ];
-
-        echo json_encode($response);
-    }
-
-    public function eliminar($id = null)
-    {
-        try {
-            // Verificar si el ID viene en la URL
-            if ($id === null) {
-                // Si no viene en la URL, intentar obtenerlo del POST
-                $data = json_decode(file_get_contents('php://input'), true);
-                $id = $data['id'] ?? null;
+            foreach($proceso as $id){
+                // Leer el valor del array $proceso
+                $this->linea->agregarProcesos($id, $linea_id);
             }
-
-            if ($id === null) {
-                throw new \Exception('ID no proporcionado');
-            }
-
-            // Eliminar el linea
-            $this->linea->deleteLinea($id);
-
-            echo json_encode(['success' => true]);
-        } catch (\PDOException $e) {
-            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
+
+        echo json_encode($result);
+
     }
 
-    public function getbyplanta()
+    public function eliminar($id)
     {
-        $lineas =  $this->linea->GetByPlanta($_REQUEST['planta']);
-        echo json_encode($lineas);
+        echo json_encode(['success' => $this->linea->deleteLinea($id)]);
     }
 }

@@ -121,6 +121,7 @@ $router->group('danoequipo', 'DanoEquipoController', function ($group) {
 $router->group('proceso', 'ProcesoController', function ($group) {
     $group->add('', 'index');
     $group->add('registro', 'registro');
+    $group->add('registro/{id}', 'registro'); // siempre hay que agragarla
     $group->add('editarFormulario/{id}', 'editarFormulario');
     $group->add('editar/{id}', 'editar', 'POST');
     $group->add('vistaPrevia/{id}', 'vistaPrevia');
@@ -133,6 +134,7 @@ $router->group('proceso', 'ProcesoController', function ($group) {
 $router->group('linea', 'LineaController', function ($group) {
     $group->add('', 'index');
     $group->add('registro', 'registro');
+    $group->add('registro/{id}', 'registro'); // siempre hay que agragarla
     $group->add('editarFormulario/{id}', 'editarFormulario');
     $group->add('editar/{id}', 'editar', 'POST');
     $group->add('vistaPrevia/{id}', 'vistaPrevia');
@@ -144,6 +146,7 @@ $router->group('linea', 'LineaController', function ($group) {
 $router->group('producto', 'ProductoController', function ($group) {
     $group->add('', 'index');
     $group->add('registro', 'registro');
+    $group->add('registro/{id}', 'registro'); // siempre hay que agragarla
     $group->add('editarFormulario/{id}', 'editarFormulario');
     $group->add('editar/{id}', 'editar', 'POST');
     $group->add('vistaPrevia/{id}', 'vistaPrevia');
