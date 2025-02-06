@@ -39,6 +39,11 @@ class ProductoController
 
     }
 
+    public function agregarproducto()
+    {
+        require_once __DIR__ . '/../views/producto/agregarprodcontrol.php';
+    }
+
     public function crear()
     {
         $producto = new Producto();

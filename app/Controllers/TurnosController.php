@@ -94,4 +94,9 @@ class TurnosController
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
     }
+    public function GetTurnoById()
+    {
+        $turnos =   $this->turno->getTurno($_REQUEST['turno_id']);
+        echo json_encode($turnos);
+    }
 }

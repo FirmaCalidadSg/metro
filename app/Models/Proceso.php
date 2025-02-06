@@ -8,18 +8,15 @@ use PDO;
 class Proceso
 {
     private $db;
-
     public $id;
     public $nombre;
     public $descripcion;
-    public $planta_id;
-    public $responsable_id;
-
     public function __construct()
     {
-        error_log("Construyendo modelo proceso");
+        error_log("Construyendo modelo Proceso");
         try {
             $this->db = Database::getInstance()->getConnection();
+            $this->db->query('SELECT 1');
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->exec("SET NAMES utf8mb4");
         } catch (\Exception $e) {
@@ -28,68 +25,74 @@ class Proceso
         }
     }
 
-    public function getAllproceso()
+
+    public function getAllProceso()
     {
-        $query = "SELECT e.*, p.nombre_planta AS planta_nombre, e.responsable_id as responsable_nombre
-                  FROM proceso e
-                  LEFT JOIN plantas p ON e.planta_id = p.id";
-                 
+        $query = "SELECT * FROM proceso";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function getprocesoById($id)
+
+    public function getProcesoById($id)
     {
         $query = "SELECT * FROM proceso WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+
+        // Si se encuentra el proceso, lo retornamos como objeto Proceso
+        if ($data) {
+            $proceso = new Proceso();
+            $proceso->id = $data->id;
+            $proceso->nombre = $data->nombre;
+            $proceso->descripcion = $data->descripcion;
+            // Asigna otras propiedades según la estructura de la tabla proceso
+
+            return $proceso;
+        }
+
+        return null; // Si no se encuentra el proceso, retornamos null
     }
 
-    public function createproceso(proceso $proceso)
+    public function getProcesoByPlanta($id)
     {
-        $query = "INSERT INTO proceso (nombre, descripcion, planta_id, responsable_id) 
-                  VALUES (:nombre, :descripcion, :planta_id, :responsable_id)";
+        $query = "SELECT p.id as proceso_id,p.nombre FROM proceso p WHERE p.linea_id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $data;
+    }
+
+
+    public function createProceso(Proceso $proceso)
+    {
+        $query = "INSERT INTO proceso (nombre, descripcion) VALUES (:nombre, :descripcion)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':nombre', $proceso->nombre, PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $proceso->descripcion, PDO::PARAM_STR);
-        $stmt->bindParam(':planta_id', $proceso->planta_id, PDO::PARAM_INT);
-        $stmt->bindParam(':responsable_id', $proceso->responsable_id, PDO::PARAM_STR);
-
-        if ($stmt->execute()) {
-            return ['status' => 'success', 'msn' => 'proceso registrada con éxito', 'id' => $this->db->lastInsertId()];
-        } else {
-            return ['status' => 'error', 'msn' => 'Error en el registro de la proceso'];
-        }
+        return $stmt->execute();
     }
 
-    public function updateproceso(proceso $proceso)
+    public function updateProceso(Proceso $proceso)
     {
         $query = "UPDATE proceso SET 
-                    nombre = :nombre, 
-                    descripcion = :descripcion, 
-                    planta_id = :planta_id, 
-                    responsable_id = :responsable_id
-                  WHERE id = :id";
+            nombre = :nombre, 
+            descripcion = :descripcion
+            WHERE id = :id";
+
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $proceso->id, PDO::PARAM_INT);
         $stmt->bindParam(':nombre', $proceso->nombre, PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $proceso->descripcion, PDO::PARAM_STR);
-        $stmt->bindParam(':planta_id', $proceso->planta_id, PDO::PARAM_INT);
-        $stmt->bindParam(':responsable_id', $proceso->responsable_id, PDO::PARAM_STR);
-
-       
-        
-        if ($stmt->execute()) {
-            return ['status' => 'success', 'msn' => 'proceso actualizado con éxito'];
-        } else {
-            return ['status' => 'error', 'msn' => 'Error en el registro de la proceso'];
-        }
+        return $stmt->execute();
     }
 
-    public function deleteproceso($id)
+    public function deleteProceso($id)
     {
         $query = "DELETE FROM proceso WHERE id = :id";
         $stmt = $this->db->prepare($query);

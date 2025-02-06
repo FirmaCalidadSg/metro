@@ -10,17 +10,6 @@
   <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="../app/Assets/datatable/datatables.css" />
   <link rel="stylesheet" href="../app/Assets/fontawesome-free-5.15.4-web/css/all.min.css">
-  <style>
-    #table_wrapper {
-    width: 100%;  
-    /* overflow-x: auto; */ /* Evita que se expanda más de la cuenta */
-}
-
-table.dataTable {
-    width: 100% !important; /* Asegura que la tabla no se redimensione */
-}
-
-  </style>
 </head>
 
 <body>
@@ -84,21 +73,21 @@ table.dataTable {
           <div class="typography1">Configuración</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>definicion">Definición</a>
-          <a href="<?php echo BASE_PATH; ?>pais">Países</a>
-          <a href="<?php echo BASE_PATH; ?>ciudad">Ciudades</a>
-          <a href="<?php echo BASE_PATH; ?>departamento">Departamentos</a>
-          <a href="<?php echo BASE_PATH; ?>turnos">Turnos</a>
-          <a href="<?php echo BASE_PATH; ?>plantas">plantas</a>
-          <a href="<?php echo BASE_PATH; ?>equipo">Equipos</a>
-          <a href="<?php echo BASE_PATH; ?>danoequipo">Daños</a>
-          <a href="<?php echo BASE_PATH; ?>proceso">Procesos</a>
-          <a href="<?php echo BASE_PATH; ?>linea">Líneas</a>
-          <a href="<?php echo BASE_PATH; ?>producto">Productos</a>
-          <a href="<?php echo BASE_PATH; ?>lineaproducto">Línea y Productos</a>
-          <a href="<?php echo BASE_PATH; ?>categoriaParos">Paros</a>
-          <a href="<?php echo BASE_PATH; ?>subCategoriaParos">Sub-Paros</a>
-          <a href="<?php echo BASE_PATH; ?>tiposParos">Razones</a>
+          <a href="<?php echo BASE_PATH; ?>/definicion">Definición</a>
+          <a href="<?php echo BASE_PATH; ?>/pais">Países</a>
+          <a href="<?php echo BASE_PATH; ?>/ciudad">Ciudades</a>
+          <a href="<?php echo BASE_PATH; ?>/departamento">Departamentos</a>
+          <a href="<?php echo BASE_PATH; ?>/turnos">Turnos</a>
+          <a href="<?php echo BASE_PATH; ?>/plantas">plantas</a>
+          <a href="<?php echo BASE_PATH; ?>/equipo">Equipos</a>
+          <a href="<?php echo BASE_PATH; ?>/danoequipo">Daños</a>
+          <a href="<?php echo BASE_PATH; ?>/proceso">Procesos</a>
+          <a href="<?php echo BASE_PATH; ?>/linea">Líneas</a>
+          <a href="<?php echo BASE_PATH; ?>/producto">Productos</a>
+          <a href="<?php echo BASE_PATH; ?>/lineaproducto">Línea y Productos</a>
+          <a href="<?php echo BASE_PATH; ?>/categoriaParos">Paros</a>
+          <a href="<?php echo BASE_PATH; ?>/subCategoriaParos">Sub-Paros</a>
+          <a href="<?php echo BASE_PATH; ?>/tiposParos">Razones</a>
 
           <!-- <a href="<?php echo BASE_PATH; ?>/documentos">Todos los Documentos</a> -->
         </div>
@@ -160,23 +149,6 @@ table.dataTable {
             });
           });
 
-
-
-          /* function Cargar(url, controlador, data) {
-            urls = '<?php echo BASE_PATH ?>'+ controlador +'/' + url;
-            $.ajax({
-              url: urls,
-              type: 'GET',
-              data: data,
-              success: function(response) {
-                $('#index').html(response);
-              },
-              error: function(xhr, status, error) {
-                console.error('Error:', error);
-              }
-            });
-          } */
-
           function functionContraer() {
             const sidebar = document.querySelector('.property-slider');
             const home = document.querySelector('.home');
@@ -209,10 +181,7 @@ table.dataTable {
 
 
           $(document).ready(function() {
-            var table = $('#table').DataTable({
-              "scrollX": false, // Habilita el desplazamiento horizontal
-              "autoWidth": false, // Evita que DataTables reajuste las columnas
-              "stateSave": true, // Guarda el estado para evitar que se reinicie
+            $('#table').DataTable({
               "language": {
                 "sProcessing": "Procesando...",
                 "sLengthMenu": "Mostrar _MENU_ registros",
@@ -221,25 +190,22 @@ table.dataTable {
                 "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
                 "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
                 "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
                 "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
                 "sLoadingRecords": "Cargando...",
                 "oPaginate": {
                   "sFirst": "Primero",
                   "sLast": "Último",
                   "sNext": "Siguiente",
                   "sPrevious": "Anterior"
+                },
+                "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                 }
               }
-            });
-
-            // Restaurar posición del scroll horizontal
-            if (sessionStorage.getItem("scrollPosition")) {
-              $('#table_wrapper .dataTables_scrollBody').scrollLeft(sessionStorage.getItem("scrollPosition"));
-            }
-
-            // Guardar la posición cuando el usuario haga scroll
-            $('#table_wrapper .dataTables_scrollBody').on('scroll', function() {
-              sessionStorage.setItem("scrollPosition", $(this).scrollLeft());
             });
           });
         </script>

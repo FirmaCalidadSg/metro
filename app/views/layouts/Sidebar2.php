@@ -1,36 +1,115 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <!-- <link rel="stylesheet" href="../../app/Assets/css/globals.css" /> -->
-  <link rel="stylesheet" href="../../app/Assets/css/style.css" />
-  <link rel="stylesheet" href="../../app/Assets/css/styleguide.css" />
-  <link rel="stylesheet" href="../../app/Assets/bootstrap/bootstrap.min.css" />
-  <link rel="stylesheet" href="../../app/Assets/datatable/datatables.css" />
-  <link rel="stylesheet" href="../../app/Assets/fontawesome-free-5.15.4-web/css/all.min.css">
+  <link rel="stylesheet" href="../app/Assets/css/style.css" />
+  <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
+  <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="../app/Assets/datatable/datatables.css" />
+  <link rel="stylesheet" href="../app/Assets/fontawesome-free-5.15.4-web/css/all.min.css">
 </head>
+<style>
+  body {
+    background-color: #f2f5f4;
+  }
 
-<body style="background-color: #f2f5f4; padding: 20px;">
+  .property-slider {
+    width: 250px;
+    /* Fixed width for the sidebar */
+    background-color: #f8f9fa;
+    /* Example sidebar background color */
+    padding: 20px;
+    overflow-y: auto;
+    /* Add scroll if content overflows */
+    transition: width 0.3s ease;
+    /* Smooth width transition */
+  }
+
+  .property-slider.contraido {
+    width: 100px;
+  }
+
+  .property-slider.contraido .typography1 {
+    display: none;
+  }
+
+  .property-slider.contraido .div-wrapper {
+    display: none;
+  }
+
+  .property-slider.contraido .sub-menu {
+    display: none;
+  }
+
+  .property-slider.contraido .image {
+    width: 50px;
+  }
+
+  .property-slider .image {
+    width: 100px;
+  }
+
+  .container {
+    margin-left: 250px;
+    margin-top: 20px;
+    padding: 20px;
+    min-width: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
+    transition: margin-left 0.5s ease;
+    background-color: var(--ds-snu-neutral-50);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .container.contraido {
+    margin-left: 100px;
+  }
+
+  .sub-menu {
+    display: none;
+    /* Initially hidden */
+    flex-direction: column;
+    /* Stack sub-menu items vertically */
+    margin-left: 20px;
+    /* Indent sub-menu items */
+  }
+
+  .sidebar-option {
+    cursor: pointer;
+  }
+
+  /* Styles for the toggle button */
+  .sidebar-option-2 {
+    /* ... existing styles ... */
+    margin-top: auto;
+    /* Push toggle button to the bottom */
+  }
+</style>
+
+<body>
   <div class="property-slider">
-    <img class="image" src="../../app/Assets/css/images/logo.svg" />
+    <img class="image" src="../app/Assets/css/images/logo.svg" />
     <div class="divider"></div>
     <div class="typography">
       <div class="text-wrapper">Acciones</div>
     </div>
     <div class="frame">
       <div class="sidebar-option">
-        <img class="img" src="../../app/Assets/css/images/siderbar1.svg" />
+        <img class="img" src="../app/Assets/css/images/siderbar1.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Nuevos</div>
         </div>
         <!--    <img class="arrow" src="../app/Assets/css/images/arrow.svg"/> -->
         <div class="sub-menu">
-          <a class="nav-link" href="<?php echo BASE_PATH; ?>/controlCapacidad">Control De Capacidades</a>
+          <a class="nav-link" href="<?php echo BASE_PATH; ?>controlCapacidad">Control De Capacidades</a>
           <a href="#">Control De Capacidades batch</a>
         </div>
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../app/Assets/css/images/siderbar2.svg" />
+        <img class="img" src="../app/Assets/css/images/siderbar2.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Consultas</div>
         </div>
@@ -42,7 +121,7 @@
         <!-- <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../app/Assets/css/images/siderbar3.svg" />
+        <img class="img" src="../app/Assets/css/images/siderbar3.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Reportes</div>
         </div>
@@ -54,7 +133,7 @@
         <!--   <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../app/Assets/css/images/siderbar4.svg" />
+        <img class="img" src="../app/Assets/css/images/siderbar4.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Administración</div>
         </div>
@@ -65,7 +144,7 @@
         <!--   <img class="arrow" src="../app/Assets/css/images/arrow.svg" /> -->
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../app/Assets/css/images/caps.svg" />
+        <img class="img" src="../app/Assets/css/images/caps.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Configuración</div>
         </div>
@@ -88,7 +167,7 @@
         </div>
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../app/Assets/css/images/admin-user.svg" />
+        <img class="img" src="../app/Assets/css/images/admin-user.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Gestión y Dirección</div>
         </div>
@@ -98,19 +177,17 @@
         </div>
       </div>
       <div class="sidebar-option">
-        <img class="img" src="../../app/Assets/css/images/usser-logout.svg" />
+        <img class="img" src="../app/Assets/css/images/usser-logout.svg" />
         <div class="typography-wrapper">
           <div class="typography1">
             <a href="<?php echo BASE_PATH; ?>logout">Cerrar Sesión</a>
           </div>
         </div>
       </div>
-
     </div>
-
     <div class="divider"></div>
     <button class="sidebar-option-2" id="toggleSidebar" onclick="functionContraer()">
-      <img class="locura" src="../../app/Assets/css/images/siderbar5.svg" />
+      <img class="locura" src="../app/Assets/css/images/siderbar5.svg" />
       <div class="div-wrapper">
         <div class="typography-wrapper">Ocultar Menú</div>
       </div>
@@ -118,10 +195,11 @@
   </div>
   <!-- Contenido de la vista -->
   <div class="container">
-    <script src="../../app/Assets/jquery/jquery.min.js"></script>
-    <script src="../../app/Assets/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="../../app/Assets/datatable/datatables.js"></script>
-    <script src="../../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
+    <!-- <div class="main">     -->
+    <script src="../app/Assets/jquery/jquery.min.js"></script>
+    <script src="../app/Assets/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../app/Assets/datatable/datatables.js"></script>
+    <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const sidebarOptions = document.querySelectorAll('.sidebar-option');
