@@ -19,7 +19,7 @@ class SecurityController
         // Redirigir a login si no hay sesión activa
         session_start();
         if (!isset($_SESSION['user_id'])) {
-            header('Location: ' . BASE_PATH . 'login');
+            header('Location: ' . BASE_PATH . 'logout');
             exit;
         }
         // Si hay sesión, mostrar dashboard o página principal
@@ -32,7 +32,7 @@ class SecurityController
         // Redirigir a login si no hay sesión activa
         session_start();
         if (!isset($_SESSION['user_id'])) {
-            header('Location: ' . BASE_PATH . '/login');
+            header('Location: ' . BASE_PATH . 'logout');
             exit;
         }
         // Si hay sesión, mostrar dashboard o página principal        
@@ -67,7 +67,6 @@ class SecurityController
 
     public function Auth()
     {
-
         $username = $_POST['username'];
         $password = $_POST['password'];
     }
@@ -78,7 +77,7 @@ class SecurityController
     {
         session_start();
         session_destroy();
-        header('Location: ' . BASE_PATH . '/login');
+        header('Location: ' . BASE_PATH . 'login');
         exit;
     }
 

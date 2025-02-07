@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
   <title>Alianza team</title>
@@ -128,10 +127,6 @@
         <script src="../app/Assets/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="../app/Assets/datatable/datatables.js"></script>
         <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
-
-
-
-
         <script>
           document.addEventListener('DOMContentLoaded', function() {
             const sidebarOptions = document.querySelectorAll('.sidebar-option');
