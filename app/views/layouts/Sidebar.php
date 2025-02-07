@@ -9,6 +9,17 @@
   <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="../app/Assets/datatable/datatables.css" />
   <link rel="stylesheet" href="../app/Assets/fontawesome-free-5.15.4-web/css/all.min.css">
+  <style>
+    #table_wrapper {
+    width: 100%;  
+    /* overflow-x: auto; */ /* Evita que se expanda más de la cuenta */
+}
+
+table.dataTable {
+    width: 100% !important; /* Asegura que la tabla no se redimensione */
+}
+
+  </style>
 </head>
 
 <body>
@@ -72,21 +83,21 @@
           <div class="typography1">Configuración</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/definicion">Definición</a>
-          <a href="<?php echo BASE_PATH; ?>/pais">Países</a>
-          <a href="<?php echo BASE_PATH; ?>/ciudad">Ciudades</a>
-          <a href="<?php echo BASE_PATH; ?>/departamento">Departamentos</a>
-          <a href="<?php echo BASE_PATH; ?>/turnos">Turnos</a>
-          <a href="<?php echo BASE_PATH; ?>/plantas">plantas</a>
-          <a href="<?php echo BASE_PATH; ?>/equipo">Equipos</a>
-          <a href="<?php echo BASE_PATH; ?>/danoequipo">Daños</a>
-          <a href="<?php echo BASE_PATH; ?>/proceso">Procesos</a>
-          <a href="<?php echo BASE_PATH; ?>/linea">Líneas</a>
-          <a href="<?php echo BASE_PATH; ?>/producto">Productos</a>
-          <a href="<?php echo BASE_PATH; ?>/lineaproducto">Línea y Productos</a>
-          <a href="<?php echo BASE_PATH; ?>/categoriaParos">Paros</a>
-          <a href="<?php echo BASE_PATH; ?>/subCategoriaParos">Sub-Paros</a>
-          <a href="<?php echo BASE_PATH; ?>/tiposParos">Razones</a>
+          <a href="<?php echo BASE_PATH; ?>definicion">Definición</a>
+          <a href="<?php echo BASE_PATH; ?>pais">Países</a>
+          <a href="<?php echo BASE_PATH; ?>ciudad">Ciudades</a>
+          <a href="<?php echo BASE_PATH; ?>departamento">Departamentos</a>
+          <a href="<?php echo BASE_PATH; ?>turnos">Turnos</a>
+          <a href="<?php echo BASE_PATH; ?>plantas">plantas</a>
+          <a href="<?php echo BASE_PATH; ?>equipo">Equipos</a>
+          <a href="<?php echo BASE_PATH; ?>danoequipo">Daños</a>
+          <a href="<?php echo BASE_PATH; ?>proceso">Procesos</a>
+          <a href="<?php echo BASE_PATH; ?>linea">Líneas</a>
+          <a href="<?php echo BASE_PATH; ?>producto">Productos</a>
+          <a href="<?php echo BASE_PATH; ?>lineaproducto">Línea y Productos</a>
+          <a href="<?php echo BASE_PATH; ?>categoriaParos">Paros</a>
+          <a href="<?php echo BASE_PATH; ?>subCategoriaParos">Sub-Paros</a>
+          <a href="<?php echo BASE_PATH; ?>tiposParos">Razones</a>
 
           <!-- <a href="<?php echo BASE_PATH; ?>/documentos">Todos los Documentos</a> -->
         </div>
