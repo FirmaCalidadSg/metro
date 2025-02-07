@@ -1,288 +1,171 @@
-<div class="row">
-    <div class="col-5" id="main" style="width: 600px;height:400px;"></div>
-    <div class="col-6" id="main2" style="width: 600px;height:400px;"></div>
-    <div class="col-5" id="main3" style="width: 600px;height:400px;"></div>
-    <div class="col-6" id="main4" style="width: 600px;height:400px;"></div>
+<div style="width:87%;">
+<div id="dashboard" class="row" style="padding: 1%;" >
+    <div class="col-sm-6" style="padding:10px;">
+    <div   class="card" id="produccion-turno" style="width: 100%; height: 400px; padding:10px    "></div>
+
+    </div>
+    <div class="col-sm-6" style="padding:10px;">
+    <div  class="card"  id="paros-linea" style="width: 100%; height: 400px; padding:10px "></div>
+
+    </div>    
+    <div class="col-sm-6" style="padding:10px;">
+    <div  class="card"  id="productos-por-linea" style="width: 100%; height: 400px; padding:10px "></div>
+
+    </div>    
+    <div class="col-sm-6" style="padding:10px;">
+    <div   class="card" id="capacidad-planta" style="width: 100%; height: 400px; padding:10px    "></div>
+
+    </div>    
+   
+
+</div>
 </div>
 
-<script type="text/javascript">
-    // Initialize the echarts instance based on the prepared dom
-    var myChart = echarts.init(document.getElementById('main'));
-    // Specify the configuration items and data for the chart
-    var option = {
-        title: {
-            text: 'ECharts Getting Started Example'
-        },
-        tooltip: {},
-        legend: {
-            data: ['sales']
-        },
-        xAxis: {
-            data: ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks']
-        },
-        yAxis: {},
-        series: [{
-            name: 'sales',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
-        }]
+<script>
+    // Inicializa ECharts
+    const charts = {
+        produccionTurno: echarts.init(document.getElementById('produccion-turno')),
+        parosLinea: echarts.init(document.getElementById('paros-linea')),
+        productosPorLinea: echarts.init(document.getElementById('productos-por-linea')),
+        capacidadPlanta: echarts.init(document.getElementById('capacidad-planta')),
     };
 
-    // Display the chart using the configuration items and data just specified.
-    myChart.setOption(option);
-    /**----------------- */
-    // Initialize the echarts instance based on the prepared dom
-    var myChart2 = echarts.init(document.getElementById('main2'));
-    // Specify the configuration items and data for the chart
-    var option = {
-        tooltip: {
-            trigger: 'item'
-        },
-        legend: {
-            top: '5%',
+    // Gráfica 1: Producción por Turno
+    charts.produccionTurno.setOption({
+        title: {
+            text: 'Producción por Turno',
             left: 'center'
         },
-        series: [{
-            name: 'Access From',
-            type: 'pie',
-            radius: ['40%', '70%'],
-            avoidLabelOverlap: false,
-            itemStyle: {
-                borderRadius: 10,
-                borderColor: '#fff',
-                borderWidth: 2
-            },
-            label: {
-                show: false,
-                position: 'center'
-            },
-            emphasis: {
-                label: {
-                    show: true,
-                    fontSize: 40,
-                    fontWeight: 'bold'
-                }
-            },
-            labelLine: {
-                show: false
-            },
-            data: [{
-                    value: 1048,
-                    name: 'Search Engine'
-                },
-                {
-                    value: 735,
-                    name: 'Direct'
-                },
-                {
-                    value: 580,
-                    name: 'Email'
-                },
-                {
-                    value: 484,
-                    name: 'Union Ads'
-                },
-                {
-                    value: 300,
-                    name: 'Video Ads'
-                }
-            ]
-        }]
-    }
-
-    // Display the chart using the configuration items and data just specified.
-    myChart2.setOption(option);
-    /**----------------- */
-    // Initialize the echarts instance based on the prepared dom
-    var myChart3 = echarts.init(document.getElementById('main3'));
-    // Specify the configuration items and data for the chart
-    option = {
         tooltip: {
-            trigger: 'item',
-            formatter: '{a} <br/>{b}: {c} ({d}%)'
+            trigger: 'axis'
         },
-        legend: {
-            data: [
-                'Direct',
-                'Marketing',
-                'Search Engine',
-                'Email',
-                'Union Ads',
-                'Video Ads',
-                'Baidu',
-                'Google',
-                'Bing',
-                'Others'
-            ]
-        },
-        series: [{
-                name: 'Access From',
-                type: 'pie',
-                selectedMode: 'single',
-                radius: [0, '30%'],
-                label: {
-                    position: 'inner',
-                    fontSize: 14
-                },
-                labelLine: {
-                    show: false
-                },
-                data: [{
-                        value: 1548,
-                        name: 'Search Engine'
-                    },
-                    {
-                        value: 775,
-                        name: 'Direct'
-                    },
-                    {
-                        value: 679,
-                        name: 'Marketing',
-                        selected: true
-                    }
-                ]
-            },
-            {
-                name: 'Access From',
-                type: 'pie',
-                radius: ['45%', '60%'],
-                labelLine: {
-                    length: 30
-                },
-                label: {
-                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
-                    backgroundColor: '#F6F8FC',
-                    borderColor: '#8C8D8E',
-                    borderWidth: 1,
-                    borderRadius: 4,
-                    rich: {
-                        a: {
-                            color: '#6E7079',
-                            lineHeight: 22,
-                            align: 'center'
-                        },
-                        hr: {
-                            borderColor: '#8C8D8E',
-                            width: '100%',
-                            borderWidth: 1,
-                            height: 0
-                        },
-                        b: {
-                            color: '#4C5058',
-                            fontSize: 14,
-                            fontWeight: 'bold',
-                            lineHeight: 33
-                        },
-                        per: {
-                            color: '#fff',
-                            backgroundColor: '#4C5058',
-                            padding: [3, 4],
-                            borderRadius: 4
-                        }
-                    }
-                },
-                data: [{
-                        value: 1048,
-                        name: 'Baidu'
-                    },
-                    {
-                        value: 335,
-                        name: 'Direct'
-                    },
-                    {
-                        value: 310,
-                        name: 'Email'
-                    },
-                    {
-                        value: 251,
-                        name: 'Google'
-                    },
-                    {
-                        value: 234,
-                        name: 'Union Ads'
-                    },
-                    {
-                        value: 147,
-                        name: 'Bing'
-                    },
-                    {
-                        value: 135,
-                        name: 'Video Ads'
-                    },
-                    {
-                        value: 102,
-                        name: 'Others'
-                    }
-                ]
-            }
-        ]
-    };
-
-    // Display the chart using the configuration items and data just specified.
-    myChart3.setOption(option);
-    /**----------------- */
-    // Initialize the echarts instance based on the prepared dom
-    var myChart4 = echarts.init(document.getElementById('main4'));
-    // Specify the configuration items and data for the chart
-    const data = [];
-    for (let i = 0; i < 5; ++i) {
-        data.push(Math.round(Math.random() * 200));
-    }
-    option4 = {
         xAxis: {
-            max: 'dataMax'
+            type: 'category',
+            data: ['Turno 1', 'Turno 2', 'Turno 3']
         },
         yAxis: {
-            type: 'category',
-            data: ['A', 'B', 'C', 'D', 'E'],
-            inverse: true,
-            animationDuration: 300,
-            animationDurationUpdate: 300,
-            max: 2 // only the largest 3 bars will be displayed
+            type: 'value',
+            name: 'Cantidad Producida'
         },
         series: [{
-            realtimeSort: true,
-            name: 'X',
             type: 'bar',
-            data: data,
+            data: [120, 150, 110], // Ejemplo de datos
+            color: '#4CAF50',
+        }, ],
+    });
+
+    // Gráfica 2: Tasa de Paros por Línea
+    charts.parosLinea.setOption({
+        title: {
+            text: 'Tasa de Paros por Línea',
+            left: 'center',
+            textStyle: {
+                fontSize: 16
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b}: {c} ({d}%)' // Muestra nombre, valor y porcentaje
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['Línea 1', 'Línea 2', 'Línea 3', 'Línea 4'], // Ejemplo de nombres de líneas
+        },
+        series: [{
+            name: 'Tasa de Paros',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '50%'],
+            data: [{
+                    value: 30,
+                    name: 'Línea 1'
+                },
+                {
+                    value: 20,
+                    name: 'Línea 2'
+                },
+                {
+                    value: 25,
+                    name: 'Línea 3'
+                },
+                {
+                    value: 25,
+                    name: 'Línea 4'
+                },
+            ], // Datos de ejemplo
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)',
+                },
+            },
+            label: {
+                formatter: '{b}: {c} ({d}%)', // Etiquetas claras con valores y porcentajes
+            },
+            color: ['#FF5722', '#FFC107', '#4CAF50', '#3F51B5'], // Colores distintivos
+        }, ],
+    });
+
+    // Gráfica 3: Estados de Documentos
+    charts.productosPorLinea.setOption({
+        title: {
+            text: 'Productos por Línea',
+            left: 'center',
+            textStyle: {
+                fontSize: 16
+            }
+        },
+        tooltip: {
+            trigger: 'axis',
+            formatter: '{b}: {c}'
+        },
+        xAxis: {
+            type: 'category',
+            data: ['Línea 1', 'Línea 2', 'Línea 3', 'Línea 4'], // Nombres de líneas de ejemplo
+            axisLabel: {
+                rotate: 45 // Rotar etiquetas si son largas
+            },
+        },
+        yAxis: {
+            type: 'value',
+            name: 'Número de Productos',
+        },
+        series: [{
+            type: 'bar',
+            data: [12, 8, 15, 10], // Datos de ejemplo (número de productos por línea)
+            color: ['#3F51B5', '#4CAF50', '#FFC107', '#FF5722'],
+            barWidth: '50%', // Ancho de las barras
             label: {
                 show: true,
-                position: 'right',
-                valueAnimation: true
-            }
+                position: 'top',
+                formatter: '{c}', // Mostrar el número encima de cada barra
+            },
         }],
-        legend: {
-            show: true
+    });
+    // Gráfica 4: Capacidad Utilizada por Planta
+    charts.capacidadPlanta.setOption({
+        title: {
+            text: 'Capacidad Utilizada por Planta',
+            left: 'center'
         },
-        animationDuration: 0,
-        animationDurationUpdate: 3000,
-        animationEasing: 'linear',
-        animationEasingUpdate: 'linear'
-    };
-
-    function run() {
-        for (var i = 0; i < data.length; ++i) {
-            if (Math.random() > 0.9) {
-                data[i] += Math.round(Math.random() * 2000);
-            } else {
-                data[i] += Math.round(Math.random() * 200);
-            }
-        }
-        myChart.setOption({
-            series: [{
-                type: 'bar',
-                data
-            }]
-        });
-    }
-    setTimeout(function() {
-        run();
-    }, 0);
-    setInterval(function() {
-        run();
-    }, 3000);
-    
-
-    // Display the chart using the configuration items and data just specified.
-    myChart4.setOption(option4);
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            type: 'category',
+            data: ['Planta 1', 'Planta 2', 'Planta 3']
+        },
+        yAxis: {
+            type: 'value',
+            name: 'Porcentaje (%)',
+            max: 100
+        },
+        series: [{
+            type: 'line',
+            data: [75, 85, 65], // Ejemplo de datos
+            color: '#673AB7',
+        }, ],
+    });
 </script>
