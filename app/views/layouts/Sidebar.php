@@ -21,17 +21,15 @@ table.dataTable {
 
   </style>
 </head>
-
 <body>
   <div class="property-slider">
     <img class="image" src="../app/Assets/css/images/logo.svg" />
     <div class="divider"></div>
     <div class="typography">
-      <div class="text-wrapper">Acciones</div>
+      <div class="text-wrapper">METROTEAM</div>
     </div>
     <div class="frame">
       <div class="sidebar-option">
-
         <img class="img" src="../app/Assets/css/images/siderbar1.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Nuevos</div>

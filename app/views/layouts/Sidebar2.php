@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <!-- <link rel="stylesheet" href="../../app/Assets/css/globals.css" /> -->
+  <link rel="stylesheet" href="../app/Assets/css/globals.css" />
   <link rel="stylesheet" href="../app/Assets/css/style.css" />
   <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
   <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
@@ -88,13 +88,12 @@
     /* Push toggle button to the bottom */
   }
 </style>
-
 <body>
   <div class="property-slider">
     <img class="image" src="../app/Assets/css/images/logo.svg" />
     <div class="divider"></div>
     <div class="typography">
-      <div class="text-wrapper">Acciones</div>
+    <div class="text-wrapper">METROTEAM</div>
     </div>
     <div class="frame">
       <div class="sidebar-option">

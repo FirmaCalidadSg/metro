@@ -6,6 +6,7 @@ use App\Models\Proceso;
 use App\Models\Plantas;
 use App\Models\Responsable;
 
+
 class ProcesoController
 {
     private $Proceso;
@@ -16,7 +17,7 @@ class ProcesoController
     {
         $this->Proceso = new Proceso();
         $this->planta = new Plantas();
-       // $this->responsable = new Responsable();
+        // $this->responsable = new Responsable();
     }
 
     public function index()
@@ -25,7 +26,6 @@ class ProcesoController
         require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/proceso/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
-
     }
 
     public function registro()
@@ -66,5 +66,11 @@ class ProcesoController
         } catch (\Exception $e) {
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
+    }
+
+    public function GetProcesoByPlanta()
+    {
+        $procesos = $this->Proceso->getProcesoByPlanta($_REQUEST['linea']);
+        echo json_encode($procesos);
     }
 }
