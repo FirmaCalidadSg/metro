@@ -38,7 +38,7 @@ table.dataTable {
         </div>
         <div class="sub-menu">
           <li class="sub-item">
-            <a class="nav-link" href="<?php echo BASE_PATH; ?>/controlCapacidad">Control De Capacidades</a>
+            <a class="nav-link" href="<?php echo BASE_PATH; ?>controlCapacidad">Control De Capacidades</a>
           </li>
           <li class="sub-item">
             <a href="#">Control De Capacidades batch</a>
@@ -51,7 +51,7 @@ table.dataTable {
           <div class="typography1">Consultas</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/consultas">Registradas</a>
+          <a href="<?php echo BASE_PATH; ?>consultas">Registradas</a>
           <a href="#">Pendientes</a>
           <a href="#">Por Estados</a>
         </div>
@@ -62,7 +62,7 @@ table.dataTable {
           <div class="typography1">Reportes</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/reportes">Registradas</a>
+          <a href="<?php echo BASE_PATH; ?>reportes">Registradas</a>
           <a href="#">Pendientes</a>
           <a href="#">Por Estados</a>
         </div>
@@ -73,8 +73,8 @@ table.dataTable {
           <div class="typography1">Administración</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/configuracion">Consultar</a>
-          <a href="<?php echo BASE_PATH; ?>/configuracion/registroConfiguracion">Registrar</a>
+          <a href="<?php echo BASE_PATH; ?>configuracion">Consultar</a>
+          <a href="<?php echo BASE_PATH; ?>configuracion/registroConfiguracion">Registrar</a>
         </div>
       </div>
       <div class="sidebar-option">
@@ -87,7 +87,7 @@ table.dataTable {
           <a href="<?php echo BASE_PATH; ?>pais">Países</a>
           <a href="<?php echo BASE_PATH; ?>ciudad">Ciudades</a>
           <a href="<?php echo BASE_PATH; ?>departamento">Departamentos</a>
-          <a href="<?php echo BASE_PATH; ?>turnos">Turnos</a>
+          <a href="<?php echo BASE_PATH; ?>turno">Turnos</a>
           <a href="<?php echo BASE_PATH; ?>plantas">plantas</a>
           <a href="<?php echo BASE_PATH; ?>equipo">Equipos</a>
           <a href="<?php echo BASE_PATH; ?>danoequipo">Daños</a>
@@ -108,8 +108,8 @@ table.dataTable {
           <div class="typography1">Gestión y Dirección</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/usuarios">Gestión de Usuarios</a>
-          <a href="<?php echo BASE_PATH; ?>/roles">Gestión de Roles</a>
+          <a href="<?php echo BASE_PATH; ?>usuarios">Gestión de Usuarios</a>
+          <a href="<?php echo BASE_PATH; ?>roles">Gestión de Roles</a>
         </div>
       </div>
       <div class="sidebar-option">
