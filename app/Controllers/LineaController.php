@@ -22,13 +22,12 @@ class LineaController
         $this->proceso = new Proceso();
         $this->planta = new Plantas();
         $this->unidad = new UnidadMedida();
-
     }
 
     public function index()
     {
         $lineas = $this->linea->getAllLineas();
-        
+
 
         require_once __DIR__ . '/../views/layouts/Sidebar.php';
         require_once __DIR__ . '/../views/linea/index.php';
@@ -48,12 +47,10 @@ class LineaController
 
         require_once __DIR__ . '/../views/linea/registro.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
-
     }
 
     public function crear()
     {
-
         //print_r($_REQUEST['procesos']);
         $linea = new Linea();
         $linea->id = $_POST['id'] ?? null;
@@ -67,23 +64,28 @@ class LineaController
 
         $result = $linea->id > 0 ? $this->linea->updateLinea($linea) : $this->linea->createLinea($linea);
         $linea->id > 0 ? $linea_id = $linea->id : $linea_id = $result['id'];
-        if($result){
+        if ($result) {
             $proceso = $_POST['procesos'];
-           
-            
 
-            foreach($proceso as $id){
+
+
+            foreach ($proceso as $id) {
                 // Leer el valor del array $proceso
                 $this->linea->agregarProcesos($id, $linea_id);
             }
         }
 
         echo json_encode($result);
-
     }
 
     public function eliminar($id)
     {
         echo json_encode(['success' => $this->linea->deleteLinea($id)]);
+    }
+
+    public function getbyplanta()
+    {
+        $lineas =  $this->linea->GetByPlanta($_REQUEST['planta']);
+        echo json_encode($lineas);
     }
 }

@@ -1,14 +1,10 @@
 <?php
-
 namespace App\Models;
-
 use App\Config\Database;
 use PDO;
-
 class Turno
 {
     private $db;
-
     public $id;
     public $nombre;
     public $planta_id;
@@ -51,7 +47,7 @@ class Turno
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function getTurno($id)

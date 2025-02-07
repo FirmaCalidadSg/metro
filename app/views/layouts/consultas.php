@@ -129,7 +129,7 @@
                 <script src="../../app/Assets/datatable/datatables.js"></script>
                 <script src="../../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
                 <script src="../../app/Assets/echarts-master/dist/echarts.js"></script>
-              
+
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
@@ -208,6 +208,3 @@
                         });
                     });
                 </script>
-</body>
-
-</html>
