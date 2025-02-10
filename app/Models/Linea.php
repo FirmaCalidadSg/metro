@@ -89,8 +89,6 @@ class Linea
         $stmtSelect->bindParam(':id', $id, PDO::PARAM_INT);
         $stmtSelect->execute();
         return $stmtSelect->fetchAll(PDO::FETCH_OBJ);
-
-      
     }
 
     public function agregarProcesos($proceso_id, $linea_id)
@@ -155,5 +153,14 @@ class Linea
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
+    }
+
+    public function GetByPlanta($id)
+    {
+        $query = "SELECT l.id, l.nombre, l.proceso FROM linea l WHERE planta_id=:planta";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':planta', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }

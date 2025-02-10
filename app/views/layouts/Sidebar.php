@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
   <title>Alianza team</title>
@@ -10,25 +9,34 @@
   <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="../app/Assets/datatable/datatables.css" />
   <link rel="stylesheet" href="../app/Assets/fontawesome-free-5.15.4-web/css/all.min.css">
-</head>
+  <style>
+    #table_wrapper {
+    width: 100%;  
+    /* overflow-x: auto; */ /* Evita que se expanda más de la cuenta */
+}
 
+table.dataTable {
+    width: 100% !important; /* Asegura que la tabla no se redimensione */
+}
+
+  </style>
+</head>
 <body>
   <div class="property-slider">
     <img class="image" src="../app/Assets/css/images/logo.svg" />
     <div class="divider"></div>
     <div class="typography">
-      <div class="text-wrapper">Acciones</div>
+      <div class="text-wrapper">METROTEAM</div>
     </div>
     <div class="frame">
       <div class="sidebar-option">
-
         <img class="img" src="../app/Assets/css/images/siderbar1.svg" />
         <div class="typography-wrapper">
           <div class="typography1">Nuevos</div>
         </div>
         <div class="sub-menu">
           <li class="sub-item">
-            <a class="nav-link" href="<?php echo BASE_PATH; ?>/controlCapacidad">Control De Capacidades</a>
+            <a class="nav-link" href="<?php echo BASE_PATH; ?>controlCapacidad">Control De Capacidades</a>
           </li>
           <li class="sub-item">
             <a href="#">Control De Capacidades batch</a>
@@ -41,7 +49,7 @@
           <div class="typography1">Consultas</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/consultas">Registradas</a>
+          <a href="<?php echo BASE_PATH; ?>consultas">Registradas</a>
           <a href="#">Pendientes</a>
           <a href="#">Por Estados</a>
         </div>
@@ -52,7 +60,7 @@
           <div class="typography1">Reportes</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/reportes">Registradas</a>
+          <a href="<?php echo BASE_PATH; ?>reportes">Registradas</a>
           <a href="#">Pendientes</a>
           <a href="#">Por Estados</a>
         </div>
@@ -63,8 +71,8 @@
           <div class="typography1">Administración</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/configuracion">Consultar</a>
-          <a href="<?php echo BASE_PATH; ?>/configuracion/registroConfiguracion">Registrar</a>
+          <a href="<?php echo BASE_PATH; ?>configuracion">Consultar</a>
+          <a href="<?php echo BASE_PATH; ?>configuracion/registroConfiguracion">Registrar</a>
         </div>
       </div>
       <div class="sidebar-option">
@@ -73,21 +81,21 @@
           <div class="typography1">Configuración</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/definicion">Definición</a>
-          <a href="<?php echo BASE_PATH; ?>/pais">Países</a>
-          <a href="<?php echo BASE_PATH; ?>/ciudad">Ciudades</a>
-          <a href="<?php echo BASE_PATH; ?>/departamento">Departamentos</a>
-          <a href="<?php echo BASE_PATH; ?>/turnos">Turnos</a>
-          <a href="<?php echo BASE_PATH; ?>/plantas">plantas</a>
-          <a href="<?php echo BASE_PATH; ?>/equipo">Equipos</a>
-          <a href="<?php echo BASE_PATH; ?>/danoequipo">Daños</a>
-          <a href="<?php echo BASE_PATH; ?>/proceso">Procesos</a>
-          <a href="<?php echo BASE_PATH; ?>/linea">Líneas</a>
-          <a href="<?php echo BASE_PATH; ?>/producto">Productos</a>
-          <a href="<?php echo BASE_PATH; ?>/lineaproducto">Línea y Productos</a>
-          <a href="<?php echo BASE_PATH; ?>/categoriaParos">Paros</a>
-          <a href="<?php echo BASE_PATH; ?>/subCategoriaParos">Sub-Paros</a>
-          <a href="<?php echo BASE_PATH; ?>/tiposParos">Razones</a>
+          <a href="<?php echo BASE_PATH; ?>definicion">Definición</a>
+          <a href="<?php echo BASE_PATH; ?>pais">Países</a>
+          <a href="<?php echo BASE_PATH; ?>ciudad">Ciudades</a>
+          <a href="<?php echo BASE_PATH; ?>departamento">Departamentos</a>
+          <a href="<?php echo BASE_PATH; ?>turno">Turnos</a>
+          <a href="<?php echo BASE_PATH; ?>plantas">plantas</a>
+          <a href="<?php echo BASE_PATH; ?>equipo">Equipos</a>
+          <a href="<?php echo BASE_PATH; ?>danoequipo">Daños</a>
+          <a href="<?php echo BASE_PATH; ?>proceso">Procesos</a>
+          <a href="<?php echo BASE_PATH; ?>linea">Líneas</a>
+          <a href="<?php echo BASE_PATH; ?>producto">Productos</a>
+          <a href="<?php echo BASE_PATH; ?>lineaproducto">Línea y Productos</a>
+          <a href="<?php echo BASE_PATH; ?>categoriaParos">Paros</a>
+          <a href="<?php echo BASE_PATH; ?>subCategoriaParos">Sub-Paros</a>
+          <a href="<?php echo BASE_PATH; ?>tiposParos">Razones</a>
 
           <!-- <a href="<?php echo BASE_PATH; ?>/documentos">Todos los Documentos</a> -->
         </div>
@@ -98,8 +106,8 @@
           <div class="typography1">Gestión y Dirección</div>
         </div>
         <div class="sub-menu">
-          <a href="<?php echo BASE_PATH; ?>/usuarios">Gestión de Usuarios</a>
-          <a href="<?php echo BASE_PATH; ?>/roles">Gestión de Roles</a>
+          <a href="<?php echo BASE_PATH; ?>usuarios">Gestión de Usuarios</a>
+          <a href="<?php echo BASE_PATH; ?>roles">Gestión de Roles</a>
         </div>
       </div>
       <div class="sidebar-option">
@@ -128,10 +136,6 @@
         <script src="../app/Assets/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="../app/Assets/datatable/datatables.js"></script>
         <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
-
-
-
-
         <script>
           document.addEventListener('DOMContentLoaded', function() {
             const sidebarOptions = document.querySelectorAll('.sidebar-option');

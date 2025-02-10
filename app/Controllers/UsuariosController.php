@@ -36,7 +36,7 @@ class UsuariosController
                 $response = [
                     'success' => true,
                     'message' => 'Login exitoso',
-                    'url' => BASE_PATH . '/usuarios'
+                    'url' => BASE_PATH . 'usuarios/dashboard'
                 ];
                 echo json_encode($response);
                 // exit;
@@ -44,7 +44,7 @@ class UsuariosController
                 $response = [
                     'success' => false,
                     'message' => 'Usuario o contraseña incorrectos',
-                    'url' => BASE_PATH . '/login'
+                    'url' => BASE_PATH . 'login'
                 ];
                 echo json_encode($response);
             }
@@ -172,10 +172,10 @@ class UsuariosController
     }
 
 
-    public function dasboard()
+    public function dashboard()
     {
-        require_once __DIR__ . '/../views/layouts/header.php';
-        require_once __DIR__ . '/../views/security/dashboard.php';
-        require_once __DIR__ . '/../views/layouts/footer.php';
+        require_once __DIR__ . '/../views/layouts/dashboard.php';
+        require_once __DIR__ . '/../views/usuarios/dashboard.php';
+        // require_once __DIR__ . '/../views/layouts/footer.php';
     }
 }

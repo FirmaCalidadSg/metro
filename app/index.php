@@ -28,6 +28,7 @@ $router->group('', 'SecurityController', function ($group) {
     $group->add('logout', 'logout');
     $group->add('dashboard', 'dashboard');
 });
+
 // Rutas de usuarios
 $router->group('usuarios', 'UsuariosController', function ($group) {
     $group->add('', 'index');
@@ -104,7 +105,6 @@ $router->group('equipo', 'EquipoController', function ($group) {
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
-
 // Rutas de daños de equipos
 $router->group('danoequipo', 'DanoEquipoController', function ($group) {
     $group->add('', 'index');
@@ -115,7 +115,6 @@ $router->group('danoequipo', 'DanoEquipoController', function ($group) {
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
-
 // Rutas de procesos
 $router->group('proceso', 'ProcesoController', function ($group) {
     $group->add('', 'index');
@@ -163,13 +162,11 @@ $router->group('lineaproducto', 'LineaproductoController', function ($group) {
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
-
 $router->group('consultas', 'ConsultasController', function ($group) {
     $group->add('', 'index');
     $group->add('registrosconsulta', 'registrosconsulta');
     $group->add('consultaPreview', 'consultaPreview');
 });
-
 $router->group('capacidades', 'CapacidadesController', function ($group) {
     $group->add('', 'index');
     $group->add('registro', 'registro',);
@@ -219,7 +216,6 @@ $router->group('paros', 'ParosController', function ($group) {
     $group->add('getturnobyplanta/{id}', 'getturnobyplanta', 'GET');
 });
 
-
 $router->group('categoriaParos', 'CategoriaParosController', function ($group) {
     $group->add('', 'index');
     $group->add('registro', 'registro');
@@ -258,7 +254,7 @@ $router->group('tiposParos', 'TiposParosController', function ($group) {
 try {
     $uri = trim(str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']), '/');
     $method = $_SERVER['REQUEST_METHOD'];
-    $router->dispatch($uri, $method);
+ echo   $router->dispatch($uri, $method);
 } catch (\Exception $e) {
     if ($e->getCode() === 404) {
         header("HTTP/1.0 404 Not Found");
