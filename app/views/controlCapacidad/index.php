@@ -152,8 +152,7 @@
     <div class="card-header">
         <h5>Tiempo Planeado de No Operación (TPNO)</h5>
     </div>
-    <div class="card-body">
-        <h1>Descripción de Tiempos</h1>
+    <div class="card-body">        
         <form id="paroForm">
             <div class="row">
                 <div class="col">
@@ -193,7 +192,7 @@
         </table>
 
         <div class="mt-4">
-            <h3>Tiempo Planeado de No Operación (TPNO): <span id="tpnoTotal">0</span> minutos</h3>
+            <h6>Tiempo Planeado de No Operación (TPNO): <span id="tpnoTotal">0</span> minutos</h6>
         </div>
     </div>
 
@@ -271,7 +270,7 @@
             </tbody>
         </table>
         <div class="mt-4">
-            <h3>Tiempo en Paros y/o Ajustes (Mantenimiento): <span id="tpnoTotal">0</span> minutos</h3>
+            <h6>Tiempo en Paros y/o Ajustes (Mantenimiento): <span id="tpnoTotal">0</span> minutos</h6>
         </div>
     </div>
 </div>
