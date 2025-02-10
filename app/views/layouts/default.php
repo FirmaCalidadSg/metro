@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+  <title>MetroTeam</title>
   <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
   <link rel="icon" href="assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -31,7 +30,6 @@
  
   <link rel="stylesheet" href="../app/Assets/css/plugins.min.css" />
   <link rel="stylesheet" href="../app/Assets/css/kaiadmin.min.css" />
-
   <link rel="stylesheet" href="../app/Assets/css/globals.css" />
   <link rel="stylesheet" href="../app/Assets/css/style.css" />
   <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
@@ -90,51 +88,57 @@
               <span class="sidebar-mini-icon">
                 <i class="fa fa-ellipsis-h"></i>
               </span>
-              <h4 class="text-section">Components</h4>
-            </li>
+              <h4 class="text-section">Componentes</h4>
+            </li>            
             <li class="nav-item">
-              <a data-bs-toggle="collapse" href="#base">
+              <a href="../../documentation/index.html">
+                <i class="fas fa-plus"></i>
+                <p>Control De Capacidades</p>                
+              </a>
+            </li>  
+            <li class="nav-item">
+              <a data-bs-toggle="collapse" href="#consultas">
                 <i class="fas fa-layer-group"></i>
-                <p>Base</p>
+                <p>Consultas</p>
                 <span class="caret"></span>
               </a>
-              <div class="collapse" id="base">
+              <div class="collapse" id="consultas">
                 <ul class="nav nav-collapse">
                   <li>
                     <a href="components/avatars.html">
-                      <span class="sub-item">Avatars</span>
+                      <span class="sub-item">Registadas</span>
                     </a>
-                  </li>
-                 
+                  </li>                 
+                  <li>
+                    <a href="components/avatars.html">
+                      <span class="sub-item">Pendientes</span>
+                    </a>
+                  </li>                 
+                  <li>
+                    <a href="components/avatars.html">
+                      <span class="sub-item">Por estado</span>
+                    </a>
+                  </li>                 
                 </ul>
               </div>
-            </li>
-            
-            
-           
-            
-            
-            
-            
-            
+            </li>     
+            <li class="nav-item">
+              <a href="../../documentation/index.html">
+                <i class="fas fa-search"></i>
+                <p>Consultas</p>                
+              </a>
+            </li>       
+            <li class="nav-item">
+              <a href="../../documentation/index.html">
+              <i class="fa fa-pie-chart" ></i>
+                <p>Reportes</p>                
+              </a>
+            </li>       
           </ul>
         </div>
       </div>
-    </div>
-    <!-- End Sidebar -->
-
+    </div>    <!-- End Sidebar -->
     <div style="background-color: #f2f5f4; padding:2%;" class="main-panel">
-
-     <!--  <div class="container">
-        <div class="row">
-          <div class="col-md-4">Columna 1</div>
-          <div class="col-md-4">Columna 2</div>
-          <div class="col-md-4">Columna 3</div>
-          <div class="col-md-12">Columna 4</div>
-          <div class="col-md-6">Columna 5</div>
-          <div class="col-md-6">Columna 6</div>
-        </div>
-      </div> -->
       
 
      

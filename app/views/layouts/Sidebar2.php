@@ -88,12 +88,13 @@
     /* Push toggle button to the bottom */
   }
 </style>
+
 <body>
   <div class="property-slider">
     <img class="image" src="../app/Assets/css/images/logo.svg" />
     <div class="divider"></div>
     <div class="typography">
-    <div class="text-wrapper">METROTEAM</div>
+      <div class="text-wrapper">METROTEAM</div>
     </div>
     <div class="frame">
       <div class="sidebar-option">
@@ -200,10 +201,10 @@
     <script src="../app/Assets/datatable/datatables.js"></script>
     <script src="../app/Assets/sweetAlert2/sweetalert2@11.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         const sidebarOptions = document.querySelectorAll('.sidebar-option');
         sidebarOptions.forEach(option => {
-          option.addEventListener('click', function() {
+          option.addEventListener('click', function () {
             const subMenu = option.querySelector('.sub-menu');
             if (subMenu.style.display === 'none' || subMenu.style.display === '') {
               subMenu.style.display = 'flex';
@@ -241,7 +242,7 @@
       document.querySelectorAll('.sidebar-option').forEach(option => {
         option.addEventListener('click', handleSidebarOptionClick);
       });
-      $(document).ready(function() {
+      $(document).ready(function () {
         $('#table').DataTable({
           "language": {
             "sProcessing": "Procesando...",
