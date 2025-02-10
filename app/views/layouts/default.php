@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>MetroTeam</title>
@@ -10,7 +11,9 @@
   <script src="assets/js/plugin/webfont/webfont.min.js"></script>
   <script>
     WebFont.load({
-      google: { families: ["Public Sans:300,400,500,600,700"] },
+      google: {
+        families: ["Public Sans:300,400,500,600,700"]
+      },
       custom: {
         families: [
           "Font Awesome 5 Solid",
@@ -20,14 +23,14 @@
         ],
         urls: ["assets/css/fonts.min.css"],
       },
-      active: function () {
+      active: function() {
         sessionStorage.fonts = true;
       },
     });
   </script>
 
   <!-- CSS Files -->
- 
+
   <link rel="stylesheet" href="../app/Assets/css/plugins.min.css" />
   <link rel="stylesheet" href="../app/Assets/css/kaiadmin.min.css" />
   <link rel="stylesheet" href="../app/Assets/css/globals.css" />
@@ -44,10 +47,10 @@
 <body>
   <div class="wrapper">
     <!-- Sidebar -->
-    <div class="sidebar" style="background-color: #e4ebdb;" >
+    <div class="sidebar" style="background-color: #e4ebdb;">
       <div class="sidebar-logo">
         <!-- Logo Header -->
-        <div class="logo-header" >
+        <div class="logo-header">
           <a href="index.html" class="logo">
             <img src="../app/Assets/css/images/logo.svg" alt="navbar brand" class="navbar-brand" height="50" />
           </a>
@@ -89,13 +92,13 @@
                 <i class="fa fa-ellipsis-h"></i>
               </span>
               <h4 class="text-section">Componentes</h4>
-            </li>            
+            </li>
             <li class="nav-item">
               <a href="../../documentation/index.html">
                 <i class="fas fa-plus"></i>
-                <p>Control De Capacidades</p>                
+                <p>Control De Capacidades</p>
               </a>
-            </li>  
+            </li>
             <li class="nav-item">
               <a data-bs-toggle="collapse" href="#consultas">
                 <i class="fas fa-layer-group"></i>
@@ -108,37 +111,51 @@
                     <a href="components/avatars.html">
                       <span class="sub-item">Registadas</span>
                     </a>
-                  </li>                 
+                  </li>
                   <li>
                     <a href="components/avatars.html">
                       <span class="sub-item">Pendientes</span>
                     </a>
-                  </li>                 
+                  </li>
                   <li>
                     <a href="components/avatars.html">
                       <span class="sub-item">Por estado</span>
                     </a>
-                  </li>                 
+                  </li>
                 </ul>
               </div>
-            </li>     
+            </li>
             <li class="nav-item">
               <a href="../../documentation/index.html">
                 <i class="fas fa-search"></i>
-                <p>Consultas</p>                
+                <p>Consultas</p>
               </a>
-            </li>       
+            </li>
             <li class="nav-item">
               <a href="../../documentation/index.html">
-              <i class="fa fa-pie-chart" ></i>
-                <p>Reportes</p>                
+                <i class="fa fa-pie-chart"></i>
+                <p>Reportes</p>
               </a>
-            </li>       
+            </li>
           </ul>
         </div>
       </div>
-    </div>    <!-- End Sidebar -->
-    <div style="background-color: #f2f5f4; padding:2%;" class="main-panel">
       
+    </div> <!-- End Sidebar -->
+    <div style="background-color: #f2f5f4;" class="main-header">
+        <div class="main-header-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" >
+            <a href="index.html" class="logo">
+              <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+            </a>
+           
+          </div>
+          <!-- End Logo Header -->
+        </div>
+        <!-- Navbar Header -->
 
-     
+        <!-- End Navbar -->
+      </div>
+
+    <div style="background-color: #f2f5f4; padding:2%;" class="main-panel">

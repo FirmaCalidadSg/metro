@@ -1,3 +1,7 @@
+h1{
+  color:#0a843c !important;
+}
+
 .content {
   display: inline-flex;
   flex-direction: column;
