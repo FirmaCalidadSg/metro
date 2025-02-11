@@ -7,7 +7,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Lista de Definiciones</h2>
+                    <h4>Lista de Definiciones</h4>
 
                 </div>
                 <div class="col-sm-6">

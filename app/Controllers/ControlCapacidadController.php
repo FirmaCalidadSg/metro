@@ -34,7 +34,7 @@ class ControlCapacidadController
     {
         $plantas = $this->planta->getAllPlantas();
 
-        require_once __DIR__ . '/../views/layouts/default.php';
+        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
         require_once __DIR__ . '/../views/controlCapacidad/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

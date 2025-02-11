@@ -22,7 +22,7 @@ class PlantasController
     public function index()
     {
         $plantas = $this->planta->getAllPlantas();
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/planta/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
 

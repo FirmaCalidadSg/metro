@@ -1,6 +1,14 @@
-h1{
-  color:#0a843c !important;
+h1, h2, h3, h4, h5, h6{
+  color:#2a543b !important;
 }
+
+.nav{
+  list-style: none !important;
+}
+
+
+
+
 
 .content {
   display: inline-flex;

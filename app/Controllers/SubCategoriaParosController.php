@@ -25,7 +25,7 @@ class SubCategoriaParosController
 
         $SubCategoriaParos = $this->SubCategoriaParos->getAllSubCategoriaParos();
 
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/SubCategoriaParos/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
 

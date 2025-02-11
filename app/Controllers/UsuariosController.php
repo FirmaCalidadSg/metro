@@ -57,8 +57,10 @@ class UsuariosController
     {
         $usuarios = $this->usuarios->getAllUsuarios();
         // var_dump($usuarios);
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/usuarios/index.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+
     }
 
     public function registro()

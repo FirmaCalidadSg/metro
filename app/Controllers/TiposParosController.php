@@ -25,7 +25,7 @@ class TiposParosController
 
         $TiposParos = $this->TiposParos->getAllTiposParos();
 
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/TiposParos/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
 

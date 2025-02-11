@@ -21,7 +21,7 @@ class DepartamentoController
     {        
         $departamentos = $this->departamento->getAllDepartamento();
 
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/departamento/index.php';
     }
 
