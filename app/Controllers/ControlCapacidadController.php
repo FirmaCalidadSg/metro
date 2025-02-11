@@ -7,6 +7,7 @@ use App\Models\Departamento;
 use App\Models\Plantas;
 use App\Models\Turno;
 use App\Models\Controlcapacidad;
+use App\Models\Producto;
 
 class ControlCapacidadController
 {
@@ -15,6 +16,7 @@ class ControlCapacidadController
     public $planta;
     public $turnos;
     public $controlcapacidad;
+    public $producto;
 
     public function __construct()
     {
@@ -23,6 +25,7 @@ class ControlCapacidadController
         $this->departamento = new Departamento();
         $this->planta = new Plantas();
         $this->turnos = new Turno();
+        $this->producto = new Producto();
     }
 
 
@@ -31,8 +34,8 @@ class ControlCapacidadController
     {
         $plantas = $this->planta->getAllPlantas();
 
-        require_once  __DIR__ . '/../views/layouts/default.php';
-         require_once __DIR__ . '/../views/controlCapacidad/index.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
+        require_once __DIR__ . '/../views/controlCapacidad/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
@@ -79,5 +82,16 @@ class ControlCapacidadController
 
             echo json_encode($result);
         }
+    }
+
+    public function productosBYPlantaLineaProceso()
+    {
+
+        $planta_id = $_POST['planta_id'];
+        $linea_id = $_POST['linea_id'];
+        $proceso_id = $_POST['proceso_id'];
+        $productos = $this->producto->productosBYPlantaLineaProceso($planta_id, $linea_id, $proceso_id);
+        echo json_encode($productos);
+        // print_r($productos);
     }
 }

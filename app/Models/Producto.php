@@ -57,7 +57,7 @@ class Producto
         $stmt->bindParam(':codigo', $producto->codigo, PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $producto->descripcion, PDO::PARAM_STR);
 
-        
+
         if ($stmt->execute()) {
             return [
                 'status' => 'success',
@@ -87,7 +87,7 @@ class Producto
         $stmt->bindParam(':codigo', $producto->codigo, PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $producto->descripcion, PDO::PARAM_STR);
 
-       
+
         if ($stmt->execute()) {
             return [
                 'status' => 'success',
@@ -108,5 +108,25 @@ class Producto
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
+    }
+
+
+
+    public function productosBYPlantaLineaProceso($planta_id, $linea_id, $proceso_id)
+    {
+        try {
+            $sql = "SELECT * FROM producto 
+            WHERE planta_id=:planta_id 
+            AND linea_id=:linea_id 
+            AND proceso_id=:proceso_id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':planta_id', $planta_id, PDO::PARAM_INT);
+            $stmt->bindParam(':linea_id', $linea_id, PDO::PARAM_INT);
+            $stmt->bindParam(':proceso_id', $proceso_id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (\PDOException $th) {
+            throw $th;
+        }
     }
 }

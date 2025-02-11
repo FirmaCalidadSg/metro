@@ -11,7 +11,7 @@
                         <div class="col-md-4">
                             <label for="fechaRegistro" class="form-label">Fecha de registro</label>
                             <input type="date" class="form-control" name="fechaRegistro" id="fechaRegistro"
-                                value="<?= date('Y-m-d') ?>" placeholder="dd/mm/aaaa">
+                                value="<?php echo date('Y-m-d') ?>" placeholder="dd/mm/aaaa">
                         </div>
                         <!-- Plantas -->
                         <div class="col-md-4">
@@ -33,7 +33,8 @@
                         <!-- Proceso -->
                         <div class="col-md-4">
                             <label for="proceso" class="form-label">Proceso</label>
-                            <select class="form-select" id="proceso_id" name="proceso_id">
+                            <select class="form-select" id="proceso_id" name="proceso_id"
+                                onchange="productosBYPlantaLineaProceso(this)">
                                 <option value="">Seleccionar</option>
                             </select>
                         </div>
@@ -77,18 +78,20 @@
             <div class="card-body">
                 <form id="toForm">
                     <div class="row g-3">
-                        <div class="col-3">
+                        <div class="col-2">
                             <label for="medidaSelect" class="form-label">Medida</label>
                             <select class="form-select" id="medidaSelect">
                                 <option value="kg">Kg</option>
                                 <option value="unidades">Unidades</option>
                             </select>
                         </div>
-                        <div class="col-3">
-                            <label for="itemInput" class="form-label">Ítem/Producto</label>
-                            <input type="text" class="form-control" id="itemInput">
+                        <div class="col-4">
+                            <label for="itemInput" class="form-label">Ítems/Productos</label>
+                            <label for="" class="form-label">City</label>
+                            <select class="form-select select2" name="producto_id" id="producto_id">
+                                <option selected>Seleccionar</option>
+                            </select>
                         </div>
-
                         <div class="col">
                             <label for="hinicial" class="form-label">Hora Inicial</label>
                             <input type="time" class="form-control" id="hinicial">
@@ -163,9 +166,6 @@
             </div>
         </div>
     </div>
-
-
-
     <script>
         //    calcula las horas hombre
         const input = document.getElementById('num_operarios');
@@ -234,7 +234,6 @@
                 }
             });
         }
-
         function Proceso(linea) {
             $.ajax({
                 url: '<?php echo BASE_PATH ?>proceso/GetProcesoByPlanta/',
@@ -250,7 +249,7 @@
                     select.append('<option value="">Seleccione un proceso</option>');
                     $.each(procesos, function (i, proceso) {
                         select.append($('<option>', {
-                            value: proceso.proceso,
+                            value: proceso.proceso_id,
                             text: proceso.nombre
                         }));
                     });
@@ -260,7 +259,6 @@
                 }
             });
         }
-
         function calcularDiferenciaHoras(horaInicio, horaFin) {
             var [h1, m1] = horaInicio.split(':').map(Number);
             var [h2, m2] = horaFin.split(':').map(Number);
@@ -275,6 +273,48 @@
 
             return diferencia;
         }
+    
+    
+        function productosBYPlantaLineaProceso() {
+            var planta_id = $('#planta_id').val();
+            var linea_id = $('#linea_id').val();
+            var proceso_id = $('#proceso_id').val(); // Corregido: proceso_id debía tomar el valor correcto
+
+            if (!planta_id || !linea_id || !proceso_id) {
+                alert('Por favor seleccione valores válidos para planta, línea y proceso.');
+                return;
+            }
+
+            $.ajax({
+                url: '<?php echo BASE_PATH ?>controlCapacidad/productosBYPlantaLineaProceso/',
+                type: 'POST',
+                data: {
+                    planta_id: planta_id,
+                    linea_id: linea_id,
+                    proceso_id: proceso_id
+                },
+                dataType: "json",
+                success: function (response) {
+                    // Limpiar y rellenar el select de productos
+                    $('#producto_id').empty().append('<option value="">Seleccione un producto</option>');
+
+                    if (response && response.length > 0) {
+                        response.forEach(function (producto) {
+                            $('#producto_id').append(
+                                `<option value="${producto.id}">${producto.nombre} (${producto.codigo})</option>`
+                            );
+                        });
+                    } else {
+                        $('#producto_id').append('<option value="">No hay productos disponibles</option>');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error en la solicitud:', error);
+                }
+            });
+        }
+
+
 
 
         function TurnoDatos() {

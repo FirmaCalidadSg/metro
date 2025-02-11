@@ -169,7 +169,7 @@ $router->group('consultas', 'ConsultasController', function ($group) {
 });
 $router->group('capacidades', 'CapacidadesController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro',);
+    $group->add('registro', 'registro', );
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
@@ -183,6 +183,7 @@ $router->group('controlCapacidad', 'ControlCapacidadController', function ($grou
     $group->add('modal1', 'modal1');
     $group->add('modal2', 'modal2');
     $group->add('RegistroCtrlCap', 'RegistroCtrlCap', 'POST');
+    $group->add('productosBYPlantaLineaProceso', 'productosBYPlantaLineaProceso', 'POST');
 });
 $router->group('reportes', 'ReportesController', function ($group) {
     $group->add('', 'index');
@@ -254,7 +255,7 @@ $router->group('tiposParos', 'TiposParosController', function ($group) {
 try {
     $uri = trim(str_replace(BASE_PATH, '', $_SERVER['REQUEST_URI']), '/');
     $method = $_SERVER['REQUEST_METHOD'];
- echo   $router->dispatch($uri, $method);
+    echo $router->dispatch($uri, $method);
 } catch (\Exception $e) {
     if ($e->getCode() === 404) {
         header("HTTP/1.0 404 Not Found");
