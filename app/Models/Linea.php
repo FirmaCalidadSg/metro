@@ -163,4 +163,16 @@ class Linea
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function getLineaByProceso($id)
+    {
+        $query = "SELECT l.id, l.nombre, l.proceso 
+                    FROM linea l 
+                    WHERE proceso=:proceso_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':proceso_id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
 }

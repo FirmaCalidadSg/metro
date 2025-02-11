@@ -1,165 +1,208 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../app/Assets/css/globals.css" />
-    <link rel="stylesheet" href="../../app/Assets/css/styleguide.css" />
-    <link rel="stylesheet" href="../../app/Assets/css/style.css" />
-    <title>Registro</title>
-</head>
-
-<body>
-    <div class="registroConfig">
-        <div class="info">
-            <div class="frame">
-                <div class="text">
-                    <div class="text-wrapper">Nueva Linea Y Producto</div>
-                </div>
-                <div class="div">
-                    <div class="frame-2">
-                        <div class="text-wrapper-2">Creado por</div>
-                        <div class="div-wrapper">
-                            <div class="text-wrapper-3">Sebastian Diaz</div>
-                        </div>
-                    </div>
-                    <div class="frame-2">
-                        <div class="text-wrapper-2">Fecha registro</div>
-                        <div class="frame-3">
-                            <div class="img-calendar">
-                                <img src="../../app/Assets/css/images/calender.svg" />
-                            </div>
-                            <div class="text-wrapper-3">
-                                <?php
-                                $fecha = date('d/m/Y');
-                                echo $fecha;
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Agregamos el formulario que enviará los datos a la función crear del controlador -->
-            <form method="POST" class="form-register" action="/metro/app/linea/<?php echo isset($linea_producto->id) && $linea_producto->id > 0 ? 'actualizar' : 'crear'; ?>">
-                <div class="drops-downs">
-                    <div class="element">
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Linea</div>
-                                <div class="div-2">
-                                    <select class="select-register" name="linea">
-                                        <option value="">Seleccionar</option>
-                                        <?php foreach ($lineas as $linea) { ?>
-                                            <option value="<?php echo $linea->id; ?>"><?php echo $linea->nombre; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="element">
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Producto</div>
-                                <div class="div-2">
-                                    <select class="select-register" name="producto">
-                                        <option value="">Seleccionar</option>
-                                        <?php foreach ($productos as $producto) { ?>
-                                            <option value="<?php echo $producto->id; ?>"><?php echo $producto->nombre; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                        <div class="textfield-2">
-                            <div class="input">
-                                <div class="text-wrapper-5">Capacidad Producción</div>
-                                <div class="div-2">
-                                    <input type="text" name="capacidad_produccion" class="select-register" value="<?php echo $linea_producto->capacidad_produccion ?? ''; ?>" placeholder="Capacidad Producción" required>
-                                </div>
-                                <img class="underline" src="../../app/Assets/css/images/underline.svg" />
-                            </div>
-                        </div>
-                    </div>
-
+<div class="card">
+    <div class="card-header">
+        <h5>Registro De Línea/Producto</h5>
+    </div>
+    <div class="card-body">
+        <form name="lineaProceso" id="lineaProceso">
+            <div class="row">
+                <!-- Selección de Planta -->
+                <div class="col-3">
+                    <label for="plantas" class="form-label">* Planta</label>
+                    <select id="plantas" name="planta_id" class="form-select">
+                        <option value="">Seleccione una planta</option>
+                        <?php foreach ($plantas as $value): ?>
+                            <option value="<?= $value->id ?>"><?= $value->nombre_planta ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
-                <input type="hidden" id="id" name="id" value="<?php echo $linea_producto->id ?? ''; ?>">
-                <button type="submit" class="btn btn-primary">
-                    <?php echo isset($linea_producto->id) && $linea_producto->id > 0 ? 'Actualizar' : 'Registrar'; ?>
-                </button>
-            </form>
+                <!-- Selección de Proceso -->
+                <div class="col-3">
+                    <label for="procesos" class="form-label">* Proceso</label>
+                    <select id="procesos" name="proceso_id" class="form-select" disabled>
+                        <option value="">Seleccione un proceso</option>
+                    </select>
+                </div>
 
-            <!-- Modal HTML -->
-            <div class="modal-changes" id="successModal" style="display: none;">
-                <div class="modal-content">
-                    <div class="modal-title">
-                        <h2 id="modal-title">¡Éxito!</h2>
-                    </div>
-                    <p class="modal-message" id="modal-message">La operación se completó correctamente.</p>
-                    <button id="closeModal">Cerrar</button>
+                <!-- Selección de Línea -->
+                <div class="col-3">
+                    <label for="lineas" class="form-label">* Línea</label>
+                    <select id="lineas" name="linea_id" class="form-select" disabled>
+                        <option value="">Seleccione una línea</option>
+                    </select>
+                </div>
+
+                <!-- Selección de Producto -->
+                <div class="col-3">
+                    <label for="productos" class="form-label">* Producto</label>
+                    <select id="productos" name="producto_id" class="form-select" disabled>
+                        <option value="">Seleccione un producto</option>
+                    </select>
+                </div>
+
+                <!-- Unidad -->
+                <div class="col-3">
+                    <label for="unidad" class="form-label">* Unidad</label>
+                    <select id="unidad" name="unidad" class="form-control">
+                        <option value="">Seleccione una unidad</option>
+                        <option value="Kg">Kg</option>
+                        <option value="Cajas">Cajas</option>
+                        <option value="Unidades">Unidades</option>
+                        <option value="Toneladas">Toneladas</option>
+                    </select>
+                </div>
+
+                <!-- Peso -->
+                <div class="col-3">
+                    <label for="peso" class="form-label">* Peso (KG)</label>
+                    <input type="number" id="peso" name="peso" class="form-control" placeholder="Ingrese el peso en KG">
+                </div>
+
+                <!-- Rendimiento Esperado -->
+                <div class="col-3">
+                    <label for="rendimiento" class="form-label">* Rendimiento Esperado</label>
+                    <input type="number" id="rendimiento" name="rendimiento" class="form-control" value="1.00">
+                </div>
+
+                <!-- Producción Ideal Teórica -->
+                <div class="col-3">
+                    <label for="produccion_teorica" class="form-label">* Producción Ideal Teórica (Unidad/Horas)</label>
+                    <input type="number" id="produccion_teorica" name="produccion_teorica" class="form-control">
+                </div>
+
+                <!-- Producción Ideal Ajustada -->
+                <div class="col-3">
+                    <label for="produccion_ajustada" class="form-label">* Producción Ideal Ajustada</label>
+                    <input type="number" id="produccion_ajustada" name="produccion_ajustada" class="form-control">
+                </div>
+
+                <div class="col-md-12 mt-3">
+                    <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
             </div>
-
-
-</body>
+        </form>
+    </div>
+</div>
+<script src="<?= BASE_PATH ?>/Assets/jquery/jquery-3.7.1.min.js"></script>
 <script>
-    function showModal(message, isSuccess = true) {
-        document.getElementById('modal-message').innerHTML = message;
+    $(document).ready(function () {
 
-        document.getElementById('modal-title').innerHTML = isSuccess ? '¡Éxito!' : 'Error';
-        document.getElementById('successModal').style.backgroundColor = isSuccess ? '#111111bd' : '#F44336';
-        document.getElementById('successModal').style.display = 'flex';
-        document.getElementById('closeModal').addEventListener('click', function() {
-            closeModal(isSuccess);
+        // Cargar procesos al seleccionar una planta
+        $("#plantas").change(function () {
+            let plantaId = $(this).val();
+            let $procesos = $("#procesos");
+            $procesos.prop("disabled", true).empty().append('<option value="">Seleccione un proceso</option>');
+
+            if (plantaId) {
+                $.ajax({
+                    url: '<?= BASE_PATH ?>proceso/GetProcesoByPlanta/',
+                    type: 'GET',
+                    data: { linea: plantaId },
+                    success: function (response) {
+                        let procesos = JSON.parse(response);
+                        procesos.forEach(proceso => {
+                            $procesos.append(new Option(proceso.nombre, proceso.proceso_id));
+                        });
+                        $procesos.prop("disabled", false);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("❌ Error al cargar procesos:", error);
+                    }
+                });
+            }
         });
 
-        setTimeout(() => {
-            closeModal(isSuccess);
-        }, 5000);
-    }
+        // Cargar líneas al seleccionar un proceso
+        $("#procesos").change(function () {
+            let procesoId = $(this).val();
+            let $lineas = $("#lineas");
+            $lineas.prop("disabled", true).empty().append('<option value="">Seleccione una línea</option>');
 
-    function closeModal(isSuccess) {
-        document.getElementById('successModal').style.display = 'none';
-
-        // Si es éxito, redirigir a la lista de definiciones
-        if (isSuccess) {
-            window.location.href = "<?php echo BASE_PATH; ?>/lineaproducto";
-        } else {
-            window.location.href = "<?php echo BASE_PATH; ?>/lineaproducto";
-        }
-    }
-
-    // Enviar el formulario mediante Fetch
-    document.querySelector('form').addEventListener('submit', function(e) {
-        e.preventDefault(); // Evitar que se recargue la página al enviar el formulario
-
-        // Recopilar datos del formulario
-        const formData = new FormData(this);
-
-        // Realizar la petición Fetch para enviar el formulario
-        fetch('/metro/app/lineaproducto/crear', {
-            method: 'POST',
-            body: formData
-        }).then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor');
+            if (procesoId) {
+                $.ajax({
+                    url: '<?= BASE_PATH ?>linea/getbyplanta/',
+                    type: 'GET',
+                    data: { planta: procesoId },
+                    success: function (response) {
+                        let lineas = JSON.parse(response);
+                        lineas.forEach(linea => {
+                            $lineas.append(new Option(linea.nombre, linea.id));
+                        });
+                        $lineas.prop("disabled", false);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("❌ Error al cargar líneas:", error);
+                    }
+                });
             }
-            return response.json();
-        }).then(data => {
-            if (data.success) {
-                showModal(data.message, true); // Mostrar modal si la operación fue exitosa
-            } else {
-                showModal(data.message, false); // Mostrar modal con error
-            }
-        }).catch(error => {
-            /*     console.error('Error:', error); */
-            showModal('Ocurrió un error inesperado', false); // Mostrar error en el modal
         });
+
+        // Cargar productos al seleccionar una línea
+        $("#lineas").change(function () {
+            let lineaId = $(this).val();
+            let procesoId = $("#procesos").val();
+            let plantaId = $("#plantas").val();
+            let $productos = $("#productos");
+            $productos.prop("disabled", true).empty().append('<option value="">Seleccione un producto</option>');
+
+            if (lineaId) {
+                $.ajax({
+                    url: '<?= BASE_PATH ?>controlCapacidad/productosBYPlantaLineaProceso/',
+                    type: 'POST',
+                    data: { planta_id: plantaId, linea_id: lineaId, proceso_id: procesoId },
+                    success: function (response) {
+                        let productos = JSON.parse(response);
+                        productos.forEach(producto => {
+                            $productos.append(new Option(`${producto.nombre} (${producto.codigo})`, producto.id));
+                        });
+                        $productos.prop("disabled", false);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("❌ Error al cargar productos:", error);
+                    }
+                });
+            }
+        });
+
+        // Enviar formulario con AJAX
+        $("#lineaProceso").submit(function (event) {
+            event.preventDefault();
+            let formData = $(this).serialize();
+
+            $.ajax({
+                url: '<?= BASE_PATH ?>lineaproducto/crear',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Éxito',
+                            text: 'Formulario enviado correctamente',
+                            confirmButtonText: 'OK'
+                        });
+                        $("#lineaProceso")[0].reset();
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: response.message,
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error AJAX',
+                        text: 'Hubo un problema con la petición.',
+                        confirmButtonText: 'OK'
+                    });
+                    console.error("Error AJAX:", error);
+                }
+            });
+        });
+
     });
 </script>
-
-</html>

@@ -31,13 +31,23 @@ class LineaProducto
 
     public function getAllLineaProducto()
     {
-        $query = "SELECT lp.*, l.nombre as nombre_linea, p.nombre as nombre_producto FROM lineaproducto lp
-                INNER JOIN linea l ON l.id = lp.linea
-                INNER JOIN producto p ON p.id = lp.producto";
+        $query = "SELECT 
+                    lp.*, 
+                    pl.nombre_planta AS nombre_planta, 
+                    pr.nombre AS nombre_proceso, 
+                    l.nombre AS nombre_linea, 
+                    p.nombre AS nombre_producto
+                  FROM lineaproducto lp
+                  INNER JOIN plantas pl ON pl.id = lp.planta_id
+                  INNER JOIN proceso pr ON pr.id = lp.proceso_id
+                  INNER JOIN linea l ON l.id = lp.linea_id
+                  INNER JOIN producto p ON p.id = lp.producto_id";
+
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+
 
 
     public function getLineaProductoById($id)
@@ -49,9 +59,9 @@ class LineaProducto
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-    
+
         $data = $stmt->fetch(PDO::FETCH_OBJ);
-        
+
         if ($data) {
             $lineaProducto = new LineaProducto();
             $lineaProducto->id = $data->id;
@@ -63,18 +73,29 @@ class LineaProducto
 
             return $lineaProducto;
         }
-        
+
         return null;
     }
-    
 
-    public function createLineaProducto(LineaProducto $lineaproducto)
+
+    public function createLineaProducto($data)
     {
-        $query = "INSERT INTO lineaproducto (linea, producto, capacidad_produccion) VALUES (:linea, :producto, :capacidad_produccion)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':linea', $lineaproducto->linea, PDO::PARAM_STR);
-        $stmt->bindParam(':producto', $lineaproducto->producto, PDO::PARAM_STR);
-        $stmt->bindParam(':capacidad_produccion', $lineaproducto->capacidad_produccion, PDO::PARAM_STR);
+        $sql = "INSERT INTO lineaproducto (planta_id, proceso_id, linea_id, producto_id, unidad, peso, rendimiento, produccion_ajustada, produccion_teorica) 
+        VALUES (:planta_id, :proceso_id, :linea_id, :producto_id, :unidad, :peso, :rendimiento, :produccion_ajustada, :produccion_teorica)";
+
+        $stmt = $this->db->prepare($sql);
+
+        // Bind de los parámetros
+        $stmt->bindParam(':planta_id', $data['planta_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':proceso_id', $data['proceso_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':linea_id', $data['linea_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':producto_id', $data['producto_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':unidad', $data['unidad'], PDO::PARAM_STR);
+        $stmt->bindParam(':peso', $data['peso'], PDO::PARAM_INT);
+        $stmt->bindParam(':rendimiento', $data['rendimiento'], PDO::PARAM_INT);
+        $stmt->bindParam(':produccion_ajustada', $data['produccion_ajustada'], PDO::PARAM_INT);
+        $stmt->bindParam(':produccion_teorica', $data['produccion_teorica'], PDO::PARAM_INT);
+
         return $stmt->execute();
     }
 

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+<?php $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'); ?>
 
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>MetroTeam</title>
   <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-  <link rel="icon" href="assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="<?php echo $basePath; ?>/Assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
 
   <!-- Fonts and icons -->
-  <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+  <script src="<?php echo $basePath; ?>/Assets/js/plugin/webfont/webfont.min.js"></script>
   <script>
     WebFont.load({
       google: {
@@ -21,7 +22,7 @@
           "Font Awesome 5 Brands",
           "simple-line-icons",
         ],
-        urls: ["assets/css/fonts.min.css"],
+        urls: ["<?php echo $basePath; ?>/Assets/css/fonts.min.css"],
       },
       active: function () {
         sessionStorage.fonts = true;
@@ -29,19 +30,14 @@
     });
   </script>
 
-  <!-- CSS Files -->
-
-  <link rel="stylesheet" href="../app/Assets/css/plugins.min.css" />
-  <link rel="stylesheet" href="../app/Assets/css/kaiadmin.min.css" />
-  <link rel="stylesheet" href="../app/Assets/css/globals.css" />
-  <link rel="stylesheet" href="../app/Assets/css/style.css" />
-  <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
-  <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
-  <link rel="stylesheet" href="../app/Assets/datatable/datatables.css" />
-  <link rel="stylesheet" href="../app/Assets/fontawesome-free-5.15.4-web/css/all.min.css">
-
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link rel="stylesheet" href="assets/css/demo.css" />
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/css/plugins.min.css">
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/css/kaiadmin.min.css">
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/css/globals.css">
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/css/style.css">
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/css/styleguide.css">
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/datatable/datatables.css">
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/fontawesome-free-5.15.4-web/css/all.min.css">
 </head>
 
 <body>
@@ -52,7 +48,8 @@
         <!-- Logo Header -->
         <div class="logo-header">
           <a href="index.html" class="logo">
-            <img src="../app/Assets/css/images/logo.svg" alt="navbar brand" class="navbar-brand" height="50" />
+            <img src="<?php echo $basePath; ?>/Assets/css/images/logo.svg" alt="navbar brand" class="navbar-brand"
+              height="50" />
           </a>
           <div class="nav-toggle">
             <button class="btn btn-toggle toggle-sidebar">
@@ -94,7 +91,7 @@
               <h4 class="text-section">Componentes</h4>
             </li>
             <li class="nav-item">
-              <a href="../../documentation/index.html">
+              <a href="<?php echo BASE_PATH; ?>controlCapacidad">
                 <i class="fas fa-plus"></i>
                 <p>Control De Capacidades</p>
               </a>
@@ -146,7 +143,8 @@
           <!-- Logo Header -->
           <div class="logo-header">
             <a href="index.html" class="logo">
-              <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+              <img src="<?php echo $basePath; ?>/Assets/img/kaiadmin/logo_light.svg" alt="navbar brand"
+                class="navbar-brand" height="20" />
             </a>
           </div>
           <!-- End Logo Header -->
@@ -156,3 +154,33 @@
       <!-- End Navbar -->
     </div>
     <div style="background-color: #f2f5f4; padding:2%;" class="main-panel">
+      <script>
+        $(document).ready(function () {
+          $('#table').DataTable({
+            "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+              },
+              "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+            }
+          });
+        });
+      </script>
