@@ -23,7 +23,7 @@
         ],
         urls: ["assets/css/fonts.min.css"],
       },
-      active: function() {
+      active: function () {
         sessionStorage.fonts = true;
       },
     });
@@ -140,22 +140,19 @@
           </ul>
         </div>
       </div>
-      
-    </div> <!-- End Sidebar -->
-    <div style="background-color: #f2f5f4;" class="main-header">
+      <!-- End Sidebar -->
+      <div style="background-color: #f2f5f4;" class="main-header">
         <div class="main-header-logo">
           <!-- Logo Header -->
-          <div class="logo-header" >
+          <div class="logo-header">
             <a href="index.html" class="logo">
               <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
             </a>
-           
           </div>
           <!-- End Logo Header -->
         </div>
         <!-- Navbar Header -->
-
-        <!-- End Navbar -->
       </div>
-
+      <!-- End Navbar -->
+    </div>
     <div style="background-color: #f2f5f4; padding:2%;" class="main-panel">
