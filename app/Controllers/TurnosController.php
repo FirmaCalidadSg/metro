@@ -21,7 +21,7 @@ class TurnosController
          //$plantas = $this->planta->getAllPlantas();
         $turnos = $this->turno->getAllTurnos(); 
 
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/turnos/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
 

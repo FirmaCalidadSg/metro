@@ -19,7 +19,7 @@ class ProductoController
     public function index()
     {
         $productos = $this->producto->getAllProducto();
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/producto/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
 

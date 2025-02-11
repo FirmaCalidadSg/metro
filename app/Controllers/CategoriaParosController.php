@@ -23,7 +23,7 @@ class CategoriaParosController
 
         $categoriaParos = $this->categoriaParos->getAllCategoriaParos();
 
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/categoriaParos/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
 

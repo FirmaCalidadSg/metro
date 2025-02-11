@@ -21,7 +21,7 @@ class EquipoController
 
         $equipos = $this->equipo->getAllEquipo();
 
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/equipo/index.php';
     }
 

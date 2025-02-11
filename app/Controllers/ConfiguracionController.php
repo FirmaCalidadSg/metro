@@ -6,7 +6,7 @@ class ConfiguracionController
 {
     public function index()
     {
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/configuracion/index.php';
      
     }

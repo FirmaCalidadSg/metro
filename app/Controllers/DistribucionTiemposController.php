@@ -17,7 +17,7 @@ class DistribucionTiemposController
     {
         $distribucionTiempos = $this->DistribucionTiempos->getAllDistribucionTiempos();
 
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/DistribucionTiempos/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }

@@ -29,7 +29,7 @@ class LineaController
         $lineas = $this->linea->getAllLineas();
 
 
-        require_once __DIR__ . '/../views/layouts/Sidebar.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/linea/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
