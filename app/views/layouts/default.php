@@ -32,14 +32,14 @@
 
   <!-- CSS Files -->
 
-  <link rel="stylesheet" href="../app/Assets/css/plugins.min.css" />
-  <link rel="stylesheet" href="../app/Assets/css/kaiadmin.min.css" />
-  <link rel="stylesheet" href="../app/Assets/css/globals.css" />
-  <link rel="stylesheet" href="../app/Assets/css/style.css" />
-  <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
-  <link rel="stylesheet" href="../app/Assets/bootstrap/bootstrap.min.css" />
-  <link rel="stylesheet" href="../app/Assets/datatable/datatables.css" />
-  <link rel="stylesheet" href="../app/Assets/fontawesome-free-5.15.4-web/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/css/plugins.min.css" />
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/css/kaiadmin.min.css" />
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/css/globals.css" />
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/css/style.css" />
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/css/styleguide.css" />
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/datatable/datatables.css" />
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/Assets/fontawesome-free-5.15.4-web/css/all.min.css">
 
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link rel="stylesheet" href="assets/css/demo.css" />
@@ -118,14 +118,15 @@
 
             <!-- Control de Capacidades -->
             <li class="nav-item">
-              <a href="../../documentation/index.html">
-                <i class="fas fa-plus"></i>
+              <a href="<?php echo BASE_PATH; ?>controlCapacidad"">
+                <i class=" fas fa-plus"></i>
                 <p>Control De Capacidades</p>
                 <span class="caret"></span>
               </a>
               <div class="collapse" id="controlCapacidades">
                 <ul class="nav nav-collapse">
-                  <li><a href="<?php echo BASE_PATH; ?>controlCapacidad"><span class="sub-item">Control De Capacidades</span></a></li>
+                  <li><a href="<?php echo BASE_PATH; ?>controlCapacidad"><span class="sub-item">Control De
+                        Capacidades</span></a></li>
                   <li><a href="#"><span class="sub-item">Control De Capacidades Batch</span></a></li>
                 </ul>
               </div>
@@ -151,7 +152,7 @@
             <li class="nav-item">
               <a data-bs-toggle="collapse" href="#reportes">
 
-              <i class="fa fa-chart-pie"></i>
+                <i class="fa fa-chart-pie"></i>
                 <p>Reportes</p>
                 <span class="caret"></span>
               </a>
@@ -174,7 +175,8 @@
               <div class="collapse" id="administracion">
                 <ul class="nav nav-collapse">
                   <li><a href="<?php echo BASE_PATH; ?>configuracion"><span class="sub-item">Consultar</span></a></li>
-                  <li><a href="<?php echo BASE_PATH; ?>configuracion/registroConfiguracion"><span class="sub-item">Registrar</span></a></li>
+                  <li><a href="<?php echo BASE_PATH; ?>configuracion/registroConfiguracion"><span
+                        class="sub-item">Registrar</span></a></li>
                 </ul>
               </div>
             </li>
@@ -187,11 +189,12 @@
                 <span class="caret"></span>
               </a>
               <div class="collapse" id="configuracion">
-                <ul  class="nav nav-collapse">
+                <ul class="nav nav-collapse">
                   <li><a href="<?php echo BASE_PATH; ?>definicion"><span class="sub-item">Definición</span></a></li>
                   <li><a href="<?php echo BASE_PATH; ?>pais"><span class="sub-item">Países</span></a></li>
                   <li><a href="<?php echo BASE_PATH; ?>ciudad"><span class="sub-item">Ciudades</span></a></li>
-                  <li><a href="<?php echo BASE_PATH; ?>departamento"><span class="sub-item">Departamentos</span></a></li>
+                  <li><a href="<?php echo BASE_PATH; ?>departamento"><span class="sub-item">Departamentos</span></a>
+                  </li>
                   <li><a href="<?php echo BASE_PATH; ?>turno"><span class="sub-item">Turnos</span></a></li>
                   <li><a href="<?php echo BASE_PATH; ?>plantas"><span class="sub-item">Plantas</span></a></li>
                   <li><a href="<?php echo BASE_PATH; ?>equipo"><span class="sub-item">Equipos</span></a></li>
@@ -199,9 +202,11 @@
                   <li><a href="<?php echo BASE_PATH; ?>proceso"><span class="sub-item">Procesos</span></a></li>
                   <li><a href="<?php echo BASE_PATH; ?>linea"><span class="sub-item">Líneas</span></a></li>
                   <li><a href="<?php echo BASE_PATH; ?>producto"><span class="sub-item">Productos</span></a></li>
-                  <li><a href="<?php echo BASE_PATH; ?>lineaproducto"><span class="sub-item">Línea y Productos</span></a></li>
+                  <li><a href="<?php echo BASE_PATH; ?>lineaproducto"><span class="sub-item">Línea y
+                        Productos</span></a></li>
                   <li><a href="<?php echo BASE_PATH; ?>categoriaParos"><span class="sub-item">Paros</span></a></li>
-                  <li><a href="<?php echo BASE_PATH; ?>subCategoriaParos"><span class="sub-item">Sub-Paros</span></a></li>
+                  <li><a href="<?php echo BASE_PATH; ?>subCategoriaParos"><span class="sub-item">Sub-Paros</span></a>
+                  </li>
                   <li><a href="<?php echo BASE_PATH; ?>tiposParos"><span class="sub-item">Razones</span></a></li>
                 </ul>
               </div>
@@ -216,7 +221,8 @@
               </a>
               <div class="collapse" id="gestion">
                 <ul class="nav nav-collapse">
-                  <li><a href="<?php echo BASE_PATH; ?>usuarios"><span class="sub-item">Gestión de Usuarios</span></a></li>
+                  <li><a href="<?php echo BASE_PATH; ?>usuarios"><span class="sub-item">Gestión de Usuarios</span></a>
+                  </li>
                   <li><a href="<?php echo BASE_PATH; ?>roles"><span class="sub-item">Gestión de Roles</span></a></li>
                 </ul>
               </div>
@@ -231,54 +237,52 @@
             </li>
           </ul>
         </div>
-
       </div>
-      
     </div> <!-- End Sidebar -->
     <div style="background-color: #f2f5f4;" class="main-header">
-        <div class="main-header-logo">
-          <!-- Logo Header -->
-          <div class="logo-header" >
-            <a href="index.html" class="logo">
-              <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
-            </a>
-           
-          </div>
-          <!-- End Logo Header -->
+      <div class="main-header-logo">
+        <!-- Logo Header -->
+        <div class="logo-header">
+          <a href="index.html" class="logo">
+            <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+          </a>
+
         </div>
-        <!-- Navbar Header -->
-
-        <!-- End Navbar -->
+        <!-- End Logo Header -->
       </div>
+      <!-- Navbar Header --> 
 
-    <div style="background-color: #f2f5f4; padding:2%;" class="main-panel">
-      <script>
-        $(document).ready(function () {
-          $('#table').DataTable({
-            "language": {
-              "sProcessing": "Procesando...",
-              "sLengthMenu": "Mostrar _MENU_ registros",
-              "sZeroRecords": "No se encontraron resultados",
-              "sEmptyTable": "Ningún dato disponible en esta tabla",
-              "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-              "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-              "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-              "sInfoPostFix": "",
-              "sSearch": "Buscar:",
-              "sUrl": "",
-              "sInfoThousands": ",",
-              "sLoadingRecords": "Cargando...",
-              "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-              },
-              "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-              }
+  <!-- End Navbar -->
+  </div>
+
+  <div style="background-color: #f2f5f4; padding:2%;" class="main-panel">
+    <script>
+      $(document).ready(function () {
+        $('#table').DataTable({
+          "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+              "sFirst": "Primero",
+              "sLast": "Último",
+              "sNext": "Siguiente",
+              "sPrevious": "Anterior"
+            },
+            "oAria": {
+              "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+              "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
-          });
+          }
         });
-      </script>
+      });
+    </script>

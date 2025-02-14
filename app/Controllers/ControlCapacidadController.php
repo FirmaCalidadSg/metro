@@ -8,6 +8,8 @@ use App\Models\Plantas;
 use App\Models\Turno;
 use App\Models\Controlcapacidad;
 use App\Models\Producto;
+use App\Models\LineaProducto;
+use App\Models\TiposParos;
 
 class ControlCapacidadController
 {
@@ -17,6 +19,8 @@ class ControlCapacidadController
     public $turnos;
     public $controlcapacidad;
     public $producto;
+    public $linea_producto;
+    public $paros;
 
     public function __construct()
     {
@@ -26,6 +30,8 @@ class ControlCapacidadController
         $this->planta = new Plantas();
         $this->turnos = new Turno();
         $this->producto = new Producto();
+        $this->linea_producto = new LineaProducto();
+        $this->paros = new TiposParos();
     }
 
 
@@ -34,26 +40,26 @@ class ControlCapacidadController
     {
         $plantas = $this->planta->getAllPlantas();
 
-        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/controlCapacidad/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
     public function paradas()
     {
-        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/controlCapacidad/paradas.php';
     }
 
     public function modal1()
     {
-        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/controlCapacidad/modal1.php';
     }
 
     public function modal2()
     {
-        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/controlCapacidad/modal2.php';
     }
 
@@ -94,4 +100,67 @@ class ControlCapacidadController
         echo json_encode($productos);
         // print_r($productos);
     }
+
+    public function getlineaProducto()
+    {
+        try {
+            // Validar que los parámetros necesarios estén presentes
+            if (!isset($_REQUEST['plantaId'], $_REQUEST['procesoId'], $_REQUEST['lineaId'], $_REQUEST['productoId'])) {
+                echo json_encode(["error" => "Faltan parámetros"]);
+                return;
+            }
+
+            // Obtener y sanitizar los datos de la solicitud
+            $data = [
+                'planta_id' => filter_var($_REQUEST['plantaId'], FILTER_SANITIZE_NUMBER_INT),
+                'proceso_id' => filter_var($_REQUEST['procesoId'], FILTER_SANITIZE_NUMBER_INT),
+                'linea_id' => filter_var($_REQUEST['lineaId'], FILTER_SANITIZE_NUMBER_INT),
+                'producto_id' => filter_var($_REQUEST['productoId'], FILTER_SANITIZE_NUMBER_INT),
+            ];
+
+            // Llamar al modelo para obtener los datos
+            $resultado = $this->linea_producto->getlineaProducto($data);
+
+            // Enviar respuesta en formato JSON
+            echo json_encode($resultado);
+        } catch (Exception $e) {
+            error_log("Error en getlineaProducto: " . $e->getMessage());
+            echo json_encode(["error" => "Error interno del servidor"]);
+        }
+    }
+
+
+
+
+    function getParoByTipo()
+    {
+
+
+
+        $tipo = $_POST['tipoParo'];
+        $mensaje = match ($tipo) {
+            'tpno' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/tpno.php',
+            'tpam' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/mantenimiento.php',
+            'tpp' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/proceso.php',
+            'tpv' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/velocidad.php',
+            'tpc' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/calidad.php',
+            default => 'Desconocido',
+        };
+        $dtiempo = match ($tipo) {
+            'tpno' => 1,
+            'tpam' => 2,
+            'tpp' => 3,
+            'tpv' => 4,
+            'tpc' => 5,
+            default => 'Desconocido',
+        };
+
+        $paros = $this->paros->Paros($dtiempo);
+
+        // echo $mensaje;
+
+
+
+    }
+
 }

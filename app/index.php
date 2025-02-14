@@ -184,6 +184,8 @@ $router->group('controlCapacidad', 'ControlCapacidadController', function ($grou
     $group->add('modal2', 'modal2');
     $group->add('RegistroCtrlCap', 'RegistroCtrlCap', 'POST');
     $group->add('productosBYPlantaLineaProceso', 'productosBYPlantaLineaProceso', 'POST');
+    $group->add('getlineaProducto', 'getlineaProducto', 'POST');
+    $group->add('getParoByTipo', 'getParoByTipo', 'POST');
 });
 $router->group('reportes', 'ReportesController', function ($group) {
     $group->add('', 'index');

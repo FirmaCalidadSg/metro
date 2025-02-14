@@ -103,4 +103,53 @@ class TiposParos
         $stmt->bindParam(':id_tipo', $id_tipo, PDO::PARAM_INT);
         return $stmt->execute();
     }
+
+
+    /** TBL PAROS */
+
+
+    public function getParosByTiempo($dtiempo_id)
+    {
+
+        try {
+            $sql = "SELECT id, nombre FROM paros WHERE dtiempo_id=:dtiempo";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam('::dtiemp', $dtiempo_id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        } catch (\PDOException $th) {
+            throw $th;
+        }
+    }
+    public function getSubParosByParos($paro_id)
+    {
+
+        try {
+            $sql = "SELECT id, nombre FROM subparos WHERE paro_id=:paro_id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':paro_id', $paro_id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        } catch (\PDOException $th) {
+            throw $th;
+        }
+    }
+    public function getRazonBySubParo($subparo_id)
+    {
+
+        try {
+            $sql = "SELECT id, descripcion FROM razones_paro WHERE subparo_id=:subparo_id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':subparo_id', $subparo_id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        } catch (\PDOException $th) {
+            throw $th;
+        }
+    }
+
+
 }

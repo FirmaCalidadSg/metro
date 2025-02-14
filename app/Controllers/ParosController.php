@@ -4,14 +4,17 @@ namespace App\Controllers;
 
 
 use App\Models\Pais;
+use App\Models\TiposParos;
 
 class ParosController
 {
     public $paros;
+    public $tipoParo;
 
     public function __construct()
     {
         $this->paros = new Pais();
+        $this->tipoParo = new TiposParos();
     }
 
     public function index()
@@ -32,7 +35,7 @@ class ParosController
         if (isset($_REQUEST['id'])) {
             $paros = $this->paros->getPaisById($_REQUEST['id']);
         }
-       
+
         require_once __DIR__ . '/../views/pais/registro.php';
     }
 
@@ -57,14 +60,14 @@ class ParosController
             echo json_encode($response);
             exit;
         }
-    
+
         // Obtener los datos del formulario
         $nombre = $_POST['nombre'];
         $codigo = $_POST['codigo'];
-    
+
         // Obtener la definición por ID
         $paros = $this->paros->getPaisById($id);
-    
+
         if (!$paros) {
             $response = [
                 'success' => false,
@@ -73,11 +76,11 @@ class ParosController
             echo json_encode($response);
             exit;
         }
-    
+
         // Actualizar la definición
         $paros->nombre = $nombre;
         $paros->codigo = $codigo;
-    
+
         // Guardar la definición actualizada
         $result = $this->paros->updatePais($paros);
         echo json_encode($result, true);
@@ -85,7 +88,7 @@ class ParosController
     public function editarFormulario($id)
     {
         $paros = $this->paros->getPaisById($id);
-    
+
         if (!$paros) {
             $response = [
                 'success' => false,
@@ -97,7 +100,7 @@ class ParosController
         require_once __DIR__ . '/../views/layouts/Sidebar3.php';
         require_once __DIR__ . '/../views/pais/editar.php';
     }
-    
+
     public function vistaPrevia($id)
     {
         if (isset($id)) {
@@ -129,5 +132,19 @@ class ParosController
         } catch (\PDOException $e) {
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
+    }
+    public function Paros()/**categoriaparos */
+    {
+        
+        $this->tipoParo->getParosByTiempo($id);
+    }
+
+    public function subParo()/**subcategoriaparos */
+    {
+
+    }
+    public function RazonParo()/** tiposparos */
+    {
+
     }
 }

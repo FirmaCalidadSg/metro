@@ -47,6 +47,41 @@ class LineaProducto
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    public function getlineaProducto($data)
+    {
+        try {
+            $query = "SELECT 
+                        lp.*, 
+                        pl.nombre_planta AS nombre_planta, 
+                        pr.nombre AS nombre_proceso, 
+                        l.nombre AS nombre_linea, 
+                        p.nombre AS nombre_producto
+                      FROM lineaproducto lp
+                      INNER JOIN plantas pl ON pl.id = lp.planta_id
+                      INNER JOIN proceso pr ON pr.id = lp.proceso_id
+                      INNER JOIN linea l ON l.id = lp.linea_id
+                      INNER JOIN producto p ON p.id = lp.producto_id
+                      WHERE lp.planta_id = :planta_id 
+                        AND lp.proceso_id = :proceso_id 
+                        AND lp.linea_id = :linea_id 
+                        AND lp.producto_id = :producto_id";
+
+            $stmt = $this->db->prepare($query);
+
+            // Bind de parámetros con protección contra inyección SQL
+            $stmt->bindParam(':planta_id', $data['planta_id'], PDO::PARAM_INT);
+            $stmt->bindParam(':proceso_id', $data['proceso_id'], PDO::PARAM_INT);
+            $stmt->bindParam(':linea_id', $data['linea_id'], PDO::PARAM_INT);
+            $stmt->bindParam(':producto_id', $data['producto_id'], PDO::PARAM_INT);
+
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            error_log("Error en getlineaProducto: " . $e->getMessage());
+            return [];
+        }
+    }
+
 
 
 
