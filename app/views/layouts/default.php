@@ -24,7 +24,7 @@
         ],
         urls: ["<?php echo $basePath; ?>/Assets/css/fonts.min.css"],
       },
-      active: function () {
+      active: function() {
         sessionStorage.fonts = true;
       },
     });
@@ -43,6 +43,31 @@
 
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link rel="stylesheet" href="assets/css/demo.css" />
+
+  <style>
+    .boton-cerrar {
+      display: none;
+    }
+
+    .sidebar .nav-collapse li a .sub-item:before,
+    .sidebar[data-background-color=white] .nav-collapse li a .sub-item:before {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+
+      .boton-cerrar {
+        display: block !important;
+      }
+
+      .gg-more-vertical-alt {
+        display: none !important;
+
+      }
+
+
+    }
+  </style>
 </head>
 
 <body>
@@ -250,39 +275,39 @@
         </div>
         <!-- End Logo Header -->
       </div>
-      <!-- Navbar Header --> 
+      <!-- Navbar Header -->
 
-  <!-- End Navbar -->
-  </div>
+      <!-- End Navbar -->
+    </div>
 
-  <div style="background-color: #f2f5f4; padding:2%;" class="main-panel">
-    <script>
-      $(document).ready(function () {
-        $('#table').DataTable({
-          "language": {
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Mostrar _MENU_ registros",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar:",
-            "sUrl": "",
-            "sInfoThousands": ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-              "sFirst": "Primero",
-              "sLast": "Último",
-              "sNext": "Siguiente",
-              "sPrevious": "Anterior"
-            },
-            "oAria": {
-              "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-              "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    <div style="background-color: #f2f5f4; padding:2%;" class="main-panel">
+      <script>
+        $(document).ready(function() {
+          $('#table').DataTable({
+            "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+              },
+              "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
             }
-          }
+          });
         });
-      });
-    </script>
+      </script>
