@@ -23,6 +23,8 @@ class EquipoController
 
         require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/equipo/index.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+
     }
 
     public function registro()
