@@ -135,8 +135,8 @@ class ParosController
     }
     public function Paros()/**categoriaparos */
     {
-        
-        $this->tipoParo->getParosByTiempo($id);
+
+      
     }
 
     public function subParo()/**subcategoriaparos */

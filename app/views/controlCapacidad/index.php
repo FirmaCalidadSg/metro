@@ -209,74 +209,30 @@
         </div>
         <div class="card">
             <div class="card-header">
-                <h6>Tiempo Planeado de No Operación (TPNO)</h6>
-            </div>
-            <div class="card-body" id="paros">
-
-            </div>
-        </div>
-
-        <!-- Nueva Sección: Distribución de Tiempos de Paradas -->
-        <div class="card">
-            <div class="card-header">
-                <h6>Distribución de Tiempos en Paradas</h6>
+                <h6>Información Básica</h6>
             </div>
             <div class="card-body">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="tpno" class="form-label">TPNO (Tiempo Planeado de No Operación)</label>
-                        <input type="number" class="form-control tiempo-parada" id="tpno" value="0">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="tp_mantenimiento" class="form-label">Tiempo en Paros y Ajustes
-                            (Mantenimiento)</label>
-                        <input type="number" class="form-control tiempo-parada" id="tp_mantenimiento" value="0">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="tp_proceso" class="form-label">Tiempo en Paros y Ajustes (Proceso)</label>
-                        <input type="number" class="form-control tiempo-parada" id="tp_proceso" value="0">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="tpv" class="form-label">Tiempo en Pérdidas por Velocidad (TPV)</label>
-                        <input type="number" class="form-control tiempo-parada" id="tpv" value="0">
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <button type="button" class="btn btn-primary mt-3"
-                            onclick="actualizarTiempos()">Actualizar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card card-stats card-success card-round">
-            <div class="card-body text-center">
-                <div class="numbers">
-                    <h6>Resumen de Tiempos de Paradas</h6>
-                    <table class="table table-bordered">
+                <div class="row responsive">
+                    <table class="table table-bordered mt-4" id="tablaParos" style="">
                         <thead>
                             <tr>
-                                <th>TPNO</th>
-                                <th>TP Mantenimiento</th>
-                                <th>TP Proceso</th>
-                                <th>TPV</th>
-                                <th>Total Paradas</th>
+                                <th>Paro</th>
+                                <th>SubParo</th>
+                                <th>Razón</th>
+                                <th>Tiempo</th>
+                                <th>Descripción</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td id="res_tpno">0</td>
-                                <td id="res_tp_mantenimiento">0</td>
-                                <td id="res_tp_proceso">0</td>
-                                <td id="res_tpv">0</td>
-                                <td id="res_total">0</td>
-                            </tr>
+                            <!-- Filas dinámicas aquí -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <div class="modal fade" id="modalId" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
@@ -603,5 +559,10 @@
 
 
     }
+
+
+
+
+
 
 </script>

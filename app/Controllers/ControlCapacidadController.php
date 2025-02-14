@@ -134,18 +134,7 @@ class ControlCapacidadController
 
     function getParoByTipo()
     {
-
-
-
         $tipo = $_POST['tipoParo'];
-        $mensaje = match ($tipo) {
-            'tpno' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/tpno.php',
-            'tpam' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/mantenimiento.php',
-            'tpp' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/proceso.php',
-            'tpv' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/velocidad.php',
-            'tpc' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/calidad.php',
-            default => 'Desconocido',
-        };
         $dtiempo = match ($tipo) {
             'tpno' => 1,
             'tpam' => 2,
@@ -155,12 +144,30 @@ class ControlCapacidadController
             default => 'Desconocido',
         };
 
-        $paros = $this->paros->Paros($dtiempo);
+        $paros = $this->paros->getParosByTiempo($dtiempo);
+        $mensaje = match ($tipo) {
+            'tpno' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/tpno.php',
+            'tpam' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/mantenimiento.php',
+            'tpp' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/proceso.php',
+            'tpv' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/velocidad.php',
+            'tpc' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/calidad.php',
+            default => 'Desconocido',
+        };
+        // print_r($paros);
+    }
 
-        // echo $mensaje;
 
 
+    public function SubParo()
+    {
+        $subparos = $this->paros->getSubParosByParos($_POST['paro_id']);
+        echo json_encode($subparos);
+    }
 
+    public function RazonParo()
+    {
+        $subparos = $this->paros->getRazonBySubParo($_POST['subparo_id']);
+        echo json_encode($subparos);
     }
 
 }

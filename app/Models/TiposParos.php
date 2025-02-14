@@ -114,7 +114,7 @@ class TiposParos
         try {
             $sql = "SELECT id, nombre FROM paros WHERE dtiempo_id=:dtiempo";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam('::dtiemp', $dtiempo_id, PDO::PARAM_INT);
+            $stmt->bindParam(':dtiempo', $dtiempo_id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
 
