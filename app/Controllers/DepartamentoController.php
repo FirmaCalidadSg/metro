@@ -23,6 +23,8 @@ class DepartamentoController
 
         require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/departamento/index.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+
     }
 
     public function registro()
