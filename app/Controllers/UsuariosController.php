@@ -176,8 +176,8 @@ class UsuariosController
 
     public function dashboard()
     {
-        require_once __DIR__ . '/../views/layouts/dashboard.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/usuarios/dashboard.php';
-        // require_once __DIR__ . '/../views/layouts/footer.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
     }
 }

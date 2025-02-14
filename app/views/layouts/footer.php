@@ -1,7 +1,7 @@
 <script src="<?php echo $basePath; ?>/Assets/js/ajax.js"></script>
 <footer class=""></footer>
 </div>
-
+<script src="../../app/Assets/echarts-master/dist/echarts.js"></script>
 <script src="<?php echo $basePath; ?>/Assets/jquery/jquery.min.js"></script>
 <script src="<?php echo $basePath; ?>/Assets/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="<?php echo $basePath; ?>/Assets/datatable/datatables.js"></script>

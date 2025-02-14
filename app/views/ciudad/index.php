@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Ciudades</title>
-    <link rel="stylesheet" href="../app/Assets/css/globals.css" />
-    <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
-    <link rel="stylesheet" href="../app/Assets/css/style.css" />
-</head>
 
-<body>
+
     <div class="pais">
-        <button class="btn-back" onclick="goBack()">
+       <!--  <button class="btn-back" onclick="goBack()">
             <div class="btn-back-text">
                 < Volver</div>
-        </button>
+        </button> -->
         <div class="pais-header">
             <div class="btn-space">
                 <h2>Lista de Ciudades</h2>
@@ -116,6 +106,3 @@
             });
         }
     </script>
-</body>
-
-</html>

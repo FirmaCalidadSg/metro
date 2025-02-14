@@ -1,4 +1,4 @@
-<div style="width:87%;">
+<div class="container">
 <div id="dashboard" class="row" style="padding: 1%;" >
     <div class="col-sm-6" style="padding:10px;">
     <div   class="card" id="produccion-turno" style="width: 100%; height: 400px; padding:10px    "></div>
