@@ -23,6 +23,8 @@ class DanoEquipoController
 
         require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/danoequipo/index.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+
     }
 
     public function registro()
@@ -32,8 +34,10 @@ class DanoEquipoController
         if (isset($_POST['id'])) {
             $dano = $this->dano->getDanoEquipoById($_POST['id']);
         }
-        require_once __DIR__ . '/../views/layouts/Sidebar2.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/danoequipo/registro.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+
     }
 
     public function crear()
@@ -66,15 +70,19 @@ class DanoEquipoController
             header("Location: /metro/app/danoequipo");
             exit;
         }
-        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/danoequipo/vista-previa.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+
     }
     public function editarFormulario($id)
     {
         $equipos = $this->equipo->getAllEquipo();
         $dano = $this->dano->getDanoEquipoById($id);
-        require_once __DIR__ . '/../views/layouts/Sidebar3.php';
+        require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/danoequipo/editar.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+
     }
     public function editar($id)
     {
