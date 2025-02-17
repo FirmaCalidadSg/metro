@@ -6543,7 +6543,7 @@ button#btnAgregarProducto.disabled {
 }
 
 .btn-editar:hover{
-  color: #fff;
+  color: #10a754;
   text-decoration: none;
   cursor:pointer;
 }
@@ -6556,7 +6556,7 @@ button#btnAgregarProducto.disabled {
 }
 
 .btn-eliminar:hover{
-  color: #fff;
+  color: #ff3939;
   text-decoration: none;
   cursor:pointer;
 

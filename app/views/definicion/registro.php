@@ -1,29 +1,32 @@
-<form method="POST" id="formdefinicion" class="" action="">
-    <div class="drops-downs">
-        <div class="element">
-            <div class="form-group">
+<div class="container">
+    <form method="POST" id="formdefinicion" class="" action="">
+        <div class="form-group">
+
+            <div class="">
                 <label for="valor">Valor</label>
                 <input type="text" name="valor" class="form-control" id="valor" value="<?php echo $definicion->valor ?? ''; ?>" placeholder="Valor" required>
             </div>
 
-            <div class="form-group">
+            <div class="">
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" class="form-control" id="nombre" value="<?php echo $definicion->nombre ?? ''; ?>" placeholder="Nombre" required>
             </div>
-        </div>
-        <div class="element">
-            <div class="form-group">
+
+
+            <div class="">
                 <label for="descripcion">Descripción</label>
                 <input type="text" name="descripcion" class="form-control" id="descripcion" value="<?php echo $definicion->descripcion ?? ''; ?>" placeholder="Descripción" required>
             </div>
-        </div>
-    </div>
 
-    <input type="hidden" id="id" name="id" value="<?php echo $definicion->id ?? ''; ?>">
-    <button type="submit" class="btn btn-primary">
-        <?php echo isset($definicion->id) && $definicion->id > 0 ? 'Actualizar' : 'Registrar'; ?>
-    </button>
-</form>
+        </div>
+
+        <input type="hidden" id="id" name="id" value="<?php echo $definicion->id ?? ''; ?>">
+        <button type="submit" class="btn btn-primary">
+            <?php echo isset($definicion->id) && $definicion->id > 0 ? 'Actualizar' : 'Registrar'; ?>
+        </button>
+    </form>
+</div>
+
 <script>
     $('#formdefinicion').on('submit', function(e) {
         e.preventDefault();
@@ -36,7 +39,7 @@
             contentType: false,
             dataType: 'json',
             success: function(response) {
-               
+
                 if (response.status == 'success') {
                     Swal.fire({
                         icon: 'success',
@@ -44,8 +47,8 @@
                         text: response.msn,
                         confirmButtonText: 'Aceptar'
                     }).then((result) => {
-                        
-                        location.reload(); 
+
+                        location.reload();
                     });
                 } else {
                     Swal.fire({

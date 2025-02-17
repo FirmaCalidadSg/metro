@@ -2,11 +2,20 @@
     <div class="">
         <div class="card">
             <div class="card-header">
-                <h2>Lista de Departamentos</h2>
-                <button onclick="agregarDepartamento()" class="btn-departamentos">
-                    <img class="image-list" src="../app/Assets/css/images/circle-fill.svg">
-                    <div class="text-style">Agregar</div>
-                </button>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5>Lista de Departamentos</h5>
+                    </div>
+                    <div class="col-sm-6 text-end">
+                        <button onclick="agregarDepartamento()" class="btn-departamentos">
+                            <img class="image-list" src="../app/Assets/css/images/circle-fill.svg">
+                            <div class="text-style">Agregar</div>
+                        </button>
+                    </div>
+
+                </div>
+
+
 
             </div>
             <div class="card-body">
@@ -29,11 +38,11 @@
                                     <!-- <a href="../app/departamento/vistaPrevia/<?php echo $departamento->id; ?>" class=" ">
                                         <img class="" src="../app/Assets/css/images/preview.svg" title="Ver">
                                     </a> -->
-                                    <a href="../app/departamento/editarFormulario/<?php echo $departamento->id; ?>" class="">
-                                        <img class="" src="../app/Assets/css/images/edit.svg" title="Editar">
+                                    <a href="../app/departamento/editarFormulario/<?php echo $departamento->id; ?>" class="btn-editar">
+                                        <i class="fa fa-edit"></i>
                                     </a>
-                                    <a onclick="eliminarDepartamento(<?php echo $departamento->id; ?>)" class="">
-                                        <img class="" src="../app/Assets/css/images/delete.svg" title="Eliminar">
+                                    <a onclick="eliminarDepartamento(<?php echo $departamento->id; ?>)" class="btn-eliminar">
+                                        <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
