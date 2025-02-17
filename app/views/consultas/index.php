@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../app/Assets/css/globals.css" />
-    <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
-    <link rel="stylesheet" href="../app/Assets/css/style.css" />
-</head>
-
-<body>
+<div class="container">
     <div class="consultas">
         <div class="info">
             <div class="frame">
@@ -57,7 +47,7 @@
                         <div class="input">
                             <div class="div">Fecha y Hora</div>
                             <div class="p">
-                                <input type="datetime-local" class="datatimer"/>
+                                <input type="datetime-local" class="datatimer" />
                             </div>
                             <img class="underline" src="../app/Assets/css/images/underline.svg" />
                         </div>
@@ -104,75 +94,74 @@
         </div>
 
     </div>
-</body>
-</html>
-    
+
+</div>
+
+
+
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var selectPrincipal = document.querySelector('.select-line');
-    selectPrincipal.addEventListener('change', function() {
-        if (this.value !== "") {
-            // Muestra los elementos .filtro cuando se selecciona algo
-            var filtros = document.querySelectorAll('.filtro');
-            filtros.forEach(function(filtro) {
-                filtro.style.display = 'flex';
+    document.addEventListener('DOMContentLoaded', function() {
+        var selectPrincipal = document.querySelector('.select-line');
+        selectPrincipal.addEventListener('change', function() {
+            if (this.value !== "") {
+                // Muestra los elementos .filtro cuando se selecciona algo
+                var filtros = document.querySelectorAll('.filtro');
+                filtros.forEach(function(filtro) {
+                    filtro.style.display = 'flex';
+                });
+
+                // Guarda el valor seleccionado en localStorage
+                var selectedValue = this.value;
+                localStorage.setItem('selectedValue', selectedValue);
+            }
+        });
+
+        // Evento para el botón "Consultar"
+        var consultarBtn = document.querySelector('.buttom');
+        consultarBtn.addEventListener('click', function() {
+            // Realiza la redirección al hacer clic en "Consultar"
+            redireccionar();
+        });
+
+        var selects = document.querySelectorAll('select');
+        selects.forEach(function(select) {
+            select.addEventListener('change', function() {
+                var selectedValue = this.value;
+                localStorage.setItem('selectedValue', selectedValue);
             });
-
-            // Guarda el valor seleccionado en localStorage
-            var selectedValue = this.value;
-            localStorage.setItem('selectedValue', selectedValue);
-        }
-    });
-
-    // Evento para el botón "Consultar"
-    var consultarBtn = document.querySelector('.buttom');
-    consultarBtn.addEventListener('click', function() {
-        // Realiza la redirección al hacer clic en "Consultar"
-        redireccionar();
-    });
-
-    var selects = document.querySelectorAll('select');
-    selects.forEach(function(select) {
-        select.addEventListener('change', function() {
-            var selectedValue = this.value;
-            localStorage.setItem('selectedValue', selectedValue);
         });
     });
-});
 
-function mostrarSeleccion() {
-    // Capturamos el elemento select
-    const selectElement = document.querySelector(".select-line");
+    function mostrarSeleccion() {
+        // Capturamos el elemento select
+        const selectElement = document.querySelector(".select-line");
 
-    // Obtenemos el texto de la opción seleccionada
-    const opcionSeleccionadaTexto = selectElement.options[selectElement.selectedIndex].text;
+        // Obtenemos el texto de la opción seleccionada
+        const opcionSeleccionadaTexto = selectElement.options[selectElement.selectedIndex].text;
 
-    // Limpiamos el valor previamente almacenado
-    localStorage.removeItem('consultaSeleccionada');
-    document.getElementById("resultado").innerHTML = ""; // Limpia el contenido en pantalla
+        // Limpiamos el valor previamente almacenado
+        localStorage.removeItem('consultaSeleccionada');
+        document.getElementById("resultado").innerHTML = ""; // Limpia el contenido en pantalla
 
-    // Si el valor seleccionado es válido (diferente de vacío)
-    if (selectElement.value) {
-        // Actualizamos el div resultado con el nuevo valor
-        document.getElementById("resultado").innerHTML = opcionSeleccionadaTexto;
+        // Si el valor seleccionado es válido (diferente de vacío)
+        if (selectElement.value) {
+            // Actualizamos el div resultado con el nuevo valor
+            document.getElementById("resultado").innerHTML = opcionSeleccionadaTexto;
 
-        // Guardamos el nuevo valor en localStorage (o puedes almacenarlo de otra manera)
-        localStorage.setItem('consultaSeleccionada', opcionSeleccionadaTexto);
+            // Guardamos el nuevo valor en localStorage (o puedes almacenarlo de otra manera)
+            localStorage.setItem('consultaSeleccionada', opcionSeleccionadaTexto);
+        }
     }
-}
 
-// Asociamos la función mostrarSeleccion() al evento onchange del select
-document.addEventListener("DOMContentLoaded", function() {
-    const selectElement = document.querySelector(".select-line");
-    selectElement.addEventListener("change", mostrarSeleccion);
-});
+    // Asociamos la función mostrarSeleccion() al evento onchange del select
+    document.addEventListener("DOMContentLoaded", function() {
+        const selectElement = document.querySelector(".select-line");
+        selectElement.addEventListener("change", mostrarSeleccion);
+    });
 
-function redireccionar() {
-    window.location.href = '../app/consultas/registrosconsulta';
-}
-
+    function redireccionar() {
+        window.location.href = '../app/consultas/registrosconsulta';
+    }
 </script>
-
-</html>

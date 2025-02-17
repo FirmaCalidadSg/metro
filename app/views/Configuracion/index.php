@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="../app/Assets/css/globals.css" />
-  <link rel="stylesheet" href="../app/Assets/css/styleguide.css" />
-  <link rel="stylesheet" href="../app/Assets/css/style.css" />
-</head>
-
-<body>
+  <div class="container">
   <div class="config-view">
-    <div class="info">
+    <div class="reportes">
       <div class="frame">
         <div class="text">
           <div class="text-wrapper">Consultar</div>
@@ -59,7 +50,9 @@
     </button>
     </div>
   </div>
-</body>
+  </div>
+  
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const firstSelect = document.querySelector('.config-filter');
@@ -148,4 +141,3 @@ function buscar() {
 
 
 </script>
-</html>

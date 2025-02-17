@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <link rel="stylesheet" href="../../app/Assets/css/globals.css" />
-    <link rel="stylesheet" href="../../app/Assets/css/styleguide.css"/>  
-    <link rel="stylesheet" href="../../app/Assets/css/style.css" />
-</head>
-
-<body>
-    <div class="registrar-view">
+<div class="container">
+    <div class="reportes">
         <div class="info">
             <div class="frame">
                 <div class="text">
@@ -27,65 +18,64 @@
                                 <option value="ciudad">Ciudad</option>
                                 <option value="departamentos">Departamentos</option>
                                 <option value="equipos">Equipos</option>
-                                <option value="danos">Daños</option>  
-                                <option value="procesos">Procesos</option>  
+                                <option value="danos">Daños</option>
+                                <option value="procesos">Procesos</option>
                                 <option value="lineas">Lineas</option>
                                 <option value="productos">Productos</option>
                                 <option value="linea_productos">Lineas Y Productos</option>
                             </select>
-                        </div> 
+                        </div>
                         <img class="underline" src="../../app/Assets/css/images/underline.svg" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        // Evento que escucha el cambio en el select
-        document.getElementById("registroSelect").addEventListener("change", function() {
-            // Almacenar el valor seleccionado en una variable
-            let selectedValue = this.value;
 
-            // Redirigir después de un retraso de 1.5 segundos
-            setTimeout(function() {
-                switch (selectedValue) {
-                    case 'definicion':
-                        window.location.href = '../../app/definicion/registro';
-                        break;
-                    case 'paises':
-                        window.location.href = '../../app/pais/registro';
-                        break;
-                    case 'ciudad':
-                        window.location.href = '../../app/ciudad/registro';
-                        break;
-                    case 'departamentos':
-                        window.location.href = '../../app/departamento/registro';
-                        break;
-                    case 'equipos':
-                        window.location.href = '../../app/equipo/registro';
-                        break;
-                    case 'danos':
-                        window.location.href = '../../app/danoequipo/registro';
-                        break;
-                    case 'procesos':
-                        window.location.href = '../../app/proceso/registro';
-                        break;
-                    case 'lineas':
-                        window.location.href = '../../app/linea/registro';
-                        break;
-                    case 'productos':
-                        window.location.href = '../../app/producto/registro';
-                        break;
-                    case 'linea_productos':
-                        window.location.href = '../../app/lineaproducto/registro';
-                        break;
-                    default:
-                        break;
-                }
-            }, 1000); 
-        });
-    </script>
-</body>
+<script>
+    // Evento que escucha el cambio en el select
+    document.getElementById("registroSelect").addEventListener("change", function() {
+        // Almacenar el valor seleccionado en una variable
+        let selectedValue = this.value;
 
-</html>
+        // Redirigir después de un retraso de 1.5 segundos
+        setTimeout(function() {
+            switch (selectedValue) {
+                case 'definicion':
+                    window.location.href = '../../app/definicion/registro';
+                    break;
+                case 'paises':
+                    window.location.href = '../../app/pais/registro';
+                    break;
+                case 'ciudad':
+                    window.location.href = '../../app/ciudad/registro';
+                    break;
+                case 'departamentos':
+                    window.location.href = '../../app/departamento/registro';
+                    break;
+                case 'equipos':
+                    window.location.href = '../../app/equipo/registro';
+                    break;
+                case 'danos':
+                    window.location.href = '../../app/danoequipo/registro';
+                    break;
+                case 'procesos':
+                    window.location.href = '../../app/proceso/registro';
+                    break;
+                case 'lineas':
+                    window.location.href = '../../app/linea/registro';
+                    break;
+                case 'productos':
+                    window.location.href = '../../app/producto/registro';
+                    break;
+                case 'linea_productos':
+                    window.location.href = '../../app/lineaproducto/registro';
+                    break;
+                default:
+                    break;
+            }
+        }, 1000);
+    });
+</script>

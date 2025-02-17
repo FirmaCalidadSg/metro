@@ -2174,14 +2174,8 @@ h1, h2, h3, h4, h5, h6{
 
 /* reportes */
 .reportes {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  padding: 20px;
-  width: 83%;
-  position: relative;
-  background-color: transparent;
+  
+  width: 100%;
 }
 
 .reportes .container-reportes {
@@ -4740,13 +4734,11 @@ button#btnAgregarProducto.disabled {
 }
 
 .consultas {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  width: 81%;
-  padding: 20px;
+  
+ 
+  
+  width: 100%;
+ 
   margin-right: 30px;
 }
 

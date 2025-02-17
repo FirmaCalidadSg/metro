@@ -8,6 +8,10 @@
   <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
   <link rel="icon" href="<?php echo $basePath; ?>/Assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
 
+
+  <script src="../../app/Assets/echarts-master/dist/echarts.js"></script>
+
+
   <!-- Fonts and icons -->
   <script src="<?php echo $basePath; ?>/Assets/js/plugin/webfont/webfont.min.js"></script>
   <script>
@@ -45,6 +49,12 @@
   <link rel="stylesheet" href="assets/css/demo.css" />
 
   <style>
+    .btn{
+      border: none !important;
+    }
+    .btn:hover{
+    background:  #0a843c !important;
+    }
     .boton-cerrar {
       display: none;
     }
@@ -119,20 +129,12 @@
         <div class="sidebar-content">
           <ul class="nav nav-secondary">
             <li class="nav-item active">
-              <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+              <a href="<?php echo BASE_PATH; ?>usuarios/dashboard">
                 <i class="fas fa-home"></i>
-                <p>Dashboard</p>
-                <span class="caret"></span>
+                <p>Inicio</p>
+
               </a>
-              <div class="collapse" id="dashboard">
-                <ul class="nav nav-collapse">
-                  <li>
-                    <a href="../demo1/index.html">
-                      <span class="sub-item">Dashboard 1</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+
             </li>
 
             <li class="nav-section">
@@ -142,7 +144,7 @@
             </li>
 
             <!-- Control de Capacidades -->
-            <li class="nav-item">
+           <!--  <li class="nav-item">
               <a href="<?php echo BASE_PATH; ?>controlCapacidad"">
                 <i class=" fas fa-plus"></i>
                 <p>Control De Capacidades</p>
@@ -155,7 +157,24 @@
                   <li><a href="#"><span class="sub-item">Control De Capacidades Batch</span></a></li>
                 </ul>
               </div>
+            </li> -->
+            <!-- Control de Capacidades -->
+
+            <li class="nav-item">
+              <a data-bs-toggle="collapse" href="#capacidades">
+                <i class=" fas fa-plus"></i>
+                <p>Control De Capacidades</p>
+                <span class="caret"></span>
+              </a>
+              <div class="collapse" id="capacidades">
+                <ul class="nav nav-collapse">
+                  <li><a href="<?php echo BASE_PATH; ?>controlCapacidad"><span class="sub-item">Control De
+                        Capacidades</span></a></li>
+                  <li><a href="#"><span class="sub-item">Control De Capacidades Batch</span></a></li>
+                </ul>
+              </div>
             </li>
+
 
             <!-- Consultas -->
             <li class="nav-item">
