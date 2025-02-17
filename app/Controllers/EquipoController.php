@@ -152,4 +152,11 @@ class EquipoController
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
     }
+
+    public function GetEquipos()
+    {
+        $equipos = $this->equipo->getAllEquipo();
+        echo json_encode($equipos);
+    }
+
 }

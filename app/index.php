@@ -104,6 +104,7 @@ $router->group('equipo', 'EquipoController', function ($group) {
     $group->add('vistaPrevia/{id}', 'vistaPrevia');
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
+    $group->add('GetEquipos', 'GetEquipos', 'POST');
 });
 // Rutas de daños de equipos
 $router->group('danoequipo', 'DanoEquipoController', function ($group) {

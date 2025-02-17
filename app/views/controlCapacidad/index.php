@@ -1,4 +1,17 @@
 <script src="<?= BASE_PATH ?>/Assets/jquery/jquery-3.7.1.min.js"></script>
+
+<style>
+    table {
+        font-size: 14px;
+        /* Tamaño de fuente más pequeño */
+    }
+
+    th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+        font-size: 14px;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -144,15 +157,15 @@
         </div>
     </div>
     <div class="col-md-6">
-        <div class="card card-stats card-success card-round">
+        <div class="card card-stats card-default card-round">
             <div class="card-body text-center">
                 <div class="numbers">
                     <p class="card-category">
                     <h6>Tiempo por Perdidas Ideales</h6>
                     </p>
                     <h4 class="card-title" id="tiempoPerdidasIdeales">0</h4>
-                    <table class="table table-bordered">
-                        <thead>
+                    <table class="table table-bordered mt-4">
+                        <thead style="font-size:14px">
                             <tr>
                                 <th>Tiempo Total</th>
                                 <th>Producción Conforme</th>
@@ -203,17 +216,16 @@
                                     Pérdidas por Calidad (TPC)</a></li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
         <div class="card">
             <div class="card-header">
-                <h6>Información Básica</h6>
+                <h6>Descripción de paros</h6>
             </div>
             <div class="card-body">
                 <div class="row responsive">
-                    <table class="table table-bordered mt-4" id="tablaParos" style="">
+                    <table class="table table-bordered mt-4 custom-table" id="tablaParos" style="">
                         <thead>
                             <tr>
                                 <th>Paro</th>
@@ -368,7 +380,6 @@
 
         return diferencia;
     }
-
 
     function productosBYPlantaLineaProceso() {
         var planta_id = $('#planta_id').val();

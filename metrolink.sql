@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-02-2025 a las 14:59:10
+-- Tiempo de generación: 17-02-2025 a las 17:01:06
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -107,7 +107,120 @@ CREATE TABLE `danoequipo` (
 --
 
 INSERT INTO `danoequipo` (`id`, `equipo`, `descripcion`, `fecha`, `estado`) VALUES
-(1, 1, 'Descripcion E1', '2024-11-29 22:50:00', 'OK');
+(1, 1, 'Descripcion E1', '2024-11-29 22:50:00', 'OK'),
+(3, 1, 'Falla en el termostato', '2025-02-17 15:53:47', 'Pendiente'),
+(4, 1, 'Pérdida de calor excesiva', '2025-02-17 15:53:47', 'Reparado'),
+(5, 1, 'Puerta con cierre defectuoso', '2025-02-17 15:53:47', 'En proceso'),
+(6, 1, 'Ventilador no funciona', '2025-02-17 15:53:47', 'Pendiente'),
+(7, 1, 'Resistencia quemada', '2025-02-17 15:53:47', 'Reparado'),
+(8, 2, 'Quemadores no calientan', '2025-02-17 15:53:47', 'Pendiente'),
+(9, 2, 'Ruido excesivo al funcionar', '2025-02-17 15:53:47', 'Reparado'),
+(10, 2, 'Panel de control dañado', '2025-02-17 15:53:47', 'Pendiente'),
+(11, 2, 'Sensor de temperatura falla', '2025-02-17 15:53:47', 'En proceso'),
+(12, 2, 'Filtro de aire obstruido', '2025-02-17 15:53:47', 'Reparado'),
+(13, 3, 'Fuga de gas detectada', '2025-02-17 15:53:47', 'Pendiente'),
+(14, 3, 'Perilla de encendido atascada', '2025-02-17 15:53:47', 'Reparado'),
+(15, 3, 'Desgaste en el cableado eléctrico', '2025-02-17 15:53:47', 'Pendiente'),
+(16, 3, 'Problema en el encendido automático', '2025-02-17 15:53:47', 'Reparado'),
+(17, 3, 'Llama inestable en los quemadores', '2025-02-17 15:53:47', 'En proceso'),
+(18, 4, 'Motor emite sonido anormal', '2025-02-17 15:53:47', 'Pendiente'),
+(19, 4, 'Piezas internas desgastadas', '2025-02-17 15:53:47', 'Reparado'),
+(20, 4, 'Cable de alimentación roto', '2025-02-17 15:53:47', 'En proceso'),
+(21, 4, 'Vibración excesiva al usar', '2025-02-17 15:53:47', 'Pendiente'),
+(22, 4, 'Botón de encendido no responde', '2025-02-17 15:53:47', 'Reparado'),
+(23, 5, 'Cuchillas desafiladas', '2025-02-17 15:53:47', 'Pendiente'),
+(24, 5, 'Base con grietas visibles', '2025-02-17 15:53:47', 'Reparado'),
+(25, 5, 'Falta de lubricación en engranajes', '2025-02-17 15:53:47', 'En proceso'),
+(26, 5, 'Interruptor con falso contacto', '2025-02-17 15:53:47', 'Pendiente'),
+(27, 5, 'Soporte suelto', '2025-02-17 15:53:47', 'Reparado'),
+(28, 6, 'Motor con sobrecalentamiento', '2025-02-17 15:56:51', 'Pendiente'),
+(29, 6, 'Correa de transmisión desgastada', '2025-02-17 15:56:51', 'Reparado'),
+(30, 7, 'Pérdida de refrigeración', '2025-02-17 15:56:51', 'En proceso'),
+(31, 7, 'Termostato con fallas', '2025-02-17 15:56:51', 'Pendiente'),
+(32, 8, 'Panel de control no responde', '2025-02-17 15:56:51', 'Pendiente'),
+(33, 8, 'Fuga de líquido refrigerante', '2025-02-17 15:56:51', 'Reparado'),
+(34, 9, 'Vibraciones excesivas', '2025-02-17 15:56:51', 'En proceso'),
+(35, 9, 'Interruptor de encendido defectuoso', '2025-02-17 15:56:51', 'Pendiente'),
+(36, 10, 'Cableado en mal estado', '2025-02-17 15:56:51', 'Reparado'),
+(37, 10, 'Ruido fuerte al operar', '2025-02-17 15:56:51', 'Pendiente'),
+(38, 11, 'Cuchillas desafiladas', '2025-02-17 15:56:51', 'En proceso'),
+(39, 11, 'Base con grietas visibles', '2025-02-17 15:56:51', 'Pendiente'),
+(40, 12, 'Falla en resistencia térmica', '2025-02-17 15:56:51', 'Reparado'),
+(41, 12, 'Pérdida de calor en la estructura', '2025-02-17 15:56:51', 'Pendiente'),
+(42, 13, 'Botón de encendido no responde', '2025-02-17 15:56:51', 'En proceso'),
+(43, 13, 'Engranajes desgastados', '2025-02-17 15:56:51', 'Reparado'),
+(44, 14, 'Desgaste en las piezas internas', '2025-02-17 15:56:51', 'Pendiente'),
+(45, 14, 'Fuga de gas detectada', '2025-02-17 15:56:51', 'Reparado'),
+(46, 15, 'Puerta con cierre defectuoso', '2025-02-17 15:56:51', 'Pendiente'),
+(47, 15, 'Sensor de temperatura no funciona', '2025-02-17 15:56:51', 'En proceso'),
+(48, 16, 'Fugas de aceite en motor', '2025-02-17 15:56:51', 'Pendiente'),
+(49, 16, 'Filtro obstruido', '2025-02-17 15:56:51', 'Reparado'),
+(50, 17, 'Rodamientos dañados', '2025-02-17 15:56:51', 'En proceso'),
+(51, 17, 'Correa de ventilador desgastada', '2025-02-17 15:56:51', 'Pendiente'),
+(52, 18, 'Problema en el sistema de encendido', '2025-02-17 15:56:51', 'Pendiente'),
+(53, 18, 'Perdida de eficiencia térmica', '2025-02-17 15:56:51', 'Reparado'),
+(54, 19, 'Ventilador bloqueado por residuos', '2025-02-17 15:56:51', 'En proceso'),
+(55, 19, 'Válvula de seguridad defectuosa', '2025-02-17 15:56:51', 'Pendiente'),
+(56, 20, 'Sobrecalentamiento del motor', '2025-02-17 15:56:51', 'Reparado'),
+(57, 20, 'Pérdida de presión en el sistema', '2025-02-17 15:56:51', 'Pendiente'),
+(58, 21, 'Cable de alimentación suelto', '2025-02-17 15:56:51', 'En proceso'),
+(59, 21, 'Problema en el sensor de humedad', '2025-02-17 15:56:51', 'Reparado'),
+(60, 22, 'Válvula obstruida', '2025-02-17 15:56:51', 'Pendiente'),
+(61, 22, 'Circuito eléctrico con fallas', '2025-02-17 15:56:51', 'Reparado'),
+(62, 23, 'Sistema de enfriamiento ineficiente', '2025-02-17 15:56:51', 'Pendiente'),
+(63, 23, 'Ruido anormal en el motor', '2025-02-17 15:56:51', 'En proceso'),
+(64, 24, 'Cortocircuito en panel de control', '2025-02-17 15:56:51', 'Pendiente'),
+(65, 24, 'Piezas internas desgastadas', '2025-02-17 15:56:51', 'Reparado'),
+(66, 25, 'Problema en el compresor', '2025-02-17 15:56:51', 'En proceso'),
+(67, 25, 'Ventilación insuficiente', '2025-02-17 15:56:51', 'Pendiente'),
+(68, 26, 'Lubricación deficiente en engranajes', '2025-02-17 15:56:51', 'Reparado'),
+(69, 26, 'Puerta con cierre defectuoso', '2025-02-17 15:56:51', 'Pendiente'),
+(70, 27, 'Desgaste en rodillos', '2025-02-17 15:56:51', 'Pendiente'),
+(71, 27, 'Pérdida de presión en pistones', '2025-02-17 15:56:51', 'En proceso'),
+(72, 28, 'Lámparas de control quemadas', '2025-02-17 15:56:51', 'Reparado'),
+(73, 28, 'Sensor de nivel defectuoso', '2025-02-17 15:56:51', 'Pendiente'),
+(74, 29, 'Filtro de aire obstruido', '2025-02-17 15:56:51', 'Pendiente'),
+(75, 29, 'Vibraciones inusuales en operación', '2025-02-17 15:56:51', 'Reparado'),
+(76, 30, 'Interruptor principal no responde', '2025-02-17 15:56:51', 'En proceso'),
+(77, 30, 'Panel digital con fallas', '2025-02-17 15:56:51', 'Pendiente'),
+(78, 31, 'Pérdida de aislamiento térmico', '2025-02-17 15:56:51', 'Pendiente'),
+(79, 31, 'Ruido en el motor', '2025-02-17 15:56:51', 'Reparado'),
+(80, 32, 'Motor emite olor a quemado', '2025-02-17 15:56:51', 'En proceso'),
+(81, 32, 'Correas flojas en transmisión', '2025-02-17 15:56:51', 'Pendiente'),
+(82, 33, 'Resistencia de calor defectuosa', '2025-02-17 15:56:51', 'Reparado'),
+(83, 33, 'Interruptor con falso contacto', '2025-02-17 15:56:51', 'Pendiente'),
+(84, 34, 'Sobrecalentamiento en los cables', '2025-02-17 15:56:51', 'Pendiente'),
+(85, 34, 'Fallo en sistema de seguridad', '2025-02-17 15:56:51', 'Reparado'),
+(86, 35, 'Ventilador atascado', '2025-02-17 15:56:51', 'En proceso'),
+(87, 35, 'Circuito de control no responde', '2025-02-17 15:56:51', 'Pendiente'),
+(88, 36, 'Compresor con fugas', '2025-02-17 15:56:51', 'Pendiente'),
+(89, 36, 'Válvula de seguridad con fallas', '2025-02-17 15:56:51', 'Reparado'),
+(90, 37, 'Sobrecalentamiento en el transformador', '2025-02-17 15:56:51', 'Pendiente'),
+(91, 37, 'Fugas de líquido refrigerante', '2025-02-17 15:56:51', 'Reparado'),
+(92, 38, 'Sistema eléctrico con cortocircuito', '2025-02-17 15:56:51', 'En proceso'),
+(93, 38, 'Botón de seguridad no activa', '2025-02-17 15:56:51', 'Pendiente'),
+(94, 39, 'Pérdida de potencia en el motor', '2025-02-17 15:56:51', 'Pendiente'),
+(95, 39, 'Engranajes rotos', '2025-02-17 15:56:51', 'Reparado'),
+(96, 40, 'Falla en el sensor de temperatura', '2025-02-17 15:56:51', 'En proceso'),
+(97, 40, 'Base inestable', '2025-02-17 15:56:51', 'Pendiente'),
+(98, 41, 'Perdida de sellado en cámara', '2025-02-17 15:56:51', 'Pendiente'),
+(99, 41, 'Fugas en tuberías', '2025-02-17 15:56:51', 'Reparado'),
+(100, 42, 'Desgaste en rodamientos', '2025-02-17 15:56:51', 'Pendiente'),
+(101, 42, 'Fuga en válvula de control', '2025-02-17 15:56:51', 'Reparado'),
+(102, 43, 'Sistema de escape bloqueado', '2025-02-17 15:56:51', 'En proceso'),
+(103, 43, 'Sobrecalentamiento en condensador', '2025-02-17 15:56:51', 'Pendiente'),
+(104, 44, 'Panel de control con errores', '2025-02-17 15:56:51', 'Pendiente'),
+(105, 44, 'Vibraciones excesivas en operación', '2025-02-17 15:56:51', 'Reparado'),
+(106, 45, 'Fallo en el circuito eléctrico', '2025-02-17 15:56:51', 'Pendiente'),
+(107, 45, 'Compresor con ruido inusual', '2025-02-17 15:56:51', 'Reparado'),
+(108, 46, 'Fugas en las conexiones de gas', '2025-02-17 15:56:51', 'Pendiente'),
+(109, 46, 'Resistencia de calentamiento rota', '2025-02-17 15:56:51', 'Reparado'),
+(110, 47, 'Sobrecalentamiento en el panel', '2025-02-17 15:56:51', 'En proceso'),
+(111, 47, 'Cableado dañado', '2025-02-17 15:56:51', 'Pendiente'),
+(112, 48, 'Rodillos desgastados', '2025-02-17 15:56:51', 'Reparado'),
+(113, 48, 'Interruptor defectuoso', '2025-02-17 15:56:51', 'Pendiente'),
+(114, 49, 'Sistema hidráulico con pérdida de presión', '2025-02-17 15:56:51', 'Pendiente'),
+(115, 49, 'Desgaste en sellos de seguridad', '2025-02-17 15:56:51', 'Reparado');
 
 -- --------------------------------------------------------
 
@@ -190,8 +303,54 @@ CREATE TABLE `equipo` (
 --
 
 INSERT INTO `equipo` (`id`, `nombre`, `modelo`, `estado`) VALUES
-(1, 'E1', 'EM1---', 'OK'),
-(3, 'E2', 'EM2', 'OK');
+(4, 'Horno Industrial', 'HT-5000', 'Operativo'),
+(5, 'Horno Industrial', 'HT-6000', 'En Mantenimiento'),
+(6, 'Horno Industrial', 'HT-7000', 'Fuera de Servicio'),
+(7, 'Batidora Industrial', 'B-200X', 'Operativo'),
+(8, 'Batidora Industrial', 'B-250XL', 'Operativo'),
+(9, 'Batidora Industrial', 'B-300PRO', 'En Mantenimiento'),
+(10, 'Refrigerador', 'CoolMax-500', 'Operativo'),
+(11, 'Refrigerador', 'CoolMax-600', 'Operativo'),
+(12, 'Refrigerador', 'CoolMax-700', 'Fuera de Servicio'),
+(13, 'Congelador', 'FrostX-1000', 'Operativo'),
+(14, 'Congelador', 'FrostX-1100', 'Operativo'),
+(15, 'Congelador', 'FrostX-1200', 'En Mantenimiento'),
+(16, 'Amasadora', 'MixPro-5', 'Operativo'),
+(17, 'Amasadora', 'MixPro-6', 'Operativo'),
+(18, 'Amasadora', 'MixPro-7', 'Fuera de Servicio'),
+(19, 'Freidora', 'FryKing-300', 'Operativo'),
+(20, 'Freidora', 'FryKing-400', 'Operativo'),
+(21, 'Freidora', 'FryKing-500', 'En Mantenimiento'),
+(22, 'Procesador de Alimentos', 'ProFood-1', 'Operativo'),
+(23, 'Procesador de Alimentos', 'ProFood-2', 'Operativo'),
+(24, 'Procesador de Alimentos', 'ProFood-3', 'Fuera de Servicio'),
+(25, 'Estufa Industrial', 'HeatMax-900', 'Operativo'),
+(26, 'Estufa Industrial', 'HeatMax-950', 'Operativo'),
+(27, 'Estufa Industrial', 'HeatMax-1000', 'En Mantenimiento'),
+(28, 'Cámara de Fermentación', 'FermentX-300', 'Operativo'),
+(29, 'Cámara de Fermentación', 'FermentX-350', 'Operativo'),
+(30, 'Cámara de Fermentación', 'FermentX-400', 'Fuera de Servicio'),
+(31, 'Tostador', 'ToastMaster-200', 'Operativo'),
+(32, 'Tostador', 'ToastMaster-250', 'Operativo'),
+(33, 'Tostador', 'ToastMaster-300', 'En Mantenimiento'),
+(34, 'Molino de Carne', 'MeatGrind-100', 'Operativo'),
+(35, 'Molino de Carne', 'MeatGrind-200', 'Operativo'),
+(36, 'Molino de Carne', 'MeatGrind-300', 'Fuera de Servicio'),
+(37, 'Lavavajillas Industrial', 'CleanDish-500', 'Operativo'),
+(38, 'Lavavajillas Industrial', 'CleanDish-600', 'Operativo'),
+(39, 'Lavavajillas Industrial', 'CleanDish-700', 'En Mantenimiento'),
+(40, 'Extractor de Jugos', 'JuiceX-1', 'Operativo'),
+(41, 'Extractor de Jugos', 'JuiceX-2', 'Operativo'),
+(42, 'Extractor de Jugos', 'JuiceX-3', 'Fuera de Servicio'),
+(43, 'Selladora al Vacío', 'VacSeal-100', 'Operativo'),
+(44, 'Selladora al Vacío', 'VacSeal-200', 'Operativo'),
+(45, 'Selladora al Vacío', 'VacSeal-300', 'En Mantenimiento'),
+(46, 'Máquina de Hielo', 'IcePro-500', 'Operativo'),
+(47, 'Máquina de Hielo', 'IcePro-600', 'Operativo'),
+(48, 'Máquina de Hielo', 'IcePro-700', 'Fuera de Servicio'),
+(49, 'Licuadora Industrial', 'BlendTech-1', 'Operativo'),
+(50, 'Licuadora Industrial', 'BlendTech-2', 'Operativo'),
+(51, 'Licuadora Industrial', 'BlendTech-3', 'En Mantenimiento');
 
 -- --------------------------------------------------------
 
@@ -372,15 +531,15 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id`, `planta_id`, `proceso_id`, `linea_id`, `nombre`, `codigo`, `descripcion`) VALUES
-(1, 1, 1, 1, 'Produ', '231231564', 'Desc P1'),
-(2, 1, 2, 2, 'Producto 2', '002', 'Desc P2'),
-(4, 2, 3, 3, 'Producto 3', 'p3', 'Desc P3'),
-(5, 1, 2, 1, 'Buga', '054', 'Desc P4'),
+(1, 1, 1, 1, 'Harina', '231231564', 'Desc P1'),
+(2, 1, 2, 3, 'Aceite', '002', 'Desc P2'),
+(4, 2, 3, 4, 'Grasa', 'p3', 'Desc P3'),
+(5, 1, 2, 1, 'Margarina', '054', 'Desc P4'),
 (6, 2, 4, 3, 'Mantequilla', '809', 'mantequilla x 500g'),
 (7, 1, 1, 2, 'Mantequilla', '809', 'mantequilla x 500g'),
 (8, 2, 4, 3, 'Mantequilla', '809', 'mantequilla x 500g'),
 (9, 1, 3, 1, 'Aceite', '809', ' x 500g'),
-(10, 2, 4, 2, 'Aceite', '809', ' x 500g');
+(10, 2, 4, 2, 'Aceite', '809', ' x 1500g');
 
 -- --------------------------------------------------------
 
@@ -601,6 +760,32 @@ INSERT INTO `subparos` (`id`, `nombre`, `paro_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `turnos`
+--
+
+CREATE TABLE `turnos` (
+  `id` int(11) NOT NULL,
+  `turno` varchar(255) NOT NULL,
+  `planta_id` int(11) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `hora_inicio` time NOT NULL,
+  `hora_fin` time NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `turnos`
+--
+
+INSERT INTO `turnos` (`id`, `turno`, `planta_id`, `fecha_inicio`, `fecha_fin`, `hora_inicio`, `hora_fin`, `created`) VALUES
+(1, '1', 1, '2025-01-01', '2025-01-31', '06:00:00', '14:00:00', '2025-01-27 03:34:57'),
+(2, '2', 1, '2025-01-01', '2025-01-31', '14:00:00', '22:00:00', '2025-01-27 03:35:49'),
+(3, '3', 1, '2025-01-01', '2025-01-31', '22:00:00', '06:00:00', '2025-01-27 03:36:09');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -775,7 +960,7 @@ ALTER TABLE `control_capacidad`
 -- AUTO_INCREMENT de la tabla `danoequipo`
 --
 ALTER TABLE `danoequipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT de la tabla `definicion`
@@ -793,7 +978,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `linea`
@@ -829,7 +1014,7 @@ ALTER TABLE `proceso`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `razones_paro`

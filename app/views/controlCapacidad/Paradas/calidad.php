@@ -84,39 +84,56 @@
         });
     });
 
-    $("#agregar").click(function () {
-        let paroId = $("#paro_id").val();
-        let paroTexto = $("#paro_id option:selected").text();
-        let subparoId = $("#subparo_id").val();
-        let subparoTexto = $("#subparo_id option:selected").text();
-        let razonId = $("#razon_id").val();
-        let razonTexto = $("#razon_id option:selected").text();
-        let tiempo = $("#tiempo").val();
-        let descripcion = $("#descripcion").val();
+    $(document).ready(function () {
+        $("#agregar").click(function () {
+            let paroId = $("#paro_id").val();
+            let paroTexto = $("#paro_id option:selected").text();
+            let subparoId = $("#subparo_id").val();
+            let subparoTexto = $("#subparo_id option:selected").text();
+            let razonId = $("#razon_id").val();
+            let razonTexto = $("#razon_id option:selected").text();
+            let tiempo = parseFloat($("#tiempo").val()); // Convertir a número
+            let descripcion = $("#descripcion").val();
+            let tpi = parseFloat($("#tiempoPerdidasIdeales").text()); // Convertir a número
 
-        if (!paroId || !subparoId || !razonId || !tiempo || !descripcion) {
-            alert("Todos los campos son obligatorios.");
-            return;
-        }
+            if (!paroId || !subparoId || !razonId || isNaN(tiempo) || !descripcion) {
+                alert("Todos los campos son obligatorios y el tiempo debe ser un número válido.");
+                return;
+            }
 
-        let fila = `<tr>
-                    <td>${paroTexto}</td>
-                    <td>${subparoTexto}</td>
-                    <td>${razonTexto}</td>
-                    <td>${tiempo}</td>
-                    <td>${descripcion}</td>
-                    <td><button class="btn btn-danger btn-sm eliminar">Eliminar</button></td>
-                </tr>`;
+            if (tiempo > tpi) {
+                alert("El tiempo ingresado no puede ser mayor que el tiempo de pérdidas ideales.");
+                return;
+            }
 
-        $("#tablaParos tbody").append(fila);
+            let fila = `<tr>
+                        <td>${paroTexto}</td>
+                        <td>${subparoTexto}</td>
+                        <td>${razonTexto}</td>
+                        <td class="tiempo">${tiempo}</td>
+                        <td>${descripcion}</td>
+                        <td><button class="btn btn-danger btn-sm eliminar">Eliminar</button></td>
+                    </tr>`;
 
-        // Limpiar formulario
-        $("#formparo")[0].reset();
+            $("#tablaParos tbody").append(fila);
+
+            // Actualizar tiempo de pérdidas ideales
+            $("#tiempoPerdidasIdeales").text((tpi - tiempo).toFixed(2));
+
+            // Limpiar formulario
+            $("#formparo")[0].reset();
+        });
+
+        // Evento para eliminar fila y devolver el tiempo eliminado
+        $(document).on("click", ".eliminar", function () {
+            let tiempoRecuperado = parseFloat($(this).closest("tr").find(".tiempo").text());
+            let tpiActual = parseFloat($("#tiempoPerdidasIdeales").text());
+
+            $("#tiempoPerdidasIdeales").text((tpiActual + tiempoRecuperado).toFixed(2));
+
+            $(this).closest("tr").remove();
+        });
     });
 
-    // Evento para eliminar fila
-    $(document).on("click", ".eliminar", function () {
-        $(this).closest("tr").remove();
-    });
 
 </script>

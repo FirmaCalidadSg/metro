@@ -15,20 +15,23 @@
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Planta</th>
-                    <th>Responsable</th>
+                    <!-- <th>Responsable</th> -->
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($proceso as $entidad): ?>
+                <?php
+                // print_r($proceso);
+                foreach ($proceso as $entidad): ?>
                     <tr>
                         <td><?= $entidad->id; ?></td>
                         <td><?= $entidad->nombre; ?></td>
                         <td><?= $entidad->descripcion ?? 'N/A'; ?></td>
-                        <td><?= $entidad->planta_nombre; ?></td>
-                        <td><?= $entidad->responsable_nombre; ?></td>
+                        <td><?= $entidad->linea_id; ?></td>
+                        <!-- <td><?= $entidad->responsable_id; ?></td> -->
                         <td>
-                            <a data-toggle="modal" href='#modal-id' onclick="Cargar('registro/?id=<?= $entidad->id ?>','proceso')" class="btn-editar">
+                            <a data-toggle="modal" href='#modal-id'
+                                onclick="Cargar('registro/?id=<?= $entidad->id ?>','proceso')" class="btn-editar">
                                 <i class="fa fa-edit"></i>
                             </a>
                             <a onclick="eliminar('proceso','eliminar',<?= $entidad->id; ?>)" class="btn-eliminar">
