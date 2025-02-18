@@ -27,7 +27,7 @@
                         <td><?= $entidad->id; ?></td>
                         <td><?= $entidad->nombre; ?></td>
                         <td><?= $entidad->descripcion ?? 'N/A'; ?></td>
-                        <td><?= $entidad->linea_id; ?></td>
+                        <td><?= $entidad->planta_id; ?></td>
                         <!-- <td><?= $entidad->responsable_id; ?></td> -->
                         <td>
                             <a data-toggle="modal" href='#modal-id'

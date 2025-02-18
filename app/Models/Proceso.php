@@ -11,6 +11,8 @@ class Proceso
     public $id;
     public $nombre;
     public $descripcion;
+    public $planta_id;
+    public $responsable_id;
     public function __construct()
     {
         error_log("Construyendo modelo Proceso");
@@ -60,7 +62,7 @@ class Proceso
 
     public function getProcesoByPlanta($id)
     {
-        $query = "SELECT p.id as proceso_id,p.nombre FROM proceso p WHERE p.linea_id = :id";
+        $query = "SELECT p.id as proceso_id,p.nombre FROM proceso p WHERE p.planta_id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -71,10 +73,12 @@ class Proceso
 
     public function createProceso(Proceso $proceso)
     {
-        $query = "INSERT INTO proceso (nombre, descripcion) VALUES (:nombre, :descripcion)";
+        $query = "INSERT INTO proceso (nombre, descripcion, planta_id, responsable_id) VALUES (:nombre, :descripcion, :planta_id, :responsable_id)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':nombre', $proceso->nombre, PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $proceso->descripcion, PDO::PARAM_STR);
+        $stmt->bindParam(':planta_id', $proceso->planta_id, PDO::PARAM_INT);
+        $stmt->bindParam(':responsable_id', $proceso->responsable_id, PDO::PARAM_INT);
         return $stmt->execute();
     }
 

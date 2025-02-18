@@ -8,13 +8,11 @@ use PDO;
 class Producto
 {
     private $db;
-
     public $id;
     public $linea_id;
     public $nombre;
     public $codigo;
     public $descripcion;
-
     public function __construct()
     {
         error_log("Construyendo modelo Producto");
@@ -109,8 +107,6 @@ class Producto
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
-
-
 
     public function productosBYPlantaLineaProceso($planta_id, $proceso_id)
     {
