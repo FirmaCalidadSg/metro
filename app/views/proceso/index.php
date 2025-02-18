@@ -1,12 +1,16 @@
-<div class="pais">
-    <div class="pais-header">
-        <div class="btn-space">
-            <h2>Procesos</h2>
-            <button data-toggle="modal" href='#modal-id' onclick="Cargar('registro','proceso')" class="btn-div">
-                <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
-                <div class="text-style">Agregar</div>
-            </button>
-        </div>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Procesos</h2>
+                </div>
+                <div class="col-sm-6 text-end">
+                    <button data-toggle="modal" href='#modal-id' onclick="Cargar('registro','proceso')" class="btn-div">
+                        <img class="image-list" src="/metro/app/Assets/css/images/circle-fill.svg">
+                        <div class="text-style">Agregar</div>
+                    </button>
+                </div>
 
         <table class="custom-table" id="table">
             <thead>
@@ -27,7 +31,7 @@
                         <td><?= $entidad->id; ?></td>
                         <td><?= $entidad->nombre; ?></td>
                         <td><?= $entidad->descripcion ?? 'N/A'; ?></td>
-                        <td><?= $entidad->planta_id; ?></td>
+                        <td><?= $entidad->linea_id; ?></td>
                         <!-- <td><?= $entidad->responsable_id; ?></td> -->
                         <td>
                             <a data-toggle="modal" href='#modal-id'

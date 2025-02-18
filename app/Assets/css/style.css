@@ -6536,43 +6536,27 @@ button#btnAgregarProducto.disabled {
   font-style: var(--body-1-semibold-font-style);
 }
 .btn-editar{
-  background-color: #0b7c3e;
-  border-color: #0b7c3e;
-  border-radius: 50px;
+
+  color: #0b7c3e;
+  background: none;
   border: none;
-  padding: 5% 4% 6% 10%;
-  margin-right:5px;
-  color: #ffffff;
-  font-family: var(--body-1-semibold-font-family);
-  font-weight: var(--body-1-semibold-font-weight);
-  font-size: var(--body-1-semibold-font-size);
-  letter-spacing: var(--body-1-semibold-letter-spacing);
-  line-height: var(--body-1-semibold-line-height);
-  font-style: var(--body-1-semibold-font-style);
 }
 
 .btn-editar:hover{
-  color: #fff;
+  color: #10a754;
   text-decoration: none;
   cursor:pointer;
 }
 .btn-eliminar{
-  background-color: #ff0000;
-  border-color: #ff0000;
-  border-radius: 150px;
+ 
+  color: #ff0000;
+  background: none;
   border: none;
-  padding: 5% 10% 6% 10%;
-  color: #ffffff;
-  font-family: var(--body-1-semibold-font-family);
-  font-weight: var(--body-1-semibold-font-weight);
-  font-size: var(--body-1-semibold-font-size);
-  letter-spacing: var(--body-1-semibold-letter-spacing);
-  line-height: var(--body-1-semibold-line-height);
-  font-style: var(--body-1-semibold-font-style);
+ 
 }
 
 .btn-eliminar:hover{
-  color: #fff;
+  color: #ff3939;
   text-decoration: none;
   cursor:pointer;
 

@@ -20,7 +20,7 @@
         </div>
 
         <div class="card-body">
-            <table class="custom-table" id="tablaEquipos">
+            <table class="custom-table" id="tabla">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -44,11 +44,11 @@
                                <!--  <a href="../app/equipo/vistaPrevia/<?php echo $equipo->id; ?>" class="btn-preview">
                                     <img class="btn-preview img" src="/metro/app/Assets/css/images/preview.svg" title="Ver">
                                 </a> -->
-                                <a href="../app/equipo/editarFormulario/<?php echo $equipo->id; ?>" class="">
-                                    <img class="" src="/metro/app/Assets/css/images/edit.svg" title="Editar">
+                                <a href="../app/equipo/editarFormulario/<?php echo $equipo->id; ?>" class="btn-editar">
+                                <i class="fa fa-edit"></i>
                                 </a>
-                                <a onclick="eliminarEquipo(<?php echo $equipo->id; ?>)" class="">
-                                    <img class="" src="/metro/app/Assets/css/images/delete.svg" title="Eliminar">
+                                <a onclick="eliminarEquipo(<?php echo $equipo->id; ?>)" class="btn-eliminar">
+                                <i class="fa fa-trash"></i>
                                 </a>
                             </td>
                         </tr>

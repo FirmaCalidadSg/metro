@@ -6,45 +6,55 @@
         </button> -->
         <div class="card">
             <div class="card-header">
-                <h2>Lista de Ciudades</h2>
-                <button onclick="agregarCiudad()" class="btn-div">
-                    <img class="image-list" src="../app/Assets/css/images/circle-fill.svg">
-                    <div class="text-style">Agregar</div>
-                </button>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5>Lista de Ciudades</h5>
+                    </div>
+                    <div class="col-sm-6 text-end"><button onclick="agregarCiudad()" class="btn-div">
+                            <img class="image-list" src="../app/Assets/css/images/circle-fill.svg">
+                            <div class="text-style">Agregar</div>
+                        </button></div>
+
+                </div>
+
+
             </div>
             <div class="card-body">
-            <table class="custom-table" id="tablaCiudad">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Ciudad</th>
-                        <th>Departamento</th>
-                        <th>Codigo Postal</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($ciudades as $ciudad): ?>
-                        <tr id="fila-<?php echo $ciudad->id; ?>">
-                            <td><?php echo $ciudad->id; ?></td>
-                            <td><?php echo $ciudad->nombre; ?></td>
-                            <td><?php echo $ciudad->nombre_departamento; ?></td>
-                            <td><?php echo $ciudad->codigo_postal; ?></td>
-                            <td>
-                                <!-- <a href="/metro/app/ciudad/vistaPrevia/<?php echo $ciudad->id; ?>" class="btn-preview ">
+                <table class="custom-table" id="tablaCiudad">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ciudad</th>
+                            <th>Departamento</th>
+                            <th>Codigo Postal</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($ciudades as $ciudad): ?>
+                            <tr id="fila-<?php echo $ciudad->id; ?>">
+                                <td><?php echo $ciudad->id; ?></td>
+                                <td><?php echo $ciudad->nombre; ?></td>
+                                <td><?php echo $ciudad->nombre_departamento; ?></td>
+                                <td><?php echo $ciudad->codigo_postal; ?></td>
+                                <td>
+                                    <!-- <a href="/metro/app/ciudad/vistaPrevia/<?php echo $ciudad->id; ?>" class="btn-preview ">
                                     <img class="btn-preview img" src="../app/Assets/css/images/preview.svg" title="Ver">
                                 </a> -->
-                                <a href="/metro/app/ciudad/editarFormulario/<?php echo $ciudad->id; ?>" class="">
-                                    <img class="" src="../app/Assets/css/images/edit.svg" title="Editar">
-                                </a>
-                                <a onclick="eliminarCiudad(<?php echo $ciudad->id; ?>)" class=""><img src="../app/Assets/css/images/delete.svg" title="Eliminar"></a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                                    <a href="/metro/app/ciudad/editarFormulario/<?php echo $ciudad->id; ?>" class="btn-editar">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a onclick="eliminarCiudad(<?php echo $ciudad->id; ?>)" class="btn-eliminar">
+                                        <i class="fa fa-trash"></i>
+
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
-            
+
         </div>
     </div>
 </div>

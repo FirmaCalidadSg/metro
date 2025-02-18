@@ -2,11 +2,21 @@
 
     <div class="card">
         <div class="card-header">
-            <h2>Paises Registrados</h2>
-            <button data-toggle="modal" href='#modal-id' onclick="Cargar('registro','pais')" class="btn-div">
-                <img class="image-list pull-right" src="/metro/app/Assets/css/images/circle-fill.svg">
-                <div class="text-style">Agregar</div>
-            </button>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h5>Paises Registrados</h5>
+                </div>
+                <div class="col-sm-6 text-end">
+                    <button data-toggle="modal" href='#modal-id' onclick="Cargar('registro','pais')" class="btn-div">
+                        <img class="image-list pull-right" src="/metro/app/Assets/css/images/circle-fill.svg">
+                        <div class="text-style">Agregar</div>
+                    </button>
+                </div>
+
+
+            </div>
+
+
 
         </div>
         <div class="card-body">
