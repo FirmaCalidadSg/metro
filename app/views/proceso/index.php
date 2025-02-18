@@ -12,42 +12,49 @@
                     </button>
                 </div>
 
-        <table class="custom-table" id="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Planta</th>
-                    <!-- <th>Responsable</th> -->
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                // print_r($proceso);
-                foreach ($proceso as $entidad): ?>
+
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="custom-table" id="table">
+                <thead>
                     <tr>
-                        <td><?= $entidad->id; ?></td>
-                        <td><?= $entidad->nombre; ?></td>
-                        <td><?= $entidad->descripcion ?? 'N/A'; ?></td>
-                        <td><?= $entidad->linea_id; ?></td>
-                        <!-- <td><?= $entidad->responsable_id; ?></td> -->
-                        <td>
-                            <a data-toggle="modal" href='#modal-id'
-                                onclick="Cargar('registro/?id=<?= $entidad->id ?>','proceso')" class="btn-editar">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                            <a onclick="eliminar('proceso','eliminar',<?= $entidad->id; ?>)" class="btn-eliminar">
-                                <i class="fa fa-trash"></i>
-                            </a>
-                        </td>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Planta</th>
+                        <!-- <th>Responsable</th> -->
+                        <th>Acciones</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php
+                    // print_r($proceso);
+                    foreach ($proceso as $entidad): ?>
+                        <tr>
+                            <td><?= $entidad->id; ?></td>
+                            <td><?= $entidad->nombre; ?></td>
+                            <td><?= $entidad->descripcion ?? 'N/A'; ?></td>
+                            <td><?= $entidad->linea_id; ?></td>
+                            <!-- <td><?= $entidad->responsable_id; ?></td> -->
+                            <td>
+                                <a data-toggle="modal" href='#modal-id'
+                                    onclick="Cargar('registro/?id=<?= $entidad->id ?>','proceso')" class="btn-editar">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a onclick="eliminar('proceso','eliminar',<?= $entidad->id; ?>)" class="btn-eliminar">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+</div>
+
 
 <div class="modal fade" id="modal-id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
