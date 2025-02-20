@@ -96,7 +96,8 @@ class ControlCapacidadController
         $planta_id = $_POST['planta_id'];
         $linea_id = $_POST['linea_id'];
         $proceso_id = $_POST['proceso_id'];
-        $productos = $this->producto->productosBYPlantaLineaProceso($planta_id, $linea_id, $proceso_id);
+
+        $productos = $this->producto->productosBYLineaProceso($proceso_id);
         echo json_encode($productos);
         // print_r($productos);
     }
@@ -169,5 +170,78 @@ class ControlCapacidadController
         $subparos = $this->paros->getRazonBySubParo($_POST['subparo_id']);
         echo json_encode($subparos);
     }
+
+
+
+    public function procesarDatos()
+    {
+        try {
+            // Obtener datos del JSON enviado desde AJAX
+            $json = file_get_contents("php://input");
+            $datos = json_decode($json, true); // Convertir a array asociativo
+
+            if (!$datos) {
+                echo json_encode(["status" => "error", "message" => "Datos inválidos"]);
+                return;
+            }
+
+            // Extraer datos de cada parte
+            $form1 = $this->convertirArrayAsociativo($datos['form1']);
+            $form2 = $this->convertirArrayAsociativo($datos['form2']);
+            $tabla = $datos['tabla']; // Ya está en formato array de objetos
+
+            // Crear objeto de solicitud para enviar al modelo
+            $solicitud = new Controlcapacidad();
+            $solicitud->fecha_registro = $form1['fechaRegistro'] ?? null;
+            $solicitud->planta_id = $form1['planta_id'] ?? null;
+            $solicitud->linea_id = $form1['linea_id'] ?? null;
+            $solicitud->proceso_id = $form1['proceso_id'] ?? null;
+            $solicitud->operario = $form1['operarioLider'] ?? null;
+            $solicitud->turno_id = $form1['turno_id'] ?? null;
+            $solicitud->num_operarios = $form1['num_operarios'] ?? null;
+            $solicitud->horashombre = $form1['h_hombre'] ?? null;
+
+            // Datos del formulario "toForm"
+            $solicitud->producto_id = $form2['producto_id'] ?? null;
+            $solicitud->tiempoPerdidoIdeales = $form2['tiempoPerdidoIdealesInput'] ?? null;
+            $solicitud->produccionIdeal = $form2['produccionIdeal'] ?? null;
+            $solicitud->produccionIdealHora = $form2['produccionIdealHora'] ?? null;
+
+            // Enviar datos al modelo
+            $resultado = $this->controlcapacidad->guardarControlCapacidad($solicitud, $tabla);
+
+            if ($resultado) {
+                echo json_encode(["status" => "success", "message" => "Datos guardados correctamente", "cc" => $resultado]);
+            } else {
+                echo json_encode(["status" => "error", "message" => "Error al guardar"]);
+            }
+        } catch (Exception $e) {
+            echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * Función auxiliar para convertir un array de [{name: "campo", value: "dato"}] a [campo => dato]
+     */
+    private function convertirArrayAsociativo($array)
+    {
+        $resultado = [];
+        foreach ($array as $item) {
+            if (isset($item['name']) && isset($item['value'])) {
+                $resultado[$item['name']] = $item['value'];
+            }
+        }
+        return $resultado;
+    }
+
+    public function ViewData($id)
+    {
+        $controlcapacidad = $this->controlcapacidad->Paradas($id);
+        $paros = $this->controlcapacidad->TblParadas($id);
+        require_once __DIR__ . '/../views/layouts/default.php';
+        require_once __DIR__ . '/../views/controlCapacidad/viewdata.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+    }
+
 
 }

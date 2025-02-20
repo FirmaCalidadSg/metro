@@ -112,10 +112,24 @@ class Producto
     {
         try {
             $sql = "SELECT * FROM producto 
-            WHERE planta_id=:planta_id          
-            AND proceso_id=:proceso_id";
+            WHERE proceso_id=:proceso_id";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':planta_id', $planta_id, PDO::PARAM_INT);
+            $stmt->bindParam(':proceso_id', $proceso_id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (\PDOException $th) {
+            throw $th;
+        }
+    }
+    public function productosBYLineaProceso( $proceso_id)
+    {
+        try {
+            $sql = "SELECT p.* 
+                    FROM producto p           
+            JOIN lineaproducto lp on p.id=producto_id           
+            WHERE lp.proceso_id=:proceso_id";
+            $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':proceso_id', $proceso_id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);

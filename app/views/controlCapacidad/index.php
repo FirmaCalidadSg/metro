@@ -10,6 +10,7 @@
         background-color: #f4f4f4;
         font-weight: bold;
         font-size: 14px;
+
     }
 </style>
 <div class="container">
@@ -81,7 +82,7 @@
                             </div>
                             <!-- Botón de envío -->
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                <button type="submit" class="btn btn-primary" id="registrar">Registrar</button>
                             </div>
                         </div>
                     </form>
@@ -92,7 +93,7 @@
                     <h6>Tiempo de Operación (TO)</h6>
                 </div>
                 <div class="card-body">
-                    <form id="toForm">
+                    <form id="toForm" name="toForm">
                         <div class="row g-3">
                             <div class="col-2">
                                 <label for="medidaSelect" class="form-label">Medida</label>
@@ -164,7 +165,7 @@
                     <h6>Tiempo por Perdidas Ideales</h6>
                     </p>
                     <h4 class="card-title" id="tiempoPerdidasIdeales">0</h4>
-                    <table class="table table-bordered mt-4">
+                    <table class="table table-bordered mt-4" id="descripcionParos">
                         <thead style="font-size:14px">
                             <tr>
                                 <th>Tiempo Total</th>
@@ -244,9 +245,7 @@
             </div>
         </div>
     </div>
-
 </div>
-
 <div class="modal fade" id="modalId" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -355,7 +354,7 @@
                 $.each(procesos, function (i, proceso) {
                     select.append($('<option>', {
                         value: proceso.proceso_id,
-                        text: proceso.nombre
+                        text: proceso.nombre_proceso
                     }));
                 });
             },
@@ -573,7 +572,66 @@
 
 
 
+    $(document).ready(function () {
+        $("#registroForm").submit(function (event) {
+            event.preventDefault(); // Evita la recarga de la página
 
+            // Validar que los campos obligatorios no estén vacíos
+            if ($("#planta_id").val() === "" || $("#linea_id").val() === "" || $("#operarioLider").val().trim() === "") {
+                Swal.fire("Error", "Por favor, completa los campos obligatorios.", "error");
+                return;
+            }
 
+            // Obtener datos de "registroForm"
+            let form1Data = $("#registroForm").serializeArray();
 
+            // Obtener datos de "toForm"
+            let form2Data = $("#toForm").serializeArray();
+
+            // Obtener datos de la tabla "tablaParos"
+            let tablaData = [];
+            $("#tablaParos tbody tr").each(function () {
+                let rowData = {
+                    Paro: $(this).find("td:eq(0)").text().trim(),
+                    SubParo: $(this).find("td:eq(1)").text().trim(),
+                    Razon: $(this).find("td:eq(2)").text().trim(),
+                    Tiempo: $(this).find("td:eq(3)").text().trim(),
+                    Descripcion: $(this).find("td:eq(4)").text().trim()
+                };
+
+                // Agregar solo si hay datos válidos en la fila
+                if (rowData.Paro !== "" && rowData.Tiempo !== "") {
+                    tablaData.push(rowData);
+                }
+            });
+
+            // Construir objeto final con datos correctos
+            let allData = {
+                form1: form1Data,
+                form2: form2Data,
+                tabla: tablaData
+            };
+
+            console.log("Datos a enviar:", allData); // Depuración en consola
+
+            // Enviar con AJAX
+            $.ajax({
+                type: "POST",
+                url: "<?php echo BASE_PATH ?>controlCapacidad/procesarDatos/", // Reemplaza con la URL correcta
+                data: JSON.stringify(allData),
+                contentType: "application/json",
+                dataType: "json",
+                success: function (response) {
+                    Swal.fire("Éxito", "Datos registrados correctamente." + response.cc, "success").then(() => {
+
+                        window.location.href = '<?php echo BASE_PATH ?>controlCapacidad/ViewData/' + response.cc; // Recargar la página tras éxito
+                    });
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire("Error", "Hubo un problema al registrar los datos.", "error");
+                    console.error("Error AJAX:", error);
+                }
+            });
+        });
+    });
 </script>

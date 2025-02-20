@@ -29,7 +29,7 @@
         </div>
         <div class="col-6">
             <label for="exampleInputEmail1" class="form-label">Daño Detectado</label>
-            <input type="text" name="danoDetetado" id="danoDetetado" class="form-control">
+            <input type="text" name="danoDetectado" id="danoDetectado" class="form-control">
         </div>
 
 
@@ -129,6 +129,8 @@
             let subparoTexto = $("#subparo_id option:selected").text();
             let razonId = $("#razon_id").val();
             let razonTexto = $("#razon_id option:selected").text();
+            let equipo = $("#equipo_id option:selected").text();
+            let danoDetectado = $("#danoDetectado option:selected").text();
             let tiempo = parseFloat($("#tiempo").val()); // Convertir a número
             let descripcion = $("#descripcion").val();
             let tpi = parseFloat($("#tiempoPerdidasIdeales").text()); // Convertir a número
@@ -148,7 +150,7 @@
                         <td>${subparoTexto}</td>
                         <td>${razonTexto}</td>
                         <td class="tiempo">${tiempo}</td>
-                        <td>${descripcion}</td>
+                        <td>${descripcion}<br>${equipo + '<br>' + danoDetectado}</td>
                         <td><button class="btn btn-danger btn-sm eliminar">Eliminar</button></td>
                     </tr>`;
 
