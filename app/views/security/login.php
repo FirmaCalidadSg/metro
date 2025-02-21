@@ -21,7 +21,28 @@
             </div>
         </div>
 
-        <div class="log-in">
+
+        <?php
+        $tenantId = "7258c2e3-77e9-4639-b8c0-b0ce37f72218";
+        $clientId = "a05de9cb-0cf4-4f44-9f89-94a5fd88f960";
+        $redirectUri = "http://localhost/metro/app/redirect.php";
+        $scope = "openid profile email";
+
+        $loginUrl = "https://login.microsoftonline.com/$tenantId/oauth2/v2.0/authorize?"
+            . "client_id=$clientId"
+            . "&response_type=code"
+            . "&redirect_uri=" . urlencode($redirectUri)
+            . "&scope=" . urlencode($scope)
+            . "&response_mode=query";
+
+        header("Location: $loginUrl");
+        exit();
+        ?>
+
+
+
+
+        <!-- <div class="log-in">
             <div class="animation-logo">
                 <img class="image" src="../app/Assets/css/images/logo.png" />
             </div>
@@ -52,13 +73,18 @@
                     <div class="text-wrapper-2">Ingresar</div>
                 </div>
             </button>
-        </div>
-        <script src="../app/Assets/jquery/jquery.min.js"></script>
+        </div> -->
+
+
+
+
+
+        <!-- <script src="../app/Assets/jquery/jquery.min.js"></script>
         <script src="../app/Assets/sweetalert2/sweetalert2@11.js"></script>
         <script src=""></script>
         <script>
-            $(document).ready(function() {
-                $('.buttom').on('click', function(e) {
+            $(document).ready(function () {
+                $('.buttom').on('click', function (e) {
                     e.preventDefault();
 
                     var email = $('input[type="email"]').val();
@@ -72,19 +98,19 @@
                             password: password
                         },
                         dataType: 'json',
-                        success: function(response) {
+                        success: function (response) {
                             Swal.fire({
                                 title: response.success ? '¡Éxito!' : '¡Error!',
                                 text: response.message,
                                 icon: response.success ? 'success' : 'error'
-                            }).then(function() {
+                            }).then(function () {
                                 if (response.success) {
                                     window.location.href = response.url;
                                 }
                             });
 
                         },
-                        error: function(xhr, status, error) {
+                        error: function (xhr, status, error) {
                             // Handle error response
                             console.error(error);
                             // Show error message
@@ -95,11 +121,11 @@
         </script>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const finalLogo = document.getElementById("finalLogo");
             const logIn = document.querySelector(".alianza-metro .log-in");
 
-            finalLogo.addEventListener("animationend", function(event) {
+            finalLogo.addEventListener("animationend", function (event) {
                 if (event.animationName === "slideIn") {
                     logIn.style.display = "flex";
                     finalLogo.style.display = "none";
@@ -109,4 +135,4 @@
     </script>
 </body>
 
-</html>
+</html> -->

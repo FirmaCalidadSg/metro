@@ -175,6 +175,7 @@ class Controlcapacidad
                     pl.nombre_planta,
                     l.nombre AS linea,
                     p.nombre AS proceso,
+                    t.id as turnoid,
                     t.turno,
                     pr.nombre AS producto,
                     cc.operario,

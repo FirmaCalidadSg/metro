@@ -49,6 +49,18 @@ class Turno
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    public function getTurnoByIds($id)
+    {
+        $query = "SELECT t.id AS turno_id, t.turno, t.fecha_inicio,t.planta_id, t.fecha_fin, t.hora_inicio, t.hora_fin, 
+                         p.nombre_planta AS nombre_planta 
+                  FROM turnos t 
+                  JOIN plantas p ON t.planta_id = p.id
+                  WHERE t.id = :id;";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 
     public function getTurno($id)
     {

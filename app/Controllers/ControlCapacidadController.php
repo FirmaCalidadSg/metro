@@ -238,6 +238,7 @@ class ControlCapacidadController
     {
         $controlcapacidad = $this->controlcapacidad->Paradas($id);
         $paros = $this->controlcapacidad->TblParadas($id);
+        $turno = $this->turnos->getTurnoByIds($controlcapacidad->turnoid);
         require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/controlCapacidad/viewdata.php';
         require_once __DIR__ . '/../views/layouts/footer.php';

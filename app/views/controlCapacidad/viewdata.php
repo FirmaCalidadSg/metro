@@ -1,5 +1,5 @@
 <?php
-// print_r($controlcapacidad);
+// print_r($turno);
 ?>
 <!-- <div class="container mt-1"> -->
 <div class="card">
@@ -119,7 +119,7 @@
                                 <div class="textfield-2">
                                     <div class="input">
                                         <div class="text-wrapper-6">Hora inicial</div>
-                                        <div class="text-wrapper-19">08:00</div>
+                                        <div class="text-wrapper-19"><?php echo $turno->hora_inicio ?></div>
                                         <img class="underline" src="../../app/Assets/css/images/underline.svg" />
                                     </div>
                                 </div>
@@ -128,14 +128,28 @@
                                 <div class="textfield-2">
                                     <div class="input">
                                         <div class="text-wrapper-6">Hora final</div>
-                                        <div class="text-wrapper-19">17:00</div>
+                                        <div class="text-wrapper-19"><?php echo $turno->hora_fin ?></div>
                                         <img class="underline" src="../../app/Assets/css/images/underline.svg" />
                                     </div>
                                 </div>
                                 <div class="textfield-2">
                                     <div class="input">
                                         <div class="text-wrapper-6">Tiempo total</div>
-                                        <div class="text-wrapper-19">3600</div>
+                                        <div class="text-wrapper-19"><?php
+                                        // Supongamos que $turno es un objeto con propiedades hora_inicio y hora_fin
+                                        $hora_inicio = new DateTime($turno->hora_inicio); // Convierte a DateTime
+                                        $hora_fin = new DateTime($turno->hora_fin); // Convierte a DateTime
+                                        
+                                        // Calcula la diferencia en segundos
+                                        $diferencia_segundos = $hora_fin->getTimestamp() - $hora_inicio->getTimestamp();
+
+                                        // Convierte la diferencia a minutos
+                                        $diferencia_minutos = $diferencia_segundos / 60;
+
+                                        // Muestra la diferencia en minutos
+                                        echo $diferencia_minutos;
+
+                                        ?></div>
                                         <img class="underline" src="../../app/Assets/css/images/underline.svg" />
                                     </div>
                                 </div>
