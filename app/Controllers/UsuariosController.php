@@ -17,9 +17,16 @@ class UsuariosController
 
     public function __construct()
     {
+        session_start();
+        if (!isset($_SESSION)) {
+            header('Location: ' . BASE_PATH . 'login');
+            exit();
+        }
+
         $this->security = new Security();
         $this->usuarios = new Usuarios();
     }
+
 
     public function auth()
     {
@@ -60,7 +67,6 @@ class UsuariosController
         require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/usuarios/index.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
-
     }
 
     public function registro()

@@ -1,3 +1,13 @@
+<?php
+session_start();
+$_SESSION['userData'] = $userData;
+// echo "<pre>";
+// var_dump($_SESSION['userData']);
+// echo "</pre>";
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -21,72 +31,20 @@
             </div>
         </div>
 
-
-        <?php
-        $tenantId = "7258c2e3-77e9-4639-b8c0-b0ce37f72218";
-        $clientId = "a05de9cb-0cf4-4f44-9f89-94a5fd88f960";
-        // $tenantId = "7b99514b-2c6e-47f0-8e95-f99ecc22f148";
-        // $clientId = "784e35de-c7a5-4899-a92f-4b9ededb4984";
-        $redirectUri = "http://localhost/metro/app/redirect.php";
-        $scope = "openid profile email";
-
-        $loginUrl = "https://login.microsoftonline.com/$tenantId/oauth2/v2.0/authorize?"
-            . "client_id=$clientId"
-            . "&response_type=code"
-            . "&redirect_uri=" . urlencode($redirectUri)
-            . "&scope=" . urlencode($scope)
-            . "&response_mode=query";
-
-        header("Location: $loginUrl");
-        exit();
-        ?>
-
-
-
-
-        <!-- <div class="log-in">
+        <div class="log-in">
             <div class="animation-logo">
                 <img class="image" src="../app/Assets/css/images/logo.png" />
+                <p class="text-wrapper text-center"><?php echo $userData['name'] ?></p>
+                <div class="divider"></div>
             </div>
-            <div class="divider"></div>
-            <p class="text-wrapper">Ingresa tus credenciales para iniciar sesión</p>
-            <div class="drops-downs">
-                <div class="box-info">
-                    <div class="textfield">
-                        <div class="spacer">
-                            <div class="div">Correo electrónico</div>
-                            <input class="input-login" type="email">
-                            <img class="under-line" src="../app/Assets/css/images/underline.svg" />
-                        </div>
-                    </div>
-                </div>
-                <div class="box-info">
-                    <div class="textfield">
-                        <div class="spacer">
-                            <div class="div">Contraseña</div>
-                            <input class="input-login" type="password">
-                            <img class="under-line" src="../app/Assets/css/images/underline.svg" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="buttom">
-                <div class="div-wrapper">
-                    <div class="text-wrapper-2">Ingresar</div>
-                </div>
-            </button>
-        </div> -->
 
-
-
-
-
-        <!-- <script src="../app/Assets/jquery/jquery.min.js"></script>
+        </div>
+        <script src="../app/Assets/jquery/jquery.min.js"></script>
         <script src="../app/Assets/sweetalert2/sweetalert2@11.js"></script>
         <script src=""></script>
         <script>
-            $(document).ready(function () {
-                $('.buttom').on('click', function (e) {
+            $(document).ready(function() {
+                $('.buttom').on('click', function(e) {
                     e.preventDefault();
 
                     var email = $('input[type="email"]').val();
@@ -100,19 +58,19 @@
                             password: password
                         },
                         dataType: 'json',
-                        success: function (response) {
+                        success: function(response) {
                             Swal.fire({
                                 title: response.success ? '¡Éxito!' : '¡Error!',
                                 text: response.message,
                                 icon: response.success ? 'success' : 'error'
-                            }).then(function () {
+                            }).then(function() {
                                 if (response.success) {
                                     window.location.href = response.url;
                                 }
                             });
 
                         },
-                        error: function (xhr, status, error) {
+                        error: function(xhr, status, error) {
                             // Handle error response
                             console.error(error);
                             // Show error message
@@ -123,18 +81,23 @@
         </script>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const finalLogo = document.getElementById("finalLogo");
             const logIn = document.querySelector(".alianza-metro .log-in");
 
-            finalLogo.addEventListener("animationend", function (event) {
+            finalLogo.addEventListener("animationend", function(event) {
                 if (event.animationName === "slideIn") {
                     logIn.style.display = "flex";
                     finalLogo.style.display = "none";
+
+                    // Redirigir a usuarios/dashboard después de mostrar el log-in
+                    setTimeout(() => {
+                        window.location.href = "/metro/app/usuarios/dashboard";
+                    }, 2000); // Espera 2 segundos antes de redirigir
                 }
             });
         });
     </script>
 </body>
 
-</html> -->
+</html>

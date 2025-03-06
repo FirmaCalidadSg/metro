@@ -175,4 +175,23 @@ class Linea
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function GetlineaEquipo($linea_id)
+    {
+        $tipo = "empaque";
+        try {
+            $sql = "SELECT e.nombre, e.modelo,e.id as eq_id  
+             FROM 
+             linea_equipo le join equipo e ON le.equipo_id=e.id
+             WHERE
+             le.linea_id=:linea_id 
+             AND tipo=:tipo";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':linea_id', $linea_id, PDO::PARAM_INT);
+            $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

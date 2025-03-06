@@ -95,45 +95,43 @@
                 <div class="card-body">
                     <form id="toForm" name="toForm">
                         <div class="row g-3">
-                            <div class="col-2">
+                            <div class="col-3">
                                 <label for="medidaSelect" class="form-label">Medida</label>
                                 <select class="form-select" id="medidaSelect">
                                     <option value="kg">Kg</option>
                                     <option value="unidades">Unidades</option>
                                 </select>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <label for="itemInput" class="form-label">Ítems/Productos</label>
                                 <select name="producto_id" id="producto_id" class="form-select select2">
                                     <option selected>Seleccionar</option>
                                 </select>
                             </div>
-                            <div class="col">
+                            <div class="col-3">
                                 <label for="hinicial" class="form-label">Hora Inicial</label>
                                 <input type="time" class="form-control" id="hinicial">
                             </div>
-                            <div class="col">
+                            <div class="col-3">
                                 <label for="hfinal" class="form-label">Hora Final</label>
                                 <input type="time" class="form-control" id="hfinal">
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <label for="produccionConformeInput" class="form-label">Producción Conforme</label>
                                 <input type="number" class="form-control" id="produccionConforme">
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <label for="tiempoPerdidoIdealesInput" class="form-label">Tiempo Perdido
                                     (Ideal)</label>
                                 <input type="number" class="form-control" id="tiempoPerdidoIdealesInput"
                                     name="tiempoPerdidoIdealesInput">
                             </div>
-                            <div class="col-4">
+                            <!-- <div class="col">
                                 <label for="tiempoPerdidoRealesInput" class="form-label">Tiempo Perdido (Real)</label>
-                                <input type="number" class="form-control" id="tiempoPerdidoRealesInput">
-                            </div>
-
+                                <input type="hidden" class="form-control" id="tiempoPerdidoRealesInput">
+                            </div>-->
                             <div class="col-md-6 text-center">
                                 <div class="row text-center">
-                                    <label for="" class="form-label">Producción No Conforme</label>
                                     <div class="col">
                                         <label for="reprocesoInput" class="form-label">Reproceso</label>
                                         <input type="number" class="form-control" id="reprocesoInput">
@@ -142,11 +140,12 @@
                                         <label for="mermasInput" class="form-label">Mermas</label>
                                         <input type="number" class="form-control" id="mermasInput">
                                     </div>
+                                    <label for="" class="form-label">Producción No Conforme</label>
                                 </div>
                             </div>
-                            <div class="col-3" id="produccionIdeal0">
+                            <div class="col-2" id="produccionIdeal0">
                             </div>
-                            <div class="col-3" id="produccionIdealHora0">
+                            <div class="col-4" id="produccionIdealHora0">
                             </div>
                             <input type="hidden" class="form-control" id="produccionIdeal" name="produccionIdeal"
                                 value="">
@@ -269,7 +268,7 @@
     }
     //    calcula las horas hombre
     const input = document.getElementById('num_operarios');
-    input.addEventListener('input', function () {
+    input.addEventListener('input', function() {
         console.log('Valor en tiempo real:', input.value);
         result = input.value * 8;
         $('#h_hombre').val(result).attr('readonly');
@@ -289,19 +288,19 @@
             data: {
                 planta: planta
             },
-            success: function (response) {
+            success: function(response) {
                 var lineas = JSON.parse(response);
                 var select = $('#linea_id');
                 select.empty();
                 select.append('<option value="">Seleccione una línea</option>');
-                $.each(lineas, function (i, linea) {
+                $.each(lineas, function(i, linea) {
                     select.append($('<option>', {
                         value: linea.id,
                         text: linea.nombre
                     }));
                 });
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.error('Error:', error);
             }
         });
@@ -320,19 +319,19 @@
             data: {
                 planta: planta
             },
-            success: function (response) {
+            success: function(response) {
                 var turnos = JSON.parse(response);
                 var select = $('#turno_id');
                 select.empty();
                 select.append('<option value="">Seleccione un turno</option>');
-                $.each(turnos, function (i, turno) {
+                $.each(turnos, function(i, turno) {
                     select.append($('<option>', {
                         value: turno.turno_id,
                         text: turno.turno
                     }));
                 });
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.error('Error:', error);
             }
         });
@@ -346,19 +345,19 @@
                 linea: linea
             },
 
-            success: function (response) {
+            success: function(response) {
                 var procesos = JSON.parse(response);
                 var select = $('#proceso_id');
                 select.empty();
                 select.append('<option value="">Seleccione un proceso</option>');
-                $.each(procesos, function (i, proceso) {
+                $.each(procesos, function(i, proceso) {
                     select.append($('<option>', {
                         value: proceso.proceso_id,
                         text: proceso.nombre_proceso
                     }));
                 });
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.error('Error:', error);
             }
         });
@@ -399,12 +398,12 @@
                 proceso_id: proceso_id
             },
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 // Limpiar y rellenar el select de productos
                 $('#producto_id').empty().append('<option value="">Seleccione un producto</option>');
 
                 if (response && response.length > 0) {
-                    response.forEach(function (producto) {
+                    response.forEach(function(producto) {
                         $('#producto_id').append(
                             `<option value="${producto.id}">${producto.nombre} (${producto.codigo})</option>`
                         );
@@ -413,7 +412,7 @@
                     $('#producto_id').append('<option value="">No hay productos disponibles</option>');
                 }
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.error('Error en la solicitud:', error);
             }
         });
@@ -428,7 +427,7 @@
                 turno_id: turno_id
             },
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 if (response && response.length > 0) {
                     var turno = response[0]; // Solo un turno según la estructura JSON
 
@@ -443,13 +442,13 @@
                     console.warn('Respuesta vacía o inválida:', response);
                 }
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.error('Error en la solicitud:', error);
             }
         });
     }
 
-    $("#producto_id").change(function () {
+    $("#producto_id").change(function() {
         $(this).off("change"); // Desactiva temporalmente el evento
         let lineaId = $("#linea_id").val();
         let procesoId = $("#proceso_id").val();
@@ -465,7 +464,7 @@
                 productoId: productoId
             },
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 if (response && typeof response === "object") { // Verifica si es un objeto válido
                     // console.log('Producción Ajustada:', response.produccion_ajustada);
                     // console.log('Producción Teórica:', response.produccion_teorica);
@@ -487,7 +486,7 @@
                 }
             },
 
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.error('Error en la solicitud AJAX:', error);
                 console.log('Respuesta del servidor:', xhr.responseText);
             }
@@ -496,7 +495,7 @@
         $(this).on("change", arguments.callee); // Reactiva el evento después de la ejecución
     });
 
-    $("#produccionConforme").change(function () {
+    $("#produccionConforme").change(function() {
         let produccionIdeal = parseFloat($("#produccionIdeal").val()) || 0; // Producción ideal
         let produccionConforme = parseFloat($(this).val()) || 0; // Producción conforme
         let produccionIdealHora = parseFloat($("#produccionIdealHora").val()) ||
@@ -514,7 +513,7 @@
         $("#tiempoPerdidoIdealesInput").val(tiempoPerdidasIdeales.toFixed(2));
     });
 
-    $("#tiempoPerdidoRealesInput, #reprocesoInput, #mermasInput").change(function () {
+    $("#tiempoPerdidoRealesInput, #reprocesoInput, #mermasInput").change(function() {
         let targetId = $(this).attr("id"); // Obtener el ID del input cambiado
         let value = $(this).val(); // Obtener el valor ingresado
 
@@ -544,7 +543,7 @@
         $('#res_total').html(totalParadas);
     }
 
-    $(".tiempo-parada").on("input", function () {
+    $(".tiempo-parada").on("input", function() {
         actualizarTiempos();
     });
 
@@ -557,11 +556,11 @@
 
             },
             // dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 $("#index").html(response);
             },
 
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.error('Error en la solicitud AJAX:', error);
                 console.log('Respuesta del servidor:', xhr.responseText);
             }
@@ -572,8 +571,8 @@
 
 
 
-    $(document).ready(function () {
-        $("#registroForm").submit(function (event) {
+    $(document).ready(function() {
+        $("#registroForm").submit(function(event) {
             event.preventDefault(); // Evita la recarga de la página
 
             // Validar que los campos obligatorios no estén vacíos
@@ -581,7 +580,6 @@
                 Swal.fire("Error", "Por favor, completa los campos obligatorios.", "error");
                 return;
             }
-
             // Obtener datos de "registroForm"
             let form1Data = $("#registroForm").serializeArray();
 
@@ -590,7 +588,7 @@
 
             // Obtener datos de la tabla "tablaParos"
             let tablaData = [];
-            $("#tablaParos tbody tr").each(function () {
+            $("#tablaParos tbody tr").each(function() {
                 let rowData = {
                     Paro: $(this).find("td:eq(0)").text().trim(),
                     SubParo: $(this).find("td:eq(1)").text().trim(),
@@ -621,13 +619,13 @@
                 data: JSON.stringify(allData),
                 contentType: "application/json",
                 dataType: "json",
-                success: function (response) {
+                success: function(response) {
                     Swal.fire("Éxito", "Datos registrados correctamente." + response.cc, "success").then(() => {
 
                         window.location.href = '<?php echo BASE_PATH ?>controlCapacidad/ViewData/' + response.cc; // Recargar la página tras éxito
                     });
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     Swal.fire("Error", "Hubo un problema al registrar los datos.", "error");
                     console.error("Error AJAX:", error);
                 }

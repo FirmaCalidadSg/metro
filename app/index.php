@@ -26,7 +26,9 @@ $router->group('', 'SecurityController', function ($group) {
     $group->add('login', 'login');
     $group->add('auth', 'auth');
     $group->add('logout', 'logout');
+    $group->add('loginAuth', 'loginAuth');
     $group->add('dashboard', 'dashboard');
+    $group->add('revocarAcceso', 'revocarAcceso');
 });
 
 // Rutas de usuarios
@@ -170,7 +172,7 @@ $router->group('consultas', 'ConsultasController', function ($group) {
 });
 $router->group('capacidades', 'CapacidadesController', function ($group) {
     $group->add('', 'index');
-    $group->add('registro', 'registro', );
+    $group->add('registro', 'registro',);
     $group->add('crear', 'crear', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
 });
@@ -204,7 +206,6 @@ $router->group('plantas', 'PlantasController', function ($group) {
     $group->add('crear', 'crear', 'POST');
     $group->add('registrar', 'registrar', 'POST');
     $group->add('eliminar/{id}', 'eliminar', 'POST');
-
 });
 $router->group('turno', 'TurnosController', function ($group) {
     $group->add('', 'index');

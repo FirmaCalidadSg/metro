@@ -88,4 +88,6 @@ class LineaController
         $lineas =  $this->linea->GetByPlanta($_REQUEST['planta']);
         echo json_encode($lineas);
     }
+
+    
 }

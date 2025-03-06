@@ -274,7 +274,7 @@
 
             <!-- Cerrar Sesión -->
             <li class="nav-item">
-              <a href="<?php echo BASE_PATH; ?>/logout">
+              <a href="<?php echo BASE_PATH; ?>revocarAcceso">
                 <i class="fas fa-sign-out-alt"></i>
                 <p>Cerrar Sesión</p>
               </a>
