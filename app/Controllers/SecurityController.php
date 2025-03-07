@@ -143,7 +143,7 @@ class SecurityController
     {
         session_start();
         $userId = $_SESSION['userData']['oid'];
-
+        /**firmaCalidaSg */
         // $tenantId = "7258c2e3-77e9-4639-b8c0-b0ce37f72218";
         // $clientId = "a05de9cb-0cf4-4f44-9f89-94a5fd88f960";
         // $clientSecret = "UZr8Q~k8uws6AamJReZzMvAXWiIbOzQdYqMylbBa";
