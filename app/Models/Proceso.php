@@ -30,7 +30,10 @@ class Proceso
 
     public function getAllProceso()
     {
-        $query = "SELECT * FROM proceso";
+        $query = "SELECT p.id, p.nombre, p.descripcion, p.planta_id, p.responsable_id,   pl.nombre_planta as planta_nombre
+        FROM proceso p
+        JOIN plantas pl ON p.planta_id = pl.id
+        ";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);

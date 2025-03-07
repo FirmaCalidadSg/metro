@@ -144,9 +144,13 @@ class SecurityController
         session_start();
         $userId = $_SESSION['userData']['oid'];
 
-        $tenantId = "7258c2e3-77e9-4639-b8c0-b0ce37f72218";
-        $clientId = "a05de9cb-0cf4-4f44-9f89-94a5fd88f960";
-        $clientSecret = "UZr8Q~k8uws6AamJReZzMvAXWiIbOzQdYqMylbBa";
+        // $tenantId = "7258c2e3-77e9-4639-b8c0-b0ce37f72218";
+        // $clientId = "a05de9cb-0cf4-4f44-9f89-94a5fd88f960";
+        // $clientSecret = "UZr8Q~k8uws6AamJReZzMvAXWiIbOzQdYqMylbBa";
+        /**teamFoodBOGOTA */
+        $tenantId = "7b99514b-2c6e-47f0-8e95-f99ecc22f148";
+        $clientId = "784e35de-c7a5-4899-a92f-4b9ededb4984";
+        $clientSecret = "pB78Q~57KEoj8CVU29hKnGA1to7W~mgTxP47gcM~";
 
         // 1. Obtener token de acceso
         $tokenUrl = "https://login.microsoftonline.com/$tenantId/oauth2/v2.0/token";
@@ -198,7 +202,7 @@ class SecurityController
         $revokeResponse = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
-
+        // print_r($revokeResponse);
         if ($httpCode == 200) {
             $responseData = json_decode($revokeResponse, true);
             if (isset($responseData['value']) && $responseData['value'] === true) {
@@ -213,7 +217,7 @@ class SecurityController
         } else {
             // Redireccionar en caso de error
             $errorDetails = json_decode($revokeResponse, true);
-            header("Location: http://localhost/metro/app/?error=revoke_error");
+            header("Location: http://localhost/metro/app/");
             exit();
         }
     }

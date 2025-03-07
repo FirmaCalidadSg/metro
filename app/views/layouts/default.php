@@ -49,12 +49,14 @@
   <link rel="stylesheet" href="assets/css/demo.css" />
 
   <style>
-    .btn{
+    .btn {
       border: none !important;
     }
-    .btn:hover{
-    background:  #0a843c !important;
+
+    .btn:hover {
+      background: #0a843c !important;
     }
+
     .boton-cerrar {
       display: none;
     }
@@ -144,7 +146,7 @@
             </li>
 
             <!-- Control de Capacidades -->
-           <!--  <li class="nav-item">
+            <!--  <li class="nav-item">
               <a href="<?php echo BASE_PATH; ?>controlCapacidad"">
                 <i class=" fas fa-plus"></i>
                 <p>Control De Capacidades</p>
@@ -168,9 +170,8 @@
               </a>
               <div class="collapse" id="capacidades">
                 <ul class="nav nav-collapse">
-                  <li><a href="<?php echo BASE_PATH; ?>controlCapacidad"><span class="sub-item">Control De
-                        Capacidades</span></a></li>
-                  <li><a href="#"><span class="sub-item">Control De Capacidades Batch</span></a></li>
+                  <li><a href="<?php echo BASE_PATH; ?>controlCapacidad"><span class="sub-item">Diarias</span></a></li>
+                  <li><a href="<?php echo BASE_PATH; ?>controlCapacidad/indexFecha"><span class="sub-item">Programadas</span></a></li>
                 </ul>
               </div>
             </li>

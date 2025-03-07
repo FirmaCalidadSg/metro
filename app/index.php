@@ -34,6 +34,7 @@ $router->group('', 'SecurityController', function ($group) {
 // Rutas de usuarios
 $router->group('usuarios', 'UsuariosController', function ($group) {
     $group->add('', 'index');
+
     $group->add('dashboard', 'dashboard');
     $group->add('auth', 'auth', 'POST');
     $group->add('registro', 'registro', 'POST');
@@ -182,6 +183,7 @@ $router->group('configuracion', 'ConfiguracionController', function ($group) {
 });
 $router->group('controlCapacidad', 'ControlCapacidadController', function ($group) {
     $group->add('', 'index');
+    $group->add('indexFecha', 'indexFecha');
     $group->add('paradas', 'paradas');
     $group->add('modal1', 'modal1');
     $group->add('modal2', 'modal2');
@@ -191,6 +193,7 @@ $router->group('controlCapacidad', 'ControlCapacidadController', function ($grou
     $group->add('getParoByTipo', 'getParoByTipo', 'POST');
     $group->add('SubParo', 'SubParo', 'POST');
     $group->add('RazonParo', 'RazonParo', 'POST');
+    $group->add('procesarDatosFecha', 'procesarDatosFecha', 'POST');
     $group->add('procesarDatos', 'procesarDatos', 'POST');
     $group->add('ViewData/{id}', 'ViewData', 'GET');
 });

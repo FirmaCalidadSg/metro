@@ -10,6 +10,7 @@ use App\Models\Controlcapacidad;
 use App\Models\Producto;
 use App\Models\LineaProducto;
 use App\Models\TiposParos;
+use App\Models\Equipo;
 
 class ControlCapacidadController
 {
@@ -21,6 +22,7 @@ class ControlCapacidadController
     public $producto;
     public $linea_producto;
     public $paros;
+    public $equipo;
 
     public function __construct()
     {
@@ -32,6 +34,7 @@ class ControlCapacidadController
         $this->producto = new Producto();
         $this->linea_producto = new LineaProducto();
         $this->paros = new TiposParos();
+        $this->equipo = new Equipo();
     }
 
 
@@ -39,9 +42,20 @@ class ControlCapacidadController
     public function index()
     {
         $plantas = $this->planta->getAllPlantas();
+        $equipos = $this->equipo->getAllEquipoE();
 
         require_once __DIR__ . '/../views/layouts/default.php';
         require_once __DIR__ . '/../views/controlCapacidad/index.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+    }
+
+    public function indexFecha()
+    {
+        $plantas = $this->planta->getAllPlantas();
+        $equipos = $this->equipo->getAllEquipoE();
+
+        require_once __DIR__ . '/../views/layouts/default.php';
+        require_once __DIR__ . '/../views/controlCapacidad/IndexFecha.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
 
@@ -142,6 +156,7 @@ class ControlCapacidadController
             'tpp' => 3,
             'tpv' => 4,
             'tpc' => 5,
+            'tpnof' => 1,
             default => 'Desconocido',
         };
 
@@ -152,9 +167,10 @@ class ControlCapacidadController
             'tpp' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/proceso.php',
             'tpv' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/velocidad.php',
             'tpc' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/calidad.php',
+            'tpnof' => require_once __DIR__ . '/../views/controlCapacidad/Paradas/tpnof.php',
             default => 'Desconocido',
         };
-        // print_r($paros);
+        //  print_r($paros);
     }
 
 
@@ -219,6 +235,52 @@ class ControlCapacidadController
             echo json_encode(["status" => "error", "message" => $e->getMessage()]);
         }
     }
+    public function procesarDatosFecha()
+    {
+        try {
+            // Obtener datos del JSON enviado desde AJAX
+            $json = file_get_contents("php://input");
+            $datos = json_decode($json, true); // Convertir a array asociativo
+
+            if (!$datos) {
+                echo json_encode(["status" => "error", "message" => "Datos inválidos"]);
+                return;
+            }
+
+            // Extraer datos de cada parte
+            $form1 = $this->convertirArrayAsociativo($datos['form1']);
+            // $form2 = $this->convertirArrayAsociativo($datos['form2']);
+            $tabla = $datos['tabla']; // Ya está en formato array de objetos
+
+            // Crear objeto de solicitud para enviar al modelo
+            $solicitud = new Controlcapacidad();
+            $solicitud->fecha_registro = $form1['fechaRegistro'] ?? null;
+            $solicitud->planta_id = $form1['planta_id'] ?? null;
+            $solicitud->linea_id = $form1['linea_id'] ?? null;
+            $solicitud->proceso_id = $form1['proceso_id'] ?? null;
+            $solicitud->operario = $form1['operarioLider'] ?? null;
+            $solicitud->turno_id = $form1['turno_id'] ?? null;
+            $solicitud->num_operarios = $form1['num_operarios'] ?? null;
+            $solicitud->horashombre = $form1['h_hombre'] ?? null;
+
+            // Datos del formulario "toForm"
+            $solicitud->producto_id =  0;
+            $solicitud->tiempoPerdidoIdeales =  0;
+            $solicitud->produccionIdeal =  0;
+            $solicitud->produccionIdealHora =  0;
+
+            // Enviar datos al modelo
+            $resultado = $this->controlcapacidad->guardarControlCapacidad($solicitud, $tabla);
+
+            if ($resultado) {
+                echo json_encode(["status" => "success", "message" => "Datos guardados correctamente", "cc" => $resultado]);
+            } else {
+                echo json_encode(["status" => "error", "message" => "Error al guardar"]);
+            }
+        } catch (Exception $e) {
+            echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+        }
+    }
 
     /**
      * Función auxiliar para convertir un array de [{name: "campo", value: "dato"}] a [campo => dato]
@@ -243,6 +305,4 @@ class ControlCapacidadController
         require_once __DIR__ . '/../views/controlCapacidad/viewdata.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
-
-
 }

@@ -95,6 +95,7 @@
             let tiempo = parseFloat($("#tiempo").val()); // Convertir a número
             let descripcion = $("#descripcion").val();
             let tpi = parseFloat($("#tiempoPerdidasIdeales").text()); // Convertir a número
+            let tt = parseFloat($("#tt").text()); // Convertir a número
 
             if (!paroId || !subparoId || !razonId || isNaN(tiempo) || !descripcion) {
                 alert("Todos los campos son obligatorios y el tiempo debe ser un número válido.");
@@ -118,7 +119,8 @@
             $("#tablaParos tbody").append(fila);
 
             // Actualizar tiempo de pérdidas ideales
-            $("#tiempoPerdidasIdeales").text((tpi - tiempo).toFixed(2));
+            $("#tiempoPerdidasIdeales").text((tpi - tiempo).toFixed(0));
+            $("#tt").text((tt - tiempo).toFixed(0));
 
             // Limpiar formulario
             $("#formparo")[0].reset();

@@ -146,18 +146,20 @@ class Controlcapacidad
             if (!empty($tabla)) {
                 foreach ($tabla as $paro) {
                     $sqlParo = "INSERT INTO paradas 
-                                (control_capacidad_id, paro, subparo, razon, tiempo, descripcion) 
+                                (control_capacidad_id,inicio, fin, duracion, paro, subparo, razon, tiempo, descripcion) 
                                 VALUES 
-                                (:control_capacidad_id, :paro, :subparo, :razon, :tiempo, :descripcion)";
+                                (:control_capacidad_id, :inicio, :fin, :duracion, :paro, :subparo, :razon, :tiempo, :descripcion)";
 
                     $stmtParo = $this->db->prepare($sqlParo);
                     $stmtParo->bindParam(':control_capacidad_id', $control_capacidad_id);
                     $stmtParo->bindParam(':paro', $paro['Paro']);
+                    $stmtParo->bindParam(':inicio', $paro['inicio']);
+                    $stmtParo->bindParam(':fin', $paro['fin']);
+                    $stmtParo->bindParam(':duracion', $paro['Tiempo']);
                     $stmtParo->bindParam(':subparo', $paro['SubParo']);
                     $stmtParo->bindParam(':razon', $paro['Razon']);
                     $stmtParo->bindParam(':tiempo', $paro['Tiempo']);
                     $stmtParo->bindParam(':descripcion', $paro['Descripcion']);
-
                     $stmtParo->execute();
                 }
             }
@@ -202,7 +204,6 @@ class Controlcapacidad
 
             // Retornar los resultados
             return $stmt->fetch(PDO::FETCH_OBJ);
-
         } catch (PDOException $e) {
             // Manejo de errores
             error_log("Error en Paradas: " . $e->getMessage());
@@ -213,7 +214,7 @@ class Controlcapacidad
     {
         try {
             $query = "SELECT 
-                    paro,subparo,razon, tiempo, descripcion, created    
+               inicio,fin, duracion, paro,subparo,razon, tiempo, descripcion, created    
                   FROM paradas                   
                   WHERE control_capacidad_id =:id";
 
@@ -226,13 +227,10 @@ class Controlcapacidad
 
             // Retornar los resultados
             return $stmt->fetchAll(PDO::FETCH_OBJ);
-
         } catch (PDOException $e) {
             // Manejo de errores
             error_log("Error en Paradas: " . $e->getMessage());
             return false; // Retornar false en caso de error
         }
     }
-
-
 }

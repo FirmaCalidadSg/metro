@@ -36,6 +36,13 @@ class Equipo
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    public function getAllEquipoE()
+    {
+        $query = "SELECT * FROM equipo WHERE tipo = 'empaque'";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
     public function getEquipoAndDanos($id){
         $query = "SELECT * e.id as e.nombre, e.modelo, e.estado, d.descripcion

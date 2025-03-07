@@ -1,21 +1,4 @@
 <script src="<?= BASE_PATH ?>/Assets/jquery/jquery-3.7.1.min.js"></script>
-
-<style>
-    table {
-        font-size: 14px;
-        text-transform: capitalize;
-        /* Tamaño de fuente más pequeño */
-    }
-
-    th {
-        text-transform: capitalize;
-        background-color: #f4f4f4;
-        font-weight: bold;
-        font-size: 14px;
-
-
-    }
-</style>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -66,7 +49,7 @@
                                     <?php foreach ($equipos as $value): ?>
                                         <option value="<?php echo $value->id ?>"><?php echo $value->nombre ?>
                                         </option>
-                                   <?php endforeach; ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <!-- Nombre del operario líder -->
@@ -110,161 +93,36 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h6>Tiempo de Operación (TO)</h6>
+                    <h6>Descripción de paros</h6>
                 </div>
                 <div class="card-body">
-                    <form id="toForm" name="toForm">
-                        <div class="row g-3">
-                            <div class="col-3">
-                                <label for="medidaSelect" class="form-label">Medida</label>
-                                <select class="form-select" id="medidaSelect">
-                                    <option value="kg">Kg</option>
-                                    <option value="unidades">Unidades</option>
-                                </select>
-                            </div>
-                            <div class="col-3">
-                                <label for="itemInput" class="form-label">Ítems/Productos</label>
-                                <select name="producto_id" id="producto_id" class="form-select select2">
-                                    <option selected>Seleccionar</option>
-                                </select>
-                            </div>
-                            <div class="col-3">
-                                <label for="hinicial" class="form-label">Hora Inicial</label>
-                                <input type="time" class="form-control" id="hinicial" name="hinicial">
-                            </div>
-                            <div class="col-3">
-                                <label for="hfinal" class="form-label">Hora Final</label>
-                                <input type="time" class="form-control" id="hfinal" name="hfinal">
-                            </div>
-                            <div class="col-3">
-                                <label for="produccionConformeInput" class="form-label">Producción Conforme</label>
-                                <input type="number" class="form-control" id="produccionConforme" name="produccionConforme">
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <div class="row text-center">
-                                    <div class="col">
-                                        <label for="reprocesoInput" class="form-label">Reproceso</label>
-                                        <input type="number" class="form-control" id="reprocesoInput" name="reprocesoInput">
-                                    </div>
-                                    <div class="col">
-                                        <label for="mermasInput" class="form-label">Mermas</label>
-                                        <input type="number" class="form-control" id="mermasInput">
-                                    </div>
-                                    <label for="" class="form-label">Producción No Conforme</label>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <label for="tiempoPerdidoIdealesInput" class="form-label">Tiempo Perdido</label>
-                                <input type="number" class="form-control" id="tiempoPerdidoIdealesInput"
-                                    name="tiempoPerdidoIdealesInput">
-                            </div>
-                            <!-- <div class="col">
-                                <label for="tiempoPerdidoRealesInput" class="form-label">Tiempo Perdido (Real)</label>
-                                <input type="hidden" class="form-control" id="tiempoPerdidoRealesInput">
-                            </div>-->
+                    <div class="row responsive">
+                        <div class="col-md-12">
+                            <table class="table table-bordered mt-4" id="tablaParos">
+                                <thead>
+                                    <tr>
+                                        <th style="text-transform: capitalize;">Inicio</th>
+                                        <th style="text-transform: capitalize;">Fin</th>
+                                        <th style="text-transform: capitalize;">Duración</th>
+                                        <th style="text-transform: capitalize;">Paro/Razón</th>
+                                        <th style="text-transform: capitalize;">Descripción</th>
+                                        <th style="text-transform: capitalize;">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Filas dinámicas aquí -->
+                                </tbody>
+                            </table>
+                        </div>
 
-                            <div class="col-2" id="produccionIdeal0">
-                            </div>
-                            <div class="col-4" id="produccionIdealHora0">
-                            </div>
-                            <input type="hidden" class="form-control" id="produccionIdeal" name="produccionIdeal"
-                                value="">
-                            <input type="hidden" class="form-control" id="produccionIdealHora"
-                                name="produccionIdealHora" value="">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card card-stats card-default card-round">
-            <div class="card-body text-center">
-                <div class="numbers">
-                    <p class="card-category">
-                    <h6>Tiempo por Perdidas</h6>
-                    </p>
-                    <h4 class="card-title" id="tiempoPerdidasIdeales">0</h4>
-                    <table class="table table-bordered mt-4" id="descripcionParos">
-                        <thead style="font-size:14px">
-                            <tr>
-                                <th>Tiempo Total</th>
-                                <th>Producción Conforme</th>
-                                <th>Reproceso</th>
-                                <th>Merma</th>
-                                <th>TPI</th>
-                                <th>TPR</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="tt"></td>
-                                <td id="pc"></td>
-                                <td id="reproceso"></td>
-                                <td id="merma"></td>
-                                <td id="tpi"></td>
-                                <td id="tpr"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="btn-group dropdown mt-3">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Agregar Paros</button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a class="dropdown-item" id="tpno" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#modalId"
-                                    onclick="changeModalTitle('TPNO (Tiempo Planeado de No Operación)'),getParoByTipo('tpno')">TPNO
-                                    (Tiempo
-                                    Planeado de No Operación)</a></li>
-                            <li><a class="dropdown-item" id="tpam" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#modalId"
-                                    onclick="changeModalTitle('Tiempo en Paros y Ajustes (Mantenimiento)'),getParoByTipo('tpam')">Tiempo
-                                    en
-                                    Paros y Ajustes (Mantenimiento)</a></li>
-                            <li><a class="dropdown-item" id="tpap" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#modalId"
-                                    onclick="changeModalTitle('Tiempo en Paros y Ajustes (Proceso)'),getParoByTipo('tpp')">Tiempo
-                                    en Paros y Ajustes (Proceso)</a></li>
-                            <li><a class="dropdown-item" id="tpv" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#modalId"
-                                    onclick="changeModalTitle('Tiempo en Pérdidas por Velocidad (TPV)'),getParoByTipo('tpv')">Tiempo
-                                    en
-                                    Pérdidas por Velocidad (TPV)</a></li>
-                            <li><a class="dropdown-item" id="tpv" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#modalId"
-                                    onclick="changeModalTitle('Tiempo en Pérdidas por Calidad (TPC)'),getParoByTipo('tpc')">Tiempo
-                                    en
-                                    Pérdidas por Calidad (TPC)</a></li>
-                        </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header">
-                <h6>Descripción de paros</h6>
-            </div>
-            <div class="card-body">
-                <div class="row responsive">
-                    <table class="table table-bordered mt-4" id="tablaParos">
-                        <thead>
-                            <tr>
-                                <th>Paro</th>
-                                <th>SubParo</th>
-                                <th>Razón</th>
-                                <th>Tiempo</th>
-                                <th>Descripción</th>
-                                <th>Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Filas dinámicas aquí -->
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col text-center">
-                    <button type="submit" class="btn btn-primary" id="registrar">Registrar</button>
+                    <div class="col text-center">
+                        <button type="submit" class="btn btn-primary" id="registrar">Registrar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -637,16 +495,18 @@
             let form1Data = $("#registroForm").serializeArray();
 
             // Obtener datos de "toForm"
-            let form2Data = $("#toForm").serializeArray();
+            //let form2Data = $("#toForm").serializeArray();
 
             // Obtener datos de la tabla "tablaParos"
             let tablaData = [];
             $("#tablaParos tbody tr").each(function() {
                 let rowData = {
-                    Paro: $(this).find("td:eq(0)").text().trim(),
-                    SubParo: $(this).find("td:eq(1)").text().trim(),
-                    Razon: $(this).find("td:eq(2)").text().trim(),
-                    Tiempo: $(this).find("td:eq(3)").text().trim(),
+                    inicio: $(this).find("td:eq(0)").text().trim(),
+                    fin: $(this).find("td:eq(1)").text().trim(),
+                    Tiempo: $(this).find("td:eq(2)").text().trim(),
+                    Paro: $(this).find("td:eq(3)").text().trim(),
+                    SubParo: $(this).find("td:eq(3)").text().trim(),
+                    Razon: $(this).find("td:eq(3)").text().trim(),
                     Descripcion: $(this).find("td:eq(4)").text().trim()
                 };
 
@@ -659,7 +519,6 @@
             // Construir objeto final con datos correctos
             let allData = {
                 form1: form1Data,
-                form2: form2Data,
                 tabla: tablaData
             };
 
@@ -668,7 +527,7 @@
             // Enviar con AJAX
             $.ajax({
                 type: "POST",
-                url: "<?php echo BASE_PATH ?>controlCapacidad/procesarDatos/", // Reemplaza con la URL correcta
+                url: "<?php echo BASE_PATH ?>controlCapacidad/procesarDatosFecha/", // Reemplaza con la URL correcta
                 data: JSON.stringify(allData),
                 contentType: "application/json",
                 dataType: "json",

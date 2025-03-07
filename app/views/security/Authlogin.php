@@ -1,5 +1,5 @@
 <?php
-session_start();
+@session_start();
 $_SESSION['userData'] = $userData;
 // echo "<pre>";
 // var_dump($_SESSION['userData']);
