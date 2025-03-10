@@ -1,14 +1,14 @@
 <?php
 
 /**FirmaCalidad */
-// $tenantId = "7258c2e3-77e9-4639-b8c0-b0ce37f72218";
-// $clientId = "a05de9cb-0cf4-4f44-9f89-94a5fd88f960";
-// $clientSecret = "UZr8Q~k8uws6AamJReZzMvAXWiIbOzQdYqMylbBa";  // Usa el **valor del secreto**, NO el ID
+$tenantId = "7258c2e3-77e9-4639-b8c0-b0ce37f72218";
+$clientId = "a05de9cb-0cf4-4f44-9f89-94a5fd88f960";
+$clientSecret = "UZr8Q~k8uws6AamJReZzMvAXWiIbOzQdYqMylbBa";  // Usa el **valor del secreto**, NO el ID
 
 /**teamFoodBOGOTA */
-$tenantId = "7b99514b-2c6e-47f0-8e95-f99ecc22f148";
-$clientId = "784e35de-c7a5-4899-a92f-4b9ededb4984";
-$clientSecret = "pB78Q~57KEoj8CVU29hKnGA1to7W~mgTxP47gcM~";  // Usa el **valor del secreto**, NO el ID
+// $tenantId = "7b99514b-2c6e-47f0-8e95-f99ecc22f148";
+// $clientId = "784e35de-c7a5-4899-a92f-4b9ededb4984";
+// $clientSecret = "pB78Q~57KEoj8CVU29hKnGA1to7W~mgTxP47gcM~";  // Usa el **valor del secreto**, NO el ID
 
 $redirectUri = "http://localhost/metro/app/redirect.php";
 $redirectUri2 = "http://localhost/metro/app/loginAuth";
